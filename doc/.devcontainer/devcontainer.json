@@ -1,5 +1,5 @@
 {
-    "name": "Studienarbeit Typst",
+    "name": "Bachelorarbeit Typst",
     "build": {
         "dockerfile": "../Dockerfile.txt"
     },

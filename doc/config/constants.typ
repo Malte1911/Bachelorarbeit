@@ -23,8 +23,8 @@ Formula Student Rennwagen"
 //#let document_type = "T3_2001" // Praxisarbeit, Teil 1 (Semester 3, Teil 1)
 // #let document_type = "T3_2002" // Praxisarbeit, Teil 2 (Semester 4, Teil 2)
 // #let document_type = "T3_3000" // Praxisarbeit (Semester 5)
-#let document_type = "T3_3100" // Studienarbeit (Semester 5 & 6)
-// #let document_type = "T3_3300" // Bachelor Arbeit (Semester 6)
+// #let document_type = "T3_3100" // Studienarbeit (Semester 5 & 6)
+#let document_type = "T3_3300" // Bachelor Arbeit (Semester 6)
 
 // Document type phrases
 #let document_type_phrases = (
