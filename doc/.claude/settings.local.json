@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:developer.nvidia.com)",
+      "WebFetch(domain:www.nvidia.com)",
+      "WebFetch(domain:developer.download.nvidia.com)"
+    ]
+  }
+}

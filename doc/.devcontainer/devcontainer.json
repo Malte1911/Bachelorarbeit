@@ -1,0 +1,18 @@
+{
+    "name": "Studienarbeit Typst",
+    "build": {
+        "dockerfile": "../Dockerfile.txt"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "myriad-dreamin.tinymist"
+            ],
+            "settings": {
+                "files.insertFinalNewline": true,
+                "files.trimFinalNewlines": true,
+                "files.trimTrailingWhitespace": true
+            }
+        }
+    }
+}

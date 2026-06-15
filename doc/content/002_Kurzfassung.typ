@@ -1,0 +1,14 @@
+#import "../config/acronyms.typ": *
+#include "../config/config.typ"
+
+
+= Kurzfassung
+
+Die vorliegende Arbeit dokumentiert die Neuentwicklung und Integration des Driverless Vehicle PC (DVPC), der zentralen Recheneinheit des autonomen Systems des Formula Student Teams DHBW Engineering, für die Saison 2026. Eine Änderung des Fahrzeugchassis sowie die Schwächen der bisherigen Einheit in Bezug auf Gewicht und Wartbarkeit erforderten eine umfassende Überarbeitung des Gehäuses, des Kühlsystems, der elektrischen Anbindung sowie der mechanischen Befestigung am Fahrzeug.
+
+Ausgehend von einer Analyse des Vorjahres-DVPC wurden die Anforderungen für die Domänen Mechanik, Thermik, Elektronik und Nutzbarkeit abgeleitet. In einer prototypischen Konzeptphase wurden mehrere Rechenplattformen und Packaging-Konzepte miteinander verglichen, woraus die Festlegung auf den NVIDIA Jetson Thor als zentrale Recheneinheit hervorging. Der reduzierte Leistungsbedarf und die kompaktere Bauform dieser Plattform haben die anschließende Auslegung der umgebenden Teilsysteme maßgeblich geprägt.
+
+Das ausgewählte Konzept wurde detailliert ausgearbeitet, gefertigt und integriert. Das Casing wurde als Aramidlaminat ausgeführt und mit den vereinseigenen Fertigungsmitteln hergestellt; es bietet ein günstiges Verhältnis von Steifigkeit zu Gewicht und macht eine zusätzliche isolierende Innenauskleidung entbehrlich. Der Kühlkörper wurde als #acro("SLM")-gefertigtes Aluminiumbauteil realisiert und in Reihe in den bestehenden Batteriekühlkreislauf eingebunden, sodass auf eine eigene Pumpen- und Radiatorstruktur verzichtet werden kann. Das Mounting wurde als Aluminiumbiegeteil ausgeführt und an der oberen Firewall des Hinterwagens befestigt; es ermöglicht den werkzeugarmen Ein- und Ausbau der Einheit, ohne benachbarte Fahrzeugkomponenten zu demontieren. Auf elektronischer Seite wurde eine eigene DCDC-Platine auf Basis des TDK-Lambda i7A48020A033V-003-R entworfen, aufgebaut und unter Last validiert. Die Systemintegration umfasst die mechanische und elektrische Verbindung von Jetson Thor, Lidarplatine und DCDC-Platine sowie die Bereitstellung der sechs benötigten #acro("CAN")-Busse über die direkt am Carrierboard verfügbaren Header und ein zusätzliches 4-Channel-#acro("CAN")-Modul.
+
+Die funktionale Validierung erfolgte in einem #acro("HiL")-Aufbau mit Tisch-Kühlung und externer Spannungsversorgung. Der #acro("DVPC") wurde dabei über einen Zeitraum von mehr als einer Stunde unter Last sowie im #acro("CAN")-Betrieb fehlerfrei betrieben, womit die Anforderungen im getesteten Umfang nachgewiesen sind und die Einheit für den Einbau in das Fahrzeug der Saison 2026 freigegeben werden kann. Die abschließende Validierung unter realen Betriebsbedingungen, eine zweite, gewichtsoptimierte Iteration des Kühlkörpers sowie eine mögliche Integration in die Syselbox des Vereins verbleiben als weiterführende Arbeiten für die kommenden Saisons.
+
