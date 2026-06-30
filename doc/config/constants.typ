@@ -1,6 +1,5 @@
 // Document variables
-#let title = "Optimierung der Hardware einer Recheneinheit für einen autonom fahrenden
-Formula Student Rennwagen"
+#let title = "Entwicklung einer Integrationsvorlage zwischen elektronischen Schaltkreisschutzgeräten und einer Gebäudemanagementplattform"
 #let author = "Malte Schröter"
 #let date = "26.04.2026"
 #let matriculation_number = "9353886"
