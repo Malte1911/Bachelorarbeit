@@ -111,7 +111,7 @@
 #let insertListOfTables = {
   // List of tables
   pagebreak()
-  outline(title: "Tabellenverzeichnis", target: figure.where(kind: table))
+  outline(title: "Tabellenverzeichnis", target: figure.where(kind: table, ))
   v(1fr)
 }
 
