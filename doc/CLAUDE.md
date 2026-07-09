@@ -2,7 +2,9 @@
 
 ## Projektkontext
 
-Typst-Studienarbeit über die Entwicklung des Driverless Vehicle PC (DVPC) für ein Formula-Student-Fahrzeug. Sprache: Deutsch. Der Schreibstil ist formal-akademisch und technisch präzise.
+Bachelorarbeit über die Enwticklung eines Datenmodells. Hierbei soll in die Gebäudemanagementsoftware Desigo CC der Firma Siemens das elektronische Schaltkreisschutzgerät (ECPD) integriert werden. Die Anmeldung der Arbeit liegt in `doc\TES23_Schröter_Malte_AnmeldungBachelorarbeit_2026-1.pdf` ab. 
+Sprache: Deutsch. 
+Der Schreibstil ist formal-akademisch und technisch präzise.
 
 ## Schreibstil
 
@@ -11,7 +13,7 @@ Typst-Studienarbeit über die Entwicklung des Driverless Vehicle PC (DVPC) für 
 - Technische Bezeichnungen werden beim ersten Auftreten ausgeschrieben, danach abgekürzt
 - Stichpunkte im Dokument sind Notizen des Autors, die in Fließtext überführt werden sollen – nicht als fertigen Text behandeln
 - neue Zeilen im Dokument werden mit doppelter neuer Zeile im Code eingefügt
-- Kritische Bewertungen (Stärken/Schwächen) werden sachlich und begründet formuliert, wie in den Abschnitten `=== Mounting` und `=== Kühlung` zu sehen
+- Kritische Bewertungen (Stärken/Schwächen) werden sachlich und begründet formuliert
 
 ## Typst-Syntax
 
@@ -52,17 +54,16 @@ IDE-Fehler wie `label does not exist` bei `@citationkey` in Einzeldateien sind e
 ## Wichtige Regeln
 
 - **Keine Halluzinationen bei Zitationskeys** – nur Keys aus `quellen.bib` verwenden; bei unbekannten Quellen einen Platzhalter wie `[TODO Quelle]` setzen
-- **Keine erfundenen Typst-Funktionen** – nur Syntax verwenden, die im Projekt bereits vorkommt
+- **Keine erfundenen Typst-Funktionen** 
 - **Keine neuen Akronyme** ohne Ergänzung in `config/acronyms.typ`
-- Produktnamen werden exakt so geschrieben wie im bestehenden Text, z. B. „Zotac", „RECOM RPMGH12-40", „TRACO TSR 2-24120"
-- Komponentenbezeichnung „Casing" (nicht „Gehäuse") wird als etablierter Projektbegriff beibehalten, ebenso „Mounting", „LidarPCB", „Lidarplatine"
 - bei Bildern wird ein Placeholder wir folgt eingefügt
 ```typst
 #figure(
   image("../../resources/img/placeholder.png", width: 60%, format: "png"),
   caption: [PLACEHOLDER: Beispielcaption] 
-)<kurzbeschreibung>
+)<img:kurzbeschreibung>
 ```
+- die labels immer korrekt markieren, tabellen mit `<tab:tabellenname>`, bilder mit `<img:kurzbeschreibung>`, Formeln mit `<eqa:formelname>`, abschnitte mit `<sec:abschnittskurzname>` und so weiter
 - Bilder werden wo es für sinnvoll gehalten wird eingefügt
 - Quellen werden wo es gefordert ist rausgesucht und mit einem Kommentar markiert, dass sie von Claude stammen
 - Steht im Text "Claude:" mach das was dahinter steht, dafür darfst du auch ins Web und so weiter
