@@ -11,7 +11,7 @@
 #let company_name = "Siemens AG" // 
 #let company_location = "12345 Ausbildungsfirmaort"
 #let release_location = "Ausbildungsfirmaort"
-#let tutor = "Frederic Findeis"
+#let tutor = "Johannes Otto"
 #let evaluator = "Frederic Findeis"
 #let show_company = false // Show company information in cover page
 

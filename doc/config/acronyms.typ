@@ -5,7 +5,16 @@
   RTU: "Remote Terminal Unit",
   ASCII: "American Standard Code for Information Interchange",
   TCP: "Transmission Control Protocol",
-  IP: "Internet Protocol"
+  IP: "Internet Protocol",
+  ECPD: "Electronic Circuit Protection Device",
+  JSON: "JavaScript Object Notation",
+  MQTT: "Message Queuing Telemetry Transport",
+  VPN: "Virtual Private Network",
+  HTTP: "Hypertext Transfer Protocol",
+  HTTPS: "Hypertext Transfer Protocol Secure",
+  API: "Application Programming Interface",
+  // TODO: Bedeutung von PDE bestätigen (z. B. "Point Data Engineering")
+  PDE: "Point Data Engineering"
 )
 
 // Tracking used acronyms
