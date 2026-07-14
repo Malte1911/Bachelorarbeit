@@ -13,8 +13,7 @@
   HTTP: "Hypertext Transfer Protocol",
   HTTPS: "Hypertext Transfer Protocol Secure",
   API: "Application Programming Interface",
-  // TODO: Bedeutung von PDE bestätigen (z. B. "Point Data Engineering")
-  PDE: "Point Data Engineering"
+  PDE: "Power Device Engineer"
 )
 
 // Tracking used acronyms

@@ -33,18 +33,20 @@ Bachelorarbeit über die Entwicklung eines Datenmodells (Integrationsvorlage). H
 
 ## Dateistruktur
 
-Der Inhalt liegt in `content/`. Jedes Kapitel hat eine **Integrationsdatei** (z. B. `700_fazit.typ`), die per `#include` die Unterkapitel-Dateien aus dem **gleichnamigen Ordner** (z. B. `700_Fazit/`) einbindet. Die Reihenfolge der Kapitel steht in `content/999_chapters.typ`.
+Der Inhalt liegt in `content/`. Jedes Kapitel hat eine **Integrationsdatei** (z. B. `700_fazit.typ`), die per `#include` die Unterkapitel-Dateien aus dem **gleichnamigen Ordner** (z. B. `700_fazit/`) einbindet. Die Reihenfolge der Kapitel steht in `content/999_chapters.typ`.
+
+**Namenskonvention:** Kapitel-Container (Ordner + Integrationsdatei) tragen denselben Namen und werden **kleingeschrieben** (`NNN_thema`). Unterkapitel-Dateien werden nach ihrem Inhalt benannt, deutsche Nomen groß, mehrteilige Namen mit Unterstrich (`NNN0_Thema_Zusatz.typ`).
 
 ```
 content/
   999_chapters.typ      ← bindet alle Kapitel in Reihenfolge ein
   100_problemstellung/  ← Einleitung, Problemstellung, Ziel, Vorgehensweise (Aufbau der Arbeit)
-  200_Grundlagen/       ← ECPD/Schaltkreisschutzgeräte, Powercenter, Desigo CC, Modbus, Vorgehensweise
-  300_Anforderungen/    ← Analyse (System, Stakeholder), Anforderungen, Testfälle
-  400_Systemumgebung/   ← Testaufbau, Gerätekonfiguration, Anbindung
-  500_Entwicklung/      ← Einführung PDE, Auswahl der Daten, Mapping (JSON-Template)
-  600_Validierung/      ← Strategie, Durchführung, Ergebnisse
-  700_Fazit/            ← Zusammenfassung, Bewertung Praxistauglichkeit, Kritische Würdigung, Weiterentwicklung
+  200_grundlagen/       ← ECPD/Schaltkreisschutzgeräte, Powercenter, Desigo CC, Modbus, Vorgehensweise
+  300_anforderungen/    ← Analyse (System, Stakeholder), Anforderungen, Testfälle
+  400_systemumgebung/   ← Testaufbau, Gerätekonfiguration, Anbindung
+  500_entwicklung/      ← Einführung PDE, Auswahl der Daten, Mapping (JSON-Template)
+  600_validierung/      ← Strategie, Durchführung, Ergebnisse
+  700_fazit/            ← Zusammenfassung, Bewertung Praxistauglichkeit, Kritische Würdigung, Weiterentwicklung
 config/
   constants.typ         ← Dokumentvariablen (Titel, Autor, Betreuer, Typ …)
   config.typ, cover.typ, functions.typ  ← Layout, Titelblatt, Hilfsfunktionen
