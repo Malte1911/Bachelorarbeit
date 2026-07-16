@@ -2,3 +2,4 @@
 #include "../../config/config.typ"
 
 == Schaltkreisschutzgeräte (ECPD)
+- zustand beachten, on/off/standby

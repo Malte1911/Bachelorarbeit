@@ -4,5 +4,7 @@
 
 #include "../content/700_fazit/710_Zusammenfassung.typ"
 #include "../content/700_fazit/720_Bewertung_Praxistauglichkeit.typ"
+#include "../content/700_fazit/725_Nachhaltigkeitsaspekte.typ"
 #include "../content/700_fazit/730_Kritische_Würdigung.typ"
+#include "../content/700_fazit/735_Akademischer_Wert.typ"
 #include "../content/700_fazit/740_Weiterentwicklung.typ"
