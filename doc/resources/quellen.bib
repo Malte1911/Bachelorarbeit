@@ -10,6 +10,56 @@
   note = {Produktdokumentation, erzeugt mit SCHEMA ST4; Dokument-ID 16059833227}
 }
 
+% Eintrag von Claude ergaenzt: Metadaten entnommen aus dem Titelblatt und dem
+% Impressum von doc/resources/datasheets/MAN_L1V30827018A_RS-AC_009_de_de-DE.pdf.
+@manual{src:sentronsystemhandbuch,
+  author = {{Siemens AG}},
+  title = {SENTRON Schutzschaltgeräte mit Kommunikations- und Messfunktion -- Systemhandbuch},
+  edition = {L1V30827018A\_RS-AC\_009},
+  organization = {Siemens AG, Smart Infrastructure, Electrical Products},
+  address = {Regensburg},
+  year = {2026},
+  month = {Juni}
+}
+
+% Eintrag von Claude ergaenzt: im Systemhandbuch (Kapitel 6.12.4) als Fundstelle der
+% Datenpunkt- und Registeruebersicht verlinkt; Version und Stand aus der Datei
+% Modbus_Register_Map_DE_V7-3_2026-04.xlsx im Projektverzeichnis.
+@online{src:sentronregistermap,
+  url = {https://support.industry.siemens.com/cs/ww/de/view/109973540},
+  author = {{Siemens AG}},
+  title = {SENTRON Schutzschaltgeräte mit Kommunikations- und Messfunktion -- Übersicht der Datenpunkte und Modbus-Register},
+  edition = {V7.3},
+  year = {2026},
+  note = {Siemens Industry Online Support, Beitrags-ID 109973540},
+  urldate = {2026-8-6}
+}
+
+% Eintrag von Claude ergaenzt: Produktdokumentation zu Desigo CC, herangezogen fuer die
+% unterstuetzten Feldprotokolle, den Modbus-Treiber, das Objektmodell-Konzept
+% (Data Point Types/Elements), den JSON- und CSV-Import sowie die Bibliothek
+% EnergyAndPower_Device_Modbus_HQ_2. Metadaten (Dokument-ID, Ausgabestand, Version)
+% entnommen aus den Seiten "Edition Notice" (13789687051) und "Version Information"
+% (13832500107) der Hilfe selbst.
+% ANMERKUNG 1: Zugriff erfolgte ueber oeffentlich erreichbare Installationen der Hilfe,
+% nicht ueber die offizielle Siemens-Auslieferung. Herangezogen wurden zwei Staende:
+% Plattform V5.1 (https://bureau.sygma.ie/WepApp/Help/EngineeringHelp/en-US/index.html,
+% vom Autor als inhaltsgleich bestaetigt) und Plattform V7 (URL unten). Alle in der
+% Arbeit verwendeten Aussagen wurden in beiden Staenden geprueft und sind identisch.
+% ANMERKUNG 2: NFA-04 fordert Kompatibilitaet mit Desigo CC V9.0. Eine Dokumentation
+% dieses Standes war nicht zugaenglich. Die Angaben zum Import- und Objektmodell sind
+% vor Abgabe gegen die im Projekt installierte Version gegenzulesen.
+@manual{src:desigoccenghelp,
+  url = {https://bms.megapps.com.bo/AppClient/Help/EngineeringHelp/en-US/index.html},
+  author = {{Siemens AG}},
+  title = {Desigo CC Engineering Help},
+  edition = {V7},
+  organization = {Siemens Switzerland Ltd., Smart Infrastructure},
+  year = {2022},
+  note = {Dokument-ID A6V10431913\_en--\_a\_09},
+  urldate = {2026-8-6}
+}
+
 @online{src:modbusspec,
   url = {https://www.modbus.org/file/secure/modbusprotocolspecification.pdf},
   author = {{Modbus Organization}},

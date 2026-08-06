@@ -1,0 +1,24 @@
+- einstieg gut
+- Woher kommen die Ebenen? Warum genau die vier? Ist es sinnvoll das so zu beschreiben? Ich würde es kürzen und eher graphisch ohne den bloat mit den vier Ebenen graphisch darstellen, bitte hier vorgehen klären bevor etwas geändert wird
+- Erweiterbarkeit auf weitere Geräte nicht zwingendermaßen ein Ziel. Objektmodell für Powercenter nicht Teil der Anforderungen der Stakeholder, wäre ein schönes Addon aber nicht notwendig. 
+- Erklärung wie belegt wird dass es noch nicht existiert nicht wirlich notwendig, man kann einfach sagen dass es nicht verfügbar ist im Gegen´satz zu anderen Objekten die da drin sind. 
+
+- Powerconfig kann nicht komplett abgelöst werden, für manche konfigurationen wird es weiterhin gebraucht werden. errichter wird es brauchen, fokus in desigo CC soll wirklich auf monitoring und einfachen funktionen sein. sobald änderungen an dem elektrotechnischen aufbau und der funktionsweise ist dann muss das durch eine person mit powerconfig geschehen. --> muss entschieden werden wo das am sinnvollsten ist hinzuzufügen, ob schon bei dem analyse kapitel oder erst bei dem anforderungs kapitel
+- Thema Prüfung bei Instandhaltungspersonal: selbsttest alarm existiert, keine Ahnung ob das dazugehört hier schon oder erst später
+- Thema DGUV kann man anschneiden sage ich, analyse ob das viable ist mit Desigo CC zu machen ist --> ist es ziemlich sicher nicht, da das glaube ich abgenommen werden muss und so glaube ich automatisiert nicht möglich ist. Das Gerät führt aber Selbsttests durch, die auch einen Alarm auslösen können --> kann frühzeitig Probleme aufzeigen die im Falle einer DGUV Prüfung erst auffallen können und dann austausch und erneute Prüfung möglicherweise benötigen würden
+- IT- Netzwerkbetrieb: nicht wirklich im Scope der Arbeit, Betrachtung der Sicherheit der Anwendung muss für jeden Fall und Kunden separat passieren, kann pauschal nicht festgelegt werden. Jeder Kunde hat eigene Anforderungen, Systeme und Konzepte deswegen geht das nicht so einfach, ist eben nicht im Scope. Klar abgrenzen
+- Formatierung der Tabelle dringend anpassen, linke Spalte deutlich dünner und mehr Platz für den Fließtext daneben
+- Über PDE ist das Objektmodell eigentlich einfach veränderbar, da gibt es nicht noch mehr zu machen um es modifizierbar zu halten bis auf Dokumentation 
+- Das mit der Addressierung kann man deutlich kompakter und besser auf den Punkt bringen bei Trennung von Gerätetyp und Geräteinstanz, Hinweis auf Wiederverwendbarkeit ist aber gut
+- zwei Gerätetypen statt eines kann auch gekürzt werden --> Viele Register sind gleich, sind aber halt unterschiedliche Geräte, kann man easy signifikant kürzen
+- Abschnitt Alarme aus Sammelregister kann komplett raus, das ergibt sich dann für die Entwicklung schon noch
+- Rückmeldung schreibender Zugriffe komplett raus, ergibt sich dann auch in der Entwicklung
+- bei den Use Cases: ein bisschen vorweggegriffen mit den Beschreibungen an den Anforderungen. Bitte nochmal überarbeiten und bei den Anforderungen aufgreifen
+- die Use Cases an der Stelle noch nicht zu den Anforderungen in der Tabelle matchen, das passiert dann andersherum von den Anforderungen zu den Use Cases raus
+- Bei Meldungen und Überwachung: da ist halt das Problem, dass sich im Laufe herausstellt, dass das so gar nicht in dem Objektmodell möglich ist mit den Alarmen, heißt es muss dann auf per-Case Basis in Desigo CC angelegt werden für den entsprechenden Kunden
+- Änderungskatalog würde ich als Kommentar in der Datei drinnenlassen aber nicht in die Arbeit für das Erste übernehmen. Vielleicht kann man da noch kurz schreiben dass man welche geändert und rausgelassen hat und dann sagen dass das aber nicht notwendig ist da näher drauf einzugehen. Vielleicht auch noch ein paar Gründe nennen warum man da Sachen verändert hat
+- Änderungskatalog Abschnitt nochmal genau prüfen
+- T-02 so am Testaufbau nicht machbar, da nur ein ECPD vorhanden
+- Die Ansicht in Desigo CC ist nicht so aufgebaut, die ECPDs werden einzeln hinzugefügt, da wird dann der jeweilige Unit Identifier hinzugefügt. Stark umformulieren oder weglassen
+- die genauigkeit oder korrektheit der daten ist nicht wirklich nachweisbar, ich würde es eher zu plausibel ändern --> die ecpd müssen halt die richtigen werte übertragen die gemessen werden
+- Alarme werden von Desigo CC ausgewertet, es wäre also sinnvoll das zu ändern in dass man Desigo CC die Chance gibt die Alarme auszulesen, das Objektmodell selbst kann das nicht

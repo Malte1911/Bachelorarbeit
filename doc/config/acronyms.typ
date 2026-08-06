@@ -13,7 +13,19 @@
   HTTP: "Hypertext Transfer Protocol",
   HTTPS: "Hypertext Transfer Protocol Secure",
   API: "Application Programming Interface",
-  PDE: "Power Device Engineer"
+  PDE: "Power Device Engineer",
+  BLOB: "Binary Large Object",
+  BCD: "Binary Coded Decimal",
+  BLE: "Bluetooth Low Energy",
+  SNMP: "Simple Network Management Protocol",
+  COV: "Change of Value",
+  RCD: "Residual Current Device",
+  RCM: "Residual Current Monitoring",
+  ARD: "Automatic Reclosing Device",
+  DGUV: "Deutsche Gesetzliche Unfallversicherung",
+  CSV: "Comma-Separated Values",
+  DPT: "Data Point Type",
+  DPE: "Data Point Element"
 )
 
 // Tracking used acronyms

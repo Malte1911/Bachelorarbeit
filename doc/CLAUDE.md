@@ -16,6 +16,7 @@ Bachelorarbeit über die Entwicklung eines Datenmodells (Integrationsvorlage). H
 - Stichpunkte im Dokument sind Notizen des Autors, die in Fließtext überführt werden sollen – nicht als fertigen Text behandeln
 - Neue Absätze werden im Code mit einer doppelten Leerzeile eingefügt
 - Kritische Bewertungen (Stärken/Schwächen) werden sachlich und begründet formuliert
+- Keine Beschreibungen mit dicker Schrift am Anfang von Absätzen machen. Das ist idealerweise zu vermeiden und es werden volle Sätze verwendet (und nicht dick geschrieben). Alternativ für kleine Zwischenüberschriften kannst du `====` verwenden  
 
 ## Typst-Syntax
 

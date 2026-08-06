@@ -67,6 +67,7 @@
 #set figure.caption(separator: [: ])
 #show figure.where(kind: table): set figure(supplement: [Tabelle])
 #show figure.where(kind: image): set figure(supplement: [Abbildung])
+#show figure: set block(breakable: true)
 #set math.equation(numbering: "(1)", supplement: [Formel], )
 #show math.equation: set text(10.5pt)
 

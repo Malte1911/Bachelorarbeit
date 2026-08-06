@@ -2,6 +2,5 @@
 
 = Entwicklung
 
-#include "../content/500_entwicklung/510_Einführung_PDE.typ"
 #include "../content/500_entwicklung/520_Auswahl_Daten.typ"
 #include "../content/500_entwicklung/530_Mapping.typ"

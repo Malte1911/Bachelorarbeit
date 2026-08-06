@@ -1,7 +1,7 @@
 #import "../../config/acronyms.typ": *
 #include "../../config/config.typ"
 
-== Modbus
+== Modbus<sec:modbus>
 
 
 Modbus ist ein serielles Kommunikationsprotokoll, das ursprünglich 1979 von der Firma Modicon für die Kommunikation zwischen #acro("SPS") entwickelt wurde @src:modbusspec. Aufgrund seiner einfachen Struktur, seiner Offenheit und seiner Robustheit hat es sich zu einem De-facto-Standard in der industriellen Automatisierungstechnik entwickelt und ist bis heute weit verbreitet @src:fieldbus.
