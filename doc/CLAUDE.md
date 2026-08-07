@@ -16,7 +16,8 @@ Bachelorarbeit über die Entwicklung eines Datenmodells (Integrationsvorlage). H
 - Stichpunkte im Dokument sind Notizen des Autors, die in Fließtext überführt werden sollen – nicht als fertigen Text behandeln
 - Neue Absätze werden im Code mit einer doppelten Leerzeile eingefügt
 - Kritische Bewertungen (Stärken/Schwächen) werden sachlich und begründet formuliert
-- Keine Beschreibungen mit dicker Schrift am Anfang von Absätzen machen. Das ist idealerweise zu vermeiden und es werden volle Sätze verwendet (und nicht dick geschrieben). Alternativ für kleine Zwischenüberschriften kannst du `====` verwenden  
+- Keine Beschreibungen mit dicker Schrift am Anfang von Absätzen machen. Das ist idealerweise zu vermeiden und es werden volle Sätze verwendet (und nicht dick geschrieben). Alternativ für kleine Zwischenüberschriften kannst du `====` verwenden
+- Bitte keine Spiegelstriche `--` verwenden und die Verwendung von Doppelpunkte `:` und Semikolons `:`reduzieren
 
 ## Typst-Syntax
 
@@ -30,7 +31,28 @@ Bachelorarbeit über die Entwicklung eines Datenmodells (Integrationsvorlage). H
   Lorem ipsum $Zahl space.thin Einheitenzeichen$ Lorem ipsum
 ```
 - Bereits vom Autor eingefügte Kommentare werden auskommentiert mit /* Text */, niemals entfernt
+- Sichtbare Arbeitskommentare (rot und fett im PDF) über `#kommentar[Text]` aus `config/functions.typ` – funktioniert inline im Satz und als eigener Absatz. Der Schalter `show_comments` in `config/constants.typ` blendet für die Abgabe alle auf einmal aus. Diese Kommentare sind Notizen des Autors und werden **nicht** entfernt oder in Fließtext überführt, solange sie nicht ausdrücklich abgearbeitet wurden
 - IDE-Fehler wie `label does not exist` bei `@citationkey` in Einzeldateien sind erwartet – die Bibliographie wird nur im Hauptdokument eingebunden und kompiliert korrekt
+
+## Farben und schematische Abbildungen
+
+**Für Grafiken werden ausschließlich Farbtöne aus der Farbbibliothek der Siemens AG verwendet** (`resources/sie-colors-overview-V1-4-4.pdf`). Die Bibliothek ist vollständig in `config/colors.typ` als `sie_*`-Konstanten hinterlegt – dort nachschlagen, nicht im PDF. **Keine** freien `rgb("…")`- oder `luma(…)`-Werte in Abbildungen, Tabellen oder Textauszeichnungen; wird ein Ton gebraucht, der noch fehlt, wird er aus dem PDF nach `colors.typ` übernommen.
+
+Auf Kontrast achten – die Arbeit wird **nicht** für Schwarzweißdruck optimiert, wohl aber auf Lesbarkeit:
+
+- Text ab 4,5 : 1 gegen den Untergrund, Linien und Flächen ab 3,0 : 1
+- `sie_deep_blue` (20,4 : 1) für Haupttext und Rahmen, `sie_deep_blue_60` (5,6 : 1) für Nebentext, `sie_deep_blue_50` (3,8 : 1) für zurückgenommene Linien
+- `sie_siemens_petrol` erreicht nur 3,5 : 1 und trägt deshalb Linien und Flächen, **keinen Text**; als Akzenttext dient `sie_dark_green` (6,9 : 1) aus derselben Farbfamilie
+- Die Kontrastwerte gegen Weiß stehen als Tabelle am Ende von `config/colors.typ`
+
+Schematische Abbildungen werden mit `fletcher` (`@preview/fletcher:0.5.8`, Version exakt pinnen) in `config/diagrams.typ` gezeichnet, nicht als externe Bilddatei. Die Datei hält die gemeinsame Bildsprache in `dg_*`-Konstanten und Bausteinen (`dg_geraet`, `dg_werkzeug`, `dg_notiz`, `dg_legende`) und darunter die Diagramme als benannte Werte. Neue Abbildungen verwenden diese Bausteine, damit alle Grafiken der Arbeit dieselbe Sprache sprechen:
+
+- durchgezogene Kante = laufender Datenpfad im Betrieb
+- gestrichelte Kante = Engineering- und Inbetriebnahmezugriff
+- Rahmen in Petrol = Systemgrenze der Arbeit
+- Sandfläche = Zusammenfassung zu einer Einheit
+
+Am Ende von `config/diagrams.typ` steht eine Vorschauseite, damit die Datei allein kompiliert und im Editor betrachtet werden kann. `#import` verwirft diesen Teil – die Datei darf deshalb **nur importiert, nie inkludiert** werden.
 
 ## Dateistruktur
 
@@ -52,18 +74,23 @@ config/
   constants.typ         ← Dokumentvariablen (Titel, Autor, Betreuer, Typ …)
   config.typ, cover.typ, functions.typ  ← Layout, Titelblatt, Hilfsfunktionen
   acronyms.typ          ← Akronym-Dictionary (immer prüfen vor Verwendung)
+  colors.typ            ← Farbbibliothek der Siemens AG (einzige Farbquelle)
+  diagrams.typ          ← Bildsprache und schematische Abbildungen (fletcher)
 resources/
   quellen.bib           ← BibTeX-Quellenverzeichnis (immer prüfen vor Verwendung)
   img/                  ← Abbildungen
   datasheets/           ← Datenblätter der Geräte als Quellenmaterial
+  sie-colors-overview-V1-4-4.pdf  ← Original der Farbbibliothek
 Requirements.xlsx / Requirements_EP.xlsx  ← Anforderungskatalog (Quelle für Kapitel 300)
 ```
 
 Jede **Unterkapiteldatei** beginnt mit:
 ```typst
 #import "../../config/acronyms.typ": *
+#import "../../config/functions.typ": *
 #include "../../config/config.typ"
 ```
+Der Import von `functions.typ` stellt die Hilfsfunktionen (u. a. `#kommentar`) bereit. Ausnahme: `content/999_appendix.typ` darf `functions.typ` **nicht** importieren, da `insertAppendix` die Datei ihrerseits inkludiert und daraus ein zyklischer Import entstünde.
 Die **Integrationsdateien** beginnen stattdessen mit:
 ```typst
 #import "../config/functions.typ" : *

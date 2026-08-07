@@ -13,7 +13,8 @@
 #let release_location = "Ausbildungsfirmaort"
 #let tutor = "Johannes Otto"
 #let evaluator = "Frederic Findeis"
-#let show_company = false // Show company information in cover page
+#let show_company = true // Show company information in cover page
+#let show_comments = true // Arbeitskommentare (#kommentar[...]) im Dokument anzeigen; für die Abgabe auf false setzen
 
 // Document type
 // Uncomment the appropriate document type

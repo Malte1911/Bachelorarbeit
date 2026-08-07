@@ -1,5 +1,17 @@
 #import "constants.typ": *
 #import "acronyms.typ": *
+#import "colors.typ": *
+
+// Sichtbarer Arbeitskommentar: wird fett und rot im Dokument dargestellt.
+// Verwendung inline oder als eigener Absatz:
+//   #kommentar[Hier fehlt noch die Quelle zum Delayed ACK.]
+// Über `show_comments` in constants.typ lassen sich alle Kommentare
+// für die Abgabe auf einmal ausblenden.
+#let kommentar(body) = {
+  if show_comments {
+    text(fill: sie_red, weight: "bold")[#body]
+  }
+}
 
 #let insertCoverText = {
   align(center)[
@@ -37,12 +49,15 @@
   ]
 }
 
+// Der Siemens-Schriftzug ist deutlich breiter als hoch; er wird deshalb ueber
+// die Breite auf das DHBW-Logo abgestimmt und senkrecht mittig gesetzt, damit
+// beide Logos optisch auf einem Band liegen.
 #let insertCompanyImage = [
   #grid(
     columns: (1fr, 1fr, 1fr),
-    align: (left, center, right),
+    align: (left + horizon, center, right + horizon),
     if show_company {
-      image("../resources/logo-company.png", height: 1.5cm)
+      image("../resources/sie-logo-petrol-rgb.png", width: 4cm)
     } else {
       []
     },

@@ -1,3 +1,5 @@
+#import "colors.typ": *
+
 // Dictionary with acronyms
 #let acronyms = (
   DHBW: "Duale Hochschule Baden-Württemberg",
@@ -34,7 +36,7 @@
 #let acro(body) = {
   if(acronyms.keys().contains(body) == false) {
     return rect(
-      fill: red,
+      fill: sie_red,
       inset: 8pt,
       radius: 4pt,
       [*Warning: #body*],

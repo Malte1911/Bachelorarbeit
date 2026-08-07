@@ -1,0 +1,1 @@
+- Systemaufbau und Systemgrenzen beschreiben zu früh wie der Aufbau aussehen wird. Das muss eigentlich erst an den Schluss. Wo das Datenmodell dann ansetzt ist hier eigentlich noch nicht so richtig relevant aus meiner Sicht, das wird ja hier erst erarbeitet

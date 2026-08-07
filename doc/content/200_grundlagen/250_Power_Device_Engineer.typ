@@ -1,4 +1,5 @@
 #import "../../config/acronyms.typ": *
+#import "../../config/functions.typ": *
 #include "../../config/config.typ"
 
 == Power Device Engineer<sec:pde>

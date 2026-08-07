@@ -1,5 +1,6 @@
 #import "../../config/acronyms.typ": *
 #include "../../config/config.typ"
+#import "../../config/functions.typ": *
 
 == Analyse<sec:analyse>
 
@@ -8,7 +9,9 @@ Bevor Anforderungen an das Datenmodell formuliert werden können, ist zu klären
 
 === Systemaufbau und Systemgrenzen<sec:systemanalyse>
 
-Die Daten der Schutzschaltgeräte legen bis zur Managementstation einen festen Weg zurück, und dieser Weg bestimmt den Lösungsraum bereits weitgehend. Die #acro("ECPD") vom Typ 5TY1 COM sitzen als Endstromkreisschutz im Installationsverteiler und erfassen dort neben ihrer Schutzaufgabe Messgrößen wie Strom, Spannung, Wirkleistung, Differenzstrom und Temperatur (siehe @sec:ecpd). Eine eigene Ethernet- oder Modbus-Schnittstelle besitzen sie nicht; sie kommunizieren ausschließlich über ein proprietäres Funkprotokoll und sind für übergeordnete Systeme nicht direkt erreichbar @src:sentronsystemhandbuch. Erst das SENTRON Powercenter (siehe @sec:powercenter), das bis zu 24 Endgeräte ankoppelt, stellt deren Daten über Ethernet bereit. Es ist damit die einzige Stelle, an der die Gerätedaten das Funknetz verlassen, und zugleich der Punkt, an dem das in dieser Arbeit entwickelte Datenmodell ansetzt. Über das Gebäudenetz erreichen die Daten schließlich Desigo CC, wo sie als Objekte abgebildet, archiviert, alarmiert und visualisiert werden. Eine Einheit aus einem Powercenter und den ihm zugeordneten Endgeräten wird im Folgenden als _Strang_ bezeichnet; eine Liegenschaft kann mehrere solcher Stränge enthalten. Der konkrete Laboraufbau, an dem die Lösung erprobt wird, ist von dieser allgemeinen Betrachtung zu unterscheiden und wird im Kapitel zur Systemumgebung beschrieben.
+#kommentar[Kommentar für erste Prüfungsrunde: ist das hier zu früh beschrieben wie da der Aufbau aussehen wird? Ich halte es sinnvoll für das Verständnis, bin mir aber nicht sicher ob das hier nicht schon etwas vorwegnimmt. Gerne Meinungen dazu, wie man das sonst anders verpacken könnte.]
+
+Die Daten der Schutzschaltgeräte legen bis zur Managementstation einen festen Weg zurück, und dieser Weg bestimmt den Lösungsraum bereits weitgehend. Die #acro("ECPD") vom Typ 5TY1 COM sitzen als Endstromkreisschutz im Installationsverteiler und erfassen dort neben ihrer Schutzaufgabe Messgrößen wie Strom, Spannung, Wirkleistung, Differenzstrom und Temperatur (siehe @sec:ecpd). Eine eigene Ethernet- oder Modbus-Schnittstelle besitzen sie nicht; sie kommunizieren ausschließlich über ein proprietäres Funkprotokoll und sind für übergeordnete Systeme nicht direkt erreichbar @src:sentronsystemhandbuch. Erst das SENTRON Powercenter (siehe @sec:powercenter), das bis zu 24 Endgeräte ankoppelt, stellt deren Daten über Ethernet bereit. Es ist damit die Stelle an dem das in dieser Arbeit entwickelte Datenmodell ansetzt. Über das Gebäudenetz erreichen die Daten schließlich Desigo CC, wo sie als Objekte abgebildet, archiviert, alarmiert und visualisiert werden. Eine Einheit aus einem Powercenter und den ihm zugeordneten Endgeräten wird im Folgenden als _Strang_ bezeichnet; eine Liegenschaft kann mehrere solcher Stränge enthalten. Der konkrete Laboraufbau, an dem die Lösung erprobt wird, ist von dieser allgemeinen Betrachtung zu unterscheiden und wird im Kapitel zur Systemumgebung beschrieben.
 
 Nicht Teil des laufenden Datenpfads, für den Lebenszyklus der Lösung aber maßgeblich, sind zwei Werkzeuge: SENTRON Powerconfig dient der Inbetriebnahme und Parametrierung der Geräte vor Ort und greift dazu über #acro("BLE") oder über die REST-#acro("API") des Powercenters zu @src:sentronsystemhandbuch, während der #acro("PDE") die Gerätetypbeschreibung als #acro("JSON")-Datei erzeugt und damit jenes Werkzeug ist, mit dem das Datenmodell dieser Arbeit entsteht (siehe @sec:pde).
 
@@ -23,16 +26,16 @@ Nicht Teil des laufenden Datenpfads, für den Lebenszyklus der Lösung aber maß
 
 Daraus ergibt sich die Systemgrenze der Arbeit. Gegenstand ist die Abbildung zwischen dem Modbus-Registerraum, den das Powercenter bereitstellt, und dem Objektmodell in Desigo CC. Nicht Gegenstand sind die Schutzfunktion der Geräte selbst, die Funkstrecke zwischen Endgerät und Powercenter, die elektrotechnische Installation sowie die Systemarchitektur von Desigo CC einschließlich ihrer Redundanz- und Betriebskonzepte.
 
-Für die Ausgangslage ist dabei bedeutsam, dass die betrachtete Gerätereihe in Desigo CC bislang nicht zur Verfügung steht. Das Erweiterungsmodul „Modbus TCP Power Devices" bringt eine Bibliothek vorgefertigter Objektmodelle für Siemens-Energiemessgeräte mit, unter anderem für die Reihen SENTRON PAC 1500 bis 5200, den Leistungsschalter 3VL und die Auslöseeinheit 3VA ETU8; weder das #acro("ECPD") noch das Powercenter sind darin enthalten @src:desigoccenghelp. Die Arbeit beginnt damit nicht bei der Ablösung einer bestehenden Anbindung, sondern bei deren erstmaliger Schaffung; Rückwärtskompatibilität zu einer Vorgängerlösung ist folglich keine Anforderung.
+Für die Ausgangslage ist dabei bedeutsam, dass die betrachtete Gerätereihe in Desigo CC bislang nicht zur Verfügung steht. Das Erweiterungsmodul „Modbus TCP Power Devices" bringt eine Bibliothek vorgefertigter Objektmodelle für diverse Siemens-Niederspannungsgeräten für Gebäude mit, jedoch weder das #acro("ECPD") noch das Powercenter sind darin enthalten @src:desigoccenghelp. Rückwärtskompatibilität zu einer Vorgängerlösung ist folglich keine Anforderung.
 
 
 === Stakeholderanalyse<sec:stakeholder>
 
-Das Datenmodell wird von unterschiedlichen Personengruppen mit deutlich verschiedenen Erwartungen genutzt. Die folgende Einordnung unterscheidet sie nach ihrer Rolle im Lebenszyklus der Lösung -- von der Entwicklung über die Inbetriebnahme bis zum laufenden Betrieb -- und benennt jeweils die Erwartung, aus der später Anforderungen abgeleitet werden.
+Das Datenmodell wird von unterschiedlichen Personengruppen mit deutlich verschiedenen Erwartungen genutzt. Die folgende Einordnung unterscheidet sie nach ihrer Rolle im Lebenszyklus der Lösung und benennt jeweils die Erwartung, aus der später Anforderungen abgeleitet werden. Die Stakeholder arbeiten von der Entwicklung über die Inbetriebnahme bis zum laufenden Betrieb mit dem Modell.
 
 #figure(
   table(
-    columns: (7.5em, 1fr, 4.5em),
+    columns: (12em, auto, auto),
     inset: 7pt,
     align: (left + horizon, left, center + horizon),
     table.header(
@@ -85,16 +88,22 @@ Zwischen diesen Gruppen bestehen zwei Spannungsfelder, die die Gestaltung des Mo
 
 Eine Gruppe ist dabei gesondert einzuordnen. Der IT- und Netzwerkbetrieb ist zwar von der Lösung berührt, seine Erwartung lässt sich jedoch nicht allgemeingültig erfüllen: Netzarchitektur, Zonenmodell, Zugriffsregeln und Betriebskonzepte folgen bei jedem Kunden eigenen Vorgaben, sodass ein Sicherheitskonzept für die Anbindung nur im jeweiligen Projekt und nicht in einer generischen Integrationsvorlage festgelegt werden kann. Diese Arbeit benennt daher die sicherheitsrelevanten Eigenschaften des gewählten Übertragungswegs und die Voraussetzungen, unter denen er vertretbar betrieben werden kann; die Bewertung und Ausgestaltung der Netzsicherheit selbst ist ausdrücklich nicht Gegenstand der Arbeit.
 
-Auffällig ist ferner, dass die Gruppen mit dem höchsten Einfluss -- Betreiber, Instandhaltung, Systemintegrator und Produktmanagement -- ihre Erwartungen an vergleichsweise wenige Eigenschaften knüpfen: Verlässlichkeit der Zustandsanzeige, Aussagekraft der Alarme, Wiederverwendbarkeit des Modells und Nachvollziehbarkeit seiner Struktur. Diese vier Eigenschaften bilden den Maßstab, an dem die Lösung in der Validierung zu messen ist.
+Auffällig ist außerdem, dass die Gruppen mit dem höchsten Einfluss -- Betreiber, Instandhaltung, Systemintegrator und Produktmanagement -- ihre Erwartungen an vergleichsweise wenige Eigenschaften knüpfen: Verlässlichkeit der Zustandsanzeige, Aussagekraft der Alarme, Wiederverwendbarkeit des Modells und Nachvollziehbarkeit seiner Struktur. Diese vier Eigenschaften bilden den Maßstab, an dem die Lösung in der Validierung zu messen ist.
 
 
 === Analyse der Integrationswege<sec:integrationswege>
+
+#kommentar[Hinweis Korrekturschleife 1: auch hier ist es ein bisschen vorweggegriffen, da der spezifische Weg der Technologie eigentlich erst nach der Anforderungsanalyse stattfindet. Ich halte die frühe Eingrenzung trotzdem für sinnvoll, da sie in der Anmeldung der Arbeit sowieso schon enthalten ist und es nicht wirklich andere Methoden außer Modbus gibt.]
+
+
 
 Die Frage, über welchen Weg die Daten in Desigo CC gelangen, ist der Ausgangspunkt jeder weiteren Festlegung: Sie entscheidet über den verfügbaren Datenumfang, über die Möglichkeit schreibender Zugriffe und über die einzusetzende Werkzeugkette. Ein Weg ist nur dann gangbar, wenn er auf beiden Seiten unterstützt wird -- sowohl vom Powercenter als Datenquelle als auch von Desigo CC als Zielsystem. Desigo CC bindet Fremdsysteme über Erweiterungsmodule für offene Protokolle ein; die Engineering-Dokumentation führt hierfür eigene Kapitel zu BACnet, Modbus #acro("TCP"), OPC DA, #acro("SNMP") und IEC 61850 @src:desigoccenghelp.
 
 Aus dem Schnittstellenangebot des Powercenters (siehe @sec:powercenter) und den Gegebenheiten der Feldebene ergeben sich sechs denkbare Wege.
 
 /* Claude: Die Bezeichner W1--W6 dienen nur der Verweisbarkeit innerhalb dieses Abschnitts. */
+
+#kommentar[Bitte Meinungen zu dem Format mit dicker Schrift vorne als Zwischenüberschrift]
 
 *W1 -- Direkter Zugriff auf das #acro("ECPD").* Der naheliegendste Weg, das Endgerät unmittelbar anzusprechen, ist technisch versperrt. Die Schutzschaltgeräte besitzen keine Modbus-Schnittstelle und kommunizieren ausschließlich über ein proprietäres Funkprotokoll mit dem Powercenter; sie sind für übergeordnete Systeme nicht direkt erreichbar @src:sentronsystemhandbuch. Der Weg scheidet ohne weitere Bewertung aus.
 
@@ -106,9 +115,11 @@ Aus dem Schnittstellenangebot des Powercenters (siehe @sec:powercenter) und den 
 
 *W5 -- #acro("MQTT").* Die native Cloud-Anbindung steht ausschließlich am Powercenter 2000 zur Verfügung @src:sentronsystemhandbuch, während für den Testaufbau ein Powercenter 1100 vorgesehen ist. Unabhängig davon ist #acro("MQTT") ein publikationsgetriebenes Protokoll zur Anbindung externer Dienste; es passt weder zum lokalen Charakter einer Gebäudemanagementplattform noch zählt es zu den von Desigo CC unterstützten Feldprotokollen @src:desigoccenghelp.
 
-*W6 -- Vorgelagertes Fremdsystem.* Die vom #acro("PDE") ausdrücklich unterstützten Zielapplikationen sind SENTRON Powermanager und SENTRON Powercenter 3000 @src:pdemanual. Die Geräte ließen sich zunächst dort einbinden und dieses System anschließend über OPC an Desigo CC koppeln. Der Weg ist gangbar, führt aber ein zweites Leitsystem mit eigener Datenhaltung, eigener Alarmierung und eigenem Wartungsbedarf ein. Die eigentliche Aufgabe -- die Abbildung der Gerätedaten auf ein Objektmodell -- wird dadurch nicht gelöst, sondern lediglich in ein anderes System verschoben, und die Alarme erreichten Desigo CC nur noch in der Interpretation des Zwischensystems.
+// CLAUDE: hier fehlt noch dei Quelle als Beweis dass Powercenter 3000 bzw. Powermanager OPC unterstützt. Füge diese Quelle https://assets.new.siemens.com/siemens/assets/api/uuid:56e704c3-6b73-4fd4-a6ef-16a639c17119/sentron-software-quickselection-guide-en.pdf bitte noch hinzu und schaue nochmal nach wie der Powermanager und das Powercenter 3000 sich unterscheiden und trenne es sprachlich etwas sauberer.
 
-Zur Bewertung der verbleibenden Wege werden fünf Kriterien herangezogen: die Verfügbarkeit auf beiden Seiten, die Eignung für den zyklischen Dauerbetrieb, der erreichbare Datenumfang einschließlich schreibender Zugriffe, die Nutzbarkeit der vorgesehenen Werkzeugkette sowie der Bedarf an zusätzlichen Systemkomponenten. Die Informationssicherheit wird bewusst nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie -- anders als die übrigen Kriterien -- durch Maßnahmen außerhalb des Protokolls beeinflussbar ist.
+*W6 -- Vorgelagertes Fremdsystem.* Die vom #acro("PDE") ausdrücklich unterstützten Zielapplikationen sind SENTRON Powermanager und SENTRON Powercenter 3000 @src:pdemanual. Die Geräte ließen sich zunächst dort einbinden und dieses System anschließend über OPC an Desigo CC koppeln. Der Weg ist gangbar, führt aber ein zweites Leitsystem mit eigener Datenhaltung, eigener Alarmierung und eigenem Wartungsbedarf ein. Die eigentliche Aufgabe, also die Abbildung der Gerätedaten in Desigo CC, wird lediglich in ein anderes System verschoben. Es wäre hierbei eine deutliche Steigerung der Komplexität der Endlösung durch das Hinzufügen von weiteren Geräten und Schnittstellen vonnöten. 
+
+Zur Bewertung der verbleibenden Wege werden fünf Kriterien herangezogen: die Verfügbarkeit auf beiden Seiten, die Eignung für den zyklischen Dauerbetrieb, der erreichbare Datenumfang einschließlich schreibender Zugriffe, die Nutzbarkeit der vorgesehenen Werkzeugkette sowie der Bedarf an zusätzlichen Systemkomponenten. Die Informationssicherheit wird bewusst nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie im Gegensatz zu den anderen Kriterien durch Maßnahmen außerhalb des Protokolls beeinflussbar ist.
 
 #figure(
   table(
