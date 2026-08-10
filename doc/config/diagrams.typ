@@ -38,6 +38,11 @@
 #let dg_akzent_text = sie_dark_green // Akzent als Text
 #let dg_flaeche = sie_bright_sand // hinterlegte Flaeche
 #let dg_flaeche_hell = sie_light_sand // schwaecher hinterlegte Flaeche
+// Rein dekorative Hinterlegung in der Akzentfarbe. Es ist derselbe
+// Bibliothekston wie `dg_akzent`, lediglich stark transparent gesetzt, damit
+// Kaesten und Beschriftungen darauf ihren Kontrast behalten. Ein neuer Farbwert
+// entsteht dadurch nicht.
+#let dg_akzent_flaeche = sie_siemens_petrol.transparentize(86%)
 #let dg_schrift = 9pt
 #let dg_klein = 8pt
 
@@ -80,6 +85,19 @@
   fill: white,
   stroke: dg_rahmen_werkzeug,
   inset: 6pt,
+)
+
+// Phase eines Vorgehensmodells. Eigener Baustein, weil eine Phase kein Geraet
+// ist -- gleiche Schrift und gleicher Rahmen, aber schmaler, damit zwei Aeste
+// nebeneinander in den Satzspiegel passen.
+#let dg_phase(pos, titel, zusatz: none, name: none, breite: 47mm) = node(
+  pos,
+  dg_inhalt(titel, zusatz),
+  name: name,
+  width: breite,
+  fill: white,
+  stroke: dg_rahmen_geraet,
+  inset: 5pt,
 )
 
 // Randbeschriftung ohne eigenen Rahmen
@@ -259,6 +277,286 @@
 }
 
 
+// ---------------------------------------------------------------------------
+// Abbildung: V-Modell als Vorgehensmodell der Arbeit  (Abschnitt 2.6)
+// ---------------------------------------------------------------------------
+// ACHTUNG, abweichende Kodierung: Diese Abbildung zeigt keinen Datenpfad,
+// sondern einen Ablauf. Die Kanten tragen deshalb eine eigene Bedeutung, die
+// in der Legende ausgewiesen wird:
+//   durchgezogene Kante  = Abfolge der Phasen
+//   gestrichelte Kante   = Zuordnung einer Spezifikations- zu einer Pruefebene
+// Farben, Schrift und Rahmen bleiben unveraendert, damit die Abbildung trotz
+// der anderen Aussage zur uebrigen Bildsprache passt.
+//
+// Aufbau: linker Ast bei x = 0 absteigend, Umsetzung als Scheitel bei x = 1,
+// rechter Ast bei x = 2 aufsteigend. Die waagerechten Kanten verbinden die
+// einander zugeordneten Ebenen.
+
+#let abb_vmodell = {
+  set text(font: "Arial", size: dg_schrift, fill: dg_text)
+  align(center, diagram(
+    spacing: (4mm, 10mm),
+    edge-stroke: dg_linie_betrieb,
+    label-size: dg_klein,
+    label-sep: 3pt,
+    label-wrapper: kante => box(
+      fill: white,
+      inset: (x: 2pt, y: 1pt),
+      text(fill: dg_grau)[#kante.label],
+    ),
+
+    // --- namensgebendes V als Hintergrund ---
+    // Kein Bedeutungstraeger, sondern Schmuck: das Band zeichnet die Form nach,
+    // die dem Modell seinen Namen gibt, und laeuft dazu hinter den Kaesten
+    // durch. Es liegt deshalb auf der untersten Ebene und ohne Pfeilspitzen.
+    // Die Endpunkte liegen bewusst etwas oberhalb der ersten Zeile, damit die
+    // Aeste nicht mitten im obersten Kasten abbrechen.
+    edge(
+      (0, -0.4),
+      (1, 3),
+      stroke: (paint: dg_akzent_flaeche, thickness: 16mm, cap: "round", join: "round"),
+      layer: -3,
+    ),
+    edge(
+      (1, 3),
+      (2, -0.4),
+      stroke: (paint: dg_akzent_flaeche, thickness: 16mm, cap: "round", join: "round"),
+      layer: -3,
+    ),
+
+    // --- absteigender Ast: zunehmende Konkretisierung ---
+    dg_phase(
+      (0, 0),
+      [Analyse],
+      zusatz: [Systemkontext, Stakeholder\ und Anwendungsfälle],
+      name: <analyse>,
+    ),
+    dg_phase(
+      (0, 1),
+      [Anforderungen und Testfälle],
+      zusatz: [Anforderungskatalog mit\ zugeordneten Prüfkriterien],
+      name: <anforderungen>,
+    ),
+    dg_phase(
+      (0, 2),
+      [Auswahl der Daten],
+      zusatz: [Festlegung der abzubildenden\ Datenpunkte],
+      name: <auswahl>,
+    ),
+
+    // --- Scheitel ---
+    dg_phase(
+      (1, 3),
+      [Umsetzung des Mappings],
+      zusatz: [Gerätetypbeschreibung\ und Objektmodell],
+      name: <umsetzung>,
+    ),
+
+    // --- aufsteigender Ast: zunehmende Integration und Pruefung ---
+    dg_phase(
+      (2, 2),
+      [Durchführung der Tests],
+      zusatz: [Prüfung am\ Hardware-Testaufbau],
+      name: <durchfuehrung>,
+    ),
+    dg_phase(
+      (2, 1),
+      [Ergebnisse der Tests],
+      zusatz: [Abgleich mit dem\ Anforderungskatalog],
+      name: <ergebnisse>,
+    ),
+    dg_phase(
+      (2, 0),
+      [Bewertung],
+      zusatz: [Praxistauglichkeit gegenüber\ den Erwartungen der Nutzer],
+      name: <bewertung>,
+    ),
+
+    // --- Phasenfolge ---
+    edge(<analyse>, <anforderungen>, "->"),
+    edge(<anforderungen>, <auswahl>, "->"),
+    edge(<auswahl>, <umsetzung>, "->"),
+    edge(<umsetzung>, <durchfuehrung>, "->"),
+    edge(<durchfuehrung>, <ergebnisse>, "->"),
+    edge(<ergebnisse>, <bewertung>, "->"),
+
+    // --- Zuordnung Spezifikation und Pruefung ---
+    // Die unterste Zuordnung ist beidseitig gezeichnet, weil Auswahl der Daten
+    // und Pruefung am Aufbau einander wechselseitig bedingen.
+    edge(
+      <auswahl>,
+      <durchfuehrung>,
+      "<->",
+      dash: "dashed",
+      stroke: dg_linie_engineering,
+      label: [verifiziert gegen],
+    ),
+    edge(
+      <anforderungen>,
+      <ergebnisse>,
+      "--",
+      dash: "dashed",
+      stroke: dg_linie_engineering,
+      label: [validiert gegen],
+    ),
+    edge(
+      <analyse>,
+      <bewertung>,
+      "--",
+      dash: "dashed",
+      stroke: dg_linie_engineering,
+      label: [bewertet gegen],
+    ),
+  ))
+
+  v(4mm)
+
+  dg_legende(
+    (line(length: 9mm, stroke: dg_linie_betrieb), [Abfolge der Phasen]),
+    (
+      line(length: 9mm, stroke: (paint: dg_grau, thickness: 0.7pt, dash: "dashed")),
+      [Zuordnung von Spezifikation und Prüfung],
+    ),
+  )
+}
+
+
+// ---------------------------------------------------------------------------
+// Abbildung: Erstes Loesungskonzept  (Abschnitt 3.1.5)
+// ---------------------------------------------------------------------------
+// Die Kodierung folgt der gemeinsamen Bildsprache, nur auf Artefakte erweitert:
+//   gestrichelter Rahmen = Engineering-Artefakt oder Werkzeug, also alles, was
+//                          vor dem Betrieb entsteht und im Betrieb nicht laeuft
+//   durchgezogener Rahmen = Gegenstand des laufenden Betriebs
+//   gestrichelte Kante    = Engineering-Schritt
+//   durchgezogene Kante   = laufender Datenpfad
+// Der Aufbau liest sich von links nach rechts als Werkzeugkette und von oben
+// nach unten als Weg von der Typ- auf die Instanzebene. Die beiden ergaenzenden
+// Artefakte stehen bewusst in derselben Spalte wie die Typbeschreibung, weil sie
+// wie diese im Projekt erzeugt werden, aber nicht aus dem PDE stammen.
+
+#let abb_konzept = {
+  set text(font: "Arial", size: dg_schrift, fill: dg_text)
+  align(center, diagram(
+    // Der waagerechte Abstand traegt die Kantenbeschriftungen "erzeugt" und
+    // "Import" und darf deshalb nicht enger werden, als diese breit sind.
+    spacing: (13mm, 11mm),
+    edge-stroke: dg_linie_engineering,
+    label-size: dg_klein,
+    label-sep: 3pt,
+    label-wrapper: kante => box(
+      fill: white,
+      inset: (x: 2pt, y: 1pt),
+      text(fill: dg_grau)[#kante.label],
+    ),
+
+    // --- Werkzeugkette auf der Typebene ---
+    dg_werkzeug(
+      (0, 0),
+      [SENTRON #acro("PDE")],
+      zusatz: [erzeugt die\ Gerätetypbeschreibung],
+      name: <pde>,
+      breite: 36mm,
+    ),
+    dg_werkzeug(
+      (1, 0),
+      [#acro("JSON")-Typbeschreibung],
+      zusatz: [Eigenschaften, Datentypen\ und Alarme des Gerätetyps],
+      name: <json>,
+      breite: 44mm,
+    ),
+    dg_geraet(
+      (2, 0),
+      [Gerätetyp in Desigo CC],
+      zusatz: [Objektmodell als Vorlage,\ einmal je Gerätetyp],
+      name: <typ>,
+      breite: 48mm,
+    ),
+
+    // --- ergaenzende Artefakte ---
+    dg_werkzeug(
+      (1, 1),
+      [Adressbelegung],
+      zusatz: [ordnet Registeradressen und\ Funktionscodes zu],
+      name: <adr>,
+      breite: 44mm,
+    ),
+    dg_werkzeug(
+      (1, 2),
+      [Instanzliste],
+      zusatz: [benennt die anzulegenden\ Geräte einer Anlage],
+      name: <liste>,
+      breite: 44mm,
+    ),
+
+    // --- Instanzebene und Feld ---
+    dg_geraet(
+      (2, 2),
+      [Geräteinstanzen],
+      zusatz: [je physischem Gerät eine, mit #acro("IP")-Adresse und Unit
+        Identifier],
+      name: <instanz>,
+      breite: 48mm,
+    ),
+    dg_geraet(
+      (2, 3),
+      [Strang im Feld],
+      zusatz: [#acro("ECPD") unter Unit Identifier\ 1 bis 24, Powercenter unter
+        255],
+      name: <feld>,
+      breite: 48mm,
+    ),
+
+    // --- Engineering-Schritte ---
+    edge(<pde>, <json>, "->", dash: "dashed", label: [erzeugt]),
+    edge(<json>, <typ>, "->", dash: "dashed", label: [Import]),
+    edge(<adr>, <typ>, "->", dash: "dashed"),
+    edge(<liste>, <instanz>, "->", dash: "dashed"),
+    edge(
+      <typ>,
+      <instanz>,
+      "->",
+      dash: "dashed",
+      label: [instanziiert],
+      label-side: right,
+    ),
+
+    // --- laufender Betrieb ---
+    edge(
+      <instanz>,
+      <feld>,
+      "<->",
+      stroke: dg_linie_betrieb,
+      label: [Modbus #acro("TCP")],
+      label-side: right,
+    ),
+
+    dg_notiz(
+      (0, 2),
+      [*Trennung von Typ und Instanz:* eine einzige Typbeschreibung trägt
+        beliebig viele Geräte und bleibt damit über Projektgrenzen hinweg
+        wiederverwendbar],
+      farbe: dg_akzent_text,
+      breite: 36mm,
+    ),
+  ))
+
+  v(4mm)
+
+  dg_legende(
+    (
+      rect(width: 9mm, height: 3.2mm, stroke: dg_rahmen_werkzeug, fill: none),
+      [Engineering-Artefakt],
+    ),
+    (
+      rect(width: 9mm, height: 3.2mm, stroke: dg_rahmen_geraet, fill: none),
+      [Gegenstand des Betriebs],
+    ),
+    (line(length: 9mm, stroke: dg_linie_betrieb), [Datenpfad im Betrieb]),
+  )
+}
+
+
 // ===========================================================================
 // Vorschauseite -- wird bei `#import` verworfen
 // ===========================================================================
@@ -279,7 +577,7 @@
   längst eingeführt, weshalb sie im Diagramm nur als Kürzel erscheinen; damit
   die Vorschau dasselbe zeigt, werden sie hier vorab genannt:
   #acro("ECPD"), #acro("TCP"), #acro("JSON"), #acro("API"), #acro("BLE"),
-  #acro("PDE").
+  #acro("PDE"), #acro("IP").
 ]
 
 #v(6mm)
@@ -290,6 +588,25 @@
     von dort über Modbus #acro("TCP") im Gebäudenetz zu Desigo CC; seitlich
     angetragen die Werkzeuge SENTRON Powerconfig und #acro("PDE") mit ihren
     jeweiligen Zugriffspunkten],
+)
+
+#v(8mm)
+
+#figure(
+  abb_vmodell,
+  caption: [V-Modell als Vorgehensmodell der Arbeit, mit der Zuordnung der
+    Phasen zu den Kapiteln und der beidseitigen Kopplung zwischen der Auswahl
+    der Daten und deren Prüfung am Testaufbau],
+)
+
+#v(8mm)
+
+#figure(
+  abb_konzept,
+  caption: [Erstes Lösungskonzept, Werkzeugkette vom #acro("PDE") über die
+    #acro("JSON")-Typbeschreibung zum Objektmodell in Desigo CC, ergänzt um
+    Adressbelegung und Instanzliste, sowie die Instanziierung je physischem
+    Gerät über den Unit Identifier],
 )
 
 // Notwendig, damit die Sprungziele von `#acro` auch in der Einzelansicht

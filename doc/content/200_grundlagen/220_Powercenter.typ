@@ -4,42 +4,57 @@
 
 == SENTRON Powercenter<sec:powercenter>
 
-Das SENTRON Powercenter bildet das Bindeglied zwischen den Schutzschaltgeräten aus @sec:ecpd und den übergeordneten Systemen. Es ist damit die Schnittstelle, an der das in dieser Arbeit entwickelte Datenmodell ansetzt. Die folgenden Stichpunkte sind dem Systemhandbuch der Gerätefamilie entnommen @src:sentronsystemhandbuch.
+Da die in @sec:ecpd beschriebenen Schutzschaltgeräte über keine eigene netzwerkseitige Schnittstelle verfügen, benötigt die Gerätereihe eine Komponente, die die Funkstrecke auf ein gebäudeübliches Netz umsetzt. Diese Aufgabe übernimmt der Datentransceiver SENTRON Powercenter. Er koppelt bis zu 24 Endgeräte an, sammelt deren Messwerte und Zustände, speichert sie über einen begrenzten Zeitraum und stellt sie an seinen netzwerkseitigen Schnittstellen bereit. Baulich ist er auf den Installationsverteiler zugeschnitten, belegt eine Teilungseinheit und wird mit $24space.thin"V"$ Gleichspannung versorgt, die sich über steckbare Klemmen an weitere Geräte durchschleifen lässt @src:sentronsystemhandbuch. Die folgenden Angaben sind, soweit nicht anders angegeben, dem Systemhandbuch der Gerätefamilie entnommen @src:sentronsystemhandbuch.
 
-/* Stichpunkte aus dem Systemhandbuch, noch in Fließtext zu überführen.
-   Die Seitenangaben in den Kommentaren beziehen sich auf
-   resources/datasheets/MAN_L1V30827018A_RS-AC_009_de_de-DE.pdf. */
+Das Gerät ist in drei Varianten verfügbar, die sich in ihren Schnittstellen und Sicherheitsfunktionen unterscheiden und nicht denselben Umfang an Endgeräten unterstützen. @tab:powercenter stellt sie einander gegenüber.
 
-*Aufgabe im System* /* Kap. 3 und 3.1, S. 21 ff. */
+#figure(
+  table(
+    columns: (8em, 1fr),
+    inset: 7pt,
+    align: (left + horizon, left),
+    table.header(
+      [*Variante*], [*Kennzeichnende Eigenschaften*],
+    ),
 
-- Der Datentransceiver SENTRON Powercenter steht im Mittelpunkt des Systems: Er sammelt die Messwerte der gekoppelten Schutzschaltgeräte und überträgt sie an übergeordnete Systeme @src:sentronsystemhandbuch
-- An ein Powercenter lassen sich bis zu 24 kommunikationsfähige SENTRON-Geräte innerhalb eines Schaltanlagenfeldes oder Installationsverteilers drahtlos anbinden @src:sentronsystemhandbuch
-- Ausgewählte Messwerte werden bis zu 30 Tage im Gerät gespeichert und stehen damit auch nach einer Unterbrechung der übergeordneten Verbindung zur Verfügung @src:sentronsystemhandbuch
-- Die Gerätevarianten unterscheiden sich im Funktionsumfang: Das Powercenter 1100 ergänzt gegenüber dem Powercenter 1000 zwei Ethernet-Anschlüsse mit Switch-Funktion, eine verbesserte Speicherfunktion, das gesicherte Protokoll https über eine REST-#acro("API"), einen Schreibschutzschalter und eine rollenbasierte Zugriffskontrolle; das Powercenter 2000 bietet zusätzlich eine #acro("MQTT")-Schnittstelle zur Cloud-Anbindung sowie einen integrierten Webserver @src:sentronsystemhandbuch
+    [Powercenter 1000],
+    [Grundvariante mit einem Ethernet-Anschluss, Bluetooth und Modbus #acro("TCP"). Ausgewählte Messwerte werden bis zu 30 Tage gespeichert. Das elektronische Schutzschaltgerät ist ab Firmware V3.0 grundsätzlich anbindbar, dessen neuere Gerätefunktionen werden jedoch nicht unterstützt.],
 
-*Kommunikationswege* /* Kap. 4.4, S. 52 ff.; Kap. 6.13, S. 112; Kap. 6.15, S. 115 */
+    [Powercenter 1100],
+    [Zwei Ethernet-Anschlüsse mit Switch-Funktion, verbesserte Speicherung der historischen Messwerte, zusätzlich das gesicherte Protokoll #acro("HTTPS") über eine REST-#acro("API"), ein frontseitig aktivierbarer Schreibschutz sowie eine rollenbasierte Zugriffskontrolle (#acro("RBAC")). Unterstützt Endgeräte älterer und neuerer Firmwarestände und damit den vollen Funktionsumfang des elektronischen Schutzschaltgeräts.],
 
-- _Funkverbindung zu den Endgeräten:_ proprietäres Funkprotokoll zu maximal 24 Geräten; die Schutzschaltgeräte selbst sind darüber nicht direkt für übergeordnete Systeme erreichbar @src:sentronsystemhandbuch
-- _Bluetooth Low Energy:_ lokaler Zugriff vor Ort über ein mobiles Endgerät, verschlüsselt mit einem 128-Bit-AES-CCM-Algorithmus und abgesichert über eine sechsstellige PIN; es wird nur eine aktive Verbindung unterstützt und der Modus schaltet sich nach 180 Sekunden ohne Nutzung ab @src:sentronsystemhandbuch
-- _Ethernet mit Modbus #acro("TCP"):_ unverschlüsselter Zugriff aus dem lokalen Netz, der von übergeordneten Systemen genutzt wird; beim Powercenter 1100/2000 separat zu- und abschaltbar @src:sentronsystemhandbuch
-- _Ethernet mit https über REST-#acro("API"):_ über TLS verschlüsselte Alternative zu Modbus #acro("TCP"), Standardweg für die Inbetriebnahmesoftware SENTRON Powerconfig und Grundlage des integrierten Webservers @src:sentronsystemhandbuch
-- _#acro("MQTT") (nur Powercenter 2000):_ native Anbindung an Cloud-Dienste über dieselbe Ethernet-Schnittstelle @src:sentronsystemhandbuch
-- Für den Zugriff über das lokale Netz hinaus verweist das Handbuch auf eine #acro("VPN")-Verbindung oder ein vorgelagertes Gateway @src:sentronsystemhandbuch
+    [Powercenter 2000],
+    [Baut auf der Hardware des Powercenter 1100 auf und bietet dieselben Gerätefunktionen. Ergänzt werden eine #acro("MQTT")-Schnittstelle zur nativen Anbindung an Cloud-Dienste sowie ein integrierter Webserver, über den sich Mess- und Statuswerte unmittelbar im Browser abrufen lassen.],
+  ),
+  caption: [Varianten des SENTRON Powercenter und ihre kennzeichnenden Eigenschaften @src:sentronsystemhandbuch],
+)<tab:powercenter>
 
-*Powercenter als Modbus-Gateway* /* Kap. 6.12 und 6.12.1, S. 105 ff. */
 
-- Das Powercenter tritt als Modbus-#acro("TCP")-Server auf und stellt die Daten aller unterlagerten Endgeräte über eine einzige #acro("IP")-Adresse bereit; die Endgeräte sind selbst nicht Teil des Modbus-Netzes @src:sentronsystemhandbuch
-- Die Zuordnung eines Datenpunkts erfolgt zweistufig über die #acro("IP")-Adresse des Powercenters und die Geräteadresse (Unit Identifier) des jeweiligen Geräts; die Geräteadresse 255 (0xFF) adressiert das Powercenter selbst, etwa für dessen Betriebsstunden oder die Systemzeit @src:sentronsystemhandbuch /* Widerspruch in der Quelle: S. 105 nennt die Geräteadressen "1-4 für das jeweils unterlagerte Schutzgerät", S. 106 vergibt in Powerconfig mobile fortlaufend 1-24. Am Testaufbau prüfen. */
-- Die Registernummer eines Datenpunkts ist bei allen Gerätetypen gleich; unterschieden werden die Geräte ausschließlich über die im Modbus-Header übertragene Unit Identifier @src:sentronsystemhandbuch /* → zentrale Voraussetzung dafür, dass ein einziges Datenmodell für alle Instanzen eines Gerätetyps genügt */
-- Lesezugriffe erfolgen mit den Funktionscodes 0x03 oder 0x04, Schreibzugriffe mit 0x06 oder 0x10; die Register werden ab 1 nummeriert, aber ab 0 adressiert, sodass die Startadresse im Protokoll um eins zu dekrementieren ist @src:sentronsystemhandbuch
-- Unterstützte Datenformate sind U8, U16, U32, S16, UCHAR, FP32 und FP64 nach IEEE 754 sowie Zeitstempel und Systemzeit; die Übertragung erfolgt in Big-Endian-Anordnung @src:sentronsystemhandbuch
-- Ungültige Messwerte werden als _Not a Number_ nach IEEE 754 gekennzeichnet; zusätzlich ist der Datenpunkt „Gerätestatus" auszuwerten, der mit dem Wert 3 eine bestehende Verbindung zum Endgerät anzeigt @src:sentronsystemhandbuch
-- Das Handbuch empfiehlt, jedes Gerät höchstens einmal pro Sekunde abzufragen, die Endgeräte sequenziell abzuarbeiten und Register blockweise zu lesen; die Messwerte werden frühestens alle zwei Sekunden aktualisiert @src:sentronsystemhandbuch
-- Da das System räumlich verteilt ist, quittiert das Powercenter Schreibzugriffe verzögert (Delayed Acknowledge): Register 4096 führt den Status, wobei 0x01 einen laufenden Auftrag, 0x02 den Erfolg und 0x03 das Fehlschlagen anzeigt; erst nach dem manuellen Zurücksetzen auf 0x00 ist ein weiterer Schreibbefehl möglich, ohne diesen Mechanismus nur etwa alle zehn Sekunden @src:sentronsystemhandbuch
-- Eine vollständige Übersicht der Datenpunkte und Register aller Gerätetypen wird als eigene Modbus-Register-Map bereitgestellt @src:sentronregistermap
+=== Schnittstellen<sec:powercenter_schnittstellen>
 
-*Flexible Einbindung und deren Grenzen* /* Kap. 3.1, S. 23; Kap. 6.12, S. 105; Kap. 6.14, S. 113 */
+Zur Feldebene hin besteht ausschließlich die in @sec:ecpd beschriebene Funkstrecke. Jedes Endgerät muss dem Funknetz des Datentransceivers beitreten und erhält dabei eine Geräteadresse, die standardmäßig fortlaufend von 1 bis 24 vergeben wird und sich bei der Inbetriebnahme auch manuell festlegen lässt.
 
-- Weil Modbus #acro("TCP") offen spezifiziert und weit verbreitet ist (siehe @sec:modbus), kann das Powercenter ohne herstellerspezifische Treiber in unterschiedliche übergeordnete Systeme eingebunden werden; das Handbuch nennt hierfür ausdrücklich das Energiemonitoring-System SENTRON Powermanager, die IoT-Datenplattform SENTRON Powercenter 3000 sowie SCADA- und Monitoring-Systeme @src:sentronsystemhandbuch /* → genau an dieser Stelle setzt die Anbindung an Desigo CC an */
-- Ein Powercenter unterstützt gleichzeitig bis zu drei Modbus-#acro("TCP")-Verbindungen sowie parallel eine Bluetooth-Verbindung; das Handbuch rät jedoch dazu, operativ nur eine Modbus-Verbindung zu verwenden, um Überschneidungen von Befehlen zu vermeiden @src:sentronsystemhandbuch
-- Die Modbus-#acro("TCP")-Kommunikation ist unverschlüsselt und kennt keine Benutzerverwaltung; die rollenbasierte Zugriffskontrolle des Powercenters wirkt ausschließlich auf die https-Kommunikation, sodass Zugangsbeschränkungen im übergeordneten System oder Netzwerk umzusetzen sind @src:sentronsystemhandbuch /* → verwertbar in der Bewertung der Praxistauglichkeit */
+Für den lokalen Zugriff vor Ort steht eine Bluetooth-Schnittstelle nach dem Standard Bluetooth Low Energy zur Verfügung. Sie unterstützt genau eine aktive Verbindung, wird über eine sechsstellige PIN abgesichert und schaltet sich nach $180space.thin"s"$ ohne Nutzung wieder ab. Da sich Funkstrecke und Bluetooth-Verbindung dasselbe Funkmodul teilen, ist der erreichbare Durchsatz begrenzt. Das Handbuch weist diese Schnittstelle deshalb ausdrücklich der Inbetriebnahme zu und empfiehlt für die Datenübertragung den Weg über Ethernet.
+
+Die Anbindung an übergeordnete Systeme erfolgt über die Ethernet-Schnittstelle, auf der je nach Variante bis zu drei Protokolle nebeneinander bereitstehen. Modbus #acro("TCP") überträgt unverschlüsselt und ohne Authentifizierung, weshalb das Handbuch Zugangsbeschränkungen ausdrücklich dem übergeordneten System und dem Netz zuweist. Am Powercenter 1100 und 2000 lässt sich diese Verbindung separat ein- und abschalten. Das gesicherte Protokoll #acro("HTTPS") über eine REST-#acro("API") ist mit #acro("TLS") verschlüsselt, dient diesen beiden Varianten als Standardweg für die Inbetriebnahmesoftware und ist das einzige Protokoll, auf das die rollenbasierte Zugriffskontrolle wirkt. Für die Kommunikation über Modbus #acro("TCP") stehen keine Benutzer zur Verfügung. Die #acro("MQTT")-Schnittstelle des Powercenter 2000 schließlich richtet sich an Cloud-Dienste und wird über dieselbe Ethernet-Schnittstelle bereitgestellt. Ein Zugriff über das lokale Netz hinaus ist nach dem Handbuch über eine #acro("VPN")-Verbindung oder ein weiteres Gateway vorgesehen.
+
+Die rollenbasierte Zugriffskontrolle erlaubt bis zu fünf lokale Benutzer in drei Rollen. Ein Beobachter darf ausschließlich lesen, ein Installateur zusätzlich Parameter schreiben und Befehle absetzen, und ein Administrator verfügt über den vollen Zugriff einschließlich der Kommunikationsparameter und der Benutzerverwaltung. Bei der Erstinbetriebnahme ist zwingend ein Administrator anzulegen, ein Standardpasswort existiert nicht.
+
+
+=== Eigenschaften der Modbus-Anbindung<sec:powercenter_modbus>
+
+Modbus als Protokoll wird in @sec:modbus beschrieben. Für den Datentransceiver sind darüber hinaus einige Festlegungen von Bedeutung, die sich aus seiner Rolle als Konzentrator ergeben.
+
+Der Datentransceiver tritt als Server auf und bündelt sämtliche unterlagerten Geräte hinter einer einzigen #acro("IP")-Adresse. Unterschieden werden sie über den Unit Identifier im Protokollkopf, der zugleich die Geräteadresse ist. Die Adressen 1 bis 24 bezeichnen die Endgeräte, die Adresse 255 den Datentransceiver selbst mit seinen eigenen Werten wie Betriebsstunden oder Systemzeit. Die Registernummer eines Datenpunkts ist über alle Gerätetypen hinweg gleich, sodass sich ein Gerät allein über den Unit Identifier von einem anderen unterscheidet. Ist an einer Adresse ein Gerätetyp angemeldet, der einen bestimmten Datenpunkt nicht führt, liefert das zugehörige Register keinen verwertbaren Wert.
+
+Gelesen wird wahlweise mit den Funktionscodes 0x03 oder 0x04, geschrieben mit 0x06 oder 0x10. Die Register sind ab 1 nummeriert, aber ab 0 adressiert, sodass die Startadresse im Telegramm gegenüber der Registerkarte um eins zu verringern ist. Als Datenformate treten vorzeichenlose und vorzeichenbehaftete Ganzzahlen, Zeichenketten, Gleitkommazahlen einfacher und doppelter Genauigkeit sowie Zeitstempel auf, angeordnet in Big-Endian-Reihenfolge. Werte, die breiter als 16 Bit sind, belegen entsprechend mehrere aufeinanderfolgende Register.
+
+Zwei Eigenschaften betreffen die Verlässlichkeit der gelesenen Werte. Zum einen kennzeichnet der Datentransceiver ungültige Messwerte als Not a Number nach IEEE 754, etwa nach einer Unterbrechung der Versorgungsspannung oder der Funkstrecke. Zusätzlich gibt ein eigener Datenpunkt den Verbindungszustand jedes Endgeräts an, sodass sich ein tatsächlich gemessener Wert von einem nicht mehr aktualisierten unterscheiden lässt. Zum anderen ist das System aus Datentransceiver und Endgeräten räumlich verteilt, weshalb ein Schreibzugriff nicht innerhalb der geforderten Antwortzeit quittiert werden kann. Für diesen Fall führt der Datentransceiver eine verzögerte Quittierung, deren Zustand über ein eigenes Register abgefragt und nach Abschluss eines Befehls wieder auf den Ruhezustand zurückgesetzt wird. Ohne diesen Mechanismus lässt sich nur etwa alle $10space.thin"s"$ ein Schreibbefehl an dasselbe Endgerät absetzen.
+
+Für die Abfrage nennt das Handbuch drei Empfehlungen. Ein Gerät sollte nicht häufiger als einmal je Sekunde abgefragt werden, die Endgeräte sind einzeln zu adressieren und sequenziell abzuarbeiten, und mehrere Register sollten blockweise statt einzeln gelesen werden. Eine höhere Abfragerate bringt ohnehin keinen Gewinn, da die Messwerte frühestens alle $2space.thin"s"$ aktualisiert werden. Zwar unterstützt der Datentransceiver bis zu drei gleichzeitige Modbus-Verbindungen, das Handbuch rät jedoch dazu, betrieblich nur eine zu verwenden, damit sich Schreibbefehle verschiedener Anwendungen nicht überschneiden.
+
+/* Claude: Abschnitt nach der Vorgabe aus der Durchsicht ausformuliert
+   (generische Beschreibung, Bezug auf das vorangehende Kapitel, Schnittstellen
+   nach unten und nach oben). Der Bezug auf die Aufgabenstellung und die
+   Aussage, dass das Datenmodell hier ansetzt, sind entfallen; sie stehen in
+   der Analyse. Die Registerkarte selbst wird bewusst nicht ausgewertet. */

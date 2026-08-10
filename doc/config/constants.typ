@@ -1,10 +1,10 @@
 // Document variables
 #let title = "Entwicklung einer Integrationsvorlage zwischen elektronischen Schaltkreisschutzgeräten und einer Gebäudemanagementplattform"
 #let author = "Malte Schröter"
-#let date = "26.04.2026"
+#let date = "14.09.2026"
 #let matriculation_number = "9353886"
 #let course = "TES23" // Example: TEL01GR1 / ITA23
-#let period = "Oktober 2025 bis April 2026"
+#let period = "Juni 2025 bis September 2026"
 #let degree = "Bachelor of Engineering"
 #let department = "Embedded Systems" // Example: Informatik, Wirtschaftsinformatik, Elektrotechnik, Maschinenbau
 #let location_university = "Stuttgart" // Example: Stuttgart, Mannheim, Ravensburg

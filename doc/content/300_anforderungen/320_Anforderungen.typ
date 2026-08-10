@@ -19,9 +19,9 @@ Der Katalog ist zu Beginn der Arbeit gemeinsam mit dem betreuenden Fachbereich a
 
 === Aufbau und Verbindlichkeit des Katalogs<sec:anforderungskatalog>
 
-Der Katalog unterscheidet drei Kategorien, wie es im Requirements Engineering üblich ist @src:sommerville2016. *Funktionale Anforderungen* (FA) beschreiben, was die Lösung leisten muss, und sind am beobachtbaren Verhalten des Gesamtsystems überprüfbar. *Nichtfunktionale Anforderungen* (NFA) beschreiben Eigenschaften der Lösung und ihres Entstehungsprozesses, etwa ihre Modularität oder ihre Dokumentation. *Randbedingungen* (RB) sind nicht Gegenstand der Gestaltung, sondern von außen gesetzt; sie beschreiben die Voraussetzungen, unter denen die Lösung entsteht und betrieben wird.
+Der Katalog unterscheidet drei Kategorien, wie es im Requirements Engineering üblich ist @src:sommerville2016. Funktionale Anforderungen (FA) beschreiben, was die Lösung leisten muss, und sind am beobachtbaren Verhalten des Gesamtsystems überprüfbar. Nichtfunktionale Anforderungen (NFA) beschreiben Eigenschaften der Lösung und ihres Entstehungsprozesses, etwa ihre Modularität oder ihre Dokumentation. Randbedingungen (RB) sind nicht Gegenstand der Gestaltung, sondern von außen gesetzt. Sie beschreiben die Voraussetzungen, unter denen die Lösung entsteht und betrieben wird.
 
-Die Verbindlichkeit ergibt sich aus der Wortwahl: Eine mit „muss" formulierte Anforderung ist zwingend zu erfüllen und ihr Nachweis ist Teil der Validierung, während eine mit „soll" formulierte Anforderung angestrebt wird und eine Abweichung zu begründen ist.
+Die Verbindlichkeit ergibt sich aus der Wortwahl: Eine mit "muss" formulierte Anforderung ist zwingend zu erfüllen und ihr Nachweis ist Teil der Validierung, während eine mit "soll" formulierte Anforderung angestrebt wird und eine Abweichung zu begründen ist.
 
 Für die spätere Prüfung ist eine weitere Unterscheidung wesentlich, die der Katalog selbst nicht trifft: Die Anforderungen richten sich nicht sämtlich an dasselbe Artefakt. Ein Teil betrifft unmittelbar das Datenmodell, also die Typbeschreibung und die Adressbelegung -- etwa die Vollständigkeit und Beschriftung der Datenpunkte. Ein zweiter Teil wird erst durch die Projektierung in Desigo CC erfüllt, beispielsweise die Zuordnung zu Alarmkategorien oder der Aufbau von Dashboards. Ein dritter Teil betrifft die Geräteseite und ist nur über SENTRON Powerconfig zu erfüllen, etwa die Aktivierung einzelner Alarme. Ein Datenmodell allein kann folglich nicht alle Anforderungen erfüllen; es kann sie nur ermöglichen. Wo diese Grenze verläuft, wird bei den betroffenen Anforderungen jeweils benannt, denn sie bestimmt, wo der Nachweis zu führen ist und was die Lösung an Begleitmaterial umfassen muss.
 
@@ -114,7 +114,7 @@ Diese Arbeitsteilung ist keine vorläufige Einschränkung, sondern beabsichtigt,
 
 #figure(
   table(
-    columns: (4em, 1fr, 7em),
+    columns: (4em, 1fr, 8.5em),
     inset: 6pt,
     align: (left + horizon, left, left + horizon),
     table.header(

@@ -2,13 +2,13 @@
 #include "../config/config.typ"
 
 = Ehrenwörtliche Erklärung
-Ich versichere hiermit, dass ich meine Studienarbeit mit dem Thema: "Optimierung der Hardware einer Recheneinheit für einen autonom fahrenden Formula Student Rennwagen" selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Ich versichere zudem, dass die eingereichte elektronische Fassung mit der gedruckten Fassung übereinstimmt.
+Ich versichere hiermit, dass ich meine Studienarbeit mit dem Thema: "Entwicklung einer Integrationsvorlage zwischen elektronischen Schaltkreisschutzgeräten und einer Gebäudemanagementplattform" selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Ich versichere zudem, dass die eingereichte elektronische Fassung mit der gedruckten Fassung übereinstimmt.
 
 Ich habe bei der Erstellung der Arbeit KI-Werkzeuge eingesetzt. Dies habe ich an den entsprechenden Stellen der Arbeit kenntlich gemacht.
 
 
 
-Stuttgart, den 26.04.2026
+Stuttgart, den 14.09.2026
 
 #set align(left)
 #box(
@@ -30,5 +30,5 @@ Malte Schröter
     [*Werkzeug*], [*Beschreibung der Nutzung*],
   ),
   
-  [Anthropic Claude], [Formulierungshilfe, Grammatik- und Semantikkorrektur, Verwendung der KI-gestützten Suchfunktion zur Quellenfindung]
+  [Anthropic Claude Opus 5], [Formulierungshilfe, Grammatik- und Semantikkorrektur, Verwendung der KI-gestützten Suchfunktion zur Quellenfindung]
 )

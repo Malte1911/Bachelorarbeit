@@ -17,7 +17,7 @@ Bachelorarbeit über die Entwicklung eines Datenmodells (Integrationsvorlage). H
 - Neue Absätze werden im Code mit einer doppelten Leerzeile eingefügt
 - Kritische Bewertungen (Stärken/Schwächen) werden sachlich und begründet formuliert
 - Keine Beschreibungen mit dicker Schrift am Anfang von Absätzen machen. Das ist idealerweise zu vermeiden und es werden volle Sätze verwendet (und nicht dick geschrieben). Alternativ für kleine Zwischenüberschriften kannst du `====` verwenden
-- Bitte keine Spiegelstriche `--` verwenden und die Verwendung von Doppelpunkte `:` und Semikolons `:`reduzieren
+- Bitte keine Spiegelstriche `--` verwenden und die Verwendung von Doppelpunkte `:` und Semikolons `;`reduzieren
 
 ## Typst-Syntax
 
@@ -26,9 +26,11 @@ Bachelorarbeit über die Entwicklung eines Datenmodells (Integrationsvorlage). H
 - Abbildungen mit `#figure(image("../../resources/img/datei.png", width: X%), caption: [Beschriftung @quelle])`
 - Formeln in Displaymode: `$ formel $`, Inline: `$formel$`
 - Verweise auf andere Abschnitte: `@label`, Labels werden mit `<label>` gesetzt
-- Zahlen mit Einheiten werden im folgenden Format notiert:
+- Zahlen mit Einheiten werden im folgenden Format notiert – **ohne jedes Leerzeichen** im Quelltext, da ein Leerzeichen im Mathe-Modus mitgesetzt wird und dann eine doppelte Lücke entsteht. Das Einheitenzeichen steht in Anführungszeichen, sonst wird es als Produkt kursiver Variablen gesetzt (`mA` würde zu m·A):
 ```typst
-  Lorem ipsum $Zahl space.thin Einheitenzeichen$ Lorem ipsum
+  Lorem ipsum $Zahlspace.thin"Einheitenzeichen"$ Lorem ipsum
+  Richtig: $230space.thin"V"$, $22,5space.thin"mA"$, $2,4space.thin"GHz"$
+  Falsch:  $230 space.thin "V"$, $230space.thin "V"$   (beide erzeugen eine zu breite Lücke)
 ```
 - Bereits vom Autor eingefügte Kommentare werden auskommentiert mit /* Text */, niemals entfernt
 - Sichtbare Arbeitskommentare (rot und fett im PDF) über `#kommentar[Text]` aus `config/functions.typ` – funktioniert inline im Satz und als eigener Absatz. Der Schalter `show_comments` in `config/constants.typ` blendet für die Abgabe alle auf einmal aus. Diese Kommentare sind Notizen des Autors und werden **nicht** entfernt oder in Fließtext überführt, solange sie nicht ausdrücklich abgearbeitet wurden

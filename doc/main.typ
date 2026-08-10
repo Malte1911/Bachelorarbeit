@@ -64,10 +64,21 @@
 
 #set heading(numbering: "1.1.1", outlined: true, supplement: [Abschnitt])
 
+// Überschriften der vierten Ebene dienen nur der Gliederung innerhalb eines
+// Unterkapitels (z. B. die Integrationswege W1 bis W6). Eine Nummer der Form
+// 3.1.3.2 vor einer bereits gekennzeichneten Überschrift wäre doppelt gemoppelt,
+// deshalb bleiben sie unnummeriert. Im Inhaltsverzeichnis erscheinen sie wegen
+// `outline(depth: 2)` ohnehin nicht.
+#show heading.where(level: 4): set heading(numbering: none)
+
 #set figure.caption(separator: [: ])
 #show figure.where(kind: table): set figure(supplement: [Tabelle])
 #show figure.where(kind: image): set figure(supplement: [Abbildung])
+// Tabellen dürfen umbrechen, sonst passen die langen Anforderungs- und
+// Registertabellen nicht auf eine Seite. Abbildungen dürfen es nicht, sonst
+// landet die Bildunterschrift allein auf der Folgeseite.
 #show figure: set block(breakable: true)
+#show figure.where(kind: image): set block(breakable: false)
 #set math.equation(numbering: "(1)", supplement: [Formel], )
 #show math.equation: set text(10.5pt)
 

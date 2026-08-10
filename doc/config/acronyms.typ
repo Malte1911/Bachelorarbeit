@@ -27,7 +27,15 @@
   DGUV: "Deutsche Gesetzliche Unfallversicherung",
   CSV: "Comma-Separated Values",
   DPT: "Data Point Type",
-  DPE: "Data Point Element"
+  DPE: "Data Point Element",
+  MCB: "Miniature Circuit Breaker",
+  RCBO: "Residual Current operated circuit Breaker with Overcurrent protection",
+  AFDD: "Arc Fault Detection Device",
+  MCCB: "Moulded Case Circuit Breaker",
+  RBAC: "Role Based Access Control",
+  TLS: "Transport Layer Security",
+  RSSI: "Received Signal Strength Indicator",
+  FEP: "Front End Processor"
 )
 
 // Tracking used acronyms

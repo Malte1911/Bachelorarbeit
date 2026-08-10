@@ -180,3 +180,159 @@ author = {Igor {Nai Fovino} and Andrea Carcano and Marcelo Masera and Alberto Tr
 keywords = {Critical Infrastructures, SCADA Systems, Malware, Attacks},
 abstract = {Modern critical infrastructures are continually exposed to new threats due to the vulnerabilities and architectural weaknesses introduced by the extensive use of information and communications technologies (ICT). Of particular significance are the vulnerabilities in the communication protocols used in supervisory control and data acquisition (SCADA) systems that are commonly employed to control industrial processes. This paper presents the results of our research on the impact of traditional ICT malware on SCADA systems. In addition, it discusses the potential damaging effects of computer malware created for SCADA systems.}
 }
+
+% ---------------------------------------------------------------------------
+% Produktnormen der Schaltkreisschutzgeraete (Abschnitt Schaltkreisschutzgeraete)
+% ---------------------------------------------------------------------------
+% Eintraege von Claude ergaenzt. Zitiert wird ausschliesslich die Zuordnung
+% "Geraeteart -> fuehrende Produktnorm" sowie der Anwendungsbereich; die Normen
+% lagen nicht im Volltext vor. Titel, Ausgabestand und Jahr stammen aus den
+% Katalogeintraegen von IEC und CENELEC. Die Zuordnung RCM -> IEC 62020-1,
+% RCD -> IEC/EN 61009-1 bzw. IEC/EN 62423 und MRCD -> DIN EN 60947-2 Anhang M
+% wird zusaetzlich vom Systemhandbuch @src:sentronsystemhandbuch bestaetigt.
+% ANMERKUNG: Ausgabestaende und Aenderungen (A1, A2) sind vor Abgabe gegen den
+% DIN-Katalog gegenzulesen, insbesondere bei IEC 61008-1 und IEC 61009-1.
+@manual{src:iec60898,
+  author = {{International Electrotechnical Commission}},
+  title = {IEC 60898-1: Electrical accessories -- Circuit-breakers for overcurrent protection for household and similar installations -- Part 1: Circuit-breakers for a.c. operation},
+  edition = {2.0},
+  organization = {IEC},
+  address = {Genf},
+  year = {2015}
+}
+
+@manual{src:iec61008,
+  author = {{International Electrotechnical Commission}},
+  title = {IEC 61008-1: Residual current operated circuit-breakers without integral overcurrent protection for household and similar uses (RCCBs) -- Part 1: General rules},
+  edition = {3.0},
+  organization = {IEC},
+  address = {Genf},
+  year = {2010}
+}
+
+@manual{src:iec61009,
+  author = {{International Electrotechnical Commission}},
+  title = {IEC 61009-1: Residual current operated circuit-breakers with integral overcurrent protection for household and similar uses (RCBOs) -- Part 1: General rules},
+  edition = {3.0},
+  organization = {IEC},
+  address = {Genf},
+  year = {2010}
+}
+
+@manual{src:iec62606,
+  author = {{International Electrotechnical Commission}},
+  title = {IEC 62606: General requirements for arc fault detection devices},
+  edition = {1.0, konsolidiert mit AMD1:2017},
+  organization = {IEC},
+  address = {Genf},
+  year = {2013}
+}
+
+@manual{src:iec60947,
+  author = {{International Electrotechnical Commission}},
+  title = {IEC 60947-2: Low-voltage switchgear and controlgear -- Part 2: Circuit-breakers},
+  edition = {5.0},
+  organization = {IEC},
+  address = {Genf},
+  year = {2016}
+}
+
+@manual{src:iec62020,
+  author = {{International Electrotechnical Commission}},
+  title = {IEC 62020-1: Electrical accessories -- Residual current monitors (RCMs) -- Part 1: RCMs for household and similar uses},
+  edition = {1.0},
+  organization = {IEC},
+  address = {Genf},
+  year = {2020}
+}
+
+% Eintrag von Claude ergaenzt: Uebersichtsartikel zum Stand der Technik bei
+% Halbleiterschaltern; herangezogen fuer die allgemeine Einordnung des
+% halbleiterbasierten Schaltens gegenueber dem elektromechanischen Kontakt.
+% Metadaten ueber die Crossref-API zum DOI abgerufen.
+@article{src:rodrigues2021,
+  author = {Rodrigues, Rostan and Du, Yu and Antoniazzi, Antonello and Cairoli, Pietro},
+  title = {A Review of Solid-State Circuit Breakers},
+  journal = {IEEE Transactions on Power Electronics},
+  volume = {36},
+  number = {1},
+  pages = {364--377},
+  year = {2021},
+  doi = {10.1109/TPEL.2020.3003358}
+}
+
+% Eintrag von Claude ergaenzt: Datenblatt zu Desigo CC V9.0 -- also zu dem von
+% NFA-04 geforderten Stand, zu dem die Engineering Help nicht zugaenglich war.
+% Herangezogen fuer Systemarchitektur (Server/Client, FEP, verteilte Systeme)
+% und die Liste der unterstuetzten offenen Protokolle. Metadaten aus dem
+% Fussbereich und der Titelseite des Dokuments selbst.
+% ANMERKUNG: Das Blatt ist auf den nordamerikanischen Brandschutzmarkt
+% zugeschnitten; uebernommen werden ausschliesslich die plattformweiten
+% Aussagen, nicht die brandschutzspezifischen Zulassungsangaben.
+@manual{src:desigoccdatasheet,
+  url = {https://cache.industry.siemens.com/dl/files/590/109789590/att_1046355/v6/A6V10395661.pdf},
+  author = {{Siemens AG}},
+  title = {Desigo CC -- Architect \& Engineer Specifications},
+  edition = {V9.0},
+  organization = {Siemens, Smart Infrastructure -- Building Products},
+  year = {2025},
+  note = {Data Sheet 5082, Dokument-ID A6V10395661},
+  urldate = {2026-8-10}
+}
+
+% Eintrag von Claude ergaenzt: herangezogen fuer die Einordnung der vom PDE
+% dokumentierten Zielapplikation SENTRON Powermanager (PC-Software unter
+% Windows, Geraetegrenzen). Metadaten aus dem Titelblatt des Dokuments.
+@manual{src:powermanager,
+  url = {https://support.industry.siemens.com/cs/attachments/109771760/GettingStartedEN_pm_9.0.pdf},
+  author = {{Siemens AG}},
+  title = {SENTRON Powermanager -- Getting Started},
+  edition = {V9.0},
+  organization = {Siemens AG, Smart Infrastructure},
+  year = {2024},
+  note = {Siemens Industry Online Support, Beitrags-ID 109771760},
+  urldate = {2026-8-10}
+}
+
+% Eintrag von Claude ergaenzt: Produktseite zum SENTRON Powercenter 3000, der
+% zweiten vom PDE dokumentierten Zielapplikation. Herangezogen fuer deren
+% Einordnung als vorinstallierte Monitoring-Software mit Web-Oberflaeche.
+@online{src:poc3000,
+  url = {https://www.siemens.com/en-us/products/sentron/sentron-powercenter-3000/},
+  author = {{Siemens AG}},
+  title = {Energy monitoring software -- SENTRON Powercenter 3000},
+  year = {2026},
+  urldate = {2026-8-10}
+}
+
+% Eintrag von Claude ergaenzt auf Anweisung des Autors, der die Fundstelle
+% benannt hat. Belegt die Gegenueberstellung von SENTRON Powercenter 3000 und
+% SENTRON Powermanager, insbesondere deren Northbound-Schnittstellen
+% (MQTT bzw. OPC UA/DA) und damit die Kopplungsfaehigkeit an ein Leitsystem.
+% Metadaten aus dem Impressum des Dokuments (Artikelnummer, Jahr, Herausgeber).
+@manual{src:sentronsoftwareguide,
+  url = {https://assets.new.siemens.com/siemens/assets/api/uuid:56e704c3-6b73-4fd4-a6ef-16a639c17119/sentron-software-quickselection-guide-en.pdf},
+  author = {{Siemens AG}},
+  title = {SENTRON software -- Quick Selection Guide},
+  organization = {Siemens AG, Smart Infrastructure, Electrical Products},
+  address = {Regensburg},
+  year = {2025},
+  note = {Artikelnummer SIEP-B10512-00-7600},
+  urldate = {2026-8-10}
+}
+
+% Eintrag von Claude ergaenzt auf Anweisung des Autors, der die Fundstelle
+% benannt hat. ACHTUNG: Die Beitragsseite laedt ihren Inhalt per JavaScript nach
+% und war maschinell nicht auslesbar; Titel und Beitrags-ID sind der vom Autor
+% angegebenen URL entnommen, Jahr und Ausgabestand sind nicht belegt und vor
+% Abgabe am Beitrag selbst zu pruefen. Die im Text belegten Aussagen zum
+% Importweg wurden gegen die Bedienungsanleitung des Powercenter 3000
+% gegengelesen.
+@online{src:pdejsonimport,
+  url = {https://support.industry.siemens.com/cs/document/109798692},
+  author = {{Siemens AG}},
+  title = {SENTRON Power Device Engineer -- Integration of JSON device files},
+  year = {2025},
+  note = {Siemens Industry Online Support, Beitrags-ID 109798692},
+  urldate = {2026-8-10}
+}
