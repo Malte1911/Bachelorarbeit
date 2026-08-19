@@ -2,6 +2,7 @@
 
 = Grundlagen
 
+#include "../content/200_grundlagen/205_Stand_der_Technik.typ"
 #include "../content/200_grundlagen/210_Schaltkreisschutzgeräte.typ"
 #include "../content/200_grundlagen/220_Powercenter.typ"
 #include "../content/200_grundlagen/230_Modbus.typ"

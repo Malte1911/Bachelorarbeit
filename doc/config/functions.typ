@@ -140,6 +140,8 @@
 #let insertAppendix = {
 // Appendix
   pagebreak()
+  // Ohne Ruecksetzen zaehlt der Anhang die Kapitel weiter und erscheint als "H".
+  counter(heading).update(0)
   heading(numbering: "A")[Anhang]
   include "../content/999_appendix.typ"
   v(1fr)

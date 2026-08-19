@@ -188,16 +188,25 @@ Diese drei Punkte sind als Mindestvoraussetzungen des Betriebs zu verstehen, nic
 
 === Integrationsmechanismus in Desigo CC<sec:desigoccmechanik>
 
-Mit der Festlegung auf Modbus #acro("TCP") ist noch nicht bestimmt, in welcher Form das Datenmodell auf der Zielseite überhaupt vorliegen kann. Da die von Desigo CC vorgegebenen Mechanismen die Gestalt der Lösung unmittelbar begrenzen, werden sie hier gesondert untersucht. Grundlage ist die Engineering-Dokumentation der Plattform @src:desigoccenghelp.
+Mit der Festlegung auf Modbus #acro("TCP") ist noch nicht bestimmt, in welcher Form das Datenmodell auf der Zielseite überhaupt vorliegen kann. Da die von Desigo CC vorgegebenen Mechanismen die Gestalt der Lösung unmittelbar begrenzen, werden sie hier gesondert untersucht. Grundlage ist die Engineering-Dokumentation der Plattform @src:desigoccenghelp, die für die Stände V5.1 und V7 vorlag und in beiden dieselben Aussagen trifft, nicht jedoch für den von NFA-04 geforderten Stand V9.0 (siehe @sec:quellenlage).
 
 /* Claude: Die Angaben dieses Abschnitts stammen aus der Engineering Help. Geprueft wurden
    die Plattformstaende V5.1 und V7; die verwendeten Aussagen sind in beiden identisch.
-   NFA-04 fordert jedoch V9.0, wozu keine Dokumentation zugaenglich war. Vor Abgabe gegen
-   die installierte Version gegenlesen -- insbesondere die Aussage, dass die JSON-
-   Objektmodellbeschreibung keine Modbus-Adressen traegt. Siehe auch den Vorbehalt zu
-   NFA-04 in @sec:anforderungsvorbehalte. */
+   NFA-04 fordert jedoch V9.0, wozu keine Dokumentation zugaenglich war. Siehe dazu den
+   Vorbehalt zu NFA-04 in @sec:anforderungsvorbehalte.
 
-Von den Mitteln, die die Plattform für eine Modbus-Anbindung bereithält, ist für diese Arbeit im Wesentlichen eines maßgeblich. Ein Gerätetyp wird in Desigo CC als Objektmodell beschrieben, und dieses Objektmodell lässt sich als #acro("JSON")-Datei importieren @src:desigoccenghelp. Damit besteht eine unmittelbare Entsprechung zu dem Format, das der #acro("PDE") erzeugt (siehe @sec:pde), und genau an dieser Stelle setzt das Datenmodell dieser Arbeit an. An einer vollständigen Integration hängen in Desigo CC weitere Artefakte, namentlich die Regeln, über die den Eigenschaften des Objektmodells Registeradressen und Funktionscodes zugewiesen werden, die Liste der anzulegenden Geräteinstanzen sowie Grafiken, Symbole und Textgruppen für die Darstellung @src:desigoccenghelp. Ihre konkrete Gestalt ist für die Beurteilung des Lösungsraums nicht erforderlich und wird erst im Entwicklungsteil aufgegriffen.
+   Der zuvor hier vermerkte offene Punkt, die JSON-Objektmodellbeschreibung trage keine
+   Modbus-Adressen, ist erledigt. Er war auf den allgemeinen Importweg der Engineering
+   Help bezogen, nicht auf den hier gewaehlten Weg ueber den PDE. Die vom PDE erzeugte
+   Typbeschreibung fuehrt Registeradresse, Funktionscode, Datentyp und Skalierung je
+   Eigenschaft mit (siehe @tab:pde_schritte), sodass nur ein Artefakt zu entwickeln ist.
+   Der folgende Absatz ist entsprechend umgeschrieben. */
+
+Von den Mitteln, die die Plattform für eine Modbus-Anbindung bereithält, ist für diese Arbeit im Wesentlichen eines maßgeblich. Ein Gerätetyp wird in Desigo CC als Objektmodell beschrieben, und dieses Objektmodell lässt sich als #acro("JSON")-Datei importieren @src:desigoccenghelp. Damit besteht eine unmittelbare Entsprechung zu dem Format, das der #acro("PDE") erzeugt (siehe @sec:pde), und genau an dieser Stelle setzt das Datenmodell dieser Arbeit an. Die Dokumentation des #acro("PDE") führt Desigo CC allerdings nicht als Zielapplikation (siehe @sec:pde_ziel), weshalb diese Entsprechung nicht dokumentiert ist, sondern am Testaufbau zu bestätigen war.
+
+Für den Zuschnitt der Lösung ist dabei entscheidend, dass die Typbeschreibung des #acro("PDE") die Adressierung bereits enthält. Zu jeder Eigenschaft werden dort Registeradresse, Funktionscode, Datentyp, Subindex und Skalierungsfaktor hinterlegt (siehe @tab:pde_schritte), sodass Objektmodell und Adressbelegung in derselben Datei liegen. Die Lösung dieser Arbeit besteht folglich aus einem einzigen zu entwickelnden Artefakt. Daneben beschreibt die Engineering-Dokumentation einen allgemeinen Weg, auf dem ein Objektmodell ohne Adressangaben eingelesen und die Zuordnung von Registeradressen und Funktionscodes in eigenen Regelwerken danebengelegt wird @src:desigoccenghelp. Dieser Weg kommt ohne den #acro("PDE") aus, gibt dessen Werkzeugkette damit aber auch auf und wird hier nicht beschritten.
+
+Nicht Gegenstand der Entwicklung sind zwei weitere Bestandteile einer vollständigen Integration. Das sind zum einen Grafiken, Symbole und Textgruppen für die Darstellung in der Bedienoberfläche, zum anderen die Liste der tatsächlich anzulegenden Geräteinstanzen @src:desigoccenghelp. Beides fällt im jeweiligen Projekt an und hängt an der konkreten Anlage, nicht am Gerätetyp.
 
 Die Kommunikation selbst trägt ein Treiber, der im Projekt eigens angelegt, einem Netzwerk zugeordnet und gestartet wird @src:desigoccenghelp. Er ist eine Voraussetzung dafür, dass überhaupt Werte fließen, hat auf die Gestalt des Datenmodells jedoch keinen Einfluss und wird deshalb hier nicht weiter betrachtet.
 
@@ -225,7 +234,7 @@ Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modb
     [Wird global oder je Treiberinstanz über einen Konfigurationseintrag gesetzt; für Geräte mit Big-Endian-Anordnung ist er auf 0 zu setzen. Für die mitgelieferten Energiemessgeräte schreibt die Dokumentation dies ausdrücklich vor.],
 
     [Abfrageintervall],
-    [Das Intervall, in dem der Treiber ein Gerät abfragt, ist einstellbar und gilt einheitlich für dessen Datenpunkte. Eine nach Datenpunktgruppen abgestufte Abfrage steht am eingesetzten Stand nicht zur Verfügung, sodass die Abfragelast allein über die Zahl der abgebildeten Datenpunkte und über das Intervall je Gerät gesteuert werden kann.],
+    [Das Intervall, in dem der Treiber ein Gerät abfragt, ist einstellbar und gilt einheitlich für dessen Datenpunkte. Eine nach Datenpunktgruppen abgestufte Abfrage steht am eingesetzten Stand nicht zur Verfügung, was von der Dokumentation abweicht und deshalb nach @sec:quellenlage der Beobachtung folgt, sodass die Abfragelast allein über die Zahl der abgebildeten Datenpunkte und über das Intervall je Gerät gesteuert werden kann.],
 
     [Blockbildung],
     [Register, deren Adressabstand einen einstellbaren Grenzwert unterschreitet, werden zu einem gemeinsamen Leseblock zusammengefasst. Eine dichte Belegung des Adressraums verringert damit unmittelbar die Zahl der Telegramme.],
@@ -267,7 +276,7 @@ Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein e
 
 #figure(
   abb_konzept,
-  caption: [Erstes Lösungskonzept, Werkzeugkette vom #acro("PDE") über die #acro("JSON")-Typbeschreibung zum Objektmodell in Desigo CC, ergänzt um Adressbelegung und Instanzliste, sowie die Instanziierung je physischem Gerät über den Unit Identifier],
+  caption: [Erstes Lösungskonzept, Werkzeugkette vom #acro("PDE") über die #acro("JSON")-Typbeschreibung zum Objektmodell in Desigo CC sowie die Instanziierung je physischem Gerät über den Unit Identifier],
 )<img:konzept>
 
 Für die Abfrage gibt das Systemhandbuch drei Empfehlungen, nämlich jedes Gerät höchstens einmal pro Sekunde abzufragen, die Endgeräte sequenziell abzuarbeiten und Register blockweise zu lesen @src:sentronsystemhandbuch. Diese Abfragemethodik ist von Desigo CC bereits implementiert, da der Treiber einen einstellbaren Abstand zwischen den Anfragen kennt und benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp. Eine schnellere Abfrage brächte ohnehin keinen Gewinn, weil die Messwerte frühestens alle $2space.thin"s"$ aktualisiert werden @src:sentronsystemhandbuch. Da sich das Abfrageintervall nach @tab:modbustreiber nur je Gerät und nicht je Datenpunktgruppe einstellen lässt, werden alle Datenpunkte eines Geräts in demselben Takt gelesen. Die Abfragelast eines Strangs hängt damit unmittelbar an der Zahl der abgebildeten Datenpunkte, was die Auswahl der Daten zusätzlich begründet. Eine nach Verwendungszweck abgestufte Abfrage, bei der Zustands- und Alarmwerte häufiger gelesen würden als Zähler- und Stammdaten, wäre technisch wünschenswert und bleibt als Ansatzpunkt für eine Weiterentwicklung festzuhalten.
@@ -295,10 +304,15 @@ Schließlich sieht der Entwurf eine feste Arbeitsteilung zwischen den beiden Wer
    Der Platzhalter am Ende des Abschnitts ist durch das mit fletcher gezeichnete
    Diagramm `abb_konzept` aus config/diagrams.typ ersetzt und an die Stelle
    gerueckt, an der von Typ, Instanz und Unit Identifier die Rede ist. Die
-   Abbildung wird jetzt auch im Text referenziert, was zuvor fehlte. Sie zeigt
-   bewusst nur, dass es die Adressbelegung und die Instanzliste als eigene
-   Artefakte gibt, nicht in welchem Format sie vorliegen; das bleibt dem
-   Entwicklungsteil vorbehalten. */
+   Abbildung wird jetzt auch im Text referenziert, was zuvor fehlte.
+
+   Nachtrag: Die Abbildung fuehrte urspruenglich eine eigene "Adressbelegung" als
+   zweites Artefakt neben der Typbeschreibung. Das war auf den allgemeinen
+   Importweg von Desigo CC bezogen und trifft auf den hier gewaehlten Weg nicht
+   zu, weil der PDE die Registeradressen in dieselbe JSON-Datei schreibt. Der
+   Knoten ist aus `abb_konzept` entfernt und die Bildunterschrift angepasst.
+   Die Instanzliste bleibt, da die anzulegenden Geraete je Anlage feststehen
+   muessen. Siehe auch den Kommentar in @sec:desigoccmechanik. */
 
 
 === Analyse des Modbus-Registerraums<sec:registerraum>
@@ -349,7 +363,7 @@ Zweitens ist die Informationsdichte sehr ungleich verteilt. Ein einziges Registe
 
 Drittens liegen Werte teilweise doppelt vor. Der Schalterzustand jedes Endgeräts ist sowohl am Endgerät selbst als auch in einem Feld über alle 24 Endgeräte am Powercenter verfügbar; Gleiches gilt für Verbindungs- und Pairing-Zustände sowie für die Zähler von Parameteränderungen. Eine Abbildung beider Quellen wäre redundant und würde die Datenpunktzahl am Gateway vervielfachen.
 
-Viertens sind nicht alle dokumentierten Register nutzbar. Ein Teil ist geräteweit konstant und damit ohne Informationsgewinn, ein weiterer Teil antwortet auf dem #acro("ECPD") mit einer Ausnahmemeldung oder liefert konstant null. Die Registerkarte allein ist folglich keine hinreichende Grundlage. Alle Angaben sind am Gerät zu prüfen.
+Viertens sind nicht alle dokumentierten Register nutzbar. Ein Teil ist geräteweit konstant und damit ohne Informationsgewinn, ein weiterer Teil antwortet auf dem #acro("ECPD") mit einer Ausnahmemeldung oder liefert konstant null. Die Registerkarte allein ist folglich keine hinreichende Grundlage. Alle Angaben sind am Gerät zu prüfen, wie es der Umgang mit der Herstellerdokumentation nach @sec:quellenlage vorsieht.
 
 Fünftens sind Alarme nicht ohne Weiteres wirksam. Von den für das #acro("ECPD") belegten Alarmbits ist nur ein kleinerer Teil ab Werk aktiv; die übrigen müssen zunächst in SENTRON Powerconfig eingeschaltet werden und liefern andernfalls dauerhaft den Wert null. Betroffen sind unter anderem die beiden #acro("RCM")-Alarme, die zu den aussagekräftigsten Meldungen des Geräts zählen. Ein Datenmodell allein genügt daher nicht; es ist um eine Aussage zur erforderlichen Geräteparametrierung zu ergänzen.
 

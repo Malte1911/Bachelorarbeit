@@ -2,7 +2,7 @@
 #import "../../config/functions.typ": *
 #include "../../config/config.typ"
 
-== Berücksichtigung von Nachhaltigkeitsaspekten
+== Berücksichtigung von Nachhaltigkeitsaspekten<sec:nachhaltigkeit>
 
 /* Stichpunkte (Notizen) – noch nicht ausformuliert. Später in Fließtext überführen. */
 
@@ -28,3 +28,5 @@
 - Wissenstransfer durch dokumentierte, reproduzierbare Methodik
 
 /* Hinweis: Aussagen sachlich/begründet formulieren, wo möglich mit @quelle belegen, sonst [TODO Quelle]. Nicht quantitativ belegbare Punkte als potenziell/qualitativ kennzeichnen (Validierung nur am begrenzten Testaufbau). */
+
+#kommentar[Die ökonomischen Punkte überschneiden sich mit @sec:wirtschaftlichkeit. Dort steht die wirtschaftliche Bewertung, hier nur der Nachhaltigkeitsbezug, mit Verweis statt Wiederholung.]

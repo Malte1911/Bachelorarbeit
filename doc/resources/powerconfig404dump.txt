@@ -1,0 +1,2359 @@
+No.     Time           Source                Destination           Protocol Length Info
+     50 2.972787       172.16.30.128         172.16.30.130         TCP      66     63751 → 443 [SYN] Seq=0 Win=65535 Len=0 MSS=1460 WS=256 SACK_PERM
+
+Frame 50: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 0, Len: 0
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 1]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 0    (relative sequence number)
+    Sequence Number (raw): 1484282819
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 0
+    Acknowledgment number (raw): 0
+    1000 .... = Header Length: 32 bytes (8)
+    Flags: 0x002 (SYN)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...0 .... = Acknowledgment: Not set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..1. = Syn: Set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ··········S·]
+    Window: 65535
+    [Calculated window size: 65535]
+    Checksum: 0x2aef [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    Options: (12 bytes), Maximum segment size, No-Operation (NOP), Window scale, No-Operation (NOP), No-Operation (NOP), SACK permitted
+    [Timestamps]
+
+No.     Time           Source                Destination           Protocol Length Info
+     53 2.974061       172.16.30.130         172.16.30.128         TCP      60     443 → 63751 [SYN, ACK] Seq=0 Ack=1 Win=5840 Len=0 MSS=1460
+
+Frame 53: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 0, Ack: 1, Len: 0
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 2]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 0    (relative sequence number)
+    Sequence Number (raw): 2662745194
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 1484282820
+    0110 .... = Header Length: 24 bytes (6)
+    Flags: 0x012 (SYN, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..1. = Syn: Set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A··S·]
+    Window: 5840
+    [Calculated window size: 5840]
+    Checksum: 0x5a03 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    Options: (4 bytes), Maximum segment size
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     54 2.974253       172.16.30.128         172.16.30.130         TCP      54     63751 → 443 [ACK] Seq=1 Ack=1 Win=65535 Len=0
+
+Frame 54: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 1, Ack: 1, Len: 0
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 3]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 1484282820
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 2662745195
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x8890 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     55 2.976135       172.16.30.128         172.16.30.130         TLSv1.2  211    Client Hello
+
+Frame 55: 211 bytes on wire (1688 bits), 211 bytes captured (1688 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 1, Ack: 1, Len: 157
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 4]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 157]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 1484282820
+    [Next Sequence Number: 158    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 2662745195
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x07ae [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (157 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     56 3.178642       172.16.30.128         172.16.30.130         TCP      211    [TCP Retransmission] 63751 → 443 [PSH, ACK] Seq=1 Ack=1 Win=65535 Len=157
+
+Frame 56: 211 bytes on wire (1688 bits), 211 bytes captured (1688 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 1, Ack: 1, Len: 157
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 5]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 157]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 1484282820
+    [Next Sequence Number: 158    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 2662745195
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x07ae [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (157 bytes)
+    Retransmitted TCP segment data (157 bytes)
+
+No.     Time           Source                Destination           Protocol Length Info
+     57 3.178912       172.16.30.130         172.16.30.128         TCP      60     443 → 63751 [ACK] Seq=1 Ack=158 Win=5683 Len=0
+
+Frame 57: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 1, Ack: 158, Len: 0
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 6]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 2662745195
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 158    (relative ack number)
+    Acknowledgment number (raw): 1484282977
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 5683
+    [Calculated window size: 5683]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x71c0 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     66 3.481639       172.16.30.130         172.16.30.128         TLSv1.2  150    Server Hello
+
+Frame 66: 150 bytes on wire (1200 bits), 150 bytes captured (1200 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 1, Ack: 158, Len: 96
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 7]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 96]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 2662745195
+    [Next Sequence Number: 97    (relative sequence number)]
+    Acknowledgment Number: 158    (relative ack number)
+    Acknowledgment number (raw): 1484282977
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5683
+    [Calculated window size: 5683]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x8991 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (96 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     67 3.523390       172.16.30.128         172.16.30.130         TCP      54     63751 → 443 [ACK] Seq=158 Ack=97 Win=65439 Len=0
+
+Frame 67: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 158, Ack: 97, Len: 0
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 8]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 158    (relative sequence number)
+    Sequence Number (raw): 1484282977
+    [Next Sequence Number: 158    (relative sequence number)]
+    Acknowledgment Number: 97    (relative ack number)
+    Acknowledgment number (raw): 2662745291
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65439
+    [Calculated window size: 65439]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x87f3 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     68 3.523818       172.16.30.130         172.16.30.128         TLSv1.2  761    Certificate
+
+Frame 68: 761 bytes on wire (6088 bits), 761 bytes captured (6088 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 97, Ack: 158, Len: 707
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 9]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 707]
+    Sequence Number: 97    (relative sequence number)
+    Sequence Number (raw): 2662745291
+    [Next Sequence Number: 804    (relative sequence number)]
+    Acknowledgment Number: 158    (relative ack number)
+    Acknowledgment number (raw): 1484282977
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5683
+    [Calculated window size: 5683]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x1243 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (707 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     69 3.563871       172.16.30.128         172.16.30.130         TCP      54     63751 → 443 [ACK] Seq=158 Ack=804 Win=64732 Len=0
+
+Frame 69: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 158, Ack: 804, Len: 0
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 10]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 158    (relative sequence number)
+    Sequence Number (raw): 1484282977
+    [Next Sequence Number: 158    (relative sequence number)]
+    Acknowledgment Number: 804    (relative ack number)
+    Acknowledgment number (raw): 2662745998
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 64732
+    [Calculated window size: 64732]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x87f3 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     70 3.564187       172.16.30.130         172.16.30.128         TLSv1.2  215    Server Key Exchange, Server Hello Done
+
+Frame 70: 215 bytes on wire (1720 bits), 215 bytes captured (1720 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 804, Ack: 158, Len: 161
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 11]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 161]
+    Sequence Number: 804    (relative sequence number)
+    Sequence Number (raw): 2662745998
+    [Next Sequence Number: 965    (relative sequence number)]
+    Acknowledgment Number: 158    (relative ack number)
+    Acknowledgment number (raw): 1484282977
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5683
+    [Calculated window size: 5683]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xee4f [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (161 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     71 3.565548       172.16.30.128         172.16.30.130         TLSv1.2  180    Client Key Exchange, Change Cipher Spec, Encrypted Handshake Message
+
+Frame 71: 180 bytes on wire (1440 bits), 180 bytes captured (1440 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 158, Ack: 965, Len: 126
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 12]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 126]
+    Sequence Number: 158    (relative sequence number)
+    Sequence Number (raw): 1484282977
+    [Next Sequence Number: 284    (relative sequence number)]
+    Acknowledgment Number: 965    (relative ack number)
+    Acknowledgment number (raw): 2662746159
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 64571
+    [Calculated window size: 64571]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xdc1a [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (126 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     72 3.652413       172.16.30.130         172.16.30.128         TLSv1.2  60     Change Cipher Spec
+
+Frame 72: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 965, Ack: 284, Len: 6
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 13]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 6]
+    Sequence Number: 965    (relative sequence number)
+    Sequence Number (raw): 2662746159
+    [Next Sequence Number: 971    (relative sequence number)]
+    Acknowledgment Number: 284    (relative ack number)
+    Acknowledgment number (raw): 1484283103
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5557
+    [Calculated window size: 5557]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x55ea [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (6 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     73 3.692919       172.16.30.128         172.16.30.130         TCP      54     63751 → 443 [ACK] Seq=284 Ack=971 Win=64565 Len=0
+
+Frame 73: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 284, Ack: 971, Len: 0
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 14]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 284    (relative sequence number)
+    Sequence Number (raw): 1484283103
+    [Next Sequence Number: 284    (relative sequence number)]
+    Acknowledgment Number: 971    (relative ack number)
+    Acknowledgment number (raw): 2662746165
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 64565
+    [Calculated window size: 64565]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x8775 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     74 3.693242       172.16.30.130         172.16.30.128         TLSv1.2  99     Encrypted Handshake Message
+
+Frame 74: 99 bytes on wire (792 bits), 99 bytes captured (792 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 971, Ack: 284, Len: 45
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 15]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 45]
+    Sequence Number: 971    (relative sequence number)
+    Sequence Number (raw): 2662746165
+    [Next Sequence Number: 1016    (relative sequence number)]
+    Acknowledgment Number: 284    (relative ack number)
+    Acknowledgment number (raw): 1484283103
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5557
+    [Calculated window size: 5557]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x7ed3 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (45 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     75 3.696560       172.16.30.128         172.16.30.130         TLSv1.2  277    Application Data
+
+Frame 75: 277 bytes on wire (2216 bits), 277 bytes captured (2216 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 284, Ack: 1016, Len: 223
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 16]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 223]
+    Sequence Number: 284    (relative sequence number)
+    Sequence Number (raw): 1484283103
+    [Next Sequence Number: 507    (relative sequence number)]
+    Acknowledgment Number: 1016    (relative ack number)
+    Acknowledgment number (raw): 2662746210
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 64520
+    [Calculated window size: 64520]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xea7e [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (223 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     76 3.707965       172.16.30.130         172.16.30.128         TCP      1514   443 → 63751 [ACK] Seq=1016 Ack=507 Win=5334 Len=1460 [TCP PDU reassembled in 77]
+
+Frame 76: 1514 bytes on wire (12112 bits), 1514 bytes captured (12112 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 1016, Ack: 507, Len: 1460
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 17]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 1460]
+    Sequence Number: 1016    (relative sequence number)
+    Sequence Number (raw): 2662746210
+    [Next Sequence Number: 2476    (relative sequence number)]
+    Acknowledgment Number: 507    (relative ack number)
+    Acknowledgment number (raw): 1484283326
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 5334
+    [Calculated window size: 5334]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x148b [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (1460 bytes)
+    [Reassembled PDU in frame: 77]
+    TCP segment data (1460 bytes)
+
+No.     Time           Source                Destination           Protocol Length Info
+     77 3.708281       172.16.30.130         172.16.30.128         TLSv1.2  161    Application Data, Encrypted Alert
+
+Frame 77: 161 bytes on wire (1288 bits), 161 bytes captured (1288 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63751, Seq: 2476, Ack: 507, Len: 107
+    Source Port: 443
+    Destination Port: 63751
+    [Stream index: 3]
+    [Stream Packet Number: 18]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 107]
+    Sequence Number: 2476    (relative sequence number)
+    Sequence Number (raw): 2662747670
+    [Next Sequence Number: 2584    (relative sequence number)]
+    Acknowledgment Number: 507    (relative ack number)
+    Acknowledgment number (raw): 1484283326
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x019 (FIN, PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...1 = Fin: Set
+        [TCP Flags: ·······AP··F]
+    Window: 5334
+    [Calculated window size: 5334]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x40b7 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (107 bytes)
+    TCP segment data (76 bytes)
+[2 Reassembled TCP Segments (1536 bytes): #76(1460), #77(76)]
+Transport Layer Security
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     78 3.708346       172.16.30.128         172.16.30.130         TCP      54     63751 → 443 [ACK] Seq=507 Ack=2584 Win=65535 Len=0
+
+Frame 78: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 507, Ack: 2584, Len: 0
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 19]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 507    (relative sequence number)
+    Sequence Number (raw): 1484283326
+    [Next Sequence Number: 507    (relative sequence number)]
+    Acknowledgment Number: 2584    (relative ack number)
+    Acknowledgment number (raw): 2662747778
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x7c7f [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     79 3.721933       172.16.30.128         172.16.30.130         TCP      66     63767 → 443 [SYN] Seq=0 Win=65535 Len=0 MSS=1460 WS=256 SACK_PERM
+
+Frame 79: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 0, Len: 0
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 1]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 0    (relative sequence number)
+    Sequence Number (raw): 930393635
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 0
+    Acknowledgment number (raw): 0
+    1000 .... = Header Length: 32 bytes (8)
+    Flags: 0x002 (SYN)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...0 .... = Acknowledgment: Not set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..1. = Syn: Set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ··········S·]
+    Window: 65535
+    [Calculated window size: 65535]
+    Checksum: 0xf982 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    Options: (12 bytes), Maximum segment size, No-Operation (NOP), Window scale, No-Operation (NOP), No-Operation (NOP), SACK permitted
+    [Timestamps]
+
+No.     Time           Source                Destination           Protocol Length Info
+     80 3.722507       172.16.30.130         172.16.30.128         TCP      60     443 → 63767 [SYN, ACK] Seq=0 Ack=1 Win=5840 Len=0 MSS=1460
+
+Frame 80: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 0, Ack: 1, Len: 0
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 2]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 0    (relative sequence number)
+    Sequence Number (raw): 79239287
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 930393636
+    0110 .... = Header Length: 24 bytes (6)
+    Flags: 0x012 (SYN, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..1. = Syn: Set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A··S·]
+    Window: 5840
+    [Calculated window size: 5840]
+    Checksum: 0xee87 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    Options: (4 bytes), Maximum segment size
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     81 3.722668       172.16.30.128         172.16.30.130         TCP      54     63767 → 443 [ACK] Seq=1 Ack=1 Win=65535 Len=0
+
+Frame 81: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 1, Ack: 1, Len: 0
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 3]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 930393636
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 79239288
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x1d15 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     82 3.723646       172.16.30.128         172.16.30.130         TLSv1.2  211    Client Hello
+
+Frame 82: 211 bytes on wire (1688 bits), 211 bytes captured (1688 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 1, Ack: 1, Len: 157
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 4]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 157]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 930393636
+    [Next Sequence Number: 158    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 79239288
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x32da [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (157 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     83 3.925807       172.16.30.128         172.16.30.130         TCP      211    [TCP Retransmission] 63767 → 443 [PSH, ACK] Seq=1 Ack=1 Win=65535 Len=157
+
+Frame 83: 211 bytes on wire (1688 bits), 211 bytes captured (1688 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 1, Ack: 1, Len: 157
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 5]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 157]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 930393636
+    [Next Sequence Number: 158    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 79239288
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x32da [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (157 bytes)
+    Retransmitted TCP segment data (157 bytes)
+
+No.     Time           Source                Destination           Protocol Length Info
+     84 3.926337       172.16.30.130         172.16.30.128         TCP      60     443 → 63767 [ACK] Seq=1 Ack=158 Win=5683 Len=0
+
+Frame 84: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 1, Ack: 158, Len: 0
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 6]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 79239288
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 158    (relative ack number)
+    Acknowledgment number (raw): 930393793
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 5683
+    [Calculated window size: 5683]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x0645 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     93 4.232664       172.16.30.130         172.16.30.128         TLSv1.2  150    Server Hello
+
+Frame 93: 150 bytes on wire (1200 bits), 150 bytes captured (1200 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 1, Ack: 158, Len: 96
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 7]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 96]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 79239288
+    [Next Sequence Number: 97    (relative sequence number)]
+    Acknowledgment Number: 158    (relative ack number)
+    Acknowledgment number (raw): 930393793
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5683
+    [Calculated window size: 5683]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x46c8 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (96 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+     95 4.272311       172.16.30.128         172.16.30.130         TCP      54     63767 → 443 [ACK] Seq=158 Ack=97 Win=65439 Len=0
+
+Frame 95: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 158, Ack: 97, Len: 0
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 8]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 158    (relative sequence number)
+    Sequence Number (raw): 930393793
+    [Next Sequence Number: 158    (relative sequence number)]
+    Acknowledgment Number: 97    (relative ack number)
+    Acknowledgment number (raw): 79239384
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65439
+    [Calculated window size: 65439]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x1c78 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+     96 4.272849       172.16.30.130         172.16.30.128         TLSv1.2  761    Certificate
+
+Frame 96: 761 bytes on wire (6088 bits), 761 bytes captured (6088 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 97, Ack: 158, Len: 707
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 9]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 707]
+    Sequence Number: 97    (relative sequence number)
+    Sequence Number (raw): 79239384
+    [Next Sequence Number: 804    (relative sequence number)]
+    Acknowledgment Number: 158    (relative ack number)
+    Acknowledgment number (raw): 930393793
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5683
+    [Calculated window size: 5683]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xa6c7 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (707 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    107 4.312863       172.16.30.128         172.16.30.130         TCP      54     63767 → 443 [ACK] Seq=158 Ack=804 Win=64732 Len=0
+
+Frame 107: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 158, Ack: 804, Len: 0
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 10]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 158    (relative sequence number)
+    Sequence Number (raw): 930393793
+    [Next Sequence Number: 158    (relative sequence number)]
+    Acknowledgment Number: 804    (relative ack number)
+    Acknowledgment number (raw): 79240091
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 64732
+    [Calculated window size: 64732]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x1c78 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+    108 4.313207       172.16.30.130         172.16.30.128         TLSv1.2  216    Server Key Exchange, Server Hello Done
+
+Frame 108: 216 bytes on wire (1728 bits), 216 bytes captured (1728 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 804, Ack: 158, Len: 162
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 11]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 162]
+    Sequence Number: 804    (relative sequence number)
+    Sequence Number (raw): 79240091
+    [Next Sequence Number: 966    (relative sequence number)]
+    Acknowledgment Number: 158    (relative ack number)
+    Acknowledgment number (raw): 930393793
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5683
+    [Calculated window size: 5683]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x17f3 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (162 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    109 4.314552       172.16.30.128         172.16.30.130         TLSv1.2  180    Client Key Exchange, Change Cipher Spec, Encrypted Handshake Message
+
+Frame 109: 180 bytes on wire (1440 bits), 180 bytes captured (1440 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 158, Ack: 966, Len: 126
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 12]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 126]
+    Sequence Number: 158    (relative sequence number)
+    Sequence Number (raw): 930393793
+    [Next Sequence Number: 284    (relative sequence number)]
+    Acknowledgment Number: 966    (relative ack number)
+    Acknowledgment number (raw): 79240253
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 64570
+    [Calculated window size: 64570]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x3f0d [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (126 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    120 4.401036       172.16.30.130         172.16.30.128         TLSv1.2  60     Change Cipher Spec
+
+Frame 120: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 966, Ack: 284, Len: 6
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 13]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 6]
+    Sequence Number: 966    (relative sequence number)
+    Sequence Number (raw): 79240253
+    [Next Sequence Number: 972    (relative sequence number)]
+    Acknowledgment Number: 284    (relative ack number)
+    Acknowledgment number (raw): 930393919
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5557
+    [Calculated window size: 5557]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xea6d [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (6 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    121 4.441368       172.16.30.128         172.16.30.130         TCP      54     63767 → 443 [ACK] Seq=284 Ack=972 Win=64564 Len=0
+
+Frame 121: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 284, Ack: 972, Len: 0
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 14]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 284    (relative sequence number)
+    Sequence Number (raw): 930393919
+    [Next Sequence Number: 284    (relative sequence number)]
+    Acknowledgment Number: 972    (relative ack number)
+    Acknowledgment number (raw): 79240259
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 64564
+    [Calculated window size: 64564]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x1bfa [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+    122 4.441623       172.16.30.130         172.16.30.128         TLSv1.2  99     Encrypted Handshake Message
+
+Frame 122: 99 bytes on wire (792 bits), 99 bytes captured (792 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 972, Ack: 284, Len: 45
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 15]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 45]
+    Sequence Number: 972    (relative sequence number)
+    Sequence Number (raw): 79240259
+    [Next Sequence Number: 1017    (relative sequence number)]
+    Acknowledgment Number: 284    (relative ack number)
+    Acknowledgment number (raw): 930393919
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5557
+    [Calculated window size: 5557]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x979b [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (45 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    123 4.442853       172.16.30.128         172.16.30.130         TLSv1.2  244    Application Data
+
+Frame 123: 244 bytes on wire (1952 bits), 244 bytes captured (1952 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 284, Ack: 1017, Len: 190
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 16]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 190]
+    Sequence Number: 284    (relative sequence number)
+    Sequence Number (raw): 930393919
+    [Next Sequence Number: 474    (relative sequence number)]
+    Acknowledgment Number: 1017    (relative ack number)
+    Acknowledgment number (raw): 79240304
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 64519
+    [Calculated window size: 64519]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xee02 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (190 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    130 4.473353       172.16.30.130         172.16.30.128         TCP      60     443 → 63767 [ACK] Seq=1017 Ack=474 Win=5367 Len=0
+
+Frame 130: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 1017, Ack: 474, Len: 0
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 17]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 1017    (relative sequence number)
+    Sequence Number (raw): 79240304
+    [Next Sequence Number: 1017    (relative sequence number)]
+    Acknowledgment Number: 474    (relative ack number)
+    Acknowledgment number (raw): 930394109
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 5367
+    [Calculated window size: 5367]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x024d [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+    131 4.473382       172.16.30.128         172.16.30.130         TLSv1.2  397    Application Data
+
+Frame 131: 397 bytes on wire (3176 bits), 397 bytes captured (3176 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 474, Ack: 1017, Len: 343
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 18]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 343]
+    Sequence Number: 474    (relative sequence number)
+    Sequence Number (raw): 930394109
+    [Next Sequence Number: 817    (relative sequence number)]
+    Acknowledgment Number: 1017    (relative ack number)
+    Acknowledgment number (raw): 79240304
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 64519
+    [Calculated window size: 64519]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x441b [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (343 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    136 4.485794       172.16.30.130         172.16.30.128         TLSv1.2  584    Application Data
+
+Frame 136: 584 bytes on wire (4672 bits), 584 bytes captured (4672 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 1017, Ack: 817, Len: 530
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 19]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 530]
+    Sequence Number: 1017    (relative sequence number)
+    Sequence Number (raw): 79240304
+    [Next Sequence Number: 1547    (relative sequence number)]
+    Acknowledgment Number: 817    (relative ack number)
+    Acknowledgment number (raw): 930394452
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5024
+    [Calculated window size: 5024]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x5bc3 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (530 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    137 4.486075       172.16.30.130         172.16.30.128         TLSv1.2  85     Encrypted Alert
+
+Frame 137: 85 bytes on wire (680 bits), 85 bytes captured (680 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 443, Dst Port: 63767, Seq: 1547, Ack: 817, Len: 31
+    Source Port: 443
+    Destination Port: 63767
+    [Stream index: 5]
+    [Stream Packet Number: 20]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 31]
+    Sequence Number: 1547    (relative sequence number)
+    Sequence Number (raw): 79240834
+    [Next Sequence Number: 1579    (relative sequence number)]
+    Acknowledgment Number: 817    (relative ack number)
+    Acknowledgment number (raw): 930394452
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x019 (FIN, PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...1 = Fin: Set
+        [TCP Flags: ·······AP··F]
+    Window: 5024
+    [Calculated window size: 5024]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x0e46 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (31 bytes)
+Transport Layer Security
+
+No.     Time           Source                Destination           Protocol Length Info
+    138 4.486129       172.16.30.128         172.16.30.130         TCP      54     63767 → 443 [ACK] Seq=817 Ack=1579 Win=65535 Len=0
+
+Frame 138: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 817, Ack: 1579, Len: 0
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 21]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 817    (relative sequence number)
+    Sequence Number (raw): 930394452
+    [Next Sequence Number: 817    (relative sequence number)]
+    Acknowledgment Number: 1579    (relative ack number)
+    Acknowledgment number (raw): 79240866
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x13bb [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+    139 4.496643       172.16.30.128         172.16.30.130         ICMP     74     Echo (ping) request  id=0x0001, seq=29/7424, ttl=128 (reply in 140)
+
+Frame 139: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Internet Control Message Protocol
+
+No.     Time           Source                Destination           Protocol Length Info
+    140 4.496866       172.16.30.130         172.16.30.128         ICMP     74     Echo (ping) reply    id=0x0001, seq=29/7424, ttl=255 (request in 139)
+
+Frame 140: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Internet Control Message Protocol
+
+No.     Time           Source                Destination           Protocol Length Info
+    141 4.497657       172.16.30.128         172.16.30.130         TCP      66     63784 → 502 [SYN] Seq=0 Win=65535 Len=0 MSS=1460 WS=256 SACK_PERM
+
+Frame 141: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63784, Dst Port: 502, Seq: 0, Len: 0
+    Source Port: 63784
+    Destination Port: 502
+    [Stream index: 6]
+    [Stream Packet Number: 1]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 0]
+    Sequence Number: 0    (relative sequence number)
+    Sequence Number (raw): 429368514
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 0
+    Acknowledgment number (raw): 0
+    1000 .... = Header Length: 32 bytes (8)
+    Flags: 0x002 (SYN)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...0 .... = Acknowledgment: Not set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..1. = Syn: Set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ··········S·]
+    Window: 65535
+    [Calculated window size: 65535]
+    Checksum: 0x2075 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    Options: (12 bytes), Maximum segment size, No-Operation (NOP), Window scale, No-Operation (NOP), No-Operation (NOP), SACK permitted
+    [Timestamps]
+
+No.     Time           Source                Destination           Protocol Length Info
+    142 4.498083       172.16.30.130         172.16.30.128         TCP      60     502 → 63784 [SYN, ACK] Seq=0 Ack=1 Win=5840 Len=0 MSS=1460
+
+Frame 142: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 502, Dst Port: 63784, Seq: 0, Ack: 1, Len: 0
+    Source Port: 502
+    Destination Port: 63784
+    [Stream index: 6]
+    [Stream Packet Number: 2]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 0]
+    Sequence Number: 0    (relative sequence number)
+    Sequence Number (raw): 640307432
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 429368515
+    0110 .... = Header Length: 24 bytes (6)
+    Flags: 0x012 (SYN, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..1. = Syn: Set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A··S·]
+    Window: 5840
+    [Calculated window size: 5840]
+    Checksum: 0xbb97 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    Options: (4 bytes), Maximum segment size
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+    143 4.498218       172.16.30.128         172.16.30.130         TCP      54     63784 → 502 [ACK] Seq=1 Ack=1 Win=65535 Len=0
+
+Frame 143: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63784, Dst Port: 502, Seq: 1, Ack: 1, Len: 0
+    Source Port: 63784
+    Destination Port: 502
+    [Stream index: 6]
+    [Stream Packet Number: 3]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 0]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 429368515
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 640307433
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xea24 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+    144 4.498894       172.16.30.128         172.16.30.130         Modbus/TCP 66        Query: Trans:   500; Unit: 255, Func:   3: Read Holding Registers
+
+Frame 144: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63784, Dst Port: 502, Seq: 1, Ack: 1, Len: 12
+    Source Port: 63784
+    Destination Port: 502
+    [Stream index: 6]
+    [Stream Packet Number: 4]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 12]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 429368515
+    [Next Sequence Number: 13    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 640307433
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 65535
+    [Calculated window size: 65535]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xa847 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (12 bytes)
+    [PDU Size: 12]
+Modbus/TCP
+Modbus
+    .000 0011 = Function Code: Read Holding Registers (3)
+    Reference Number: 16583
+    Word Count: 4
+
+No.     Time           Source                Destination           Protocol Length Info
+    150 4.565609       172.16.30.130         172.16.30.128         Modbus/TCP 71     Response: Trans:   500; Unit: 255, Func:   3: Read Holding Registers
+
+Frame 150: 71 bytes on wire (568 bits), 71 bytes captured (568 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 502, Dst Port: 63784, Seq: 1, Ack: 13, Len: 17
+    Source Port: 502
+    Destination Port: 63784
+    [Stream index: 6]
+    [Stream Packet Number: 5]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 17]
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 640307433
+    [Next Sequence Number: 18    (relative sequence number)]
+    Acknowledgment Number: 13    (relative ack number)
+    Acknowledgment number (raw): 429368527
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5828
+    [Calculated window size: 5828]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xaa1c [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (17 bytes)
+    [PDU Size: 17]
+Modbus/TCP
+Modbus
+    .000 0011 = Function Code: Read Holding Registers (3)
+    [Request Frame: 144]
+    [Time from request: 0.066715000 seconds]
+    Byte Count: 8
+    Register 16583 (UINT16): 46133
+    Register 16584 (UINT16): 8959
+    Register 16585 (UINT16): 65038
+    Register 16586 (UINT16): 18140
+
+No.     Time           Source                Destination           Protocol Length Info
+    151 4.566126       172.16.30.128         172.16.30.130         Modbus/TCP 65        Query: Trans:   501; Unit: 255, Func:  43/  1: Read Device Identification
+
+Frame 151: 65 bytes on wire (520 bits), 65 bytes captured (520 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63784, Dst Port: 502, Seq: 13, Ack: 18, Len: 11
+    Source Port: 63784
+    Destination Port: 502
+    [Stream index: 6]
+    [Stream Packet Number: 6]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 11]
+    Sequence Number: 13    (relative sequence number)
+    Sequence Number (raw): 429368527
+    [Next Sequence Number: 24    (relative sequence number)]
+    Acknowledgment Number: 18    (relative ack number)
+    Acknowledgment number (raw): 640307450
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 65518
+    [Calculated window size: 65518]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xdade [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (11 bytes)
+    [PDU Size: 11]
+Modbus/TCP
+Modbus
+    .010 1011 = Function Code: Encapsulated Interface Transport (43)
+    MEI type: Read Device Identification (14)
+    Read Device ID: Basic Device Identification (1)
+    Object ID: VendorName (0)
+
+No.     Time           Source                Destination           Protocol Length Info
+    153 4.575485       172.16.30.130         172.16.30.128         Modbus/TCP 131    Response: Trans:   501; Unit: 255, Func:  43/  1: Read Device Identification
+
+Frame 153: 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 502, Dst Port: 63784, Seq: 18, Ack: 24, Len: 77
+    Source Port: 502
+    Destination Port: 63784
+    [Stream index: 6]
+    [Stream Packet Number: 7]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 77]
+    Sequence Number: 18    (relative sequence number)
+    Sequence Number (raw): 640307450
+    [Next Sequence Number: 95    (relative sequence number)]
+    Acknowledgment Number: 24    (relative ack number)
+    Acknowledgment number (raw): 429368538
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5817
+    [Calculated window size: 5817]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xc2b2 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (77 bytes)
+    [PDU Size: 77]
+Modbus/TCP
+Modbus
+    .010 1011 = Function Code: Encapsulated Interface Transport (43)
+    [Request Frame: 151]
+    [Time from request: 0.009359000 seconds]
+    MEI type: Read Device Identification (14)
+    Read Device ID: Basic Device Identification (1)
+    Conformity Level: Basic Device Identification (stream) (0x01)
+    More Follows: 0x00
+    Next Object ID: 0
+    Number of Objects: 3
+    Objects
+
+No.     Time           Source                Destination           Protocol Length Info
+    154 4.576575       172.16.30.128         172.16.30.130         Modbus/TCP 66        Query: Trans:   502; Unit: 255, Func:   3: Read Holding Registers
+
+Frame 154: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63784, Dst Port: 502, Seq: 24, Ack: 95, Len: 12
+    Source Port: 63784
+    Destination Port: 502
+    [Stream index: 6]
+    [Stream Packet Number: 8]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 12]
+    Sequence Number: 24    (relative sequence number)
+    Sequence Number (raw): 429368538
+    [Next Sequence Number: 36    (relative sequence number)]
+    Acknowledgment Number: 95    (relative ack number)
+    Acknowledgment number (raw): 640307527
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 65441
+    [Calculated window size: 65441]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xe8a6 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (12 bytes)
+    [PDU Size: 12]
+Modbus/TCP
+Modbus
+    .000 0011 = Function Code: Read Holding Registers (3)
+    Reference Number: 78
+    Word Count: 5
+
+No.     Time           Source                Destination           Protocol Length Info
+    155 4.585475       172.16.30.130         172.16.30.128         Modbus/TCP 73     Response: Trans:   502; Unit: 255, Func:   3: Read Holding Registers
+
+Frame 155: 73 bytes on wire (584 bits), 73 bytes captured (584 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 502, Dst Port: 63784, Seq: 95, Ack: 36, Len: 19
+    Source Port: 502
+    Destination Port: 63784
+    [Stream index: 6]
+    [Stream Packet Number: 9]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 19]
+    Sequence Number: 95    (relative sequence number)
+    Sequence Number (raw): 640307527
+    [Next Sequence Number: 114    (relative sequence number)]
+    Acknowledgment Number: 36    (relative ack number)
+    Acknowledgment number (raw): 429368550
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x018 (PSH, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 1... = Push: Set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······AP···]
+    Window: 5805
+    [Calculated window size: 5805]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x867a [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+    TCP payload (19 bytes)
+    [PDU Size: 19]
+Modbus/TCP
+Modbus
+    .000 0011 = Function Code: Read Holding Registers (3)
+    [Request Frame: 154]
+    [Time from request: 0.008900000 seconds]
+    Byte Count: 10
+    Register 78 (UINT16): 22023
+    Register 79 (UINT16): 768
+    Register 80 (UINT16): 50
+    Register 81 (UINT16): 264
+    Register 82 (UINT16): 0
+
+No.     Time           Source                Destination           Protocol Length Info
+    156 4.626728       172.16.30.128         172.16.30.130         TCP      54     63784 → 502 [ACK] Seq=36 Ack=114 Win=65422 Len=0
+
+Frame 156: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63784, Dst Port: 502, Seq: 36, Ack: 114, Len: 0
+    Source Port: 63784
+    Destination Port: 502
+    [Stream index: 6]
+    [Stream Packet Number: 10]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 0]
+    Sequence Number: 36    (relative sequence number)
+    Sequence Number (raw): 429368550
+    [Next Sequence Number: 36    (relative sequence number)]
+    Acknowledgment Number: 114    (relative ack number)
+    Acknowledgment number (raw): 640307546
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65422
+    [Calculated window size: 65422]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xea01 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+    285 8.586429       172.16.30.128         172.16.30.130         TCP      54     63784 → 502 [FIN, ACK] Seq=36 Ack=114 Win=65422 Len=0
+
+Frame 285: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63784, Dst Port: 502, Seq: 36, Ack: 114, Len: 0
+    Source Port: 63784
+    Destination Port: 502
+    [Stream index: 6]
+    [Stream Packet Number: 11]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 0]
+    Sequence Number: 36    (relative sequence number)
+    Sequence Number (raw): 429368550
+    [Next Sequence Number: 37    (relative sequence number)]
+    Acknowledgment Number: 114    (relative ack number)
+    Acknowledgment number (raw): 640307546
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x011 (FIN, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...1 = Fin: Set
+        [TCP Flags: ·······A···F]
+    Window: 65422
+    [Calculated window size: 65422]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xea00 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+
+No.     Time           Source                Destination           Protocol Length Info
+    286 8.586675       172.16.30.130         172.16.30.128         TCP      60     502 → 63784 [ACK] Seq=114 Ack=37 Win=5804 Len=0
+
+Frame 286: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 502, Dst Port: 63784, Seq: 114, Ack: 37, Len: 0
+    Source Port: 502
+    Destination Port: 63784
+    [Stream index: 6]
+    [Stream Packet Number: 12]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 0]
+    Sequence Number: 114    (relative sequence number)
+    Sequence Number (raw): 640307546
+    [Next Sequence Number: 114    (relative sequence number)]
+    Acknowledgment Number: 37    (relative ack number)
+    Acknowledgment number (raw): 429368551
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 5804
+    [Calculated window size: 5804]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xd2e3 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+    287 8.588802       172.16.30.130         172.16.30.128         TCP      60     502 → 63784 [FIN, ACK] Seq=114 Ack=37 Win=5804 Len=0
+
+Frame 287: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: Siemens_0a:2c:69 (88:3f:99:0a:2c:69), Dst: HP_dc:82:de (e0:73:e7:dc:82:de)
+Internet Protocol Version 4, Src: 172.16.30.130, Dst: 172.16.30.128
+Transmission Control Protocol, Src Port: 502, Dst Port: 63784, Seq: 114, Ack: 37, Len: 0
+    Source Port: 502
+    Destination Port: 63784
+    [Stream index: 6]
+    [Stream Packet Number: 13]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 0]
+    Sequence Number: 114    (relative sequence number)
+    Sequence Number (raw): 640307546
+    [Next Sequence Number: 115    (relative sequence number)]
+    Acknowledgment Number: 37    (relative ack number)
+    Acknowledgment number (raw): 429368551
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x011 (FIN, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...1 = Fin: Set
+        [TCP Flags: ·······A···F]
+    Window: 5804
+    [Calculated window size: 5804]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xd2e2 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+
+No.     Time           Source                Destination           Protocol Length Info
+    288 8.588859       172.16.30.128         172.16.30.130         TCP      54     63784 → 502 [ACK] Seq=37 Ack=115 Win=65422 Len=0
+
+Frame 288: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63784, Dst Port: 502, Seq: 37, Ack: 115, Len: 0
+    Source Port: 63784
+    Destination Port: 502
+    [Stream index: 6]
+    [Stream Packet Number: 14]
+    [Conversation completeness: Complete, WITH_DATA (31)]
+    [TCP Segment Len: 0]
+    Sequence Number: 37    (relative sequence number)
+    Sequence Number (raw): 429368551
+    [Next Sequence Number: 37    (relative sequence number)]
+    Acknowledgment Number: 115    (relative ack number)
+    Acknowledgment number (raw): 640307547
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x010 (ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A····]
+    Window: 65422
+    [Calculated window size: 65422]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0xe9ff [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+    [SEQ/ACK analysis]
+
+No.     Time           Source                Destination           Protocol Length Info
+   7696 103.724286     172.16.30.128         172.16.30.130         TCP      54     63751 → 443 [RST, ACK] Seq=507 Ack=2584 Win=0 Len=0
+
+Frame 7696: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63751, Dst Port: 443, Seq: 507, Ack: 2584, Len: 0
+    Source Port: 63751
+    Destination Port: 443
+    [Stream index: 3]
+    [Stream Packet Number: 20]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 507    (relative sequence number)
+    Sequence Number (raw): 1484283326
+    [Next Sequence Number: 507    (relative sequence number)]
+    Acknowledgment Number: 2584    (relative ack number)
+    Acknowledgment number (raw): 2662747778
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x014 (RST, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .1.. = Reset: Set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A·R··]
+    Window: 0
+    [Calculated window size: 0]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x7c7b [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]
+
+No.     Time           Source                Destination           Protocol Length Info
+   7705 104.506533     172.16.30.128         172.16.30.130         TCP      54     63767 → 443 [RST, ACK] Seq=817 Ack=1579 Win=0 Len=0
+
+Frame 7705: 54 bytes on wire (432 bits), 54 bytes captured (432 bits) on interface \Device\NPF_{FEF72452-0997-401D-82CE-C8BB0F8B6D73}, id 0
+Ethernet II, Src: HP_dc:82:de (e0:73:e7:dc:82:de), Dst: Siemens_0a:2c:69 (88:3f:99:0a:2c:69)
+Internet Protocol Version 4, Src: 172.16.30.128, Dst: 172.16.30.130
+Transmission Control Protocol, Src Port: 63767, Dst Port: 443, Seq: 817, Ack: 1579, Len: 0
+    Source Port: 63767
+    Destination Port: 443
+    [Stream index: 5]
+    [Stream Packet Number: 22]
+    [Conversation completeness: Complete, WITH_DATA (63)]
+    [TCP Segment Len: 0]
+    Sequence Number: 817    (relative sequence number)
+    Sequence Number (raw): 930394452
+    [Next Sequence Number: 817    (relative sequence number)]
+    Acknowledgment Number: 1579    (relative ack number)
+    Acknowledgment number (raw): 79240866
+    0101 .... = Header Length: 20 bytes (5)
+    Flags: 0x014 (RST, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Accurate ECN: Not set
+        .... 0... .... = Congestion Window Reduced: Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .1.. = Reset: Set
+        .... .... ..0. = Syn: Not set
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A·R··]
+    Window: 0
+    [Calculated window size: 0]
+    [Window size scaling factor: -2 (no window scaling used)]
+    Checksum: 0x13b7 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    [Timestamps]

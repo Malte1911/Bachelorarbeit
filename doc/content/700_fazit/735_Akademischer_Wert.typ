@@ -2,7 +2,9 @@
 #import "../../config/functions.typ": *
 #include "../../config/config.typ"
 
-== Akademischer Wert der Arbeit
+=== Methodischer Beitrag und Übertragbarkeit<sec:methodischerbeitrag>
+
+#kommentar[Frueher ein eigenes Unterkapitel "Akademischer Wert der Arbeit". Der Bewertungsbogen kennt dieses Kriterium nicht, wohl aber Systematik und Verwendung der Literatur, weshalb der Abschnitt jetzt unter der kritischen Wuerdigung steht. Der erste Satz ist an die neue Ueberschrift anzupassen.]
 
 Über den unmittelbaren Anwendungsnutzen hinaus leistet die Arbeit einen Beitrag zur systematischen Auseinandersetzung mit der Integration von #acro("ECPD") in herstellerübergreifende Gebäudemanagementplattformen. Der wissenschaftliche Wert ergibt sich weniger aus der einzelnen Integrationslösung als aus dem methodischen Vorgehen, das zu ihr geführt hat, sowie aus der Übertragbarkeit der gewonnenen Erkenntnisse auf verwandte Problemstellungen.
 
@@ -13,3 +15,5 @@ Methodisch verbindet die Arbeit anforderungsgetriebene Entwicklung mit einer exp
 Darüber hinaus schließt die Arbeit eine dokumentarische Lücke: Die Verknüpfung von Geräteseite (#acro("ECPD"), SENTRON Powercenter), Kommunikationsprotokoll (Modbus) und Managementplattform (Desigo CC) ist in der zugänglichen Literatur bislang nicht in dieser Geschlossenheit beschrieben. Indem die Arbeit diese Aspekte in einem durchgängigen Integrationsvorgehen zusammenführt, stellt sie eine Grundlage bereit, auf der weiterführende Untersuchungen und Entwicklungsarbeiten aufsetzen können.
 
 Schließlich benennt die Arbeit die Grenzen ihres Geltungsbereichs. Die Validierung erfolgte an einem begrenzten Testaufbau unter kontrollierten Bedingungen, sodass sich Aussagen zur Skalierbarkeit und zum Verhalten unter produktiven Lastbedingungen nur eingeschränkt verallgemeinern lassen. Gerade diese explizite Abgrenzung besitzt akademischen Wert, da sie den Rahmen künftiger Forschung absteckt und Anknüpfungspunkte für weiterführende Arbeiten aufzeigt (vgl. @sec:weiterentwicklung).
+
+#kommentar[Hier fehlt noch ein Absatz dazu, was die Quellenlage nach @sec:quellenlage für die Reichweite der Aussagen bedeutet. Kernpunkte: Die technischen Aussagen stützen sich überwiegend auf Herstellerdokumentation und auf eigene Messungen am Testaufbau, nicht auf unabhängig begutachtete Literatur. Die Einordnung des Problems in @sec:standdertechnik ist belegt, die Übertragbarkeit auf andere Gerätefamilien dagegen argumentativ und nicht empirisch gestützt.]

@@ -52,11 +52,11 @@
   
   insertListOfFigures
   
-  // insertListOfTables
+  insertListOfTables
   
   // insertListOfScripts
   
-  // insertAppendix
+  insertAppendix
 }
 
 // Main content

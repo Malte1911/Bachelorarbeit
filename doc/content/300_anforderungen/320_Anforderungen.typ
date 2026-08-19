@@ -2,7 +2,7 @@
 #import "../../config/functions.typ": *
 #include "../../config/config.typ"
 
-== Anforderungen<sec:anforderungen>
+== Anforderungskatalog<sec:anforderungen>
 
 Die Analyse in @sec:analyse hat den Lösungsraum eingegrenzt: Sie hat den Integrationsweg bestimmt, die Mittel der Zielplattform beschrieben, den verfügbaren Datenbestand charakterisiert und aus den Tätigkeiten der Beteiligten Anwendungsfälle abgeleitet. Der vorliegende Abschnitt führt diese Ergebnisse in einem verbindlichen Anforderungskatalog zusammen. Er gibt damit den Maßstab vor, an dem das entwickelte Datenmodell in @sec:testfaelle und im Validierungsteil zu messen ist.
 
@@ -17,7 +17,7 @@ Der Katalog ist zu Beginn der Arbeit gemeinsam mit dem betreuenden Fachbereich a
      person mit powerconfig geschehen. */
 
 
-=== Aufbau und Verbindlichkeit des Katalogs<sec:anforderungskatalog>
+=== Aufbau und Verbindlichkeit<sec:anforderungskatalog>
 
 Der Katalog unterscheidet drei Kategorien, wie es im Requirements Engineering üblich ist @src:sommerville2016. Funktionale Anforderungen (FA) beschreiben, was die Lösung leisten muss, und sind am beobachtbaren Verhalten des Gesamtsystems überprüfbar. Nichtfunktionale Anforderungen (NFA) beschreiben Eigenschaften der Lösung und ihres Entstehungsprozesses, etwa ihre Modularität oder ihre Dokumentation. Randbedingungen (RB) sind nicht Gegenstand der Gestaltung, sondern von außen gesetzt. Sie beschreiben die Voraussetzungen, unter denen die Lösung entsteht und betrieben wird.
 

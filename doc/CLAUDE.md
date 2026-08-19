@@ -65,12 +65,12 @@ Der Inhalt liegt in `content/`. Jedes Kapitel hat eine **Integrationsdatei** (z.
 ```
 content/
   999_chapters.typ      ← bindet alle Kapitel in Reihenfolge ein
-  100_problemstellung/  ← Einleitung, Problemstellung, Ziel, Vorgehensweise (Aufbau der Arbeit)
+  100_einleitung/       ← Ausgangslage, Problemstellung, Zielsetzung und Abgrenzung, Aufbau der Arbeit
   200_grundlagen/       ← ECPD/Schaltkreisschutzgeräte, Powercenter, Desigo CC, Modbus, Vorgehensweise
-  300_anforderungen/    ← Analyse (System, Stakeholder), Anforderungen, Testfälle
-  400_systemumgebung/   ← Testaufbau, Gerätekonfiguration, Anbindung
-  500_entwicklung/      ← Einführung PDE, Auswahl der Daten, Mapping (JSON-Template)
-  600_validierung/      ← Strategie, Durchführung, Ergebnisse
+  300_anforderungen/    ← Analyse (System, Stakeholder), Anforderungskatalog, Testfälle
+  400_umgebung/         ← Testaufbau, Gerätekonfiguration, Kommunikationsstrecke, Werkzeuge
+  500_entwicklung/      ← Modellaufbau, Auswahlkriterien, Datenpunkte, Umsetzung im PDE, Übernahme, Doku
+  600_validierung/      ← Vorbereitung, Durchführung und Ergebnisse, Befunde, Anforderungsabgleich
   700_fazit/            ← Zusammenfassung, Bewertung Praxistauglichkeit, Kritische Würdigung, Weiterentwicklung
 config/
   constants.typ         ← Dokumentvariablen (Titel, Autor, Betreuer, Typ …)

@@ -431,9 +431,14 @@
 //   gestrichelte Kante    = Engineering-Schritt
 //   durchgezogene Kante   = laufender Datenpfad
 // Der Aufbau liest sich von links nach rechts als Werkzeugkette und von oben
-// nach unten als Weg von der Typ- auf die Instanzebene. Die beiden ergaenzenden
-// Artefakte stehen bewusst in derselben Spalte wie die Typbeschreibung, weil sie
-// wie diese im Projekt erzeugt werden, aber nicht aus dem PDE stammen.
+// nach unten als Weg von der Typ- auf die Instanzebene. Die Instanzliste steht
+// bewusst in derselben Spalte wie die Typbeschreibung, weil sie wie diese im
+// Projekt erzeugt wird, aber nicht aus dem PDE stammt.
+//
+// Eine zuvor hier gezeichnete "Adressbelegung" als eigenes Artefakt ist
+// entfallen. Sie gehoert zum allgemeinen Importweg von Desigo CC, waehrend der
+// PDE die Registeradressen in dieselbe JSON-Datei schreibt. Fuer den in der
+// Arbeit gewaehlten Weg entsteht damit nur ein Artefakt.
 
 #let abb_konzept = {
   set text(font: "Arial", size: dg_schrift, fill: dg_text)
@@ -461,7 +466,7 @@
     dg_werkzeug(
       (1, 0),
       [#acro("JSON")-Typbeschreibung],
-      zusatz: [Eigenschaften, Datentypen\ und Alarme des Gerätetyps],
+      zusatz: [Registeradresse, Datentyp und\ Skalierung je Eigenschaft],
       name: <json>,
       breite: 44mm,
     ),
@@ -473,14 +478,7 @@
       breite: 48mm,
     ),
 
-    // --- ergaenzende Artefakte ---
-    dg_werkzeug(
-      (1, 1),
-      [Adressbelegung],
-      zusatz: [ordnet Registeradressen und\ Funktionscodes zu],
-      name: <adr>,
-      breite: 44mm,
-    ),
+    // --- ergaenzendes Artefakt auf der Instanzebene ---
     dg_werkzeug(
       (1, 2),
       [Instanzliste],
@@ -510,7 +508,6 @@
     // --- Engineering-Schritte ---
     edge(<pde>, <json>, "->", dash: "dashed", label: [erzeugt]),
     edge(<json>, <typ>, "->", dash: "dashed", label: [Import]),
-    edge(<adr>, <typ>, "->", dash: "dashed"),
     edge(<liste>, <instanz>, "->", dash: "dashed"),
     edge(
       <typ>,
@@ -604,9 +601,8 @@
 #figure(
   abb_konzept,
   caption: [Erstes Lösungskonzept, Werkzeugkette vom #acro("PDE") über die
-    #acro("JSON")-Typbeschreibung zum Objektmodell in Desigo CC, ergänzt um
-    Adressbelegung und Instanzliste, sowie die Instanziierung je physischem
-    Gerät über den Unit Identifier],
+    #acro("JSON")-Typbeschreibung zum Objektmodell in Desigo CC sowie die
+    Instanziierung je physischem Gerät über den Unit Identifier],
 )
 
 // Notwendig, damit die Sprungziele von `#acro` auch in der Einzelansicht

@@ -1,6 +1,6 @@
 #import "../config/functions.typ" : *
 
-= Anforderungen
+= Analyse und Anforderungen
 
 #include "../content/300_anforderungen/310_Analyse.typ"
 #include "../content/300_anforderungen/320_Anforderungen.typ"
