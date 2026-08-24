@@ -1,5 +1,6 @@
 #import "../../config/acronyms.typ": *
 #import "../../config/functions.typ": *
+#import "../../config/diagrams.typ": abb_modbus_tcp
 #include "../../config/config.typ"
 
 == Modbus<sec:modbus>
@@ -49,3 +50,50 @@ Das Protokoll definiert vier Datenbereiche, auf die über standardisierte Funkti
 Jede Modbus-Nachricht besteht aus der Adresse des antwortenden Geräts, einem Funktionscode, den Nutzdaten sowie einem Fehlerprüffeld @src:modbusserial. Der Kommunikationsablauf folgt dabei stets demselben Schema: Das anfragende Gerät sendet eine Request-Nachricht, woraufhin das adressierte Gerät mit einer Response-Nachricht antwortet. Im Fehlerfall wird anstelle einer regulären Antwort eine Ausnahme-Response (Exception Response) zurückgesendet @src:modbusspec.
 
 Ein wesentlicher Vorteil von Modbus liegt in seiner Einfachheit und Interoperabilität: Da das Protokoll offen spezifiziert und lizenzfrei ist, wird es von einer Vielzahl von Herstellern unterstützt. Allerdings weist Modbus auch Einschränkungen auf: Das Protokoll bietet keine nativen Mechanismen für Sicherheit, Authentifizierung oder Verschlüsselung, was in modernen vernetzten Umgebungen ein erhebliches Sicherheitsrisiko darstellen kann @src:modbussecurity.
+
+=== Modbus TCP<sec:modbus_tcp>
+
+Modbus #acro("TCP") überträgt das unveränderte Anwendungsprotokoll über Ethernet und ist damit die Variante, über die ein Gerät im Gebäudenetz an ein übergeordnetes System angebunden wird. Die Modbus Organization hat dafür bei der #acro("IANA") den #acro("TCP")-Port 502 registrieren lassen @src:ianaports, auf dem ein Server standardmäßig erreichbar sein muss @src:modbustcp. Eine vollständige Nachricht wird als #acro("ADU") bezeichnet und besteht aus einem sieben Byte langen Kopf mit der Bezeichnung #acro("MBAP") sowie der #acro("PDU") aus Funktionscode und Daten. Der Kopf ersetzt die bei Modbus #acro("RTU") vorangestellte Geräteadresse ebenso wie die angehängte Prüfsumme @src:modbustcp.
+
+
+Der Kopf führt vier Felder, die @img:modbustcp im Zusammenhang zeigt. Der Transaction Identifier ordnet Anfrage und Antwort einander zu, indem der Server den empfangenen Wert unverändert zurückgibt. Der Protocol Identifier trägt für Modbus stets den Wert 0. Das Feld Länge nennt die Anzahl der ab dem Unit Identifier folgenden Bytes und erlaubt dem Empfänger damit, die Nachrichtengrenze im Bytestrom von #acro("TCP") zu erkennen. Der Unit Identifier adressiert ein Gerät hinter dem angesprochenen Server. Alle Felder sind in Big-Endian-Reihenfolge codiert. Eine eigene Prüfsumme entfällt, da die Fehlererkennung den darunterliegenden Schichten obliegt @src:modbustcp.
+
+#figure(
+  abb_modbus_tcp,
+  caption: [Aufbau eines Modbus-#acro("TCP")-Telegramms, oben die Kapselung im Ethernet-Rahmen, unten die Felder der Anwendungsdateneinheit aus #acro("MBAP")-Kopf und Protokolldateneinheit mit ihren Bytepositionen, die Feldbreiten sind nicht maßstäblich @src:modbustcp @src:modbusspec],
+)<img:modbustcp>
+
+
+Aus der seriellen Herkunft des Protokolls folgt eine Längenbegrenzung von 253 Byte für die #acro("PDU") und 260 Byte für die #acro("ADU") @src:modbusspec. Eine einzelne Anfrage kann damit höchstens 125 Register lesen und 123 Register schreiben @src:modbusspec, sodass ein umfangreicher Registerraum blockweise abzufragen ist.
+
+
+Besondere Bedeutung für diese Arbeit hat der Unit Identifier. Wird ein Server unmittelbar über seine #acro("IP")-Adresse angesprochen, ist das Feld ohne Aussage und trägt den nicht signifikanten Wert 0xFF. Sitzt hinter der #acro("IP")-Adresse dagegen ein Gateway, benennt der Unit Identifier das dahinterliegende Endgerät, an das die Anfrage weitergereicht wird @src:modbustcp. Genau diese Rolle nimmt der in @sec:powercenter_modbus beschriebene Datentransceiver ein.
+
+
+/* Claude: Abschnitt und Abbildung neu angelegt und nach der Durchsicht auf
+   etwa die Haelfte gekuerzt. Entfallen sind die Angaben zur parametrierbaren
+   Portnummer, zum lokalen Client-Port, zu mehreren gleichzeitigen
+   Transaktionen, die Herleitung der 253 Byte aus dem RS-485-Rahmen sowie die
+   Begruendung des Werts 0xFF ueber die Neuvergabe von IP-Adressen.
+
+   Die Angaben stammen aus den beiden bereits verwendeten Primaerquellen der
+   Modbus Organization, dem Messaging Implementation Guide (@src:modbustcp)
+   fuer MBAP-Kopf, Port 502, Big-Endian, fehlende Pruefsumme und Unit
+   Identifier sowie der Application Protocol Specification (@src:modbusspec)
+   fuer die Groessengrenzen und die Registerzahlen je Funktionscode. Neu
+   recherchiert und in quellen.bib ergaenzt wurde @src:ianaports als Beleg fuer
+   die Portregistrierung.
+
+   Zur Rueckfrage aus der Durchsicht: Die sieben Byte sind richtig. Der
+   Messaging Implementation Guide fuehrt in Abschnitt 3.1.3 die vier Felder
+   Transaction Identifier (2 Byte), Protocol Identifier (2 Byte), Length
+   (2 Byte) und Unit Identifier (1 Byte) auf und stellt danach ausdruecklich
+   fest: "The header is 7 bytes long." Der Transaction Identifier ist darin
+   bereits enthalten. Die Abbildung ist so geaendert, dass die Ausdehnung der
+   beiden Einheiten nicht mehr an duennen Klammern haengt, sondern an
+   geschlossenen Baendern ueber genau den zugehoerigen Feldern.
+
+   Die Abbildung liegt als `abb_modbus_tcp` in config/diagrams.typ. Sie
+   verwendet eine abweichende Kodierung (Schachtelung statt Kanten), was dort
+   im Quelltext vermerkt und in der Legende der Abbildung ausgewiesen ist. Die
+   Feldbreiten sind bewusst nicht massstaeblich. */

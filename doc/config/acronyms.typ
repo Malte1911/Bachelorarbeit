@@ -35,7 +35,11 @@
   RBAC: "Role Based Access Control",
   TLS: "Transport Layer Security",
   RSSI: "Received Signal Strength Indicator",
-  FEP: "Front End Processor"
+  FEP: "Front End Processor",
+  ADU: "Application Data Unit",
+  PDU: "Protocol Data Unit",
+  MBAP: "MODBUS Application Protocol",
+  IANA: "Internet Assigned Numbers Authority"
 )
 
 // Tracking used acronyms

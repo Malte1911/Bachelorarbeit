@@ -18,6 +18,8 @@ Bachelorarbeit über die Entwicklung eines Datenmodells (Integrationsvorlage). H
 - Kritische Bewertungen (Stärken/Schwächen) werden sachlich und begründet formuliert
 - Keine Beschreibungen mit dicker Schrift am Anfang von Absätzen machen. Das ist idealerweise zu vermeiden und es werden volle Sätze verwendet (und nicht dick geschrieben). Alternativ für kleine Zwischenüberschriften kannst du `====` verwenden
 - Bitte keine Spiegelstriche `--` verwenden und die Verwendung von Doppelpunkte `:` und Semikolons `;`reduzieren
+- so wenig Füllwörter wie möglich
+- bei Zahlen >999 keine Punkte zwischen die Ziffern (1234, nicht 1.234)
 
 ## Typst-Syntax
 

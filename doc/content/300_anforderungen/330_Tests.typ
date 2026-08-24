@@ -39,8 +39,10 @@ Der Nachweis durch Begutachtung betrifft jene Anforderungen, die sich einer Mess
     [FA-01, NFA-05],
 
     [T-03],
-    [Datenpunkte verschiedenen Abfragegruppen zuordnen und einen Wert am Gerät verändern.],
-    [Der Wert wird innerhalb des für seine Gruppe eingestellten Intervalls nachgeführt; Gruppen mit unterschiedlichem Intervall aktualisieren nachweislich unterschiedlich schnell.],
+    [Das Abfrageintervall am Modbus-Treiber einstellen und anschließend einen Wert am Gerät verändern.],
+
+    [Der Wert wird in Desigo CC innerhalb des eingestellten Intervalls nachgeführt. Die Einstellung wirkt dabei auf alle Datenpunkte der angebundenen Geräte gleichermaßen.],
+
     [FA-02],
 
     [T-04],
@@ -54,7 +56,7 @@ Der Nachweis durch Begutachtung betrifft jene Anforderungen, die sich einer Mess
     [FA-03],
 
     [T-06],
-    [Am Gerät nacheinander verschiedene Alarmzustände auslösen, unter anderem durch Überlast und durch Auslösen der #acro("RCD")-Funktion.],
+    [Am Gerät nacheinander diejenigen Alarmzustände auslösen, die sich am Testaufbau gefahrlos herbeiführen lassen, insbesondere durch Überlast.],
     [Jeder ausgelöste Zustand ist in Desigo CC als eigener, richtig benannter Datenpunkt sichtbar und steht dort zur Auswertung als Meldung bereit; benachbarte Zustände bleiben unverändert.],
     [FA-04],
 
@@ -108,15 +110,27 @@ Mehrere Testfälle verdienen eine Erläuterung, weil ihr Ergebnis nicht allein v
 
 T-02 ist durch den Testaufbau begrenzt. Für die Validierung steht nur ein einzelnes #acro("ECPD") zur Verfügung (RB-04). Der Testfall kann daher nachweisen, dass sich aus einer Typbeschreibung mehrere Instanzen mit unterschiedlichem Unit Identifier anlegen lassen, nicht aber, dass ein voll bestückter Strang im Betrieb trägt. Instanzen ohne zugehöriges Gerät liefern keine Werte; ihr Nutzen für den Nachweis beschränkt sich auf die Wiederverwendbarkeit der Typbeschreibung. Die Aussage zu NFA-05 bleibt insoweit auf das Anlegen beschränkt und ist im Validierungsteil entsprechend zu kennzeichnen.
 
+T-03 prüft weniger, als der Anforderungskatalog zunächst nahelegt. Das Abfrageintervall ist nach @tab:modbustreiber nur am Modbus-Treiber einstellbar, sodass sich eine nach Geräten oder Datenpunkten abgestufte Abfrage weder einrichten noch prüfen lässt. Der Testfall weist deshalb nach, dass das eingestellte Intervall wirkt und für alle Datenpunkte gleichermaßen gilt. Die damit bestätigte Einschränkung ist selbst ein Ergebnis und wird in @sec:befunde aufgegriffen.
+
+
 T-04 prüft die Plausibilität. Die Genauigkeit der vom #acro("ECPD") erfassten Größen ist mit den verfügbaren Mitteln nicht nachweisbar und wäre auch keine Eigenschaft des Datenmodells, sondern des Geräts. Geprüft wird daher, ob der richtige Wert an der richtigen Stelle ankommt. Die übertragenen Werte sollen dem tatsächlichen Betriebszustand entsprechen, der aufgeschalteten Last folgen und keine Verwechslung von Kanälen, Vorzeichen oder Skalierungen erkennen lassen. Eine Abweichung gegenüber der Referenz innerhalb der Gerätetoleranz ist unerheblich.
 
 T-06 und T-07 prüfen unterschiedliche Artefakte. Das Objektmodell kann die Zustände des Geräts nur bereitstellen, ob daraus eine Meldung wird, entscheidet die Alarmkonfiguration in Desigo CC (siehe @sec:fa). T-06 prüft daher allein, ob die einzelnen Zustände richtig und vollständig in Desigo CC ankommen und dort ausgewertet werden können. Erst T-07 prüft das Verhalten der daraus gebildeten Meldung und setzt eine für den Testaufbau eingerichtete Alarmkonfiguration voraus, die selbst nicht Teil der Integrationsvorlage ist.
 
 T-06 und T-14 sind voneinander abhängig. Ein Alarm, der ab Werk deaktiviert ist, liefert dauerhaft den Wert null (siehe @sec:registerraum). Wird T-06 im Auslieferungszustand der Geräte durchgeführt, schlägt er für einen Teil der Alarme zwangsläufig fehl, ohne dass dies etwas über das Modell aussagt. T-14 ist daher vor T-06 durchzuführen und dessen Ergebnis bei der Bewertung zu berücksichtigen.
 
-#kommentar("Das hier wird noch aktualisiert sobald das funktioniert")
+/* Anmerkung des Autors, erledigt: "Das hier wird noch aktualisiert sobald das
+   funktioniert"
+   Claude: Der Schaltbefehl funktioniert inzwischen. Der Absatz bleibt nach
+   Entscheidung des Autors dennoch beim beobachteten Zustand, weil die Klaerung
+   in den Validierungsteil gehoert. Sie steht als Arbeitskommentar in
+   content/600_validierung/630_Befunde.typ. */
 
-T-08 steht unter dem in @sec:anforderungsvorbehalte genannten Vorbehalt. Der Schreibzugriff für das elektronische Schalten wird am Testaufbau derzeit mit einer Ausnahmemeldung zurückgewiesen. Der Testfall ist dennoch aufzunehmen und durchzuführen: Sein Ergebnis ist unabhängig davon verwertbar, da es entweder die Erfüllung von FA-06 belegt oder die Beobachtung bestätigt und damit selbst ein Ergebnis der Arbeit darstellt.
+
+
+T-08 steht unter dem in @sec:anforderungsvorbehalte genannten Vorbehalt. Der Schreibzugriff für das elektronische Schalten wird am Testaufbau zurückgewiesen. Der Testfall ist dennoch aufzunehmen und durchzuführen. Sein Ergebnis ist unabhängig davon verwertbar, da es entweder die Erfüllung von FA-06 belegt oder die Beobachtung bestätigt und damit selbst ein Ergebnis der Arbeit darstellt.
+
+
 
 T-11 prüft zwei verschiedene Fehlerbilder. Der Ausfall eines Endgeräts wird über den Verbindungsstatus sichtbar, während der Ausfall des Powercenters die Modbus-Verbindung selbst betrifft und vom Treiber der Zielplattform erkannt wird. Beide Fälle müssen in der Leitwarte unterscheidbar bleiben, weil sie zu unterschiedlichen Maßnahmen führen.
 
@@ -127,4 +141,34 @@ T-13 ist der einzige Testfall ohne objektives Kriterium. Seine Aussagekraft hän
 
 Jede funktionale und jede nichtfunktionale Anforderung ist mindestens einem Testfall zugeordnet; FA-01, FA-03 und FA-04 werden von jeweils zwei Testfällen abgedeckt, weil sie unterschiedliche Nachweisarten erfordern. Die Randbedingungen aus @tab:rb sind nicht Gegenstand von Testfällen. Sie beschreiben keine geforderte Eigenschaft der Lösung, sondern die Voraussetzungen ihrer Entstehung und ihres Betriebs; ihre Einhaltung ist zu dokumentieren, nicht zu prüfen.
 
-Drei Grenzen der Prüfung sind bereits an dieser Stelle zu benennen, weil sie die Reichweite der späteren Aussagen bestimmen. Erstens erfolgt die Validierung an einem einzelnen Testaufbau mit einem Powercenter 1100 (RB-04); Aussagen zum Verhalten bei voller Bestückung mit 24 Endgeräten oder über mehrere Stränge hinweg lassen sich daraus nicht messen, sondern nur rechnerisch abschätzen. Zweitens ist die Gleichwertigkeit des Powercenters 2000 nach RB-02 vorausgesetzt und wird nicht geprüft. Die vorhandene Dokumentation zur Registertabelle zeigt die gleichen Features/Werte für Modbus für die beiden Varianten auf, weswegen von einer Interoperabilität der beiden Produktvarianten ausgegangen wird. Drittens prüft kein Testfall die Schutzfunktion der Geräte selbst; sie ist nach @sec:systemanalyse nicht Gegenstand der Arbeit und wäre mit den hier verwendeten Mitteln auch nicht sinnvoll zu beurteilen.
+Vier Grenzen der Prüfung sind bereits an dieser Stelle zu benennen, weil sie die Reichweite der späteren Aussagen bestimmen. Erstens erfolgt die Validierung an einem einzelnen Testaufbau mit einem Powercenter 1100 (RB-04); Aussagen zum Verhalten bei voller Bestückung mit 24 Endgeräten oder über mehrere Stränge hinweg lassen sich daraus nicht messen, sondern nur rechnerisch abschätzen. Zweitens ist die Gleichwertigkeit des Powercenters 2000 nach RB-02 vorausgesetzt und wird nicht geprüft. Die vorhandene Dokumentation zur Registertabelle zeigt die gleichen Features/Werte für Modbus für die beiden Varianten auf, weswegen von einer Interoperabilität der beiden Produktvarianten ausgegangen wird. Drittens prüft kein Testfall die Schutzfunktion der Geräte selbst; sie ist nach @sec:systemanalyse nicht Gegenstand der Arbeit und wäre mit den hier verwendeten Mitteln auch nicht sinnvoll zu beurteilen.
+
+
+Viertens deckt T-06 nicht sämtliche Alarme des #acro("ECPD") ab, sondern nur diejenigen, die sich am Testaufbau gefahrlos herbeiführen lassen. Die Alarmbits des Geräts stehen für sehr unterschiedliche Ursachen, von der Überlast über die Grenzwerte einzelner Messgrößen bis zum Differenzstrom (siehe @tab:registergruppen). Eine Überlast lässt sich durch Aufschalten einer entsprechenden Last erzeugen und ein Verbindungsverlust durch Unterbrechen der Funkstrecke. Ein Fehlerstrom- oder Differenzstromalarm setzt dagegen einen tatsächlichen Strom gegen Erde voraus, der am unter Spannung stehenden Aufbau gezielt herbeizuführen wäre. Das erforderte eine geeignete Prüfeinrichtung und eine entsprechende Absicherung des Arbeitsplatzes und wäre damit ein Aufwand, der außerhalb dessen liegt, was die Prüfung eines Datenmodells rechtfertigt. Hinzu kommt, dass die beiden #acro("RCM")-Alarme ab Werk abgeschaltet sind und vor jeder Beobachtung zunächst zu parametrieren wären, wie T-14 es vorsieht.
+
+
+Für die Aussagekraft der Prüfung ist diese Lücke von untergeordneter Bedeutung, weil alle Alarme denselben Weg durch das Datenmodell nehmen. Das Gerät führt sämtliche Zustände in einem einzigen Register als Bitfeld (siehe @sec:registerraum). Jeder Alarm wird folglich mit demselben Funktionscode aus demselben Register gelesen und im Objektmodell nach demselben Muster in eine eigene, benannte Eigenschaft zerlegt. Was T-06 nachweist, ist die Tragfähigkeit dieses Musters und nicht die Funktion einer einzelnen Schutzeinrichtung. Ein Alarm, dessen Weg vom Auslösen am Gerät bis zur Anzeige in Desigo CC vollständig beobachtet wurde, belegt dieses Muster bereits. Eine Wiederholung mit weiteren Ursachen prüfte nicht mehr das Modell, sondern die Schutzfunktion des Geräts, die nach der bereits genannten dritten Grenze nicht Gegenstand der Arbeit ist.
+
+
+Ein Restrisiko bleibt und ist im Validierungsteil zu benennen. Die Zuordnung der einzelnen Bitpositionen zu den Alarmbezeichnungen stützt sich für die nicht ausgelösten Alarme allein auf die Registerkarte. Eine dort falsch dokumentierte Position fiele beim Test eines anderen Alarms nicht auf, da jeder Alarm nur seine eigene Position belegt. Da die Registerkarte nach @sec:quellenlage nicht ungeprüft als richtig gilt, ist diese Einschränkung bei der Bewertung von FA-04 ausdrücklich zu vermerken.
+
+/* Anmerkung des Autors, erledigt:
+   "hier bitte nochmal argumentieren dass man nicht einfach Fehlerstrom Alarm
+   zum Beispiel testen kann, das aber für die arbeit auch nicht relevant ist.
+   ein alarm sollte zum testen ausreichend sein um sicherzustellen dass das
+   system grundsätzlich funktioniert mit den alarmen" */
+
+/* Claude: Der Hinweis aus der Durchsicht ("nochmal argumentieren, dass man
+   einen Fehlerstromalarm nicht einfach ausloesen kann, das aber fuer die
+   Arbeit nicht relevant ist, ein Alarm sollte zum Nachweis ausreichen") ist
+   als vierte Grenze der Pruefung eingearbeitet. Die Zaehlung im vorangehenden
+   Absatz ist entsprechend von drei auf vier Grenzen geaendert.
+
+   T-06 in @tab:testfaelle nennt deshalb nicht mehr das Ausloesen der
+   RCD-Funktion, sondern nur noch die am Aufbau gefahrlos herbeifuehrbaren
+   Zustaende, damit Testfall und Begruendung nicht auseinanderlaufen.
+
+   Bewusst ergaenzt ist der letzte Absatz zum Restrisiko der Bitzuordnung. Ein
+   Nachweis an einem einzelnen Alarm prueft die uebrigen Bitpositionen nicht
+   mit, und die Registerkarte gilt nach @sec:quellenlage nicht ungeprueft als
+   richtig. Falls das zu weit geht, ist der Absatz ersatzlos streichbar. */

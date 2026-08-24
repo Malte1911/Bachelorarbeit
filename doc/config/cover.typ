@@ -24,14 +24,8 @@
     [*Bearbeitungszeitraum*], [#period],
     [*Matrikelnummer, Kurs*], [#matriculation_number, #course],
     [*Betreuer der DHBW #location_university*], [#evaluator],
-  )}
-/*} else if document_type == "T3_3300" {
-  grid(
-    columns: (1fr, 1fr, 1fr),
-    rows: 1,
-    gutter: 6pt,
-    align: (left, left),
   )
+} else if document_type == "T3_3300" {
   grid(
     columns: (1fr, 1fr, 1fr),
     rows: 5,
@@ -41,7 +35,7 @@
     [*Matrikelnummer, Kurs*], [], [#matriculation_number, #course],
     [*Dualer Partner*], [], [#company_name, #company_location],
     [*Betreuer des Dualen Partners*], [], [#tutor],
-    [*Gutachter der DHBW #location_university*], [], [#evaluator],
+    [*Betreuer der DHBW #location_university*], [], [#evaluator],
   )
 } else {
   grid(

@@ -171,14 +171,14 @@
     edge(
       <pc>,
       <dcc>,
-      "->",
+      "<->",
       label: [Modbus #acro("TCP")\ über das Gebäudenetz],
       label-side: right,
     ),
     edge(
       <ecpd>,
       <pc>,
-      "->",
+      "<->",
       dash: "dashed",
       stroke: dg_linie_betrieb,
       label: [proprietäre\ Funkstrecke],
@@ -195,7 +195,7 @@
     dg_werkzeug(
       (-1, 1.75),
       [SENTRON Powerconfig],
-      zusatz: [Inbetriebnahme und\ Parametrierung],
+      zusatz: [Inbetriebnahme und\ Parametrierung, Zugriff\ nur über das Powercenter],
       name: <pcfg>,
     ),
 
@@ -207,23 +207,22 @@
       stroke: dg_linie_engineering,
       label: text(fill: dg_grau)[#acro("JSON")],
     ),
+    // Bewusst nur eine Kante von SENTRON Powerconfig, und zwar zum
+    // Powercenter. Das Endgeraet besitzt ausser der Funkstrecke keine
+    // Schnittstelle und ist deshalb weder ueber BLE noch ueber Ethernet
+    // unmittelbar ansprechbar. Beide Zugaenge enden am Powercenter, das die
+    // Parametrierung ueber die Funkstrecke an das Endgeraet weiterreicht.
+    // Eine fruehere Fassung trug eine zweite Kante zum Endgeraet und legte
+    // damit eine unmittelbare Inbetriebnahme nahe, die es nicht gibt.
     edge(
       <pcfg>,
       <pc>,
       "->",
       dash: "dashed",
       stroke: dg_linie_engineering,
-      label: text(fill: dg_grau)[REST-#acro("API")],
+      label: text(fill: dg_grau)[#acro("BLE") oder\ REST-#acro("API")],
       label-side: left,
-      label-pos: 25%,
-    ),
-    edge(
-      <pcfg>,
-      <ecpd>,
-      "->",
-      dash: "dashed",
-      stroke: dg_linie_engineering,
-      label: text(fill: dg_grau)[#acro("BLE")],
+      label-pos: 55%,
     ),
 
     // --- Zusammenfassungen ---
@@ -554,6 +553,168 @@
 }
 
 
+// ---------------------------------------------------------------------------
+// Abbildung: Aufbau eines Modbus-TCP-Telegramms  (Abschnitt 2.4)
+// ---------------------------------------------------------------------------
+// ACHTUNG, abweichende Kodierung: Diese Abbildung zeigt keinen Datenpfad,
+// sondern den Feldaufbau eines Telegramms. Kanten gibt es deshalb nicht, die
+// Bedeutung liegt in der Schachtelung:
+//   weisser Kasten = einzelnes Feld des Telegramms
+//   Sandband       = Zusammenfassung mehrerer Felder zu einer Einheit
+//   Akzentflaeche  = der darunter vergroesserte Ausschnitt
+// Farben, Schrift und Rahmen bleiben unveraendert, damit die Abbildung trotz
+// der anderen Aussage zur uebrigen Bildsprache passt.
+//
+// Alle Zusammenfassungen sind geschlossene Baender ueber genau den Feldern,
+// die sie umfassen. Eine fruehere Fassung verwendete dafuer einseitig offene
+// Klammern; deren senkrechte Striche standen je nach Klammer oben oder unten
+// und liessen die Ausdehnung der Einheiten unklar.
+//
+// Die Feldbreiten sind nicht massstaeblich, weil die Datenlaenge die uebrigen
+// Felder sonst unlesbar zusammendraengen wuerde. Statt der Bytezahl traegt
+// deshalb jedes Feld seine Byteposition, aus der sich die Ausdehnung der
+// beiden Einheiten unmittelbar ablesen laesst: Der MBAP-Kopf reicht von
+// Byte 0 bis Byte 6 und ist damit sieben Byte lang (Transaction Identifier
+// 2 + Protocol Identifier 2 + Length 2 + Unit Identifier 1), so wie es der
+// Messaging Implementation Guide in Abschnitt 3.1.3 festlegt.
+//
+// Gezeichnet wird hier ohne fletcher, da die Abbildung kein Graph ist, sondern
+// ein Raster fester Spaltenanteile. Farben und Schriftgroessen stammen
+// unveraendert aus der gemeinsamen Bildsprache oben.
+
+// Einzelnes Feld eines Telegramms: Name fett, Byteposition klein darunter
+#let dg_feld(titel, position, fill: white, farbe: dg_text) = rect(
+  width: 100%,
+  height: 100%,
+  fill: fill,
+  stroke: dg_rahmen_geraet,
+  inset: (x: 2pt, y: 3pt),
+  {
+    set align(center + horizon)
+    set par(justify: false, leading: 0.45em)
+    text(size: dg_klein, weight: "bold", fill: farbe, hyphenate: true)[#titel]
+    if position != none {
+      linebreak()
+      text(size: 7pt, fill: dg_grau)[#position]
+    }
+  },
+)
+
+// Band ueber mehreren Feldern: fasst sie zu einer Einheit zusammen. Es ist
+// bewusst ein geschlossener Kasten und keine Klammer, damit die Ausdehnung
+// der Einheit an den senkrechten Kanten eindeutig ablesbar bleibt.
+#let dg_band(titel, zusatz, fill: dg_flaeche, farbe: dg_text) = rect(
+  width: 100%,
+  height: 100%,
+  fill: fill,
+  stroke: dg_rahmen_geraet,
+  inset: (x: 3pt, y: 2pt),
+  {
+    set align(center + horizon)
+    set par(justify: false)
+    text(size: dg_klein, weight: "bold", fill: farbe, hyphenate: false)[#titel]
+    text(size: dg_klein, fill: farbe, hyphenate: false)[, #zusatz]
+  },
+)
+
+#let abb_modbus_tcp = {
+  set text(font: "Arial", size: dg_schrift, fill: dg_text)
+
+  align(center, block(width: 100%, {
+    // --- obere Reihe: Kapselung im Ethernet-Rahmen ---
+    grid(
+      columns: (1.4fr, 1.2fr, 1.4fr, 5.6fr, 1.8fr),
+      rows: (10mm,),
+      dg_feld([Ethernet-Kopf], none, fill: dg_flaeche_hell, farbe: dg_grau),
+      dg_feld([#acro("IP")-Kopf], none, fill: dg_flaeche_hell, farbe: dg_grau),
+      dg_feld(
+        [#acro("TCP")-Kopf],
+        [Zielport 502],
+        fill: dg_flaeche_hell,
+        farbe: dg_grau,
+      ),
+      dg_feld(
+        [Modbus-#acro("ADU")],
+        [max. 260 Byte],
+        fill: dg_akzent_flaeche,
+        farbe: dg_akzent_text,
+      ),
+      dg_feld(
+        [Ethernet-Prüfsumme],
+        none,
+        fill: dg_flaeche_hell,
+        farbe: dg_grau,
+      ),
+    )
+
+    // --- Vergroesserung: Fuehrungslinien vom ADU-Feld auf die volle Breite ---
+    grid(
+      columns: (4fr, 5.6fr, 1.8fr),
+      rows: (5mm,),
+      box(
+        width: 100%,
+        height: 100%,
+        line(
+          start: (100%, 0%),
+          end: (0%, 100%),
+          stroke: (paint: dg_akzent, thickness: 0.7pt, dash: "dotted"),
+        ),
+      ),
+      none,
+      box(
+        width: 100%,
+        height: 100%,
+        line(
+          start: (0%, 0%),
+          end: (100%, 100%),
+          stroke: (paint: dg_akzent, thickness: 0.7pt, dash: "dotted"),
+        ),
+      ),
+    )
+
+    // --- untere Reihe: Felder der Anwendungsdateneinheit ---
+    // Spaltenanteile richten sich nach der Laenge der Beschriftung, nicht nach
+    // der Bytezahl; siehe Anmerkung im Kopf dieses Abschnitts.
+    grid(
+      columns: (2.7fr, 2.4fr, 1.4fr, 2fr, 2.5fr, 3fr),
+      rows: (7mm, 14mm, 6mm),
+      row-gutter: (0mm, 1.5mm),
+
+      // Baender ueber den Feldern, die sie zusammenfassen
+      grid.cell(colspan: 4, dg_band([#acro("MBAP")-Kopf], [Byte 0 bis 6, zusammen 7 Byte])),
+      grid.cell(colspan: 2, dg_band([Modbus-#acro("PDU")], [ab Byte 7, max. 253 Byte])),
+
+      // Felder
+      dg_feld([Transaction Identifier], [Byte 0–1]),
+      dg_feld([Protocol Identifier], [Byte 2–3]),
+      dg_feld([Länge], [Byte 4–5]),
+      dg_feld([Unit Identifier], [Byte 6]),
+      dg_feld([Funktionscode], [Byte 7]),
+      dg_feld([Daten], [ab Byte 8]),
+
+      // Geltungsbereich des Laengenfelds, ebenfalls als geschlossenes Band
+      grid.cell(colspan: 3, none),
+    )
+  }))
+
+  v(4mm)
+
+  dg_legende(
+    (
+      rect(width: 9mm, height: 3.2mm, stroke: dg_rahmen_geraet, fill: white),
+      [Feld des Telegramms],
+    ),
+    (
+      rect(width: 9mm, height: 3.2mm, stroke: dg_rahmen_geraet, fill: dg_flaeche),
+      [Zusammenfassung zu einer Einheit],
+    ),
+    (
+      rect(width: 9mm, height: 3.2mm, stroke: none, fill: dg_akzent_flaeche),
+      [vergrößerter Ausschnitt],
+    ),
+  )
+}
+
 // ===========================================================================
 // Vorschauseite -- wird bei `#import` verworfen
 // ===========================================================================
@@ -574,7 +735,7 @@
   längst eingeführt, weshalb sie im Diagramm nur als Kürzel erscheinen; damit
   die Vorschau dasselbe zeigt, werden sie hier vorab genannt:
   #acro("ECPD"), #acro("TCP"), #acro("JSON"), #acro("API"), #acro("BLE"),
-  #acro("PDE"), #acro("IP").
+  #acro("PDE"), #acro("IP"), #acro("ADU"), #acro("PDU"), #acro("MBAP").
 ]
 
 #v(6mm)
@@ -603,6 +764,15 @@
   caption: [Erstes Lösungskonzept, Werkzeugkette vom #acro("PDE") über die
     #acro("JSON")-Typbeschreibung zum Objektmodell in Desigo CC sowie die
     Instanziierung je physischem Gerät über den Unit Identifier],
+)
+
+#v(8mm)
+
+#figure(
+  abb_modbus_tcp,
+  caption: [Aufbau eines Modbus-#acro("TCP")-Telegramms, oben die Kapselung im
+    Ethernet-Rahmen, unten die Felder der Anwendungsdateneinheit aus
+    #acro("MBAP")-Kopf und Protokolldateneinheit mit ihren Bytepositionen],
 )
 
 // Notwendig, damit die Sprungziele von `#acro` auch in der Einzelansicht

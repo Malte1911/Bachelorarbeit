@@ -18,7 +18,7 @@ Bevor Anforderungen an das Datenmodell formuliert werden können, ist zu klären
 
 === Systemaufbau und Systemgrenzen<sec:systemanalyse>
 
-Die in @sec:ecpd bis @sec:desigocc beschriebenen Komponenten stehen im Betrieb nicht nebeneinander, sondern in einer festen Kette. Die #acro("ECPD") vom Typ 5TY1 COM sitzen als Endstromkreisschutz im Installationsverteiler, erreichen über die Funkstrecke ausschließlich das SENTRON Powercenter, und erst dieses stellt die Daten über das Gebäudenetz bereit, wo Desigo CC sie abfragen kann. @img:systemaufbau zeigt diese Kette zusammen mit den beiden Werkzeugen, die nicht Teil des laufenden Datenpfads sind, für den Lebenszyklus der Lösung aber maßgeblich bleiben. SENTRON Powerconfig dient der Inbetriebnahme und Parametrierung der Geräte vor Ort und greift dazu über #acro("BLE") oder über die REST-#acro("API") des Powercenters zu @src:sentronsystemhandbuch, während der #acro("PDE") die Gerätetypbeschreibung als #acro("JSON")-Datei erzeugt (siehe @sec:pde).
+Die in @sec:ecpd bis @sec:desigocc beschriebenen Komponenten stehen im Betrieb nicht nebeneinander, sondern in einer festen Kette. Die #acro("ECPD") vom Typ 5TY1 COM sitzen als Endstromkreisschutz im Installationsverteiler, erreichen über die Funkstrecke ausschließlich das SENTRON Powercenter, und erst dieses stellt die Daten über das Gebäudenetz bereit, wo Desigo CC sie abfragen kann. @img:systemaufbau zeigt diese Kette zusammen mit den beiden Werkzeugen, die nicht Teil des laufenden Datenpfads sind, für den Lebenszyklus der Lösung aber maßgeblich bleiben. SENTRON Powerconfig dient der Inbetriebnahme und Parametrierung der Geräte und setzt dabei stets am Powercenter an, entweder über #acro("BLE") vor Ort oder über dessen REST-#acro("API") im Netz @src:sentronsystemhandbuch. Das Werkzeug liegt als Desktop-Anwendung und als mobile Anwendung vor, von denen diese Arbeit ausschließlich die Desktop-Anwendung einsetzt (siehe @sec:rb). Auch für dieses Werkzeug bleibt ein einzelnes Endgerät unmittelbar unerreichbar, denn seine Parametrierung reicht das Powercenter über die Funkstrecke weiter. Der #acro("PDE") erzeugt demgegenüber die Gerätetypbeschreibung als #acro("JSON")-Datei (siehe @sec:pde).
 
 #figure(
   abb_systemaufbau,
@@ -236,7 +236,8 @@ Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modb
     [Wird global oder je Treiberinstanz über einen Konfigurationseintrag gesetzt; für Geräte mit Big-Endian-Anordnung ist er auf 0 zu setzen. Für die mitgelieferten Energiemessgeräte schreibt die Dokumentation dies ausdrücklich vor.],
 
     [Abfrageintervall],
-    [Das Intervall, in dem der Treiber ein Gerät abfragt, ist einstellbar und gilt einheitlich für dessen Datenpunkte. Eine nach Datenpunktgruppen abgestufte Abfrage steht am eingesetzten Stand nicht zur Verfügung, was von der Dokumentation abweicht und deshalb nach @sec:quellenlage der Beobachtung folgt, sodass die Abfragelast allein über die Zahl der abgebildeten Datenpunkte und über das Intervall je Gerät gesteuert werden kann.],
+    [Das Intervall, in dem der Treiber die Geräte abfragt, wird an der Treiberkonfiguration eingestellt und gilt für sämtliche Datenpunkte aller Geräte dieses Treibers. Eine nach Geräten oder nach Datenpunktgruppen abgestufte Abfrage steht am eingesetzten Stand nicht zur Verfügung, was von der Dokumentation abweicht und deshalb nach @sec:quellenlage der Beobachtung folgt. Die Abfragelast lässt sich damit allein über die Zahl der abgebildeten Datenpunkte und über dieses eine Intervall steuern.],
+
 
     [Blockbildung],
     [Register, deren Adressabstand einen einstellbaren Grenzwert unterschreitet, werden zu einem gemeinsamen Leseblock zusammengefasst. Eine dichte Belegung des Adressraums verringert damit unmittelbar die Zahl der Telegramme.],
@@ -247,7 +248,16 @@ Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modb
   caption: [Eigenschaften des Modbus-Treibers von Desigo CC und ihre Bedeutung für die Modellierung, nach @src:desigoccenghelp]
 )<tab:modbustreiber>
 
-#kommentar("Abfrageintervall ist noch offen, das muss ich nochmal im Detail prüfen wie das ist")
+/* Anmerkung des Autors, erledigt: "Abfrageintervall ist noch offen, das muss ich
+   nochmal im Detail prüfen wie das ist"
+   Claude: Der Autor hat den Punkt am eingesetzten Stand geprueft. Das Intervall
+   ist nicht je Geraet, sondern ausschliesslich am Modbus-Treiber einstellbar und
+   gilt dort fuer alle angebundenen Geraete. Die Tabellenzeile ist entsprechend
+   gefasst. Die davon beruehrten Stellen sind @sec:konzept, FA-02 in @sec:fa,
+   T-03 in @sec:testuebersicht, @sec:kommunikationsstrecke sowie K-07 in
+   @sec:auswahlkriterien und die Bilanz in @sec:datenpunkte. Die auskommentierte
+   Notiz darunter ist damit ebenfalls beantwortet. */
+
 
 // #kommentar[Prüfung offen: Die Zeile zum Abfrageintervall stützt sich auf die Beobachtung am eingesetzten Stand, dass sich die Abfragegeschwindigkeit nur je Gerät und nicht je Datenpunktgruppe einstellen lässt. Die Engineering-Dokumentation beschreibt dagegen benannte Abfragegruppen mit eigenem Intervall. Vor Abgabe ist zu klären, ob die Gruppen an der installierten Version tatsächlich nicht nutzbar sind oder ob sie lediglich nicht projektiert waren. Von der Antwort hängt ab, ob die abgestufte Abfrage eine Möglichkeit der Weiterentwicklung bleibt oder bereits in dieser Arbeit umgesetzt werden kann.]
 
@@ -281,16 +291,18 @@ Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein e
   caption: [Erstes Lösungskonzept, Werkzeugkette vom #acro("PDE") über die #acro("JSON")-Typbeschreibung zum Objektmodell in Desigo CC sowie die Instanziierung je physischem Gerät über den Unit Identifier],
 )<img:konzept>
 
-Für die Abfrage gibt das Systemhandbuch drei Empfehlungen, nämlich jedes Gerät höchstens einmal pro Sekunde abzufragen, die Endgeräte sequenziell abzuarbeiten und Register blockweise zu lesen @src:sentronsystemhandbuch. Diese Abfragemethodik ist von Desigo CC bereits implementiert, da der Treiber einen einstellbaren Abstand zwischen den Anfragen kennt und benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp. Eine schnellere Abfrage brächte ohnehin keinen Gewinn, weil die Messwerte frühestens alle $2space.thin"s"$ aktualisiert werden @src:sentronsystemhandbuch. Da sich das Abfrageintervall nach @tab:modbustreiber nur je Gerät und nicht je Datenpunktgruppe einstellen lässt, werden alle Datenpunkte eines Geräts in demselben Takt gelesen. Die Abfragelast eines Strangs hängt damit unmittelbar an der Zahl der abgebildeten Datenpunkte, was die Auswahl der Daten zusätzlich begründet. Eine nach Verwendungszweck abgestufte Abfrage, bei der Zustands- und Alarmwerte häufiger gelesen würden als Zähler- und Stammdaten, wäre technisch wünschenswert und bleibt als Ansatzpunkt für eine Weiterentwicklung festzuhalten.
+Für die Abfrage gibt das Systemhandbuch drei Empfehlungen, nämlich jedes Gerät höchstens einmal pro Sekunde abzufragen, die Endgeräte sequenziell abzuarbeiten und Register blockweise zu lesen @src:sentronsystemhandbuch. Diese Abfragemethodik ist von Desigo CC bereits implementiert, da der Treiber einen einstellbaren Abstand zwischen den Anfragen kennt und benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp. Eine schnellere Abfrage brächte ohnehin keinen Gewinn, weil die Messwerte frühestens alle $2space.thin"s"$ aktualisiert werden @src:sentronsystemhandbuch. Da sich das Abfrageintervall nach @tab:modbustreiber nur am Treiber und weder je Gerät noch je Datenpunktgruppe einstellen lässt, werden alle Datenpunkte in demselben Takt gelesen. Die Abfragelast hängt damit unmittelbar an der Zahl der abgebildeten Datenpunkte, was die Auswahl der Daten zusätzlich begründet. Eine nach Verwendungszweck abgestufte Abfrage, bei der Zustands- und Alarmwerte häufiger gelesen würden als Zähler- und Stammdaten, wäre technisch wünschenswert und bleibt als Ansatzpunkt für eine Weiterentwicklung festzuhalten.
 
 Ungültige Messwerte kennzeichnet das Powercenter als _Not a Number_, und zusätzlich zeigt ein Statusdatenpunkt an, ob die Verbindung zum Endgerät besteht @src:sentronsystemhandbuch. Beides ist im Modell auszuwerten, damit ein ausgefallenes Gerät nicht als Gerät mit dem Messwert null erscheint.
 
 Schließlich sieht der Entwurf eine feste Arbeitsteilung zwischen den beiden Werkzeugen vor. Die Parametrierung der Geräte, also Grenzwerte, Hysteresen und Schutzeinstellungen, verbleibt bei SENTRON Powerconfig. Desigo CC übernimmt den laufenden Betrieb mit Anzeige, Archivierung, Alarmierung und Bedienung. SENTRON Powerconfig lässt sich damit nicht ablösen und wird von der errichtenden Fachkraft weiterhin benötigt, denn sobald in den elektrotechnischen Aufbau oder in die Wirkungsweise eines Geräts eingegriffen wird, hat dies über Powerconfig zu geschehen. Diese Aufteilung ist nicht nur eine Frage des Aufwands, sondern auch eine der Zuständigkeit. Änderungen an der Schutzwirkung setzen eine Elektrofachkraft voraus, während Desigo CC vom Personal der Gebäudeverwaltung bedient wird. Bleibt die Parametrierung außerhalb des Datenmodells, so ist ausgeschlossen, dass sie aus der Leitwarte heraus unbeabsichtigt verändert wird. Die Aufteilung hält das Datenmodell zugleich frei von Inbetriebnahmedaten und begründet, dass ein großer Teil des Registerraums unberücksichtigt bleiben kann. Die Auswirkung auf den Anforderungskatalog wird bei FA-06 und FA-09 in @sec:fa aufgegriffen.
 
 /* Claude: Drei Hinweise aus der Durchsicht sind hier abgearbeitet.
-   1. Die zuvor beschriebenen vier Abfragegruppen sind entfallen, weil sich das
-      Abfrageintervall am eingesetzten Stand nur je Geraet einstellen laesst. Der
-      Absatz nennt die abgestufte Abfrage stattdessen als Ansatzpunkt fuer eine
+   1. Die zuvor beschriebenen vier Abfragegruppen sind entfallen. Der Autor hat
+      am eingesetzten Stand nachgesehen: Das Abfrageintervall ist weder je
+      Geraet noch je Datenpunktgruppe, sondern ausschliesslich am Modbus-Treiber
+      einstellbar und gilt dort fuer alle angebundenen Geraete. Der Absatz nennt
+      die abgestufte Abfrage stattdessen als Ansatzpunkt fuer eine
       Weiterentwicklung, wie vorgeschlagen.
    2. Die fehlende Quelle zu "Diese Abfragemethodik ist von Desigo CC bereits
       implementiert" ist ergaenzt (@src:desigoccenghelp, Anfrageabstand und

@@ -4,15 +4,15 @@
 #let date = "14.09.2026"
 #let matriculation_number = "9353886"
 #let course = "TES23" // Example: TEL01GR1 / ITA23
-#let period = "Juni 2025 bis September 2026"
+#let period = "Juni 2026 bis September 2026"
 #let degree = "Bachelor of Engineering"
 #let department = "Embedded Systems" // Example: Informatik, Wirtschaftsinformatik, Elektrotechnik, Maschinenbau
 #let location_university = "Stuttgart" // Example: Stuttgart, Mannheim, Ravensburg
 #let company_name = "Siemens AG" // 
-#let company_location = "12345 Ausbildungsfirmaort"
+#let company_location = "70435 Stuttgart"
 #let release_location = "Ausbildungsfirmaort"
 #let tutor = "Johannes Otto"
-#let evaluator = "Frederic Findeis"
+#let evaluator = "Giovanni Viglialoro"
 #let show_company = true // Show company information in cover page
 #let show_comments = true // Arbeitskommentare (#kommentar[...]) im Dokument anzeigen; für die Abgabe auf false setzen
 
