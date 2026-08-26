@@ -4,29 +4,27 @@
 
 == Berücksichtigung von Nachhaltigkeitsaspekten<sec:nachhaltigkeit>
 
-/* Stichpunkte (Notizen) – noch nicht ausformuliert. Später in Fließtext überführen. */
+Die Lösung verbraucht selbst keine nennenswerten Ressourcen und erzeugt auch keine direkte Einsparung. Sie schafft Sichtbarkeit, und deren Wirkung entsteht erst dort, wo jemand die gewonnenen Daten auswertet und daraus eine Entscheidung ableitet. Unter dieser Einschränkung sind die folgenden Aspekte zu lesen.
+
 
 === Ökologische Aspekte
 
-- Energietransparenz durch ECPD-/Powercenter-Integration als Grundlage für Energieeffizienz, Lastmanagement und Verbrauchsreduktion im Gebäude
-- Zustandsbasierte Wartung (Condition Monitoring) statt fester Intervalle → längere Gerätelebensdauer, weniger Materialverbrauch
-- Ferndiagnose reduziert Vor-Ort-Serviceeinsätze → weniger Fahrten / CO2
-- Wiederverwendung bestehender Modbus-Infrastruktur und wiederverwendbares Datenmodell → weniger zusätzliche Hardware / Gateways
+Der unmittelbare Beitrag liegt in der Energietransparenz auf der Ebene des einzelnen Abgangs. Erst wenn Strom, Spannung und Wirkleistung je Endstromkreis in der Leitwarte vorliegen, lassen sich Verbraucher einander gegenüberstellen, Dauerlasten außerhalb der Nutzungszeit erkennen und Maßnahmen zur Lastverschiebung überhaupt begründen. Die Auflösung, die eine Verteilerebene mit bis zu 24 einzeln erfassten Abgängen bietet, geht dabei deutlich über die eines zentralen Zählers hinaus. Der in @sec:praxistauglichkeit benannte fehlende Zähler der elektrischen Arbeit begrenzt diesen Beitrag jedoch, da eine belastbare Verbrauchsbilanz aus integrierten Momentanwerten nicht entsteht.
+
+Der zweite Beitrag betrifft die Instandhaltung. Betriebsstunden, Schaltspiele und die nach Ursache getrennten Auslösezähler erlauben eine zustandsbasierte statt einer intervallbasierten Wartung, womit Geräte nach ihrer tatsächlichen Beanspruchung getauscht werden und nicht nach einem pauschalen Zeitraum. Dasselbe gilt für den Differenzstrom des #acro("RCM")-Tiefpasses, dessen Verlauf eine Verschlechterung der Isolation erkennbar macht, bevor das Gerät abschaltet. Beides verlängert die Nutzungsdauer der verbauten Geräte.
+
 
 === Ökonomische Aspekte
 
-- Wiederverwendbares JSON-Template senkt Engineering- und Integrationsaufwand bei Folgeprojekten
-- Bessere Skalierbarkeit der Integrationslösung
-- Herstellerübergreifende Integration reduziert Vendor-Lock-in und redundante Systeme → niedrigere Lebenszykluskosten
-- Frühzeitige Fehlererkennung reduziert ungeplante Ausfälle → geringere Betriebskosten
+Der wirtschaftliche Nutzen der Vorlage liegt in der Verlagerung eines wiederkehrenden Aufwands. Die Zuordnung von Registern zu benannten Datenpunkten erfolgt in der Gebäudeautomation überwiegend von Hand und macht einen erheblichen Anteil der Projektierung aus @src:wang2018. Diese Zuordnung ist mit der Typbeschreibung und der zugehörigen Aufstellung einmalig geleistet und gilt für jedes Gerät desselben Typs. In Folgeprojekten entfällt damit nicht nur die Arbeit selbst, sondern auch die Fehlerquelle, die in einer jedes Mal neu getroffenen Auslegung von Registerinhalten liegt.
 
-=== Soziale Aspekte
+Hinzu kommt die Skalierung innerhalb einer Anlage. Aus einer Typbeschreibung entstehen beliebig viele Instanzen, denen allein ihre Kommunikationsparameter mitzugeben sind, sodass der Aufwand mit der Zahl der Geräte nicht linear wächst. Die in @sec:datenpunkte begründete Reduktion des Umfangs wirkt in dieselbe Richtung, da sie die Abfragelast eines voll bestückten Strangs um rund vier Fünftel senkt und damit den Betrieb mehrerer Stränge an einem Server erst ermöglicht.
 
-- Elektrische Sicherheit als Kernfunktion der Schaltkreisschutzgeräte (Personen- und Anlagenschutz); transparente Anbindung verbessert Überwachbarkeit sicherheitskritischer Funktionen
-- Bessere Arbeitsbedingungen für Betriebs- und Servicepersonal durch Transparenz und Ferndiagnose → weniger gefährliche manuelle Inspektionen
-- Höhere Versorgungszuverlässigkeit in kritischer Infrastruktur (Rechenzentren, Kliniken)
-- Wissenstransfer durch dokumentierte, reproduzierbare Methodik
+Beide Punkte stehen unter zwei Vorbehalten. Solange die Alarmierung nach @sec:praxistauglichkeit je Anlage von Hand einzurichten ist, bleibt ein Teil der Handarbeit bestehen, den die Vorlage gerade abnehmen sollte. Und die Wiederverwendbarkeit ist nach @sec:anforderungsabgleich an einem einzelnen #acro("ECPD") belegt, nicht an einem vollständigen Strang unter Betriebsbedingungen.
 
-/* Hinweis: Aussagen sachlich/begründet formulieren, wo möglich mit @quelle belegen, sonst [TODO Quelle]. Nicht quantitativ belegbare Punkte als potenziell/qualitativ kennzeichnen (Validierung nur am begrenzten Testaufbau). */
+#kommentar[Zu entscheiden ist, ob neben der ökologischen und der ökonomischen Dimension eine soziale Betrachtung aufgenommen wird. Anknüpfungspunkte bestünden mit der Unterstützung der wiederkehrenden Prüfung nach #acro("DGUV") Vorschrift 3 und mit der Entlastung des Servicepersonals von Einsätzen im Verteiler unter Spannung.]
 
-#kommentar[Die ökonomischen Punkte überschneiden sich mit @sec:wirtschaftlichkeit. Dort steht die wirtschaftliche Bewertung, hier nur der Nachhaltigkeitsbezug, mit Verweis statt Wiederholung.]
+/* Claude: Abschnitt aus den vier Stichpunkten des Autors ausformuliert und auf
+   drei kurze Absaetze je Dimension gebracht. Die beiden Vorbehalte im letzten
+   Absatz sind ergaenzt, damit der Nutzen nicht staerker behauptet wird, als
+   @sec:anforderungsabgleich ihn traegt. */
