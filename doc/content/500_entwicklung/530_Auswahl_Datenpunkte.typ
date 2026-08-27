@@ -108,7 +108,7 @@ Aufgenommen sind 17 Register, die ausschließlich das Powercenter selbst betreff
 Fünf Register beschreiben die Netzanbindung mit Adresse, Subnetzmaske, Gateway und Hardwareadresse sowie dem Zustand der Bluetooth-Schnittstelle. Sie tragen UC-04 aus der Sicht des IT-Betriebs, und der Zustand der Bluetooth-Schnittstelle ist darüber hinaus sicherheitsrelevant, weil er zeigt, ob der lokale Zugang für die Inbetriebnahme im Regelbetrieb offen steht. Die zugehörigen Konfigurationsregister sind demgegenüber nach K-02 und K-03 ausgeschlossen, da sie einmalig eingerichtet werden und einem geschützten Zugriff unterliegen. Abgebildet werden folglich die Ist-Werte, nicht deren Einstellung. Als einziger schreibender Datenpunkt ist die Uhrzeit aufgenommen, was den Fall abdeckt, dass am Standort kein Zeitserver vorgesehen ist. Die Stammdaten entsprechen denen des #acro("ECPD").
 
 
-Diese Auswahl ist eine Vorarbeit und keine Umsetzungsvorgabe. Ein eigenes Objektmodell für das Powercenter ist nach @sec:konzept nicht gefordert, weshalb der Schwerpunkt der Umsetzung in @sec:umsetzung auf dem #acro("ECPD") liegt. Dokumentiert ist die Auswahl gleichwohl, da ohne sie offenbliebe, welche Information des Strangs mit der Beschränkung auf das Endgerät verloren ginge.
+Aus dieser Auswahl entsteht in @sec:umsetzung eine eigene Typbeschreibung, die gegenüber der des #acro("ECPD") deutlich kleiner ausfällt. Der Schwerpunkt der Umsetzung liegt beim Endgerät, da dort die Messwerte, die Zählerstände und die Schaltfunktion liegen, während das Powercenter Zustands- und Diagnoseangaben des Strangs trägt.
 
 
 ==== Bilanz der Reduktion
@@ -138,7 +138,7 @@ Diese Unterscheidung nach Aktualität ist in der Arbeitsmappe zu jedem Datenpunk
 
 
 
-Drei Datenpunkte der Auswahl stehen unter einem Vorbehalt, der sich erst bei der Umsetzung klären lässt. Das Register der Softwareversion ist wegen einer gemischten Kodierung derzeit nicht dekodierbar und widerspricht damit K-06, es bleibt vorläufig in der Auswahl und ist zu streichen, falls sich daran nichts ändert. Die beiden Betriebsstundenzähler liegen als Gleitkommazahlen doppelter Genauigkeit vor, für die das Werkzeug der Typbeschreibung keinen entsprechenden Datentyp anbietet. Der Zeit- und Synchronisationsstatus des Powercenters schließlich war zum Zeitpunkt der Auswahl noch nicht am Testaufbau erprobt. Alle drei Punkte werden in @sec:umsetzung wieder aufgegriffen, wo die Zuordnung zu Datentypen und Transformationen erfolgt.
+Drei Datenpunkte der Auswahl stehen unter einem Vorbehalt, der sich erst bei der Umsetzung klären lässt. Das Register der Softwareversion ist wegen einer gemischten Kodierung derzeit nicht dekodierbar und widerspricht damit K-06, es bleibt vorläufig in der Auswahl und ist zu streichen, falls sich daran nichts ändert. Die beiden Betriebsstundenzähler liegen als Gleitkommazahlen doppelter Genauigkeit vor. Ob das Werkzeug der Typbeschreibung dafür einen Datentyp anbietet, war zum Zeitpunkt der Auswahl offen. Der Zeit- und Synchronisationsstatus des Powercenters schließlich war zum Zeitpunkt der Auswahl noch nicht am Testaufbau erprobt. Alle drei Punkte werden in @sec:umsetzung wieder aufgegriffen, wo die Zuordnung zu Datentypen und Transformationen erfolgt.
 
 
 Was diese Auswahl nicht festlegt, ist die Form, in der die Datenpunkte im Modell erscheinen. Benennung, Datentyp, Skalierung, Byte-Reihenfolge und der Versatz zwischen Registerkarte und Telegramm sind Gegenstand von @sec:umsetzung. Die Auswahl legt allein fest, welche Register gelesen werden und aus welchem Grund.

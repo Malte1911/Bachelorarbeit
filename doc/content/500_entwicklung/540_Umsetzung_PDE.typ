@@ -85,7 +85,7 @@ Das Register der Softwareversion dagegen bleibt wegen seiner gemischten Kodierun
 
 #kommentar[Die Streichung wirkt auf drei Stellen zurück, die nachzuziehen sind. In @tab:datenpunkte_ecpd sinken die Stammdaten von acht auf sieben Register und die Summe von 38 auf 37 Register beziehungsweise von 65 auf 64 Datenpunkte. In @tab:bilanz_datenpunkte werden aus 929 gelesenen Registern je Strang 905 und aus 1579 Datenpunkten 1555; die Reduktion beträgt dann rund 82,5 Prozent. In #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]) ist die Zeile zu Register 22 zu entfernen oder als gestrichen zu kennzeichnen.]
 
-Der dritte Vorbehalt betrifft den Zeit- und Synchronisationsstatus des Powercenters. Da für das Powercenter nach @sec:konzept kein eigenes Objektmodell gefordert ist, wird er im Rahmen dieser Arbeit nicht umgesetzt.
+Der dritte Vorbehalt betrifft den Zeit- und Synchronisationsstatus des Powercenters. Er ist in der Auswahl dokumentiert, in der Typbeschreibung des Powercenters jedoch ausgespart geblieben, da diese bewusst schmal gehalten ist. Seine Aufnahme bleibt damit eine kleine Ergänzung, die @sec:weiterentwicklung aufgreift.
 
 Bemerkenswert ist schließlich, was nicht gebraucht wird. Die Gerätefamilie führt ihre Werte binär und bereits skaliert, sodass weder die Umsetzung aus dem #acro("BCD")-Format noch das Modulo-10-Verfahren zum Einsatz kommt. Das ist für die Prüfung von Bedeutung, denn genau diese Kombinationen lassen sich im Online-Modus des Werkzeugs nach @sec:pde_online nicht abrufen.
 
@@ -145,7 +145,11 @@ Zuletzt ein Verhalten, für das sich keine Erklärung finden ließ. Nach dem Ent
 
 ==== Ergebnis
 
-Das Ergebnis dieses Arbeitsschritts ist eine einzelne #acro("JSON")-Datei, die den Gerätetyp des #acro("ECPD") beschreibt. Sie führt zu jeder Eigenschaft den Namen, die Gruppe, den Funktionscode, die Registeradresse, den Datentyp, die Einheit und den Skalierungsfaktor und trägt damit zugleich die Adressbelegung, die bei dem in @sec:desigoccmechanik beschriebenen allgemeinen Importweg gesondert anzulegen wäre. Ob sie sich in Desigo CC einlesen lässt und was dabei aus den einzelnen Eigenschaften wird, ist Gegenstand von @sec:uebernahme.
+Das Ergebnis dieses Arbeitsschritts sind zwei #acro("JSON")-Dateien. Die erste beschreibt den Gerätetyp des #acro("ECPD") und führt zu jeder Eigenschaft den Namen, die Gruppe, den Funktionscode, die Registeradresse, den Datentyp, die Einheit und den Skalierungsfaktor. Sie trägt damit zugleich die Adressbelegung, die bei dem in @sec:desigoccmechanik beschriebenen allgemeinen Importweg gesondert anzulegen wäre.
+
+Die zweite beschreibt das Powercenter und folgt denselben Festlegungen zu Benennung, Gruppenzuordnung, Adressierung und Byte-Reihenfolge. Sie fällt deutlich kleiner aus, da das Gerät weder misst noch schaltet, und bildet einen Teil der in @sec:datenpunkte begründeten Auswahl ab. Aufgenommen sind die Stammdaten, die Temperatur, der aktive Funkkanal, die Netzanbindung samt dem Zustand der Bluetooth-Schnittstelle sowie das Sammelregister der Alarme, das hier allein die Übertemperatur und die Betriebsstunden belegt. Die Uhrzeit ist als einziger schreibender Datenpunkt geführt.
+
+Ob sich die beiden Dateien in Desigo CC einlesen lassen und was dabei aus den einzelnen Eigenschaften wird, ist Gegenstand von @sec:uebernahme.
 
 /* Claude: Rohentwurf nach der mit dem Autor abgestimmten Gliederung. Die
    Stichpunkte der bisherigen Fassung sind vollstaendig aufgegangen:

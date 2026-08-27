@@ -14,16 +14,18 @@ Die Darstellung folgt Gruppen zusammengehöriger Testfälle und nicht der Nummer
 
 ==== Import und Instanzbildung
 
-T-01 ist erfüllt. Die Typbeschreibung wird in der Fassung nach @sec:uebernahme ohne Fehlermeldung eingelesen, und der Objekttyp erscheint mit seinen Eigenschaften in der Applikationssicht. Da die Prüfung an dem in @tab:werkzeuge genannten Plattformstand erfolgt, ist damit zugleich die nach @sec:nfa allein am Testaufbau nachweisbare Verträglichkeit belegt. Nicht sämtliche Eigenschaften kommen dabei in der vorgesehenen Form an, was der Abschnitt zu den Alarmen ausführt.
+T-01 ist erfüllt. Beide Typbeschreibungen werden in der Fassung nach @sec:uebernahme ohne Fehlermeldung eingelesen, und die Objekttypen erscheinen mit ihren Eigenschaften in der Applikationssicht. Da die Prüfung an dem in @tab:werkzeuge genannten Plattformstand erfolgt, ist damit zugleich die nach @sec:nfa allein am Testaufbau nachweisbare Verträglichkeit belegt. Nicht sämtliche Eigenschaften kommen dabei in der vorgesehenen Form an, was der Abschnitt zu den Alarmen ausführt.
 
-T-02 ist im Rahmen des Möglichen erfüllt. Aus derselben, unveränderten Typbeschreibung entstehen mehrere Instanzen, die jeweils über ihren Unit Identifier adressiert werden. Da am Aufbau nach RB-04 nur ein einzelnes #acro("ECPD") zur Verfügung steht, liefern die übrigen Instanzen keine Werte. Nachgewiesen ist damit die mehrfache Verwendbarkeit der Typbeschreibung, nicht das Verhalten eines vollständig bestückten Strangs.
+T-02 ist im Rahmen des Möglichen erfüllt. Aus derselben, unveränderten Typbeschreibung entstehen mehrere #acro("ECPD")-Instanzen, die jeweils über ihren Unit Identifier adressiert werden, und aus der Typbeschreibung des Powercenters entsteht die Instanz des vorhandenen Geräts. Da am Aufbau nach RB-04 nur ein einzelnes #acro("ECPD") zur Verfügung steht, liefern die übrigen Instanzen keine Werte. Nachgewiesen ist damit die mehrfache Verwendbarkeit der Typbeschreibung, nicht das Verhalten eines vollständig bestückten Strangs.
+
+Damit ist FA-01 für beide Gerätetypen belegt. Die Prüfung des Powercenters endet an dieser Stelle, wie @sec:pruefablauf festhält. Beobachtet wurde dabei, dass die abgebildeten Werte in der vorgesehenen Form ankommen, ohne dass dies einen eigenen Testfall trägt.
 
 
 ==== Wirkung der Geräteparametrierung
 
 T-14 ist nur eingeschränkt nachweisbar. Der betroffene Alarm lässt sich am Aufbau nicht auslösen, sodass sich der Unterschied zwischen dem Auslieferungszustand und dem aktivierten Zustand nicht an einer anstehenden Meldung zeigen lässt. Erkennbar ist er allein daran, dass der Zustand nach der Aktivierung in SENTRON Powerconfig im Sammelregister vertreten ist. Die Aussage von NFA-06 bleibt davon unberührt, denn ein Datenmodell kann diesen Unterschied ohnehin nicht sichtbar machen, weshalb die vorausgesetzte Parametrierung Teil der Unterlage nach @sec:modelldoku ist.
 
-#kommentar[Gegenzulesen, ob die Beobachtung so zutrifft. Gemeint ist, dass die Aktivierung am Registerwert erkennbar war, ein tatsächliches Auslösen des Alarms am Aufbau jedoch nicht herbeizuführen ist.]
+// #kommentar[Gegenzulesen, ob die Beobachtung so zutrifft. Gemeint ist, dass die Aktivierung am Registerwert erkennbar war, ein tatsächliches Auslösen des Alarms am Aufbau jedoch nicht herbeizuführen ist.]
 
 
 ==== Messwerte und ihre Darstellung
@@ -57,7 +59,7 @@ T-11 ist teilweise erfüllt, und die beiden geprüften Fehlerbilder verhalten si
 
 Die zweite Forderung von FA-10 ist dagegen erfüllt. Fällt die Verbindung aus, kennzeichnet Desigo CC die betroffenen Datenpunkte mit dem Kürzel „\#COM" und gibt sie als kommunikationsgestört aus, statt einen letzten oder auf null gesetzten Wert als gültig darzustellen. Eine Verwechslung eines ausgefallenen Abgangs mit einem stromlosen ist damit ausgeschlossen.
 
-#kommentar[Gegenzulesen, ob diese Kennzeichnung auch bei der unterbrochenen Funkstrecke auftritt oder nur beim Ausfall der Modbus-Verbindung. Im ersten Fall ist der Ausfall eines Endgeräts immerhin erkennbar, wenn auch ohne Meldung.]
+// #kommentar[Gegenzulesen, ob diese Kennzeichnung auch bei der unterbrochenen Funkstrecke auftritt oder nur beim Ausfall der Modbus-Verbindung. Im ersten Fall ist der Ausfall eines Endgeräts immerhin erkennbar, wenn auch ohne Meldung.]
 
 
 ==== Änderbarkeit des Modells

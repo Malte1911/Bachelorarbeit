@@ -46,9 +46,12 @@
 % Plattform V5.1 (https://bureau.sygma.ie/WepApp/Help/EngineeringHelp/en-US/index.html,
 % vom Autor als inhaltsgleich bestaetigt) und Plattform V7 (URL unten). Alle in der
 % Arbeit verwendeten Aussagen wurden in beiden Staenden geprueft und sind identisch.
-% ANMERKUNG 2: NFA-04 fordert Kompatibilitaet mit Desigo CC V9.0. Eine Dokumentation
-% dieses Standes war nicht zugaenglich. Die Angaben zum Import- und Objektmodell sind
-% vor Abgabe gegen die im Projekt installierte Version gegenzulesen.
+% ANMERKUNG 2 (Stand 27.08.2026): Der Autor hat bestaetigt, dass die hier herangezogenen
+% Aussagen zu Import, Objektmodell und Modbus-Treiber auch gegenueber dem eingesetzten
+% Stand unveraendert gelten. Die frueheren Vorbehalte im Text, die eine veraltete
+% Dokumentationslage geltend machten, sind daraufhin entfallen. Der Vorbehalt zu NFA-04
+% in content/300_anforderungen/320_Anforderungen.typ betrifft seither allein den Import
+% der konkreten Typbeschreibung am Testaufbau.
 @manual{src:desigoccenghelp,
   url = {https://bms.megapps.com.bo/AppClient/Help/EngineeringHelp/en-US/index.html},
   author = {{Siemens AG}},
@@ -68,6 +71,15 @@
   urldate = {2026-7-1}
 }
 
+% STAND 27.08.2026: Volltext unter resources/papers/fieldbus.pdf gegengelesen.
+% Modbus kommt im Aufsatz an genau zwei Stellen vor. Im historischen Teil als
+% einer der beiden Feldbus-Vorlaeufer, die sich "because of their seniority,
+% their functionalities, and their worldwide acceptance" abhoben, und in der
+% Normungsuebersicht als Kommunikationsprofilfamilie CPF 15 MODBUS-RTPS in
+% IEC 61784-2. Aussagen zu Einfachheit, Offenheit, Robustheit oder zu einem
+% De-facto-Standard stehen dort NICHT; die frueher darauf gestuetzte
+% Formulierung in content/200_grundlagen/230_Modbus.typ ist entsprechend
+% zurueckgenommen. Offenheit und einfache Struktur tragen jetzt @src:modbusspec.
 @ARTICLE{src:fieldbus,
   author={Thomesse, J.-P.},
   journal={Proceedings of the IEEE}, 
@@ -261,8 +273,8 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
   doi = {10.1109/TPEL.2020.3003358}
 }
 
-% Eintrag von Claude ergaenzt: Datenblatt zu Desigo CC V9.0 -- also zu dem von
-% NFA-04 geforderten Stand, zu dem die Engineering Help nicht zugaenglich war.
+% Eintrag von Claude ergaenzt: Datenblatt zu Desigo CC V9.0, also zu dem von
+% NFA-04 geforderten Stand.
 % Herangezogen fuer Systemarchitektur (Server/Client, FEP, verteilte Systeme)
 % und die Liste der unterstuetzten offenen Protokolle. Metadaten aus dem
 % Fussbereich und der Titelseite des Dokuments selbst.
@@ -341,11 +353,31 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 % ---------------------------------------------------------------------------
 % Eintraege von Claude recherchiert und ergaenzt. Die bibliographischen Angaben
 % stammen aus der Crossref-API (Abfrage ueber die DOI bzw. den Titel) und sind
-% damit gegen die Verlagsmetadaten geprueft. Die Volltexte lagen nicht vor;
-% zitiert wird jeweils nur die Kernaussage, die sich aus Titel, Abstract und
-% der einschlaegigen Rezeption zweifelsfrei ergibt. Vor Abgabe stichprobenweise
-% im Volltext gegenlesen, insbesondere die Aussage zu Wang u.a. (2018), dass die
-% Zuordnung von Datenpunkten ueberwiegend von Hand erfolgt.
+% damit gegen die Verlagsmetadaten geprueft.
+%
+% STAND 27.08.2026: Die Volltexte zu Wang u.a. (2018) und Zhan u.a. (2020)
+% liegen jetzt unter resources/papers/ und sind gegengelesen. Ergebnis:
+%   - Wang u.a. (2018): Beleg fuer "ueberwiegend von Hand", "labor intensive and
+%     costly" (Abstract), fuer die uneinheitliche, ad hoc vergebene Benennung
+%     ueber Gebaeude und Systeme hinweg (Abschnitt 1) sowie fuer das Beispiel
+%     mit 9820 Datenpunkten in drei Arbeitstagen (S. 108, dort Quelle [22]).
+%     KEIN Beleg fuer einen bezifferten Anteil am Projektierungsaufwand; die
+%     Angabe von 1 bis 6 US-Dollar je Quadratfuss betrifft Installation,
+%     Programmierung und Inbetriebnahme insgesamt. Die entsprechende Formulierung
+%     ist an allen sechs Zitationsstellen auf "arbeitsintensiv und kostentreibend"
+%     zurueckgenommen. Ebenfalls belegt: die Unterscheidung zwischen neuem
+%     Gebaeudeleitsystem und Anbindung fremder Software an ein bestehendes
+%     (Abschnitt 5.2) sowie das Fehlen einer ausgereiften Gesamtloesung
+%     (Einleitung zu Abschnitt 5).
+%   - Zhan u.a. (2020): Aussage im Volltext bestaetigt, Abschnitt 4.3, woertlich
+%     "it was impossible to completely avoid human interference in the mapping
+%     process". Kennzahlen: mittlere Trefferquote 91,4 Prozent, F-Mass der
+%     Merkmalsextraktion 87,2 Prozent, Ausgabe der fuenf besten Vorschlaege.
+%     Der Gegenstand ist das Abbilden uneinheitlich benannter BMS-Punkte auf
+%     EnergyPlus-Variablen und damit ein anderer Fall als der hier betrachtete;
+%     der Text stellt das seit dem 27.08.2026 ausdruecklich fest.
+% Offen bleibt das Gegenlesen von Balaji u.a. (2018), Perumal u.a. (2010) und
+% Rodrigues u.a. (2021), deren Volltexte weiterhin nicht vorliegen.
 
 @article{src:balaji2018,
   author  = {Balaji, Bharathan and Bhattacharya, Arka and Fierro, Gabriel and Gao, Jingkun and Gluck, Joshua and Hong, Dezhi and Johansen, Aslak and Koh, Jason and Ploennigs, Joern and Agarwal, Yuvraj and Berg{\'e}s, Mario and Culler, David and Gupta, Rajesh K. and Kj{\ae}rgaard, Mikkel Baun and Srivastava, Mani and Whitehouse, Kamin},

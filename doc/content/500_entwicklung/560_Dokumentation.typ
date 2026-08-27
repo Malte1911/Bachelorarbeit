@@ -6,7 +6,7 @@
 
 Eine Typbeschreibung, die niemand erklärt, ist eine Datei und keine Integrationsvorlage. Wer sie einsetzen will, muss wissen, welche Register sie liest, welche Einstellungen sie am Gerät voraussetzt, was sie bewusst offenlässt und wie sie sich ändern lässt. Nichts davon geht aus der Datei selbst hervor. NFA-01 und NFA-02 erheben die Dokumentation deshalb zur Anforderung, und T-13 macht sie zum Prüfgegenstand. Sie ist damit Bestandteil des Entwicklungsergebnisses und nicht dessen Beiwerk.
 
-Diese Einordnung deckt sich mit dem Stand der Technik. Die Zuordnung von Datenpunkten eines Gebäudeleitsystems zu einer einheitlichen Beschreibung erfolgt überwiegend von Hand und macht einen erheblichen Anteil des Projektierungsaufwands aus @src:wang2018. Der Nutzen einer Vorlage entscheidet sich folglich nicht daran, ob diese Zuordnung einmal getroffen wurde, sondern daran, ob sie in nachvollziehbarer Form mitgeliefert wird. Andernfalls fällt der Aufwand im nächsten Projekt erneut an.
+Diese Einordnung deckt sich mit dem Stand der Technik. Die Zuordnung von Datenpunkten eines Gebäudeleitsystems zu einer einheitlichen Beschreibung erfolgt überwiegend von Hand und bleibt arbeitsintensiv und kostentreibend @src:wang2018. Der Nutzen einer Vorlage entscheidet sich folglich daran, ob die einmal getroffene Zuordnung in nachvollziehbarer Form mitgeliefert wird. Andernfalls fällt der Aufwand im nächsten Projekt erneut an.
 
 
 ==== Adressatenkreise und die Wahl einer einzigen Unterlage

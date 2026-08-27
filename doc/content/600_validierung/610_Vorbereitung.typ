@@ -12,7 +12,9 @@ Der Validierungsteil bildet den aufsteigenden Ast des in @sec:vorgehensmodell_au
 
 ==== Ausgangszustand
 
-Geprüft wird an dem in @sec:testaufbau beschriebenen Aufbau mit den dort genannten Firmwareständen und den Softwareständen aus @tab:werkzeuge. Gegenstand ist die in @sec:umsetzung entstandene Typbeschreibung in der Fassung, die nach der Übernahme in @sec:uebernahme vorliegt, zusammen mit der begleitenden Unterlage nach @sec:modelldoku.
+Geprüft wird an dem in @sec:testaufbau beschriebenen Aufbau mit den dort genannten Firmwareständen und den Softwareständen aus @tab:werkzeuge. Gegenstand sind die in @sec:umsetzung entstandenen Typbeschreibungen in der Fassung, die nach der Übernahme in @sec:uebernahme vorliegt, zusammen mit der begleitenden Unterlage nach @sec:modelldoku.
+
+Der Prüfumfang ist für die beiden Gerätetypen verschieden. T-01 und T-02 erfassen beide Typbeschreibungen, da Import und Instanzbildung für beide dieselbe Bedeutung haben. Die übrigen Testfälle betreffen das #acro("ECPD"), denn das Powercenter misst nicht und schaltet nicht, und von seinem Sammelregister sind allein die Übertemperatur und die Betriebsstunden belegt. Für die Prüfung der Messwerte, für den Schaltbefehl und für die Alarmierung besteht dort folglich kein Gegenstück.
 
 Die Parametrierung der Geräte ist dabei kein fester Zustand des Aufbaus, sondern selbst Gegenstand der Prüfung. @sec:geraetekonfiguration beschreibt den Aufbau in seinem eingerichteten Zustand mit eingeschalteten Alarmen und freigegebenem Fernschalten. T-14 setzt dagegen den Auslieferungszustand voraus, da sich allein an ihm zeigt, dass ein ab Werk abgeschalteter Alarm ohne Aussage bleibt. Der Aufbau wird deshalb erst nach diesem Testfall in den dokumentierten Zustand gebracht. Dasselbe gilt für die Freischaltung des Fernschaltens, deren Fehlen den in @sec:befunde ausgewerteten Befund überhaupt erst sichtbar gemacht hat.
 

@@ -6,7 +6,7 @@
 == Modbus<sec:modbus>
 
 
-Modbus ist ein serielles Kommunikationsprotokoll, das ursprünglich 1979 von der Firma Modicon für die Kommunikation zwischen #acro("SPS") entwickelt wurde @src:modbusspec. Aufgrund seiner einfachen Struktur, seiner Offenheit und seiner Robustheit hat es sich zu einem De-facto-Standard in der industriellen Automatisierungstechnik entwickelt und ist bis heute weit verbreitet @src:fieldbus.
+Modbus ist ein serielles Kommunikationsprotokoll, das ursprünglich 1979 von der Firma Modicon für die Kommunikation zwischen #acro("SPS") entwickelt wurde @src:modbusspec. Es zählt zu den beiden Vorläufern der Feldbustechnik, die sich in der industriellen Automatisierung durch ihr Alter, ihren Funktionsumfang und ihre weltweite Akzeptanz von den übrigen Netzen ihrer Zeit abhoben, und ist als Kommunikationsprofilfamilie CPF 15 in die Normenreihe IEC 61784-2 eingegangen @src:fieldbus. Seine Verbreitung verdankt es der einfachen Anfrage-Antwort-Struktur und der frei zugänglichen Spezifikation @src:modbusspec.
 
 
 Das Protokoll basiert auf einem Request-Response-Prinzip, bei dem ein anfragendes Gerät (z. B. ein Leitsystem) Anfragen an eines oder mehrere antwortende Geräte (z. B. Sensoren, Aktoren oder Messgeräte) sendet. Die antwortenden Geräte reagieren ausschließlich auf eingehende Anfragen und initiieren keine eigenständige Kommunikation @src:modbusserial.

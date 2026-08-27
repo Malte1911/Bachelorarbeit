@@ -10,18 +10,21 @@ Die Anbindung selbst ist mit der Vorlage ohne besonderen Aufwand zu leisten. Die
 
 Der Anwendungsfall, der eine Leitwartenanbindung im Betrieb rechtfertigt, bleibt gleichwohl offen. Ohne einzeln auswertbare Meldungen ist eine Störung weder nach Dringlichkeit einzuordnen noch zu quittieren, womit UC-03 und mit ihm FA-04 und FA-05 unerfüllt bleiben. Was in Desigo CC ankommt, ist eine Zahl, deren Bedeutung sich erst über @tab:apx_ecpd_alarme erschließt. Ein solcher Datenpunkt wird im Betrieb nicht beobachtet. Der Nutzen der Anbindung beschränkt sich damit auf Beobachtung und Auswertung und erreicht die Störungsbearbeitung nicht, also gerade jene Aufgabe, für die ein Schutzgerät steht.
 
-Diese Grenze ist keine Eigenheit der hier entwickelten Lösung. Die Geräte, welche die Erweiterung des SENTRON Powermanagers bereits führt, bilden irhe Zustände innerhalb des Objektmodells ab. Sie lassen sich in Desigo CC über einen Managementstationsalarm auslösen, weil ihre Zustände als einzeln prüfbare Eigenschaften vorliegen. Genau dieser Weg steht dem #acro("ECPD") nicht offen, da sämtliche Meldungen in einem Sammelregister liegen und sich ohne Maskierung nicht zuverlässig gegen einen Wert prüfen lassen (siehe @sec:umsetzung). Der Unterschied liegt somit in der Form, in der das Gerät seine Zustände bereitstellt.
+Diese Grenze entsteht aus dem Zusammenspiel von Gerät und Plattform und liegt damit außerhalb dessen, was ein Datenmodell gestalten kann. Desigo CC kennt nach @sec:desigocc_alarme zwei Wege zu einer Meldung, und über eine Modbus-Anbindung steht davon ausschließlich der Managementstationsalarm zur Verfügung, wie sich am Testaufbau bestätigt hat. Jede Meldung entsteht folglich in der Plattform selbst, indem der Wert einer Eigenschaft fortlaufend gegen hinterlegte Bedingungen geprüft wird. Alarmfähig ist über Modbus damit jedes Gerät, dessen Zustände als einzeln prüfbare Eigenschaften vorliegen. Für die Geräte, welche die mitgelieferte Bibliothek bereits führt, gilt derselbe Weg, sodass ihre Alarmierung ebenso an einzeln prüfbaren Eigenschaften hängt. Das #acro("ECPD") führt seine Meldungen in einem Sammelregister, weshalb jede Bedingung den Inhalt des gesamten Registers prüft und eine vollständige Abdeckung eine Liste über sämtliche Bitkombinationen verlangte (siehe @sec:umsetzung). Maßgeblich ist damit die Form, in der das Gerät seine Zustände bereitstellt.
 
-Der fehlenden Zähler der elektrischen Arbeit stellt zusätzlich eine Lücke dar. Für die Anbindung eines Endstromkreises an ein Energiemanagement ist er die spürbarste Lücke, sie ist jedoch dem Gerät zuzurechnen und nicht dem Modell. Eine Integration der Wirkleistung über die Zeit in Desigo CC bleibt eine Näherung, die bei schaltenden Lasten und einem Abtastintervall von einer Sekunde keine Genauigkeit erreicht, auf die sich eine Verbrauchsabrechnung stützen ließe. Eine Nachbesserung ist auf der Geräteseite zu leisten und liegt außerhalb des Rahmens dieser Arbeit.
+Der fehlende Zähler der elektrischen Arbeit tritt als weitere Einschränkung hinzu. Für die Anbindung eines Endstromkreises an ein Energiemanagement ist er die spürbarste Lücke, sie ist jedoch dem Gerät zuzurechnen und nicht dem Modell. Eine Integration der Wirkleistung über die Zeit in Desigo CC bleibt eine Näherung, die bei schaltenden Lasten und einem Abtastintervall von einer Sekunde keine Genauigkeit erreicht, auf die sich eine Verbrauchsabrechnung stützen ließe. Eine Nachbesserung ist auf der Geräteseite zu leisten und liegt außerhalb des Rahmens dieser Arbeit.
 
-Für das Projektgeschäft ergibt sich damit eine geteilte Bewertung. Als Vorlage für die Anbindung ist das Modell einsetzbar und nimmt dem Errichter die wiederkehrende Zuordnungsarbeit ab, die nach @src:wang2018 einen erheblichen Anteil des Projektierungsaufwands ausmacht. Als vollständige Leitwartenanbindung eines Schutzgeräts trägt es derzeit nicht, solange die Alarmierung nicht einfach möglich ist und dafür die Voraussetzung im Objektmodell nicht gegeben ist. Welcher wirtschaftliche Nutzen unter dieser Einschränkung verbleibt, behandelt @sec:nachhaltigkeit.
+Für das Projektgeschäft ergibt sich damit eine geteilte Bewertung. Als Vorlage für die Anbindung ist das Modell einsetzbar und nimmt dem Errichter die wiederkehrende Zuordnungsarbeit ab, die nach @src:wang2018 arbeitsintensiv und kostentreibend bleibt. Als vollständige Leitwartenanbindung eines Schutzgeräts bleibt es hinter dem Ziel zurück, solange die Alarmierung je Anlage von Hand einzurichten ist und das Objektmodell die dafür nötige Aufteilung der Meldungen schuldig bleibt. Welcher wirtschaftliche Nutzen unter dieser Einschränkung verbleibt, behandelt @sec:nachhaltigkeit.
 
 /* Claude: Abschnitt aus den vier Stichpunkten des Autors ausformuliert. Der
    Hinweis auf den wirtschaftlichen Nutzen im folgenden Kapitel ist als Verweis
-   auf @sec:nachhaltigkeit umgesetzt. Die Aussage zu den bereits in der
-   Powermanager-Erweiterung gefuehrten Geraeten stuetzt sich auf die Angabe des
-   Autors und ist ohne Beleg gefuehrt; falls dafuer eine Quelle vorliegt, ist
-   sie im dritten Absatz zu ergaenzen.
+   auf @sec:nachhaltigkeit umgesetzt. Der dritte Absatz stuetzte sich urspruenglich
+   auf einen Vergleich mit den Geraeten der mitgelieferten Bibliothek, fuer den
+   kein Beleg zu beschaffen war. Er ist am 27.08.2026 auf den Alarmmechanismus
+   selbst zurueckgefuehrt. Tragendes Glied ist jetzt die Beobachtung des Autors am
+   Testaufbau, dass ueber eine Modbus-Anbindung allein der Managementstationsalarm
+   zur Verfuegung steht; alles Weitere folgt aus @sec:desigocc_alarme und
+   @sec:umsetzung.
 
    Die uebergeordnete Ueberschrift "Bewertung der Praxistauglichkeit" ist
    entfallen, da sie nur dieses eine Unterkapitel trug. Das Label

@@ -26,6 +26,8 @@ Der Import der Typbeschreibung wird angenommen, und der Objekttyp erscheint mit 
 
 Die Instanzen entstehen aus derselben Typbeschreibung, indem jeder Instanz ihre Kommunikationsparameter mitgegeben werden. Die Typbeschreibung selbst bleibt dabei unverändert, worin sich die in @sec:konzept getroffene Trennung von Gerätetyp und Geräteinstanz praktisch bestätigt.
 
+Für das Powercenter verläuft der Weg gleich. Auch seine Typbeschreibung wird angenommen, der Objekttyp erscheint in der Applikationssicht, und aus ihm entsteht eine Instanz unter der Kommunikationsschnittstelle des Geräts. Die abgebildeten Werte kommen in der vorgesehenen Form an. Über Import und Instanzbildung hinaus ist die Typbeschreibung des Powercenters nach @sec:pruefablauf nicht geprüft.
+
 
 ==== Darstellung und Bedienung
 

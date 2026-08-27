@@ -21,7 +21,7 @@ Mit diesem Abschnitt schließt sich der aufsteigende Ast des in @sec:vorgehensmo
       [*ID*], [*Testfälle*], [*Ergebnis*], [*Bemerkung*],
     ),
     [FA-01], [T-01, T-02], [erfüllt],
-    [Import und Instanziierung am Testaufbau bestätigt],
+    [Import und Instanziierung für beide Typbeschreibungen bestätigt],
 
     [FA-02], [T-03], [teilweise erfüllt],
     [zyklische Übertragung gegeben, abgestufte Abfrage nicht einstellbar],

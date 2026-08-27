@@ -28,7 +28,7 @@ Die Aufstellung gibt die 38 Register wieder, die nach den Kriterien aus @sec:aus
 
 #figure(
   text(size: 8pt)[#table(
-    columns: (4.5em, 1fr, 1fr, 3em, 1fr),
+    columns: (4.5em, 1fr, 1fr, 4em, 1fr),
     inset: 4pt,
     align: (left + horizon, left, left, center + horizon, left),
     table.header(
@@ -70,7 +70,8 @@ Die Aufstellung gibt die 38 Register wieder, die nach den Kriterien aus @sec:aus
     [22], [Software Version], [`software_version`], [RO], [UCHAR\[4\]],
     [145], [Phasen Information], [`phase_information`], [RW], [U16: 0=n. v., 1=L1, 2=L2, 3=L3],
     [5376], [Eingestellter Nennstrom des Gerätes], [`rated_current_setting`], [RW], [U16 (16000 = 16 A)],
-    [5425], [Fernsteuerung elektronisches Schalten (Status)], [`remote_control_electronic_switching_enabled`], [RW (lesend nutzen)], [U16: 0=inaktiv, 1=aktiv],
+    [5425], [Fernsteuerung elektronisches Schalten (Status)], [`remote_control_electronic
+    _switching_enabled`], [RW (lesend nutzen)], [U16: 0=inaktiv, 1=aktiv],
     [3671], [Letzte Trip Log OID], [`last_trip_log_oid`], [RO], [U16],
   )],
   caption: [Aufgenommene Register des #acro("ECPD") mit Bezeichnung, vorgeschlagenem Variablennamen, Zugriffsart und Datenformat]
@@ -123,7 +124,7 @@ Die Aufstellung gibt die 17 Register wieder, die ausschließlich das Powercenter
 
 #figure(
   text(size: 8pt)[#table(
-    columns: (4.5em, 1fr, 1fr, 3em, 1fr),
+    columns: (4.5em, 1fr, 1fr, 4em, 1fr),
     inset: 4pt,
     align: (left + horizon, left, left, center + horizon, left),
     table.header(
@@ -134,7 +135,8 @@ Die Aufstellung gibt die 17 Register wieder, die ausschließlich das Powercenter
     [2629], [Zeit- und Synchronisationsstatus], [`time_sync_status`], [RO], [U8\[8\]: PARAM_DATE_TIME + SYNC_STATUS],
     [2633], [Aktiver Funkkanal], [`active_radio_channel`], [RO], [U16: 0–26],
     [2578], [Betriebsstundenzähler gesamt], [`operating_hours_total`], [RO], [FP64 / s],
-    [1123], [Zähler Parameteränderung Powercenter], [`parameter_change_counter_powercenter`], [RO], [U16],
+    [1123], [Zähler Parameteränderung Powercenter], [`parameter_change_counter
+    _powercenter`], [RO], [U16],
     [528], [Aktuelle IP-Adresse], [`current_ip_address`], [RO], [U32],
     [529], [Aktuelle Subnetzmaske], [`current_subnet_mask`], [RO], [U32],
     [530], [Aktuelle Gateway Adresse], [`current_gateway_address`], [RO], [U32],

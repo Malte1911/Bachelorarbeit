@@ -42,4 +42,5 @@ Nach außen stehen mehrere Wege offen. Eine Webservice-Schnittstelle erlaubt fre
    ist aber auf den nordamerikanischen Brandschutzmarkt zugeschnitten;
    uebernommen sind nur plattformweite Aussagen. Die Engineering Help
    @src:desigoccenghelp lag in den Staenden V5.1 und V7 vor, die verwendeten
-   Aussagen sind dort identisch. Vgl. den Vorbehalt zu NFA-04. */
+   Aussagen sind dort identisch und nach Auskunft des Autors auch gegenueber
+   dem eingesetzten Stand unveraendert (Stand 27.08.2026). */
