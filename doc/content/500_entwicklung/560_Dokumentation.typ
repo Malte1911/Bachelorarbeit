@@ -11,7 +11,7 @@ Diese Einordnung deckt sich mit dem Stand der Technik. Die Zuordnung von Datenpu
 
 ==== Adressatenkreise und die Wahl einer einzigen Unterlage
 
-NFA-02 benennt zwei Adressatenkreise ausdrücklich, nämlich das technische Personal, das die Anlage errichtet, und das administrative Personal, das die Projektierung in Desigo CC vornimmt. Aus UC-11 und NFA-03 tritt ein dritter hinzu, der die Vorlage selbst verändert. Drei Leser also, die zu verschiedenen Zeitpunkten und mit verschiedenen Werkzeugen arbeiten.
+NFA-02 benennt zwei Adressatenkreise ausdrücklich, nämlich das technische Personal, das die Anlage errichtet, und das administrative Personal, das die Projektierung in Desigo CC vornimmt. Aus UC-10 und NFA-03 tritt ein dritter hinzu, der die Vorlage selbst verändert. Drei Leser also, die zu verschiedenen Zeitpunkten und mit verschiedenen Werkzeugen arbeiten.
 
 Getrennte Unterlagen je Adressatenkreis liegen damit nahe, sind hier jedoch nicht gewählt worden. Der Grund liegt in den Grenzen der Vorlage. Dass die Alarme des Sammelregisters nicht als einzelne Meldungen ankommen, dass Zeichenketten nicht beschreibbar sind und dass das Abfrageintervall für alle Geräte eines Treibers gemeinsam gilt, betrifft jeden der drei Leser. In getrennten Unterlagen stünden diese Aussagen entweder mehrfach oder an einer Stelle, an der ein Teil der Leser sie nicht findet. Die Unterlage ist deshalb ein einziges Dokument, das seine Adressatenkreise über die Gliederung trennt und die gemeinsamen Aussagen voranstellt.
 
@@ -26,7 +26,7 @@ Getrennte Unterlagen je Adressatenkreis liegen damit nahe, sind hier jedoch nich
     [Voraussetzungen und Grenzen], [alle drei], [NFA-01, NFA-06, @sec:rb],
     [Inbetriebnahme im Verteiler], [Errichter], [NFA-02, NFA-06],
     [Integration in Desigo CC], [Projektierung], [NFA-01, NFA-02],
-    [Vorlage anpassen], [Weiterentwicklung], [NFA-03, UC-11],
+    [Vorlage anpassen], [Weiterentwicklung], [NFA-03, UC-10],
     [Referenz der Datenpunkte], [alle drei], [NFA-01, NFA-03],
   ),
   caption: [Aufbau der begleitenden Unterlage mit den Adressatenkreisen und den Anforderungen, die der jeweilige Teil trägt]
@@ -51,37 +51,9 @@ Die Unterlage benennt diese Voraussetzung deshalb an hervorgehobener Stelle und 
 Hinzu treten die Randbedingungen aus @tab:rb, die nach @sec:testabdeckung keine geprüfte Eigenschaft der Lösung beschreiben, sondern die Voraussetzungen ihres Betriebs, und deren Einhaltung folglich zu dokumentieren ist. Betroffen sind vor allem die Begrenzung der Modbus-Schnittstelle auf Netzebene, die angesichts der fehlenden Authentifizierung des Protokolls unmittelbar sicherheitsrelevant ist.
 
 
-==== Kriterien für die Durchsicht
+==== Ausrichtung an den Kriterien der Durchsicht
 
-T-13 ist nach @sec:testanmerkungen der einzige Testfall ohne objektives Kriterium, und seine Aussagekraft hängt daran, dass die Kriterien vor der Durchsicht feststehen und die Durchsicht von einer an der Entwicklung unbeteiligten Person vorgenommen wird. Festgelegt werden die Kriterien deshalb an dieser Stelle und nicht erst im Validierungsteil, der sie in @sec:pruefablauf lediglich anwendet.
-
-#figure(
-  table(
-    columns: (7em, 1fr),
-    inset: 6pt,
-    align: (left + horizon, left),
-    table.header(
-      [*Kriterium*], [*Erfüllt, wenn*],
-    ),
-    [D-01],
-    [jeder Datenpunkt des Modells in der Referenz mit Register, Datentyp, Einheit und Bedeutung wiederzufinden ist und umgekehrt kein Eintrag der Referenz ohne Entsprechung im Modell bleibt.],
-
-    [D-02],
-    [eine sachkundige Person die Integration in Desigo CC allein anhand der Unterlage und ohne Rückfrage an den Verfasser durchführen kann.],
-
-    [D-03],
-    [jeder beschriebene Arbeitsschritt erkennbar einem Adressatenkreis zugeordnet ist und beide Kreise die für sie erforderlichen Schritte an einer Stelle finden.],
-
-    [D-04],
-    [die vorausgesetzte Geräteparametrierung vollständig benannt ist, einschließlich der Angabe, welcher Datenpunkt ohne sie ohne Aussage bleibt.],
-
-    [D-05],
-    [die bekannten Grenzen der Lösung benannt sind und die Unterlage keine Funktion beschreibt, die sich am Testaufbau nicht bestätigt hat.],
-  ),
-  caption: [Kriterien für die Durchsicht der begleitenden Unterlage nach T-13]
-)<tab:doku_kriterien>
-
-#kommentar[Hier Tabelle Overkill? Ich bin grundsätzlich Fan davon, diese Tabellen zu verwenden, das zeigt Struktur aber ich weiß nicht ob es sich lohnt das so oft zu machen]
+Die Unterlage entsteht gegen die Kriterien D-01 bis D-05, die @sec:dokukriterien gemeinsam mit T-13 und vor dieser Unterlage festlegt. Sie sind damit keine nachträgliche Messlatte, sondern eine Vorgabe der Erstellung.
 
 D-05 ist dabei das Kriterium, das am ehesten verfehlt wird, denn es verlangt von der Unterlage, gegen das eigene Ergebnis zu sprechen. Eine Vorlage, die ihre Grenzen verschweigt, besteht die Durchsicht dem Wortlaut nach, führt in der Anwendung jedoch zu Erwartungen, die sie nicht einlöst. Der in @sec:uebernahme beschriebene Fall der Alarme ist das deutlichste Beispiel, da die Zerlegung des Sammelregisters in der Auswahl vorgesehen war und erst bei der Übernahme scheiterte.
 

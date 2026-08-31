@@ -24,10 +24,12 @@ Drittens umfasst die Arbeit sowohl Hardwarekomponenten wie die Schutzschaltgerä
 
 #figure(
   abb_vmodell,
-  caption: [V-Modell als Vorgehensmodell dieser Arbeit, mit der Zuordnung der Spezifikations- zu den Prüfebenen und der beidseitigen Kopplung zwischen der Auswahl der Daten und deren Prüfung am Testaufbau],
+  caption: [V-Modell als Vorgehensmodell dieser Arbeit, mit dem Artefakt jeder Phase, der Zuordnung der Spezifikations- zu den Prüfebenen und der Rückkopplung aus der Erprobung am Testaufbau in die Auswahl der Daten],
 )<img:vmodell>
 
-Einschränkend ist anzumerken, dass die Umsetzung nicht rein sequenziell verläuft. Insbesondere sind die Entwicklungs- und die Prüfphase über die Auswahl der Daten eng miteinander verzahnt, sodass die Übergänge zwischen dem absteigenden und dem aufsteigenden Ast an dieser Stelle fließend sind. Welche Datenpunkte sich sinnvoll abbilden lassen, ergibt sich nicht allein aus der Dokumentation, sondern zeigt sich erst in der Prüfung am realen Gerät. Die Prüfung liefert damit Eingangsinformationen für eine Auswahl, die ihr im Modell vorgelagert ist, während die Auswahl umgekehrt bestimmt, was überhaupt zu prüfen ist. In @img:vmodell ist diese unterste Zuordnung deshalb als beidseitige Kopplung dargestellt, während die darüberliegenden Ebenen der gerichteten Ordnung des Modells folgen. Das V-Modell dient in dieser Arbeit somit als übergeordneter Rahmen, der die Phasen und ihre Bezugspunkte festlegt, innerhalb dessen die Entwicklung jedoch mit Rückkopplungsschleifen zwischen Umsetzung und Prüfung erfolgt.
+Jede Phase schließt mit einem benennbaren Ergebnis ab, das @img:vmodell im jeweiligen Kasten ausweist und das der folgenden Phase als Eingang dient. Auf dem aufsteigenden Ast tritt an die Stelle des Artefakts der Nachweis, der nach @sec:nachweisarten am Testaufbau, am Artefakt selbst oder durch Begutachtung geführt wird.
+
+Zur angewandten Methode gehört dabei eine Rückkopplung, die das Modell in seiner reinen Form nicht vorsieht. Welche Datenpunkte sich abbilden lassen, ergibt sich nicht allein aus der Dokumentation, sondern zeigt sich erst bei der Erprobung am realen Gerät, die deshalb bereits während der Umsetzung stattfindet und auf die zuvor getroffene Auswahl zurückwirkt. @sec:umsetzung weist diesen Rückfluss an den betroffenen Datenpunkten und Zahlen einzeln aus. Die Richtlinie VDI/VDE 2206 sieht ein solches Vorgehen vor, indem sie die Verschachtelung des V-Modells behandelt und keine Vorgaben zu Methoden macht, sondern erwartet, dass daraus ein auf die Aufgabe zugeschnittenes Vorgehen abgeleitet wird @src:vdi2206. Das V-Modell legt in dieser Arbeit somit die Phasen und ihre Bezugspunkte fest, während die Entwicklung innerhalb dieses Rahmens in Schleifen verläuft.
 
 /* Claude: Der Abschnitt bleibt nach Ruecksprache beim V-Modell. Ergaenzt wurde
    der Schlussabsatz zur engen Verzahnung von Entwicklungs- und Pruefphase ueber
@@ -42,3 +44,36 @@ Einschränkend ist anzumerken, dass die Umsetzung nicht rein sequenziell verläu
    Der zuvor hier stehende Ausblick auf die Kapitel zu Anforderungen und
    Validierung ist entfallen, da er den folgenden Kapiteln vorgriff; die
    Zuordnung der Phasen zu den Arbeitsschritten steht jetzt in der Abbildung. */
+
+/* Claude: Nach der Anmerkung des Betreuers ueberarbeitet. Die Phasenkaesten
+   nennen jetzt das Artefakt statt der Taetigkeit, auf dem aufsteigenden Ast
+   die drei Nachweisarten aus @sec:nachweisarten.
+
+   KORREKTUR nach Rueckfrage: Der Dateiname Requirements.xlsx ist wieder aus
+   dem Anforderungskasten entfernt, weil er im gesamten Fliesstext nicht
+   vorkommt, sondern nur in auskommentierten Arbeitsnotizen.
+
+   Die Rueckkopplungskante lief zunaechst von der Durchfuehrung zurueck auf die
+   Umsetzung. Das war nicht gedeckt: Kapitel 6 stellt Befunde fest, aendert das
+   Modell aber nicht daraufhin, T-06 bleibt nicht erfuellt und die Grenzen
+   stehen in @sec:anforderungsabgleich. Belegt ist stattdessen der Rueckfluss
+   aus der Erprobung am Aufbau in die Auswahl, siehe @sec:umsetzung: Register 22
+   nach K-06 gestrichen, Folgen durch drei Tabellen nachgezogen (54 statt 55
+   Register je Strang), dazu vier weitere Stellen beim Sammelregister 2560.
+   So ist die Kante jetzt gezeichnet.
+
+   Die Rueckkopplung hing zuvor als Pfeilspitze an der Zuordnungskante
+   "verifiziert gegen", eine Kante mit zwei Bedeutungen. Sie ist jetzt eine
+   eigene Kante in Petrol von der Durchfuehrung zurueck auf die Umsetzung,
+   mit eigenem Legendeneintrag.
+
+   Der Schlussabsatz begann zuvor mit "Einschraenkend ist anzumerken" und las
+   sich als Entschuldigung. Er steht jetzt als Aussage ueber die angewandte
+   Methode. Beleg ist VDI/VDE 2206:2021, Abschnitt 6.5 "Verschachtelung des
+   V-Modells zur Ableitung einer zeitlichen Abfolge", sowie die Aussage der
+   Richtlinie, keine Methoden vorzugeben.
+
+   VORBEHALT: Geprueft sind nur Inhaltsverzeichnis und Vorwort der Richtlinie,
+   nicht der Text von 6.5. Die Formulierung bleibt deshalb bei "behandelt die
+   Verschachtelung" und behauptet nichts ueber deren Inhalt. Vor Abgabe im
+   Richtlinientext gegenlesen und bei Bedarf praeziser fassen. */

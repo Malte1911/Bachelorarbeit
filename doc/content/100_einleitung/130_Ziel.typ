@@ -11,6 +11,8 @@
    Geraete nicht Gegenstand (siehe @sec:systemanalyse), eigenes Objektmodell
    fuer das Powercenter nicht gefordert." */
 
+Der folgende Abschnitt wurde aus der Anmeldung dieser Arbeit übernommen.
+
 Ziel der Arbeit ist es, die Daten des SENTRON Powercenters und der mit ihm verbundenen SENTRON #acro("ECPD") über ein im Rahmen der Arbeit entwickeltes Datenmodell in Desigo CC verfügbar zu machen. Das Datenmodell wird an einem Hardwareaufbau erprobt und validiert. Es soll nicht eine einzelne Anlage anbinden, sondern als Vorlage für alle Geräte desselben Typs dienen, sodass die Zuordnung zwischen Registern und benannten Datenpunkten einmalig geleistet ist und in Folgeprojekten nicht erneut zu erbringen bleibt.
 
 Gegenstand ist allein die Abbildung zwischen dem Modbus-Registerraum des Powercenters und dem Objektmodell in Desigo CC. Die Schutzfunktion der Geräte, die Funkstrecke zum Powercenter, die elektrotechnische Installation und die Architektur von Desigo CC bleiben außerhalb der Betrachtung (siehe @sec:systemanalyse), ebenso die Gestaltung von Dashboards und Archivgruppen, die einer konkreten Anlage vorbehalten bleibt (siehe @sec:anforderungsvorbehalte). Auch die Ausgestaltung der Netzsicherheit ist nicht Gegenstand der Arbeit, da sie kundeneigenen Vorgaben folgt. RB-05 bis RB-07 benennen dafür lediglich einen Mindeststandard (siehe @sec:stakeholder).

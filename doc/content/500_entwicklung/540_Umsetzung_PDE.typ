@@ -83,7 +83,7 @@ Von den drei Vorbehalten, die @sec:datenpunkte offengelassen hat, klären sich z
 
 Das Register der Softwareversion dagegen bleibt wegen seiner gemischten Kodierung nicht dekodierbar und wird nach K-06 aus der Auswahl gestrichen. Der Verlust ist gering. Ein Firmware-Stand ändert sich allein durch ein Update, das Servicepersonal über SENTRON Powerconfig einspielt und das sich aus Desigo CC heraus weder auslösen noch veranlassen lässt. Der Datenpunkt beantwortete damit eine Frage, die im laufenden Betrieb nicht gestellt wird.
 
-#kommentar[Die Streichung wirkt auf drei Stellen zurück, die nachzuziehen sind. In @tab:datenpunkte_ecpd sinken die Stammdaten von acht auf sieben Register und die Summe von 38 auf 37 Register beziehungsweise von 65 auf 64 Datenpunkte. In @tab:bilanz_datenpunkte werden aus 929 gelesenen Registern je Strang 905 und aus 1579 Datenpunkten 1555; die Reduktion beträgt dann rund 82,5 Prozent. In #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]) ist die Zeile zu Register 22 zu entfernen oder als gestrichen zu kennzeichnen.]
+#kommentar[Die Streichung wirkt auf drei Stellen zurück, die nachzuziehen sind. In @tab:datenpunkte_ecpd sinken die Stammdaten von acht auf sieben Register und die Summe von 38 auf 37 Register beziehungsweise von 65 auf 64 Datenpunkte. In @tab:bilanz_datenpunkte werden aus 55 gelesenen Registern je Strang 54 und aus 84 Datenpunkten 83, während @tab:ausschluss_ecpd von 115 auf 116 steigt; die Reduktion beträgt dann weiterhin rund 85 Prozent. In #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]) ist die Zeile zu Register 22 zu entfernen oder als gestrichen zu kennzeichnen.]
 
 Der dritte Vorbehalt betrifft den Zeit- und Synchronisationsstatus des Powercenters. Er ist in der Auswahl dokumentiert, in der Typbeschreibung des Powercenters jedoch ausgespart geblieben, da diese bewusst schmal gehalten ist. Seine Aufnahme bleibt damit eine kleine Ergänzung, die @sec:weiterentwicklung aufgreift.
 
@@ -98,7 +98,7 @@ Für die Kommandogruppe unterscheidet das Werkzeug einen fest hinterlegten von e
 
 Nicht schreibend geführt wird dagegen ein Teil dessen, was die Registerkarte als beschreibbar ausweist. Anlagenkennzeichen und Einbauort sind Zeichenketten, für die das Modell keine Eingabe vorsieht; sie werden gelesen und in SENTRON Powerconfig gesetzt. Für die Phaseninformation, den eingestellten Nennstrom und den Freigabestatus des elektronischen Schaltens gilt dasselbe, hier jedoch aus den Kriterien K-02 und K-03 heraus, da es sich um Inbetriebnahmewerte handelt. Von den Stammdaten ist damit kein Register schreibend abgebildet.
 
-Für UC-10 bedeutet das eine Einschränkung, die zu benennen ist: Die Beschriftung eines Abgangs ist in der Leitwarte sichtbar, aber nicht änderbar. Zugleich stützt der Befund die in @sec:konzept getroffene Arbeitsteilung, denn die Stammdaten bleiben dort, wo sie bei der Inbetriebnahme ohnehin vergeben werden.
+Für UC-09 bedeutet das eine Einschränkung, die zu benennen ist: Die Beschriftung eines Abgangs ist in der Leitwarte sichtbar, aber nicht änderbar. Zugleich stützt der Befund die in @sec:konzept getroffene Arbeitsteilung, denn die Stammdaten bleiben dort, wo sie bei der Inbetriebnahme ohnehin vergeben werden.
 
 #kommentar[In #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]) ist die Spalte zur Zugriffsart entsprechend zu lesen. Sie gibt bislang die Zugriffsart des Registers wieder und nicht die im Modell umgesetzte Richtung. Ein Hinweis in der Vorbemerkung der Aufstellung genügt.]
 
@@ -192,8 +192,8 @@ Ob sich die beiden Dateien in Desigo CC einlesen lassen und was dabei aus den ei
    Zwei Rueckwirkungen auf bereits geschriebene Abschnitte sind im Text als
    #kommentar vermerkt und bewusst noch nicht ausgefuehrt:
    1. Streichung der Softwareversion: @tab:datenpunkte_ecpd 38 -> 37 Register und
-      65 -> 64 Datenpunkte, @tab:bilanz_datenpunkte 929 -> 905 Register und
-      1579 -> 1555 Datenpunkte je Strang, Reduktion rund 82,5 statt 82 Prozent,
+      65 -> 64 Datenpunkte, @tab:bilanz_datenpunkte 55 -> 54 Register und
+      84 -> 83 Datenpunkte je Strang, Reduktion weiterhin rund 85 Prozent,
       dazu die Zeile zu Register 22 im Anhang. Der Satz in @sec:datenpunkte, der
       den Vorbehalt formuliert, ist dann ebenfalls anzupassen.
    2. Die 27 Alarmdatenpunkte in @tab:datenpunkte_ecpd, @tab:bilanz_datenpunkte

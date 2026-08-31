@@ -151,7 +151,7 @@
   // Abbreviations
   //pagebreak()
   heading(outlined: true)[Abkürzungsverzeichnis]
-  v(1em)
+  v(0.9em)
   printAcronyms
   // v(1fr)
 }

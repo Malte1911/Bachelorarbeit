@@ -2,7 +2,7 @@
 #include "../config/config.typ"
 
 = Ehrenwörtliche Erklärung
-Ich versichere hiermit, dass ich meine Studienarbeit mit dem Thema: "Entwicklung einer Integrationsvorlage zwischen elektronischen Schaltkreisschutzgeräten und einer Gebäudemanagementplattform" selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Ich versichere zudem, dass die eingereichte elektronische Fassung mit der gedruckten Fassung übereinstimmt.
+Ich versichere hiermit, dass ich meine Bachelorarbeit mit dem Thema: "Entwicklung einer Integrationsvorlage zwischen elektronischen Schaltkreisschutzgeräten und einer Gebäudemanagementplattform" selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Ich versichere zudem, dass die eingereichte elektronische Fassung mit der gedruckten Fassung übereinstimmt.
 
 Ich habe bei der Erstellung der Arbeit KI-Werkzeuge eingesetzt. Dies habe ich an den entsprechenden Stellen der Arbeit kenntlich gemacht.
 

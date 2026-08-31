@@ -17,7 +17,7 @@
 
 Aus den Befunden in @sec:befunde und den Grenzen in @sec:wuerdigung ergeben sich mehrere Anknüpfungspunkte für zukünftige Entwicklungen.
 
-Am nächsten liegt die nach Verwendungszweck abgestufte Abfrage. Die Auswahl vermerkt zu jedem Datenpunkt die erforderliche Aktualität, das Abfrageintervall gilt am eingesetzten Stand jedoch geräteübergreifend, weshalb Stammdaten und Zählerstände im Takt des Schalterzustands gelesen werden. Ließe es sich je Datenpunktgruppe einstellen, wäre FA-02 erfüllt und die Abfragelast eines vollen Strangs weiter zu senken. Die Angaben dafür liegen in der Arbeitsmappe bereits vor.
+Am nächsten liegt die nach Verwendungszweck abgestufte Abfrage. Ließe sich das Intervall entgegen @sec:befunde je Datenpunktgruppe einstellen, wäre FA-02 erfüllt und die Abfragelast eines vollen Strangs weiter zu senken. Die Angaben dazu liegen in der Arbeitsmappe bereits vor.
 
 Die Typbeschreibung des Powercenters lässt sich abrunden. Sie ist nach @sec:umsetzung bewusst schmal gehalten und über Import und Instanzbildung hinaus ungeprüft, und der Zeit- und Synchronisationsstatus ist darin ausgespart geblieben. Seine Aufnahme wäre eine kleine Ergänzung, deren Nutzen allerdings an derselben Alarmierung hängt, denn eine abweichende Uhr des Datentransceivers entwertet die Zeitstempel des Strangs und fällt erst auf, wenn sie gemeldet wird.
 

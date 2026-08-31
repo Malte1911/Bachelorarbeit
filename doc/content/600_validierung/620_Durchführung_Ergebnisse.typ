@@ -30,7 +30,11 @@ T-14 ist nur eingeschränkt nachweisbar. Der betroffene Alarm lässt sich am Auf
 
 ==== Messwerte und ihre Darstellung
 
-T-03 ist im zwingenden Teil erfüllt. Das am Modbus-Treiber eingestellte Intervall von $1space.thin"s"$ wirkt, eine Änderung am Gerät erscheint innerhalb dieser Zeitspanne in Desigo CC. Eine nach Geräten oder Datenpunkten abgestufte Abfrage ist nicht einstellbar, sodass der als _soll_ formulierte Teil von FA-02 offenbleibt. Diese Einschränkung ist eine Eigenschaft des Treibers und in @sec:befunde eingeordnet.
+T-03 ist im zwingenden Teil erfüllt. Das am Modbus-Treiber eingestellte Intervall von $1space.thin"s"$ wirkt, eine am Gerät hervorgerufene Änderung erscheint innerhalb dieser Zeitspanne in Desigo CC, sobald sie am Powercenter vorliegt. Der zweite Schritt des Testfalls bestätigt zugleich die Gegenprobe: Ein für ein einzelnes Gerät oder für eine Gruppe von Datenpunkten abweichendes Intervall lässt sich nicht einstellen, sodass der als _soll_ formulierte Teil von FA-02 offenbleibt. Diese Einschränkung ist eine Eigenschaft des Treibers und in @sec:befunde eingeordnet.
+
+Die beobachtete Verzögerung ist dabei nicht dem Intervall allein zuzurechnen. Das Endgerät überträgt seine Werte nach @sec:ecpd_konnektivitaet in nach Größe gestaffelten Abständen von $2space.thin"s"$, $10space.thin"s"$ und $60space.thin"s"$ über die Funkstrecke, sodass die Abfrage in Desigo CC nur den Weg vom Powercenter zur Leitwarte bestimmt. Für Werte des langsamsten Rasters, etwa Spannung, Netzfrequenz oder Energie, liegt die Zeit bis zur Anzeige entsprechend über dem eingestellten Intervall, ohne dass darin ein Mangel der Anbindung läge. Das Ergebnis von T-03 gilt deshalb für den Weg zwischen Powercenter und Desigo CC und nicht für die Strecke vom Endgerät bis zur Anzeige.
+
+#kommentar[Bitte den Datenpunkt nennen, an dem die Aktualisierung beobachtet wurde, und ob die Änderung am Gerät oder über SENTRON Powerconfig hervorgerufen wurde. Der Absatz trennt bewusst die Abfrage von der Funkstrecke. Welches der drei Sendraster für den geprüften Wert galt, entscheidet darüber, ob die Beobachtung die $1space.thin"s"$ tatsächlich belegt.]
 
 T-04 ist erfüllt. Die Messwerte folgen der aufgeschalteten Last in Betrag und Richtung und stimmen der Größenordnung nach mit der Referenz überein. Eine Verwechslung von Kanälen, Vorzeichen oder Skalierungen ist nicht aufgetreten.
 
@@ -39,7 +43,9 @@ T-05 ist erfüllt. Beschriftung, Einheit, Skalierung und Vorzeichen stimmen für
 
 ==== Alarme und Meldungsverhalten
 
-T-06 ist nicht erfüllt. Die durch Überlast ausgelösten Zustände erreichen Desigo CC, jedoch nicht als einzelne, benannte Datenpunkte. Da sich das Sammelregister nach @sec:umsetzung weder über einen Subindex noch über einen #acro("BLOB") in eine Typbeschreibung überführen lässt, die Desigo CC annimmt, ist es als eine vorzeichenlose Ganzzahl abgebildet. Der ausgelöste Zustand ist damit als Änderung dieses einen Wertes beobachtbar und über @tab:apx_ecpd_alarme einer Meldung zuzuordnen, steht in Desigo CC aber nicht als eigener Zustand zur Auswertung bereit. Das erwartete Ergebnis aus @tab:testfaelle wird somit nicht erreicht.
+T-06 ist nicht erfüllt. Die Überlast nach @sec:testaufbau lässt das #acro("ECPD") innerhalb einer knappen Minute in den Standby-Zustand übergehen und setzt im Sammelregister das Bit 5, den Alarm 1 Überstrom nach @tab:apx_ecpd_alarme. Weitere Bits bleiben ungesetzt, insbesondere das Bit 13 für den ausgelösten Schalter, denn im Standby bleibt der mechanische Trennkontakt nach @sec:ecpd_geraet geschlossen und allein der Leistungshalbleiter sperrt. Der Zustand erreicht Desigo CC, jedoch nicht als einzelner, benannter Datenpunkt. Da sich das Sammelregister nach @sec:umsetzung weder über einen Subindex noch über einen #acro("BLOB") in eine Typbeschreibung überführen lässt, die Desigo CC annimmt, ist es als eine vorzeichenlose Ganzzahl abgebildet. Der ausgelöste Zustand ist damit als Änderung dieses einen Wertes beobachtbar und über @tab:apx_ecpd_alarme einer Meldung zuzuordnen, steht in Desigo CC aber nicht als eigener Zustand zur Auswertung bereit. Das erwartete Ergebnis aus @tab:testfaelle wird somit nicht erreicht.
+
+#kommentar[Zwei Angaben sind hier zu schärfen. Die Zeit bis zum Übergang in den Standby ist geschätzt und lag zwischen etwa 30 und 60 Sekunden, gemessen wurde sie nicht. Und der Schalterstatus in Register 3110 unterscheidet den planmäßigen Standby vom störungsbedingten. Welchen der beiden Werte das Gerät nach der Überlast führte, gehört an diese Stelle, da genau diese Unterscheidung nach @sec:datenpunkte der Grund für die Aufnahme des Registers ist.]
 
 T-07 ist nicht durchführbar. Der Testfall setzt eine eingerichtete Alarmkonfiguration voraus, die sich aus dem Datenmodell heraus nicht anlegen lässt und die auf einen Datenpunkt je Zustand angewiesen wäre. Solange die Zerlegung des Sammelregisters nicht trägt, fehlt dieser Konfiguration die Grundlage. Die in @sec:fa getroffene Feststellung, dass FA-04 und FA-05 erst im Zusammenwirken von Modell und Projektierung erfüllbar sind, bestätigt sich hier in verschärfter Form.
 
@@ -48,7 +54,7 @@ T-07 ist nicht durchführbar. Der Testfall setzt eine eingerichtete Alarmkonfigu
 
 T-08 ist nach der Freischaltung des Fernschaltens erfüllt. Der Befehl wird angenommen, die Ausführung ist über Register 3113 und der erreichte Schaltzustand über Register 3110 getrennt erkennbar, und ein weiterer Befehl ist nach dem Rücksetzen möglich. Bis zu dieser Freischaltung wies das Gerät jeden Schaltbefehl zurück. Der Vorgang ist als Befund in @sec:befunde ausgeführt, da seine Ursache außerhalb des Datenmodells liegt. Eine Einschränkung betrifft die Bedienung. Als digitaler Ausgang ausgeführt sendet die Schaltfläche nach @sec:uebernahme stets den Wert eins, weshalb beide wertabhängigen Kommandos als schreibende Werte umgesetzt und über die erweiterte Bedienung bedient werden.
 
-T-09 ist so nicht durchführbar. Die wiederkehrende Prüfung nach #acro("DGUV") Vorschrift 3 lässt sich nicht allein aus der Leitwarte abwickeln, da sie nach @sec:stakeholder die Beurteilung durch eine befähigte Person voraussetzt und diese Beurteilung kein Vorgang ist, den ein Gerät selbsttätig ausführt. Auch in der Praxis wird der Nachweis daher nicht über die Leitwarte allein geführt werden. Was das Modell beiträgt, ist der Anstoß des Gerätetests und des #acro("RCD")-Tests als Kommando sowie das Auslesen ihrer Ergebnisse. Die Prüfung wird damit unterstützt und nicht ersetzt, und FA-08 ist in der Fassung des Katalogs nicht erfüllbar. Das ist keine Eigenschaft der Lösung, sondern eine des Prüfregimes.
+T-09 ist erfüllt. Der Gerätetest und der #acro("RCD")-Test lassen sich als Kommando aus Desigo CC anstoßen, und ihre Ergebnisse stehen dort als eigene Datenpunkte zur Auswertung bereit. Die wiederkehrende Prüfung nach #acro("DGUV") Vorschrift 3 lässt sich damit unterstützen und dokumentieren, jedoch nicht allein aus der Leitwarte abwickeln, da sie nach @sec:stakeholder die Beurteilung durch eine befähigte Person voraussetzt und diese Beurteilung kein Vorgang ist, den ein Gerät selbsttätig ausführt. Auch in der Praxis wird der Nachweis daher nicht über die Leitwarte allein geführt werden. Der Testfall prüft nach der Anpassung in @sec:testuebersicht genau diesen Beitrag des Modells und nicht mehr die Abwicklung der Prüfung als Ganzes.
 
 
 ==== Verhalten im Betrieb und bei Ausfall
@@ -64,12 +70,14 @@ Die zweite Forderung von FA-10 ist dagegen erfüllt. Fällt die Verbindung aus, 
 
 ==== Änderbarkeit des Modells
 
-T-12 ist erfüllt, jedoch nicht ohne Vorbehalt. Ein Datenpunkt lässt sich im #acro("PDE") ergänzen und ein weiterer entfernen wie jede andere Bearbeitung der Typbeschreibung, die geänderte Fassung wird erneut eingelesen, und eine Neuerstellung des Modells ist dafür nicht erforderlich. Der Vorbehalt betrifft das Werkzeug. Beim Entfernen einzelner Eigenschaften wuchs die Typbeschreibung mehrfach sprunghaft an, in dem in @sec:umsetzung beschriebenen Fall von 22 auf 150 Megabyte, bis der #acro("PDE") sie nicht mehr öffnen konnte. Das Verhalten ließ sich weder verlässlich hervorrufen noch auf eine Ursache zurückführen und trat bei gleichartigen Änderungen nicht durchgängig auf. NFA-03 ist damit erfüllt, solange das Werkzeug mitspielt. Die Fortschreibbarkeit hängt an dessen Beständigkeit und nicht allein an der Gestalt des Modells, was für die Arbeitsweise bedeutet, Zwischenstände zu sichern.
+T-12 ist erfüllt, jedoch nicht ohne Vorbehalt. Ein Datenpunkt lässt sich im #acro("PDE") ergänzen und ein weiterer entfernen wie jede andere Bearbeitung der Typbeschreibung, die geänderte Fassung wird erneut eingelesen, und eine Neuerstellung des Modells ist dafür nicht erforderlich. Der Objekttyp führt anschließend den ergänzten Datenpunkt und nicht mehr den entfernten, die übrigen Eigenschaften bleiben unverändert, und die vor der Änderung angelegten Instanzen liefern weiterhin Werte. Damit sind sämtliche Teile des erwarteten Ergebnisses aus @tab:testfaelle beobachtet. Der Vorbehalt betrifft das Werkzeug. Beim Entfernen einzelner Eigenschaften wuchs die Typbeschreibung mehrfach sprunghaft an, in dem in @sec:umsetzung beschriebenen Fall von 22 auf 150 Megabyte, bis der #acro("PDE") sie nicht mehr öffnen konnte. Das Verhalten ließ sich weder verlässlich hervorrufen noch auf eine Ursache zurückführen und trat bei gleichartigen Änderungen nicht durchgängig auf. NFA-03 ist damit erfüllt, solange das Werkzeug mitspielt. Die Fortschreibbarkeit hängt an dessen Beständigkeit und nicht allein an der Gestalt des Modells, was für die Arbeitsweise bedeutet, Zwischenstände zu sichern.
 
 
 ==== Durchsicht der Dokumentation
 
-T-13 ist erfüllt. Die Unterlage genügt den Kriterien D-01 bis D-05 aus @tab:doku_kriterien, und beide Adressatenkreise finden die für sie erforderlichen Schritte. Die Aussagekraft dieses Ergebnisses ist allerdings begrenzt, denn die Kriterien lagen der Erstellung der Unterlage bereits zugrunde. Die Durchsicht bestätigt damit eine Vorgabe, die von vornherein befolgt wurde, statt eine unabhängige Prüfung zu sein. Ein Nachweis, dass die Unterlage im Projektgeschäft trägt, wäre erst an einer Integration durch Dritte zu führen.
+T-13 ist eingeschränkt nachweisbar. Von den Kriterien aus @tab:doku_kriterien sind D-01, D-04 und D-05 erfüllt. Jeder Datenpunkt des Modells ist in der Aufstellung mit Register, Datentyp, Einheit und Bedeutung wiederzufinden, die vorausgesetzte Geräteparametrierung ist vollständig benannt, und die Grenzen der Lösung stehen in der Unterlage, einschließlich der nicht zerlegbaren Alarme. Diese drei Kriterien entscheiden sich am Artefakt und sind von der Form der Durchsicht unabhängig.
+
+D-02 und D-03 bleiben dagegen offen. Die Durchsicht hat nach @sec:pruefablauf der Verfasser selbst vorgenommen, sodass nicht belegt ist, ob eine fremde sachkundige Person die Integration allein anhand der Unterlage durchführen kann. Für die Annahme spricht, dass der Import einer Typbeschreibung in Desigo CC demselben Weg folgt wie bei jedem anderen fremden Objektmodell und die Unterlage keinen Sonderweg beschreibt. Ein Beleg ist das nicht. Er wäre erst an einer Integration durch Dritte zu führen, worauf @sec:anforderungsabgleich für NFA-02 zurückkommt.
 
 
 ==== Übersicht der Ergebnisse
@@ -108,8 +116,8 @@ T-13 ist erfüllt. Die Unterlage genügt den Kriterien D-01 bis D-05 aus @tab:do
     [T-08], [erfüllt],
     [erst nach der Freischaltung über SENTRON Powerconfig, Bedienung über die erweiterte Bedienung],
 
-    [T-09], [nicht durchführbar],
-    [Prüfung nach #acro("DGUV") setzt die Beurteilung durch eine befähigte Person voraus, das Modell unterstützt die Prüfung über die Gerätetests],
+    [T-09], [erfüllt],
+    [Anstoß und Auslesen beider Tests bestätigt; die Beurteilung der wiederkehrenden Prüfung bleibt bei der befähigten Person],
 
     [T-10], [erfüllt],
     [--],
@@ -118,10 +126,10 @@ T-13 ist erfüllt. Die Unterlage genügt den Kriterien D-01 bis D-05 aus @tab:do
     [Ausfall der Modbus-Verbindung gemeldet, Ausfall der Funkstrecke ohne Meldung, Werte als gestört gekennzeichnet],
 
     [T-12], [erfüllt],
-    [Änderung im Modell möglich, sprunghaftes Wachstum der Datei beim Löschen von Eigenschaften ohne erkennbare Ursache],
+    [Änderung im Modell möglich und Instanzen weiter verwendbar, sprunghaftes Wachstum der Datei beim Löschen von Eigenschaften ohne erkennbare Ursache],
 
-    [T-13], [erfüllt],
-    [Kriterien lagen der Erstellung der Unterlage bereits zugrunde],
+    [T-13], [eingeschränkt nachweisbar],
+    [D-01, D-04 und D-05 am Artefakt bestätigt, D-02 und D-03 mangels unabhängiger Durchsicht offen],
 
     [T-14], [eingeschränkt nachweisbar],
     [Aktivierung nur am Registerwert erkennbar, Alarm am Aufbau nicht auslösbar],

@@ -94,9 +94,9 @@ Das Datenmodell wird von unterschiedlichen Personengruppen mit deutlich verschie
 
 Zwischen diesen Gruppen bestehen zwei Spannungsfelder, die die Gestaltung des Modells unmittelbar betreffen. Das erste verläuft zwischen dem Endkunden ohne eigene Entwicklung und dem selbst entwickelnden Endkunden: Ersterer verlangt eine Lösung, die fertig und ohne Erklärung funktioniert, letzterer eine, die offen und veränderbar ist. Beides ist nur vereinbar, wenn das Modell zwar unmittelbar einsetzbar, in seiner Struktur aber modular und dokumentiert ist. Das zweite Spannungsfeld verläuft zwischen dem Betreiber, der möglichst viele Informationen in der Leitwarte sehen möchte, und dem Instandhaltungspersonal sowie dem Systemintegrator, für die jeder zusätzliche Datenpunkt Projektierungs- und Kommunikationsaufwand bedeutet. Dass dieser Aufwand erheblich ausfällt, ist dabei nicht allein die Einschätzung der Beteiligten. Die Zuordnung der Datenpunkte eines Gebäudeleitsystems zu einer einheitlichen Beschreibung erfolgt nach dem Stand der Technik überwiegend von Hand und bleibt arbeitsintensiv und kostentreibend @src:wang2018. Dieses Spannungsfeld ist der eigentliche Grund dafür, dass die Auswahl der Datenpunkte einen eigenen Arbeitsschritt darstellt und nicht nebenbei erledigt werden kann.
 
-Eine Gruppe ist dabei gesondert einzuordnen. Der IT- und Netzwerkbetrieb ist zwar von der Lösung berührt, seine Erwartung lässt sich jedoch nicht allgemeingültig erfüllen: Netzarchitektur, Zonenmodell, Zugriffsregeln und Betriebskonzepte folgen bei jedem Kunden eigenen Vorgaben, sodass ein Sicherheitskonzept für die Anbindung nur im jeweiligen Projekt und nicht in einer generischen Integrationsvorlage festgelegt werden kann. Diese Arbeit benennt daher die sicherheitsrelevanten Eigenschaften des gewählten Übertragungswegs und die Voraussetzungen, unter denen er vertretbar betrieben werden kann; die Bewertung und Ausgestaltung der Netzsicherheit selbst ist ausdrücklich nicht Gegenstand der Arbeit.
+Eine Gruppe ist dabei gesondert einzuordnen. Der IT- und Netzwerkbetrieb ist zwar von der Lösung berührt, seine Erwartung lässt sich jedoch nicht allgemeingültig erfüllen: Netzarchitektur, Zonenmodell, Zugriffsregeln und Betriebskonzepte folgen bei jedem Kunden eigenen Vorgaben, sodass ein Sicherheitskonzept für die Anbindung nur im jeweiligen Projekt und nicht in einer generischen Integrationsvorlage festgelegt werden kann. Diese Arbeit benennt daher die sicherheitsrelevanten Eigenschaften des gewählten Übertragungswegs und die Voraussetzungen, unter denen er vertretbar betrieben werden kann. Die Bewertung und Ausgestaltung der Netzsicherheit selbst ist ausdrücklich nicht Gegenstand der Arbeit. 
 
-Eine Erwartung des Instandhaltungspersonals verdient dabei eine Einordnung, weil sie leicht überdehnt wird. Das #acro("ECPD") führt einen zyklischen Selbsttest durch und kann dessen Ergebnis melden (siehe @sec:ecpd_geraet). Damit lassen sich Gerätefehler früh sichtbar machen, die andernfalls erst bei einer wiederkehrenden Prüfung nach #acro("DGUV") Vorschrift 3 auffielen und dann Austausch und erneute Prüfung nach sich zögen. Die wiederkehrende Prüfung selbst lässt sich dadurch jedoch nicht ersetzen, da sie die Beurteilung durch eine befähigte Person voraussetzt. Die Erwartung richtet sich folglich auf die Unterstützung und die Dokumentation der Prüfung, nicht auf deren Automatisierung.
+Eine Erwartung des Instandhaltungspersonals verdient dabei eine Einordnung, weil sie leicht überdehnt wird. Das #acro("ECPD") führt einen zyklischen Selbsttest durch und kann dessen Ergebnis melden (siehe @sec:ecpd_geraet). Damit lassen sich Gerätefehler früh sichtbar machen, die andernfalls erst bei einer wiederkehrenden Prüfung nach #acro("DGUV") Vorschrift 3 auffielen und dann Austausch und erneute Prüfung nach sich ziehen würden. Die wiederkehrende Prüfung selbst lässt sich dadurch jedoch nicht ersetzen, da sie die Beurteilung durch eine befähigte Person voraussetzt. Die Erwartung richtet sich folglich auf die Unterstützung und die Dokumentation der Prüfung aus.
 
 Auffällig ist außerdem, dass die Gruppen mit dem höchsten Einfluss, also Betreiber, Instandhaltung, Systemintegrator und Produktmanagement, ihre Erwartungen an vergleichsweise wenige Eigenschaften knüpfen. Es sind die Verlässlichkeit der Zustandsanzeige, die Aussagekraft der Alarme, die Wiederverwendbarkeit des Modells und die Nachvollziehbarkeit seiner Struktur. Diese vier Eigenschaften bilden den Maßstab, an dem die Lösung in der Validierung zu messen ist.
 
@@ -114,63 +114,47 @@ Die Frage, über welchen Weg die Daten in Desigo CC gelangen, ist der Ausgangspu
 
 Aus dem Schnittstellenangebot des Powercenters (siehe @sec:powercenter_schnittstellen) und den Gegebenheiten der Feldebene ergeben sich sechs denkbare Wege. Die Bezeichner W1 bis W6 dienen allein der Verweisbarkeit innerhalb dieses Abschnitts.
 
-==== W1 Direkter Zugriff auf das Endgerät
+Drei Wege scheiden ohne nähere Bewertung aus. Der unmittelbare Zugriff auf das Endgerät (W1) ist technisch versperrt, da die Schutzschaltgeräte keine Modbus-Schnittstelle besitzen und ausschließlich über die Funkstrecke mit dem Powercenter kommunizieren @src:sentronsystemhandbuch. Die #acro("BLE")-Schnittstelle des Powercenters (W2) ist als örtlicher Zugang ausgelegt, unterstützt nur eine aktive Verbindung und schaltet sich nach $180space.thin"s"$ ohne Nutzung ab @src:sentronsystemhandbuch, womit sie für den zyklischen Dauerbetrieb ausfällt. Die Cloud-Anbindung über #acro("MQTT") (W5) steht allein am Powercenter 2000 zur Verfügung @src:sentronsystemhandbuch, während der Testaufbau ein Powercenter 1100 vorsieht, und zählt zudem nicht zu den von Desigo CC unterstützten Feldprotokollen @src:desigoccenghelp.
 
-Der naheliegendste Weg, das Endgerät unmittelbar anzusprechen, ist technisch versperrt. Die Schutzschaltgeräte besitzen keine Modbus-Schnittstelle und kommunizieren ausschließlich über die Funkstrecke mit dem Powercenter. Sie sind für übergeordnete Systeme nicht direkt erreichbar @src:sentronsystemhandbuch. Der Weg scheidet ohne weitere Bewertung aus.
+Modbus #acro("TCP") über das Powercenter (W3) ist auf beiden Seiten unterstützt. Das Powercenter tritt als Modbus-#acro("TCP")-Server auf und stellt die Daten aller unterlagerten Endgeräte über eine einzige #acro("IP")-Adresse bereit, wobei die Unterscheidung der Geräte über den Unit Identifier erfolgt @src:sentronsystemhandbuch. Lesende wie schreibende Zugriffe sind möglich, und auf der Gegenseite steht mit dem Erweiterungsmodul „Modbus TCP" ein vollständiger Treiber bereit, in dem Desigo CC als Client auftritt @src:desigoccenghelp. Die Ausgestaltung dieses Wegs wird in @sec:desigoccmechanik gesondert untersucht.
 
-==== W2 Bluetooth am Powercenter
+Die REST-Schnittstelle über #acro("HTTPS") (W4) ist der Modbus-Variante sicherheitstechnisch überlegen, da sie über #acro("TLS") verschlüsselt ist und der rollenbasierten Zugriffskontrolle des Powercenters unterliegt @src:sentronsystemhandbuch. Sie ist jedoch herstellerspezifisch, sodass in Desigo CC kein generisches Erweiterungsmodul dafür bereitsteht @src:desigoccenghelp und eine Anbindung eine Eigenentwicklung über das Software Development Kit erforderte. Ebenso wenig ließe sich der #acro("PDE") nutzen, dessen Ergebnis ausdrücklich eine Beschreibung der Modbus-Kommunikation ist @src:pdemanual. Die vorgesehene Werkzeugkette entfiele damit vollständig.
 
-Die #acro("BLE")-Schnittstelle ist als lokaler Zugang vor Ort ausgelegt. Sie unterstützt nur eine aktive Verbindung, schaltet sich nach $180space.thin"s"$ ohne Nutzung ab und ist über eine sechsstellige PIN abgesichert @src:sentronsystemhandbuch. Für eine dauerhafte, zyklische Anbindung eines Leitsystems ist sie damit weder vorgesehen noch geeignet.
+Bleibt der Umweg über ein vorgelagertes Fremdsystem (W6). Die vom #acro("PDE") unterstützten Zielapplikationen sind der SENTRON Powermanager und das SENTRON Powercenter 3000 @src:pdemanual. Von beiden lässt sich allein der Powermanager an Desigo CC koppeln, da er nach oben OPC DA bereitstellt @src:sentronsoftwareguide und Desigo CC dieses Protokoll auf der Feldebene unterstützt @src:desigoccdatasheet, während das Powercenter 3000 dafür ausschließlich #acro("MQTT") anbietet. Gangbar ist der Weg somit, er führt jedoch ein zweites Leitsystem mit eigener Datenhaltung, eigener Alarmierung und eigenem Wartungsbedarf ein und verschiebt die Abbildung der Gerätedaten lediglich in ein anderes System. Ein solches Zwischensystem entspricht dem in der Gebäudeautomation verbreiteten Muster der vermittelnden Schicht @src:perumal2010, deren Gewinn im Zusammenführen mehrerer ungleichartiger Quellen liegt. Genau diese Bedingung fehlt hier, da eine einzige Quelle anzubinden ist, die mit Modbus #acro("TCP") bereits ein von der Zielplattform unterstütztes Protokoll spricht. Auf den Fall mehrerer Stränge kommt @sec:weiterentwicklung zurück.
 
-==== W3 Modbus TCP über das Powercenter
-
-Das Powercenter tritt als Modbus-#acro("TCP")-Server auf und stellt die Daten aller unterlagerten Endgeräte über eine einzige #acro("IP")-Adresse bereit, wobei die Unterscheidung der Geräte über den Unit Identifier erfolgt @src:sentronsystemhandbuch. Lesende wie schreibende Zugriffe sind möglich, das Protokoll ist offen spezifiziert und lizenzfrei (siehe @sec:modbus). Auf der Gegenseite steht mit dem Erweiterungsmodul „Modbus TCP" ein vollständiger Treiber bereit, in dem Desigo CC als Client auftritt @src:desigoccenghelp. Die Ausgestaltung dieses Wegs wird in @sec:desigoccmechanik gesondert untersucht.
-
-==== W4 REST-Schnittstelle über HTTPS
-
-Diese Schnittstelle ist der Modbus-Variante sicherheitstechnisch deutlich überlegen, da sie über #acro("TLS") verschlüsselt ist und der rollenbasierten Zugriffskontrolle des Powercenters unterliegt @src:sentronsystemhandbuch. Sie ist jedoch herstellerspezifisch und damit kein Protokoll, für das in Desigo CC ein generisches Erweiterungsmodul bereitsteht @src:desigoccenghelp. Eine Anbindung erforderte eine Eigenentwicklung über das Software Development Kit. Ebenso wenig ließe sich der #acro("PDE") nutzen, dessen Ergebnis ausdrücklich eine Beschreibung der Modbus-Kommunikation ist @src:pdemanual. Die vorgesehene Werkzeugkette entfiele damit vollständig.
-
-==== W5 MQTT
-
-Die native Cloud-Anbindung steht ausschließlich am Powercenter 2000 zur Verfügung @src:sentronsystemhandbuch, während für den Testaufbau ein Powercenter 1100 vorgesehen ist. Unabhängig davon ist #acro("MQTT") ein publikationsgetriebenes Protokoll zur Anbindung externer Dienste. Es passt weder zum lokalen Charakter einer Gebäudemanagementplattform noch zählt es zu den von Desigo CC unterstützten Feldprotokollen @src:desigoccenghelp.
-
-==== W6 Vorgelagertes Fremdsystem
-
-Die vom #acro("PDE") ausdrücklich unterstützten Zielapplikationen sind der SENTRON Powermanager und das SENTRON Powercenter 3000 @src:pdemanual. Die Geräte ließen sich zunächst in einer dieser Applikationen einbinden und diese anschließend an Desigo CC koppeln. Beide Produkte verfolgen dasselbe Ziel, unterscheiden sich aber sowohl in ihrer Bauform als auch in ihren Schnittstellen, weshalb sie hier getrennt zu betrachten sind.
-
-Der SENTRON Powermanager ist ein Energiemanagementsystem, das unter Windows auf einem gewöhnlichen Rechner installiert wird, über eine Lizenz erworben wird und bis zu 700 unterlagerte Geräte je Server führt. Zur Feldebene hin unterstützt er neben Modbus #acro("TCP") auch OPC UA und OPC DA, IEC 61850 sowie BACnet, und nach oben stellt er OPC UA und OPC DA bereit @src:sentronsoftwareguide. Da Desigo CC OPC DA als Feldprotokoll unterstützt @src:desigoccdatasheet, ist eine Kopplung über diesen Weg tatsächlich möglich.
-
-Das SENTRON Powercenter 3000 ist demgegenüber kein Softwarepaket, sondern ein Industrierechner mit vorinstallierter Monitoring-Software, der als Gerät beschafft und über optionale Lizenzen erweitert wird und bis zu 212 unterlagerte Geräte führt. Zur Feldebene hin unterstützt er ausschließlich Modbus #acro("TCP"), und nach oben stellt er allein eine #acro("MQTT")-Schnittstelle zu Cloud-Diensten bereit @src:sentronsoftwareguide. Eine Kopplung an Desigo CC scheidet damit aus demselben Grund aus wie in W5.
-
-Gangbar ist folglich nur die Variante über den Powermanager. Sie führt jedoch ein zweites Leitsystem mit eigener Datenhaltung, eigener Alarmierung und eigenem Wartungsbedarf ein und verschiebt die eigentliche Aufgabe, nämlich die Abbildung der Gerätedaten in Desigo CC, lediglich in ein anderes System. Der Aufwand der Gesamtlösung steigt durch die zusätzliche Komponente und die zusätzliche Schnittstelle deutlich, ohne dass ein entsprechender Gewinn entstünde.
-
-Diese Bewertung lässt sich über den Einzelfall hinaus einordnen. Ein vorgelagertes System entspricht dem Muster der vermittelnden Zwischenschicht, mit der in der Gebäudeautomation seit langem auf die Vielfalt an Protokollen und Datenformaten reagiert wird @src:perumal2010. Ihr Gewinn besteht darin, mehrere ungleichartige Quellen auf eine gemeinsame Sicht zu bringen und die Teilsysteme dadurch von der Leitebene zu entkoppeln. Genau dieser Gewinn entfällt hier, da nur eine Quelle anzubinden ist und diese mit Modbus #acro("TCP") bereits ein von der Zielplattform unterstütztes Protokoll spricht. Der Weg wird also nicht verworfen, weil das Muster untauglich wäre, sondern weil die Bedingung fehlt, unter der es seinen Vorteil entfaltet.
-
-Zur Bewertung der verbleibenden Wege werden fünf Kriterien herangezogen. Es sind die Verfügbarkeit auf beiden Seiten, die Eignung für den zyklischen Dauerbetrieb, der erreichbare Datenumfang einschließlich schreibender Zugriffe, die Nutzbarkeit der vorgesehenen Werkzeugkette sowie der Bedarf an zusätzlichen Systemkomponenten. Die Informationssicherheit wird bewusst nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie im Gegensatz zu den anderen Kriterien durch Maßnahmen außerhalb des Protokolls beeinflussbar ist.
+Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zwei Ebenen wirken. Die beiden Ausschlusskriterien, das Vorhandensein der Schnittstelle und die Eignung für den Dauerbetrieb, haben bereits W1, W2 und W5 ausgeschieden und werden von W3, W4 und W6 erfüllt. Die Entscheidung fällt deshalb über die drei Abwägungskriterien, die keine Gewichtung tragen, sondern den Preis des jeweiligen Wegs benennen. Die Informationssicherheit wird dabei nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie sich im Gegensatz zu den übrigen durch Maßnahmen außerhalb des Protokolls beeinflussen lässt.
 
 #figure(
   table(
-    columns: (1fr, auto, auto, auto, auto),
+    columns: (1fr, auto, auto, auto),
     inset: 7pt,
-    align: (left, center, center, center, center),
+    align: (left, center, center, center),
     table.header(
-      [*Kriterium*], [*W2*], [*W3*], [*W4*], [*W6*],
+      [*Kriterium*], [*W3*], [*W4*], [*W6*],
     ),
-    [Beidseitig verfügbar], [nein], [ja], [nein], [ja],
-    [Zyklischer Dauerbetrieb], [nein], [ja], [ja], [ja],
-    [Datenumfang und Schreibzugriff], [ja], [ja], [ja], [eingeschränkt],
-    [Werkzeugkette nutzbar], [nein], [ja], [nein], [ja],
-    [Ohne Zusatzsysteme], [ja], [ja], [ja], [nein],
-    [*Ergebnis*], [*ungeeignet*], [*geeignet*], [*ungeeignet*], [*bedingt*],
+
+    table.cell(colspan: 4)[_Ausschlusskriterien_],
+    [Schnittstelle am Powercenter vorhanden], [ja], [ja], [ja],
+    [Für zyklischen Dauerbetrieb geeignet], [ja], [ja], [ja],
+
+    table.cell(colspan: 4)[_Abwägungskriterien_],
+    [Anbindung mit der vorgesehenen Werkzeugkette], [ja], [nein], [ja],
+    [Voller Datenumfang mit Schreibzugriff], [ja], [ja], [eingeschränkt],
+    [Ohne zusätzliches System], [ja], [ja], [nein],
+
+    [*Ausschlaggebender Nachteil*],
+    [*keine Verschlüsselung im Protokoll*],
+    [*Eigenentwicklung statt Werkzeugkette*],
+    [*zweites Leitsystem für eine Quelle*],
   ),
-  caption: [Bewertung der Integrationswege. W2 #acro("BLE"), W3 Modbus #acro("TCP"), W4 REST-Schnittstelle, W6 vorgelagerter Powermanager. W1 ist bereits technisch ausgeschlossen, W5 steht am eingesetzten Gerät nicht zur Verfügung]
+  caption: [Abwägung zwischen den gangbaren Integrationswegen. W3 Modbus #acro("TCP"), W4 REST-Schnittstelle, W6 vorgelagerter Powermanager. W1, W2 und W5 sind zuvor an den Ausschlusskriterien gescheitert]
 )<tab:integrationswege>
 
-Damit bleibt Modbus #acro("TCP") über das Powercenter als einziger Weg, der alle Kriterien erfüllt. Diese Feststellung ist weniger eine Auswahl unter gleichwertigen Alternativen als vielmehr die Bestätigung, dass die Schnittstellenlage von Quell- und Zielsystem nur eine Schnittmenge zulässt. Bemerkenswert ist dabei, dass ausgerechnet der sicherheitstechnisch schwächste Weg der einzige durchgängig unterstützte ist.
+Modbus #acro("TCP") über das Powercenter ist damit der einzige Weg, der ohne Eigenentwicklung und ohne zusätzliches System auskommt. Diese Feststellung ist weniger eine Auswahl unter gleichwertigen Alternativen als vielmehr die Bestätigung, dass die Schnittstellenlage von Quell- und Zielsystem nur eine Schnittmenge zulässt. Bemerkenswert ist dabei, dass ausgerechnet der sicherheitstechnisch schwächste Weg der einzige durchgängig unterstützte ist.
 
-Diese Schwäche ist keine Nebenbedingung, sondern die zentrale Einschränkung des gewählten Wegs. Da das Protokoll selbst weder Verschlüsselung noch Authentifizierung kennt (siehe @sec:modbus) und die rollenbasierte Zugriffskontrolle des Powercenters ausschließlich auf die #acro("HTTPS")-Kommunikation wirkt @src:sentronsystemhandbuch, kann ein Schutz nur außerhalb des Protokolls auf Netzebene entstehen. Daraus folgen drei Voraussetzungen, die als Randbedingungen in die Anforderungen einfließen. Die Modbus-Schnittstelle wird nur dort aktiviert, wo sie benötigt wird, was am Powercenter 1100 separat möglich ist @src:sentronsystemhandbuch. Die Kommunikation verbleibt in einem eigenen Netzsegment. Ein Zugriff über das lokale Netz hinaus erfolgt ausschließlich über #acro("VPN").
+Die sicherheitstechnische Schwäche ist die zentrale Einschränkung des gewählten Wegs. Da das Protokoll selbst weder Verschlüsselung noch Authentifizierung kennt (siehe @sec:modbus) und die rollenbasierte Zugriffskontrolle des Powercenters ausschließlich auf die #acro("HTTPS")-Kommunikation wirkt @src:sentronsystemhandbuch, kann ein Schutz nur außerhalb des Protokolls auf Netzebene entstehen. Daraus folgen drei Voraussetzungen, die als Randbedingungen in die Anforderungen einfließen. Die Modbus-Schnittstelle wird nur dort aktiviert, wo sie benötigt wird, was am Powercenter 1100 separat möglich ist @src:sentronsystemhandbuch. Die Kommunikation verbleibt in einem eigenen Netzsegment. Ein Zugriff über das lokale Netz hinaus erfolgt ausschließlich über #acro("VPN"). 
 
-Diese drei Punkte sind als Mindestvoraussetzungen des Betriebs zu verstehen, nicht als Sicherheitskonzept. Wie Segmentierung, Fernzugriff und Überwachung im Einzelnen umgesetzt werden, richtet sich nach den Vorgaben des jeweiligen Kunden und ist, wie in @sec:stakeholder abgegrenzt, nicht Gegenstand dieser Arbeit.
+Diese drei Punkte sind explizit kein Sicherheitskonzept, sondern als Mindestvoraussetzungen des Betriebs zu verstehen. Wie Segmentierung, Fernzugriff und Überwachung im Einzelnen umgesetzt werden, richtet sich nach den Vorgaben des jeweiligen Kunden und ist, wie in @sec:stakeholder abgegrenzt, kein Gegenstand dieser Arbeit.
 
 /* Claude: Drei Punkte aus der Durchsicht sind hier abgearbeitet.
    1. Der Hinweis, die Eingrenzung des Integrationswegs greife der
@@ -262,7 +246,7 @@ Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modb
 
 // #kommentar[Prüfung offen: Die Zeile zum Abfrageintervall stützt sich auf die Beobachtung am eingesetzten Stand, dass sich die Abfragegeschwindigkeit nur je Gerät und nicht je Datenpunktgruppe einstellen lässt. Die Engineering-Dokumentation beschreibt dagegen benannte Abfragegruppen mit eigenem Intervall. Vor Abgabe ist zu klären, ob die Gruppen an der installierten Version tatsächlich nicht nutzbar sind oder ob sie lediglich nicht projektiert waren. Von der Antwort hängt ab, ob die abgestufte Abfrage eine Möglichkeit der Weiterentwicklung bleibt oder bereits in dieser Arbeit umgesetzt werden kann.]
 
-Die letzte Zeile der Tabelle verdient besondere Beachtung. Sie bedeutet, dass ein Schaltbefehl und die zugehörige Rückmeldung im Modell zwingend zwei Eigenschaften belegen, selbst wenn beide auf dasselbe Register verweisen. Die Einschränkung trifft damit unmittelbar auf die Kommandoregister des #acro("ECPD"). Ebenso bemerkenswert ist das Mengengerüst. Bei rund 5.200 Datenpunkten für einen vollständig abgebildeten Strang, dessen Herleitung in @sec:registerraum folgt, ließen sich überschlägig nur etwa sechs Stränge über eine einzige Treiberinstanz betreiben. Auch von dieser Seite her ist eine Reduktion des Datenumfangs vonnöten.
+Die letzte Zeile der Tabelle verdient besondere Beachtung. Sie bedeutet, dass ein Schaltbefehl und die zugehörige Rückmeldung im Modell zwingend zwei Eigenschaften belegen, selbst wenn beide auf dasselbe Register verweisen. Die Einschränkung trifft damit unmittelbar auf die Kommandoregister des #acro("ECPD"). Ebenso bemerkenswert ist das Mengengerüst. Bei rund 3.900 Einträgen für einen vollständig abgebildeten Strang, dessen Herleitung in @sec:registerraum folgt, ließen sich überschlägig nur etwa acht Stränge über eine einzige Treiberinstanz betreiben. Auch von dieser Seite her ist eine Reduktion des Datenumfangs vonnöten.
 
 /* Claude: Der Auftrag "hier bitte noch ausformulieren und mit Quellen belegen"
    ist abgearbeitet; die drei Stichpunkte sind zu drei Absaetzen geworden
@@ -292,7 +276,7 @@ Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein e
   caption: [Erstes Lösungskonzept, Werkzeugkette vom #acro("PDE") über die #acro("JSON")-Typbeschreibung zum Objektmodell in Desigo CC sowie die Instanziierung je physischem Gerät über den Unit Identifier],
 )<img:konzept>
 
-Für die Abfrage gibt das Systemhandbuch drei Empfehlungen, nämlich jedes Gerät höchstens einmal pro Sekunde abzufragen, die Endgeräte sequenziell abzuarbeiten und Register blockweise zu lesen @src:sentronsystemhandbuch. Diese Abfragemethodik ist von Desigo CC bereits implementiert, da der Treiber einen einstellbaren Abstand zwischen den Anfragen kennt und benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp. Eine schnellere Abfrage brächte ohnehin keinen Gewinn, weil die Messwerte frühestens alle $2space.thin"s"$ aktualisiert werden @src:sentronsystemhandbuch. Da sich das Abfrageintervall nach @tab:modbustreiber nur am Treiber und weder je Gerät noch je Datenpunktgruppe einstellen lässt, werden alle Datenpunkte in demselben Takt gelesen. Die Abfragelast hängt damit unmittelbar an der Zahl der abgebildeten Datenpunkte, was die Auswahl der Daten zusätzlich begründet. Eine nach Verwendungszweck abgestufte Abfrage, bei der Zustands- und Alarmwerte häufiger gelesen würden als Zähler- und Stammdaten, wäre technisch wünschenswert und bleibt als Ansatzpunkt für eine Weiterentwicklung festzuhalten.
+Für die Abfrage gibt das Systemhandbuch drei Empfehlungen, nämlich jedes Gerät höchstens einmal pro Sekunde abzufragen, die Endgeräte sequenziell abzuarbeiten und Register blockweise zu lesen @src:sentronsystemhandbuch. Desigo CC setzt diese Methodik bereits um, da der Treiber einen einstellbaren Abstand zwischen den Anfragen kennt und benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp. Eine schnellere Abfrage brächte ohnehin keinen Gewinn, weil die Messwerte frühestens alle $2space.thin"s"$ aktualisiert werden @src:sentronsystemhandbuch. Das Intervall gilt nach @tab:modbustreiber jedoch für sämtliche Datenpunkte aller Geräte eines Treibers, sodass der am schnellsten benötigte Wert den Takt aller übrigen bestimmt. Die Abfragelast hängt damit unmittelbar an der Zahl der abgebildeten Datenpunkte, und eine nach Verwendungszweck abgestufte Abfrage bleibt ein Ansatzpunkt für eine Weiterentwicklung.
 
 Ungültige Messwerte kennzeichnet das Powercenter als _Not a Number_, und zusätzlich zeigt ein Statusdatenpunkt an, ob die Verbindung zum Endgerät besteht @src:sentronsystemhandbuch. Beides ist im Modell auszuwerten, damit ein ausgefallenes Gerät nicht als Gerät mit dem Messwert null erscheint.
 
@@ -334,7 +318,7 @@ Schließlich sieht der Entwurf eine feste Arbeitsteilung zwischen den beiden Wer
 
 Der gewählte Integrationsweg bestimmt, welche Daten überhaupt zur Verfügung stehen. Der folgende Überblick charakterisiert diesen Datenbestand; die begründete Auswahl der tatsächlich abzubildenden Datenpunkte erfolgt im Entwicklungsteil der Arbeit.
 
-Grundlage ist die Übersicht der Datenpunkte und Modbus-Register der Gerätefamilie @src:sentronregistermap. Sie weist für das Powercenter 177 und für das #acro("ECPD") 208 Datenpunkte aus. Da einem Powercenter bis zu 24 Endgeräte zugeordnet sein können, ergäbe eine vollständige Abbildung rund 5.200 Datenpunkte je Strang. Bereits diese Größenordnung zeigt, dass eine unbesehene Übernahme des Registerraums weder gegenüber der Kommunikationslast noch gegenüber der Bedienbarkeit in der Leitwarte zu vertreten wäre.
+Grundlage ist die Übersicht der Datenpunkte und Modbus-Register der Gerätefamilie @src:sentronregistermap. Sie weist für das Powercenter 211 und für das #acro("ECPD") 152 Einträge aus. Da einem Powercenter bis zu 24 Endgeräte zugeordnet sein können, ergäbe eine vollständige Abbildung eines voll bestückten Strangs rund 3.900 Einträge. Bereits diese Größenordnung zeigt, dass eine unbesehene Übernahme des Registerraums weder gegenüber der Kommunikationslast noch gegenüber der Bedienbarkeit in der Leitwarte zu vertreten wäre.
 
 Inhaltlich lassen sich die Register des #acro("ECPD") in sieben Gruppen einteilen. Diese Einteilung folgt nicht der Gliederung der Registerkarte, sondern dem Nutzungszweck aus Sicht des Betriebs und wurde im Rahmen dieser Arbeit vorgenommen.
 
@@ -416,30 +400,26 @@ Die vorangegangenen Abschnitte beschreiben, was technisch möglich ist. Welche d
     [Betreiber, IT-Betrieb],
 
     [UC-05],
-    [Last- und Energieverlauf je Abgang über die Zeit auswerten und in einem Dashboard darstellen.],
-    [Energiemanagement],
-
-    [UC-06],
     [Einen Stromkreis aus der Leitwarte schalten und anhand der Rückmeldung prüfen, ob der Befehl ausgeführt wurde.],
     [Betreiber, Instandhaltung],
 
-    [UC-07],
+    [UC-06],
     [Wiederkehrende Prüfung anstoßen, das Ergebnis auswerten und den Nachweis in Desigo CC dokumentieren.],
     [Elektrofachkraft],
 
-    [UC-08],
+    [UC-07],
     [Wartungsbedarf aus Zählerständen und Alarmen ableiten und einen Einsatz vorbereiten, ohne zuvor vor Ort zu prüfen.],
     [Instandhaltung],
 
-    [UC-09],
+    [UC-08],
     [Ein bestimmtes Gerät unter baugleichen Geräten im Verteiler auffinden.],
     [Servicetechniker],
 
-    [UC-10],
+    [UC-09],
     [Anlagendokumentation aus den Stammdaten der Geräte führen und Datenpunkte eindeutig beschriften.],
     [Betreiber, Integrator],
 
-    [UC-11],
+    [UC-10],
     [Einzelne Datenpunkte des Datenmodells ergänzen, entfernen oder anpassen, ohne das Modell neu zu erstellen.],
     [Siemens-Entwicklung],
   ),
@@ -465,3 +445,54 @@ Der Abgleich dieser Anwendungsfälle mit dem zu Beginn der Arbeit aufgestellten 
    Hinweis: Der Kommentar in Requirements.xlsx zu FA-11 verweist auf einen UC-12, den es
    in obiger Tabelle nicht gibt. In der Arbeit wird der Verweis daher nicht gefuehrt;
    die Zelle in der Arbeitsmappe waere bei Gelegenheit zu bereinigen. */
+
+/* Claude: @tab:integrationswege nach der Anmerkung des Betreuers umgebaut
+   (Ausschluss und Abwaegung vermischt) und am 31.08.2026 nach einem
+   Speicherkonflikt wiederhergestellt.
+
+   W2 ist aus der Tabelle entfernt. Der Absatz darueber sagt "Drei Wege
+   scheiden ohne naehere Bewertung aus" und nennt W1, W2 und W5, danach stand
+   W2 aber als bewertete Spalte in der Tabelle. Das war ein Widerspruch im
+   Abschnitt selbst, und die Bildunterschrift nannte nur W1 und W5.
+
+   Die Kriterien sind jetzt in zwei Gruppen gefuehrt. Ausschlusskriterien sind
+   die, an denen W1, W2 und W5 gescheitert sind; die drei verbleibenden Wege
+   erfuellen sie alle. Darunter stehen die Abwaegungskriterien, die keine
+   Gewichtung tragen. Statt eines Ergebnisworts nennt die Schlusszeile den
+   ausschlaggebenden Nachteil, weil "ungeeignet" zuvor sowohl fuer das
+   technisch Unmoegliche (W2) als auch fuer das nur Aufwendige (W4) stand,
+   obwohl der Text zu W4 die Eigenentwicklung ueber das SDK ausdruecklich als
+   gangbar beschreibt. Der Schlusssatz sagt nicht mehr "der alle Kriterien
+   erfuellt", da das alle fuenf Kriterien als Gates gelesen haette und W6 dann
+   schlicht durchgefallen waere.
+
+   Zahlenbasis in @sec:registerraum und im Absatz zum Mengengeruest auf die
+   Registerkarte umgestellt: ECPD 152, POC 1100 211, voll bestueckter Strang
+   rund 3900 Eintraege. Herleitung siehe Kommentar in @sec:datenpunkte.
+
+   VORBEHALT: Die Zahl der Straenge je Treiberinstanz ist nur proportional von
+   sechs auf acht mitgezogen. Die zugrunde liegende Obergrenze von Desigo CC
+   steht nirgends in der Arbeit. Entweder Quelle ergaenzen oder die Aussage
+   qualitativ fassen. */
+
+/* Claude: UC-05 (Last- und Energieverlauf je Abgang auswerten) am 31.08.2026
+   gestrichen, weil dem ECPD die Zaehlfunktion fuer die elektrische Arbeit fehlt
+   (siehe @sec:befunde). Der Anwendungsfall haette eine Faehigkeit vorausgesetzt,
+   die das Geraet nicht hat.
+
+   Die nachfolgenden Anwendungsfaelle sind aufgerueckt: alt UC-06 bis UC-11
+   heissen jetzt UC-05 bis UC-10. Umgestellt wurden alle Verweise in neun
+   Dateien (310, 320, 420, 530, 540, 560, 640, 720, 730). Die Tabelle laeuft
+   lueckenlos von UC-01 bis UC-10.
+
+   Verweise auf das gestrichene UC-05 sind an drei Stellen entfallen: FA-02 in
+   @sec:fa fuehrt jetzt nur noch UC-02, die Zeile "Messwerte" in
+   @tab:datenpunkte_ecpd nur noch UC-02 und UC-07, und die Aufzaehlung in
+   @sec:praxistauglichkeit ist entsprechend gekuerzt. Der fehlende Energiezaehler
+   bleibt als Befund in @sec:befunde und @sec:praxistauglichkeit erhalten, dort
+   aber als Eigenschaft des Geraets und nicht als unerfuellter Anwendungsfall.
+
+   ACHTUNG: Requirements.xlsx fuehrt weiterhin die alte Nummerierung. Die
+   Zuordnungen dort sind vor der Abgabe nachzuziehen, sonst zeigen die Zellen
+   auf die falschen Anwendungsfaelle. Der dort zu FA-11 vermerkte UC-12 existiert
+   ohnehin nicht und ist bei der Gelegenheit mit zu bereinigen. */

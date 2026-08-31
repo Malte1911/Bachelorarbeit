@@ -167,3 +167,50 @@ Am Powercenter sind im Sammelregister 2560 nur zwei Bits belegt, da das Gerät w
   )],
   caption: [Aus dem Sammelregister 2560 gebildete Alarmdatenpunkte des Powercenters]
 )<tab:apx_pc_alarme>
+
+== Rückverfolgbarkeit von Anwendungsfall bis Ergebnis<apx:rueckverfolgung>
+
+Die Zuordnungen zwischen Anwendungsfällen, Anforderungen, Datenmodell, Testfällen und Ergebnissen sind über @sec:usecases, @sec:fa, @sec:nfa, @sec:testfaelle und @sec:anforderungsabgleich verteilt. @tab:apx_rueckverfolgung führt sie an einer Stelle zusammen, sodass sich jede Anforderung von dem Anwendungsfall, aus dem sie hervorgeht, über das tragende Element des Datenmodells und den zugehörigen Testfall bis zum Ergebnis verfolgen lässt. Die Matrix enthält keine Aussage, die nicht bereits an einer der genannten Stellen steht; die Spalte zum Nachweis verweist auf den Abschnitt, in dem die Beobachtung ausgeführt ist.
+
+#figure(
+  text(size: 8pt, lang: "de", hyphenate: true)[#table(
+    columns: (6em, 5em, 1fr, 4.5em, 7em, 6.5em),
+    inset: 4pt,
+    align: (left + horizon, left + horizon, left, left + horizon, left + horizon, left + horizon),
+    table.header(
+      [*Anwendungsfall*], [*Anforderung*], [*Umsetzung im Modell*], [*Testfall*], [*Nachweis*], [*Ergebnis*],
+    ),
+    [UC-01], [FA-01], [Typbeschreibungen für #acro("ECPD") und Powercenter, Instanz je Unit Identifier], [T-01, T-02], [@sec:uebernahme], [erfüllt],
+
+    [UC-01], [FA-09], [Konfigurations- und Schutzregister nach K-02 und K-03 nicht im Modell], [T-10], [@sec:testdurchfuehrung], [erfüllt],
+
+    [UC-01], [NFA-05], [Trennung von Gerätetyp und Geräteinstanz], [T-02], [@sec:konzept], [teilweise erfüllt],
+
+    [UC-02], [FA-02], [zyklische Abfrage am Modbus-Treiber, Zyklusvorgabe je Datenpunkt in der Arbeitsmappe], [T-03], [@sec:kommunikationsstrecke], [erfüllt],
+
+    [UC-02, UC-07, UC-09], [FA-03], [Gruppe der Messwerte, acht Register mit Bezeichnung, Einheit, Skalierung und Vorzeichen], [T-04, T-05], [#ref(<apx:datenpunkte_ecpd>, supplement: [Anhang])], [erfüllt],
+
+    [UC-03], [FA-04], [`alarm_state` aus Register 2560, Bitzuordnung nach @tab:apx_ecpd_alarme], [T-06, T-07], [@sec:umsetzung], [nicht erfüllt],
+
+    [UC-03], [FA-05], [ohne Entsprechung im Modell, Alarmkategorien sind Projektierung], [T-07], [@sec:umsetzung], [nicht erfüllt],
+
+    [UC-04], [FA-10], [`device_status`, `radio_rssi` und Auswertung von _Not a Number_], [T-11], [@sec:testdurchfuehrung], [teilweise erfüllt],
+
+    [UC-05, UC-08], [FA-06], [Kommandogruppe aus sechs schreibenden Registern mit festem und dynamischem Kommandowert], [T-08], [@sec:uebernahme], [erfüllt],
+
+    [UC-06], [FA-08], [Kommandos für Geräte- und #acro("RCD")-Test, Statusregister 2679 und 2635], [T-09], [@sec:testdurchfuehrung], [erfüllt],
+
+    [UC-10], [NFA-01], [Dokumentation des Integrationswegs in dieser Arbeit und in der Unterlage], [T-13], [@sec:modelldoku], [erfüllt],
+
+    [UC-10], [NFA-02], [Unterlage für Errichter und Betreiber in einem Dokument], [T-13], [@sec:modelldoku], [teilweise erfüllt],
+
+    [UC-10], [NFA-03], [Gruppenstruktur der Typbeschreibung, im #acro("PDE") erneut bearbeitbar], [T-12], [@sec:testdurchfuehrung], [erfüllt],
+
+    [UC-10], [NFA-04], [Import auf dem Plattformstand nach @tab:werkzeuge], [T-01], [@sec:testdurchfuehrung], [erfüllt],
+
+    [--], [NFA-06], [Angabe der vorausgesetzten Parametrierung, Werkszustand nach @tab:apx_ecpd_alarme], [T-14], [@sec:geraetekonfiguration], [erfüllt],
+  )],
+  caption: [Rückverfolgbarkeit vom Anwendungsfall über die Anforderung und das tragende Element des Datenmodells zum Testfall und zum Ergebnis]
+)<tab:apx_rueckverfolgung>
+
+Zwei Stellen bleiben in der Matrix offen und sind als solche zu benennen. NFA-06 entspringt als einzige Anforderung keinem Anwendungsfall, sondern einer Eigenschaft der Geräte, was in @sec:nfa begründet ist. Umgekehrt erscheinen zwei Gruppen des Datenmodells nicht, weil ihnen keine Anforderung gegenübersteht. Die Zähler und Wartungsdaten mit sieben Registern und die Stammdaten mit acht Registern sind in @tab:datenpunkte_ecpd über UC-07 und UC-09 begründet, der Katalog verlangt sie jedoch nicht, da FA-03 nach @sec:fa bewusst auf die Messwerte begrenzt ist. Die Auswahl folgt an dieser Stelle unmittelbar den Anwendungsfällen und nicht dem Anforderungskatalog. Ihre Richtigkeit ist gleichwohl geprüft, denn T-05 erstreckt sich auf jeden abgebildeten Datenpunkt und nicht allein auf die Messwerte.

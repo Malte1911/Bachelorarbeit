@@ -30,46 +30,46 @@ Für die spätere Prüfung ist eine weitere Unterscheidung wesentlich, die der K
 
 #figure(
   table(
-    columns: (4em, 1fr, 7em),
+    columns: (4em, 1fr, 8.5em),
     inset: 6pt,
     align: (left + horizon, left, left + horizon),
     table.header(
       [*ID*], [*Anforderung*], [*Anwendungsfall*],
     ),
     [FA-01],
-    [#acro("ECPD") und Powercenter müssen über ein geeignetes Protokoll mit Desigo CC verbunden werden können. Dies setzt einen Import und eine Instanziierung in Desigo CC voraus.],
+    [#acro("ECPD") und Powercenter müssen sich über Modbus #acro("TCP") an Desigo CC anbinden lassen, indem die Typbeschreibung importiert und je physischem Gerät eine Instanz unter eigenem Unit Identifier angelegt wird.],
     [UC-01],
 
     [FA-02],
-    [Die Kommunikation muss zyklisch erfolgen und Datenpunkte zyklisch übermitteln. Die Frequenz soll konfigurierbar sein.],
-    [UC-02, UC-05],
+    [Die Datenpunkte müssen zyklisch in einem am Modbus-Treiber einstellbaren Intervall übertragen werden.],
+    [UC-02],
 
     [FA-03],
-    [Alle Messwerte des #acro("ECPD") müssen als Datenpunkte in Desigo CC sichtbar sein. Diese Messwerte müssen eine korrekte Beschriftung haben.],
-    [UC-02, UC-08, UC-10],
+    [Die Messgrößen des #acro("ECPD"), also Strom, Spannung, Netzfrequenz, Wirkleistung, Leistungsfaktor, Temperatur und Differenzstrom, müssen in Desigo CC mit Bezeichnung, Einheit, Skalierung und Vorzeichen nach der Registerkarte sichtbar sein.],
+    [UC-02, UC-07, UC-09],
 
     [FA-04],
-    [Es muss möglich sein, Statusmeldungen und Alarme in Desigo CC zu empfangen, anzeigen zu lassen, zu bearbeiten und zu quittieren. Das Verhalten soll hierbei gleich zu anderen Alarmen sein.],
+    [Statusmeldungen und Alarme des #acro("ECPD") müssen in Desigo CC als einzeln auswertbare Meldungen vorliegen und sich mit demselben Bedienverhalten wie Meldungen anderer Gewerke anzeigen, bearbeiten und quittieren lassen.],
     [UC-03],
 
     [FA-05],
-    [Die Alarme sollen den verschiedenen in Desigo CC vorhandenen Alarmkategorien passend zugeordnet werden.],
+    [Jeder Alarmdatenpunkt soll genau einer Alarmkategorie von Desigo CC zugeordnet sein, wobei Auslösungen als Störung, Vor-Alarme als Warnung und Zustandswechsel ohne Schutzwirkung als Hinweis geführt werden.],
     [UC-03],
 
     [FA-06],
     [Es muss möglich sein, über die gewählte Schnittstelle Fernsteuerbefehle für den laufenden Betrieb zu senden. Dazu zählen das elektronische Schalten, das Quittieren von Meldungen, das Anstoßen der Geräte- und #acro("RCD")-Prüfung sowie das Lokalisieren eines Geräts. Die Parametrierung geschützter Schutzeinstellungen ist hiervon ausgenommen und verbleibt bei SENTRON Powerconfig.],
-    [UC-06, UC-09],
+    [UC-05, UC-08],
 
     [FA-08],
-    [Eine automatische Prüfung nach #acro("DGUV") muss über Desigo CC möglich sein; diese Prüfung muss in Desigo CC dokumentiert werden.],
-    [UC-07],
+    [Der Gerätetest und der #acro("RCD")-Test müssen sich aus Desigo CC anstoßen lassen und ihr Ergebnis muss dort als Datenpunkt vorliegen, sodass die wiederkehrende Prüfung nach #acro("DGUV") Vorschrift 3 unterstützt und dokumentiert werden kann.],
+    [UC-06],
 
     [FA-09],
     [Die initiale Konfiguration soll weiterhin über SENTRON Powerconfig möglich sein.],
     [UC-01],
 
     [FA-10],
-    [Bei Kommunikationsunterbrechung muss ein Alarm ausgelöst werden. Ebenso müssen als ungültig gekennzeichnete Messwerte und ein fehlender Verbindungsstatus zu einem Endgerät als solche erkennbar sein und dürfen nicht als gültiger Messwert dargestellt werden.],
+    [Ein Ausfall der Verbindung zu einem Endgerät oder zum Powercenter sowie ein vom Gerät als ungültig gekennzeichneter Messwert müssen in Desigo CC als solche erkennbar sein und dürfen nicht als gültiger Messwert erscheinen.],
     [UC-04],
   ),
   caption: [Funktionale Anforderungen an das Datenmodell und ihre Zuordnung zu den Anwendungsfällen aus @tab:usecases]
@@ -99,7 +99,7 @@ Genau an dieser Stelle liegt die deutlichste Grenze des Datenmodells, die sich e
 
 FA-10 schließlich grenzt zwei Fälle voneinander ab, die in der Leitwarte leicht verwechselt werden -- ein tatsächliches Anlagenereignis und ein Ausfall der Datenverbindung -- und verlangt zusätzlich, dass ungültige Werte nicht als gültige erscheinen.
 
-*Eingriff und Arbeitsteilung.* FA-06, FA-08 und FA-09 bestimmen, wie weit die Bedienung über Desigo CC reichen soll. FA-06 beschränkt sich nach der in @sec:anforderungsvorbehalte genannten Änderung auf Befehle des laufenden Betriebs. FA-08 verlangt, die wiederkehrende Prüfung über Desigo CC anzustoßen und ihr Ergebnis dort zu dokumentieren; die Anforderung setzt damit sowohl einen schreibenden Datenpunkt als auch eine Archivierung des Ergebnisses voraus. FA-09 hält die initiale Konfiguration bei SENTRON Powerconfig und bildet gemeinsam mit FA-06 die in @sec:konzept eingeführte Arbeitsteilung zwischen beiden Werkzeugen ab.
+*Eingriff und Arbeitsteilung.* FA-06, FA-08 und FA-09 bestimmen, wie weit die Bedienung über Desigo CC reichen soll. FA-06 beschränkt sich nach der in @sec:anforderungsvorbehalte genannten Änderung auf Befehle des laufenden Betriebs. FA-08 verlangt, den Geräte- und den #acro("RCD")-Test über Desigo CC anzustoßen und ihr Ergebnis dort verfügbar zu halten, und setzt damit einen schreibenden Datenpunkt je Test sowie einen lesenden Datenpunkt je Ergebnis voraus. Die wiederkehrende Prüfung selbst wird dadurch unterstützt und nicht ersetzt, da sie nach @sec:stakeholder die Beurteilung durch eine befähigte Person voraussetzt. FA-09 hält die initiale Konfiguration bei SENTRON Powerconfig und bildet gemeinsam mit FA-06 die in @sec:konzept eingeführte Arbeitsteilung zwischen beiden Werkzeugen ab.
 
 Diese Arbeitsteilung ist keine vorläufige Einschränkung, sondern beabsichtigt, und sie bestimmt den Zuschnitt beider Anforderungen. SENTRON Powerconfig lässt sich nicht ablösen: Die errichtende Fachkraft benötigt es für die Inbetriebnahme und für jeden Eingriff in die Funktionsweise der Geräte. Der Schwerpunkt in Desigo CC liegt demgegenüber auf der Überwachung und auf einfachen Bedienhandlungen; sobald der elektrotechnische Aufbau oder die Wirkungsweise eines Geräts verändert wird, hat dies durch eine fachkundige Person über SENTRON Powerconfig zu geschehen. FA-06 und FA-09 schreiben damit fest, was die Geräte ohnehin erzwingen: Ein Teil der Schutzparameter ist nur nach einer Freigabe am Gerät selbst veränderbar @src:sentronsystemhandbuch. Die Grenze verläuft folglich nicht entlang dessen, was über Modbus technisch schreibbar wäre, sondern entlang der Verantwortung für den sicheren Zustand der Anlage.
 
@@ -123,19 +123,19 @@ Diese Arbeitsteilung ist keine vorläufige Einschränkung, sondern beabsichtigt,
     ),
     [NFA-01],
     [Der gesamte Integrationsprozess muss vollständig dokumentiert sein.],
-    [UC-11],
+    [UC-10],
 
     [NFA-02],
     [Es muss eine Anleitung zur Integration des entwickelten Modells für Desigo CC geben. Diese Anleitung soll sowohl für technisches Personal, welches die Anlagen installiert, als auch für administratives Personal, welches die Konfiguration in Desigo CC vornimmt, geeignet sein.],
-    [UC-11],
+    [UC-10],
 
     [NFA-03],
     [Das Modell muss modular aufgebaut sein, sodass einzelne Datenpunkte oder Funktionen ohne vollständige Neuerstellung angepasst werden können.],
-    [UC-11],
+    [UC-10],
 
     [NFA-04],
     [Das Objektmodell muss mit Desigo CC in der Version 9.0 kompatibel sein.],
-    [UC-11],
+    [UC-10],
 
     [NFA-05],
     [Das Modell muss für den Einsatz mit mehreren #acro("ECPD")-Instanzen erweiterbar sein.],
@@ -257,10 +257,39 @@ Der Abgleich zwischen den Anwendungsfällen aus @sec:usecases und dem ursprüngl
 // den folgenden Abschnitt muss ich mir nochmal intensivst anschauen ob das sinnvoll und konsistent ist so da einzufügen
 Zwei Punkte sind bewusst nicht durch eine Änderung des Katalogs aufgelöst worden, weil sie sich nicht durch eine Festlegung, sondern nur durch eine Messung klären lassen.
 
-Der erste betrifft die *Belastbarkeit des Fernschaltens*. UC-06 und FA-06 setzen voraus, dass sich das #acro("ECPD") elektronisch fernschalten lässt. Am Testaufbau weist das Gerät den entsprechenden Schreibzugriff zurück, obwohl andere schreibende Zugriffe angenommen werden und die Schaltfunktion als geschützter Parameter freigegeben ist. Die Anforderung bleibt bestehen, wird aber unter Vorbehalt geführt. Die Klärung ist Gegenstand des Validierungsteils.
-
-
+Der erste betrifft die *Belastbarkeit des Fernschaltens*. UC-05 und FA-06 setzen voraus, dass sich das #acro("ECPD") elektronisch fernschalten lässt. Am Testaufbau weist das Gerät den entsprechenden Schreibzugriff zurück, obwohl andere schreibende Zugriffe angenommen werden und die Schaltfunktion als geschützter Parameter freigegeben ist. Die Anforderung bleibt bestehen, wird aber unter Vorbehalt geführt. Die Klärung ist Gegenstand des Validierungsteils.
 
 Der zweite betrifft die *geforderte Systemversion* nach NFA-04. Die Engineering-Dokumentation beschreibt die für diese Arbeit maßgeblichen Mechanismen, ein fehlerfreier Import der konkreten Typbeschreibung unter dem geforderten Stand lässt sich daraus jedoch nicht ableiten. Auch dieser Nachweis ist am Testaufbau zu führen.
 
 Nicht Gegenstand des Katalogs sind schließlich mehrere Punkte, deren Ausschluss sich aus der Analyse ergibt: eine Ablösung von SENTRON Powerconfig (siehe @sec:konzept), eine Rückwärtskompatibilität zu einer bestehenden Anbindung -- eine solche existiert nicht --, Eingriffe in die Schutzfunktion der Geräte sowie Anforderungen an die Architektur von Desigo CC selbst (siehe @sec:systemanalyse). Ebenfalls nicht Gegenstand ist die Ausgestaltung der Netzsicherheit: RB-05 bis RB-07 benennen die Mindestvoraussetzungen des Betriebs, das Sicherheitskonzept selbst richtet sich jedoch nach den Vorgaben des jeweiligen Kunden und lässt sich nicht allgemeingültig festlegen (siehe @sec:stakeholder). Hinzu kommen die beiden oben genannten, nicht in den Katalog übernommenen Punkte: die Gestaltung von Dashboards und Archivgruppen, die der Projektierung im Zielsystem vorbehalten bleibt, sowie die Nachvollziehbarkeit von Änderungen an geschützten Geräteparametern.
+
+/* Claude: Nachtrag zum Kommentar oben, der FA-08 noch als unveraendert fuehrt.
+   Die dort offene Frage ist am 31.08.2026 entschieden. FA-08 verlangte eine
+   "automatische Pruefung nach DGUV ueber Desigo CC" und damit etwas, das
+   @sec:stakeholder, @sec:testdurchfuehrung und @sec:anforderungsabgleich
+   uebereinstimmend fuer unmoeglich erklaeren, weil die wiederkehrende Pruefung
+   die Beurteilung durch eine befaehigte Person voraussetzt. Der Katalog mass
+   die Loesung also an einem Ziel, das die Arbeit selbst ausschliesst.
+
+   FA-08 fordert jetzt den Anstoss beider Tests und die Verfuegbarkeit ihrer
+   Ergebnisse. Beides ist am Testaufbau nachgewiesen, weshalb T-09 von "nicht
+   durchfuehrbar" auf "erfuellt" und FA-08 von "nicht erfuellt" auf "erfuellt"
+   wechselt. Die Grenze bleibt im Text an jeder Stelle benannt.
+
+   Sieben Anforderungen sind praeziser gefasst worden, ohne dass eine neue
+   hinzugekommen ist. FA-01 nennt Modbus TCP statt "geeignetes Protokoll".
+   FA-03 zaehlt die sieben Messgroessen auf und uebernimmt den Massstab aus
+   T-05 statt "korrekte Beschriftung". FA-04 fuehrt das gleiche Bedienverhalten
+   als Attribut statt als zweites Soll. FA-05 traegt die Zuordnungsregel
+   Ausloesung/Vor-Alarm/Zustandswechsel. FA-10 fasst beide Saetze zu einer
+   Pflicht zusammen. FA-02 ist auf die zyklische Uebertragung im am Treiber
+   einstellbaren Intervall beschraenkt.
+
+   ACHTUNG FA-02: Diese Einschraenkung ist eine inhaltliche Entscheidung des
+   Autors, keine blosse Umformulierung. Die zuvor mitgeforderte abgestufte
+   Abfrage war der Grund fuer "teilweise erfuellt". Sie ist nicht verschwunden,
+   sondern steht als Grenze in @sec:anforderungsabgleich und als Ansatzpunkt
+   der Weiterentwicklung in @sec:konzept. Die Bilanz lautet jetzt elf erfuellt,
+   zwei teilweise, zwei nicht statt neun, drei, drei.
+
+   Requirements.xlsx traegt weiterhin die alten Formulierungen. */

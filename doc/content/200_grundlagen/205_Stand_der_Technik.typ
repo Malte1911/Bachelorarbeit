@@ -4,7 +4,7 @@
 
 == Stand der Technik und Quellenlage<sec:stand>
 
-Bevor die einzelnen Bestandteile des betrachteten Systems beschrieben werden, ist zu klären, an welchen Stand der Technik die Arbeit anschließt und auf welcher Art von Quellen ihre Aussagen beruhen. Beides gehört zusammen, denn die Beschaffenheit der verfügbaren Quellen bestimmt unmittelbar, welche Aussagen belegbar sind und welche am Gerät zu prüfen bleiben.
+Bevor die einzelnen Bestandteile des betrachteten Systems beschrieben werden, ist zu klären, an welchen Stand der Technik die Arbeit anschließt und auf welcher Art von Quellen ihre Aussagen beruhen. Die Beschaffenheit der verfügbaren Quellen bestimmt, welche Aussagen belegbar sind und welche am Gerät zu prüfen bleiben.
 
 
 === Einordnung in den Stand der Technik<sec:standdertechnik>
@@ -19,7 +19,7 @@ Der hier betrachtete Fall ist eine engere Ausprägung desselben Problems. Diesel
 
 Für die vorliegende Arbeit folgt daraus, dass eine wiederverwendbare Typbeschreibung das Problem an seiner Wurzel greift, da eine einmal geleistete Zuordnung für alle Geräte desselben Typs gilt und in Folgeprojekten erhalten bleibt.
 
-Zur konkreten Verbindung von Schaltkreisschutzgeräten dieser Bauart, dem SENTRON Powercenter und einer Gebäudemanagementplattform ließ sich dagegen keine wissenschaftliche Veröffentlichung auffinden. Dieser Befund ist nicht nur eine Feststellung über die Literatur, sondern deckt sich mit dem Zustand der Werkzeuge selbst, da die Gerätereihe auch in der mitgelieferten Objektmodellbibliothek der Zielplattform fehlt (siehe @sec:systemanalyse). Die Arbeit bewegt sich damit in einem Feld, dessen allgemeine Problemstellung gut beschrieben ist, dessen konkreter Anwendungsfall jedoch bislang nicht bearbeitet wurde.
+Zur konkreten Verbindung von Schaltkreisschutzgeräten dieser Bauart, dem SENTRON Powercenter und einer Gebäudemanagementplattform ließ sich dagegen, soweit ersichtlich, keine wissenschaftliche Veröffentlichung auffinden. Suchen über Titel und Kurzfassung in den Literaturdatenbank Science Direct bleiben für die Verknüpfungen "SENTRON Desigo", "SENTRON Powercenter", "Powercenter 1100", "electronic circuit protection device Modbus" sowie "circuit protection device building management system" ohne für den Kontext der Arbeit relevante Treffer, während allgemeiner gefasste Suchen wie "building management system Modbus" durchaus Ergebnisse liefern jedoch die Treffer zu SENTRON durchweg die Messgeräte der PAC-Reihe betreffen (Stand 31. August 2026). Nach Kenntnis des Verfassers liegt zu dieser Gerätekombination somit keine veröffentlichte Vorarbeit vor. Dieser Befund deckt sich mit dem Zustand der Werkzeuge selbst, da die Gerätereihe auch in der mitgelieferten Objektmodellbibliothek der Zielplattform fehlt (siehe @sec:systemanalyse). Die Arbeit bewegt sich damit in einem Feld, dessen allgemeine Problemstellung gut beschrieben ist, dessen konkreter Anwendungsfall jedoch bislang nicht bearbeitet wurde.
 
 
 === Quellenlage und Umgang mit den Quellen<sec:quellenlage>
@@ -40,3 +40,15 @@ Für den Umgang mit den Quellen ergibt sich daraus eine durchgehende Regel. Wo e
    Der Absatz zur fehlenden Veroeffentlichung ueber genau diese Geraete-Plattform-
    Paarung ist bewusst als Befund und nicht als Beleg formuliert, weil sich das
    Fehlen von Literatur nicht positiv belegen laesst. */
+
+/* Claude: Die im Absatz genannten Suchstrings wurden am 31.08.2026 tatsaechlich
+   abgefragt, nicht geschaetzt. Nachvollziehen:
+     api.semanticscholar.org/graph/v1/paper/search/bulk?query=<string>  (Feld "total",
+       UND-Operator ist "+"), api.openalex.org/works?filter=title_and_abstract.search:
+       <string>  (Feld meta.count, UND-Operator ist "AND").
+   Positivkontrollen mit gleicher Kodierung: "SENTRON"+"PAC4200" -> 3,
+   "Desigo CC"+"SCADA" -> 1, ein Nulltreffer geht also nicht auf falsche Syntax
+   zurueck. Crossref taugt hier nicht, weil query.bibliographic oder-verknuepft.
+   Formulierung bewusst mit "soweit ersichtlich" / "nach Kenntnis des Verfassers",
+   da beide Datenbanken nur Titel und Kurzfassung indexieren und keine
+   Herstellerdokumentation erfassen. */

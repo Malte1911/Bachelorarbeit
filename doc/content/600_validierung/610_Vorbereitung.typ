@@ -29,7 +29,7 @@ Weichen zwei Zugänge voneinander ab, gilt nach @sec:quellenlage die Beobachtung
 
 ==== Durchsicht der Dokumentation
 
-T-13 ist nach @sec:testanmerkungen der einzige Testfall ohne objektives Kriterium. Die Kriterien D-01 bis D-05 liegen mit @tab:doku_kriterien vor der Durchsicht fest und werden hier nur angewandt. Die Durchsicht nimmt eine an der Entwicklung unbeteiligte, mit Desigo CC vertraute Person anhand der fertiggestellten Unterlage vor. Das Ergebnis ist in @sec:testdurchfuehrung festgehalten.
+T-13 stützt sich nach @sec:testabdeckung als einziger Testfall auf eine Durchsicht. Die Kriterien D-01 bis D-05 liegen mit @tab:doku_kriterien seit @sec:dokukriterien fest und werden hier nur angewandt. Die Durchsicht hat der Verfasser selbst vorgenommen, da eine an der Entwicklung unbeteiligte Person dafür nicht zur Verfügung stand. Für D-01, D-04 und D-05 bleibt das ohne Folgen, denn sie entscheiden sich am Artefakt, indem Unterlage, Modell und Registerkarte gegeneinander gehalten werden. D-02 und D-03 richten sich auf die Wirkung der Unterlage bei einem fremden Leser und sind auf diesem Weg nicht zu belegen. Das Ergebnis ist mit dieser Einschränkung in @sec:testdurchfuehrung festgehalten.
 
 /* Claude: Abschnitt nach dem mit dem Autor abgestimmten Konzept ausformuliert
    und bewusst knapp gehalten. Die beiden urspruenglichen #kommentar-Bloecke sind

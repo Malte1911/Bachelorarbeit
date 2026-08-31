@@ -24,6 +24,11 @@
 //   Rahmen in Petrol     = Systemgrenze der Arbeit
 //   Sandflaeche          = Zusammenfassung zu einer Einheit (z. B. Strang)
 //
+// Drei Abbildungen erweitern oder ersetzen diese Kodierung und weisen das
+// jeweils in einer eigenen Legende aus: abb_vmodell und abb_ablauf_entwicklung
+// zeigen einen Arbeitsablauf statt eines Datenpfads, abb_testaufbau traegt
+// zusaetzlich den Stromkreis (dg_linie_strom).
+//
 // Alle Toene stammen aus config/colors.typ, also aus der Farbbibliothek der
 // Siemens AG. Die Zuordnung folgt dem Kontrast gegen Weiss: Deep Blue traegt
 // den Haupttext, Deep Blue 60 % den Nebentext, Deep Blue 50 % die
@@ -51,6 +56,11 @@
 #let dg_rahmen_geraet = 0.7pt + dg_text
 #let dg_rahmen_werkzeug = (paint: dg_zurueck, thickness: 0.7pt, dash: "dashed")
 #let dg_rahmen_grenze = (paint: dg_akzent, thickness: 1pt, dash: "dashed")
+// Elektrische Verbindung, also Speisung und Laststrom. Sie kommt nur in
+// abb_testaufbau vor, wo neben dem Datenpfad auch der Stromkreis zu zeigen ist.
+// Der Akzentton traegt hier eine Linie und keinen Text, was seinem Kontrast
+// entspricht; ein neuer Farbwert entsteht nicht.
+#let dg_linie_strom = 1.1pt + dg_akzent
 
 // Beschriftung innerhalb eines Kastens: Titel fett, Erlaeuterung klein und grau
 // Titel wird nicht getrennt, damit Produktnamen zusammenbleiben; die
@@ -284,6 +294,7 @@
 // in der Legende ausgewiesen wird:
 //   durchgezogene Kante  = Abfolge der Phasen
 //   gestrichelte Kante   = Zuordnung einer Spezifikations- zu einer Pruefebene
+//   Kante in Petrol      = Rueckkopplung aus der Erprobung in die Auswahl
 // Farben, Schrift und Rahmen bleiben unveraendert, damit die Abbildung trotz
 // der anderen Aussage zur uebrigen Bildsprache passt.
 //
@@ -327,19 +338,19 @@
     dg_phase(
       (0, 0),
       [Analyse],
-      zusatz: [Systemkontext, Stakeholder\ und Anwendungsfälle],
+      zusatz: [Anwendungsfälle und bewertete Integrationswege],
       name: <analyse>,
     ),
     dg_phase(
       (0, 1),
       [Anforderungen und Testfälle],
-      zusatz: [Anforderungskatalog mit\ zugeordneten Prüfkriterien],
+      zusatz: [Anforderungskatalog und Testfälle],
       name: <anforderungen>,
     ),
     dg_phase(
       (0, 2),
       [Auswahl der Daten],
-      zusatz: [Festlegung der abzubildenden\ Datenpunkte],
+      zusatz: [Datenpunktauswahl je Gerätetyp mit Bilanz der Reduktion],
       name: <auswahl>,
     ),
 
@@ -347,7 +358,7 @@
     dg_phase(
       (1, 3),
       [Umsetzung des Mappings],
-      zusatz: [Gerätetypbeschreibung\ und Objektmodell],
+      zusatz: [zwei JSON-Typbeschreibungen und das Objektmodell],
       name: <umsetzung>,
     ),
 
@@ -355,19 +366,19 @@
     dg_phase(
       (2, 2),
       [Durchführung der Tests],
-      zusatz: [Prüfung am\ Hardware-Testaufbau],
+      zusatz: [Nachweis am Testaufbau, am Artefakt und durch Begutachtung],
       name: <durchfuehrung>,
     ),
     dg_phase(
       (2, 1),
       [Ergebnisse der Tests],
-      zusatz: [Abgleich mit dem\ Anforderungskatalog],
+      zusatz: [Anforderungsabgleich mit Erfüllungsgrad je Anforderung],
       name: <ergebnisse>,
     ),
     dg_phase(
       (2, 0),
       [Bewertung],
-      zusatz: [Praxistauglichkeit gegenüber\ den Erwartungen der Nutzer],
+      zusatz: [Bewertung der Praxistauglichkeit],
       name: <bewertung>,
     ),
 
@@ -380,12 +391,12 @@
     edge(<ergebnisse>, <bewertung>, "->"),
 
     // --- Zuordnung Spezifikation und Pruefung ---
-    // Die unterste Zuordnung ist beidseitig gezeichnet, weil Auswahl der Daten
-    // und Pruefung am Aufbau einander wechselseitig bedingen.
+    // Alle Zuordnungskanten sind gleich gezeichnet. Die Rueckkopplung zwischen
+    // Umsetzung und Pruefung traegt eine eigene Kante, siehe unten.
     edge(
       <auswahl>,
       <durchfuehrung>,
-      "<->",
+      "--",
       dash: "dashed",
       stroke: dg_linie_engineering,
       label: [verifiziert gegen],
@@ -406,6 +417,22 @@
       stroke: dg_linie_engineering,
       label: [bewertet gegen],
     ),
+    // --- Rueckkopplung aus der Erprobung in die Auswahl ---
+    // Eigene Kantenart, weil es sich weder um die Abfolge der Phasen noch um
+    // eine Zuordnung von Spezifikation und Pruefung handelt. Belegt ist dieser
+    // Rueckfluss in @sec:umsetzung: die Erprobung am Testaufbau waehrend der
+    // Umsetzung hat Datenpunkte aus der zuvor getroffenen Auswahl gestrichen.
+    // Bewusst NICHT von der Durchfuehrung auf die Umsetzung gezeichnet, denn
+    // Kapitel 6 stellt Befunde fest und aendert das Modell nicht daraufhin.
+    // Gebogen, damit die Kante nicht auf der Phasenfolge liegt.
+    edge(
+      <umsetzung>,
+      <auswahl>,
+      "->",
+      bend: 40deg,
+      stroke: 0.7pt + dg_akzent,
+      label: [Erprobung ändert die Auswahl],
+    ),
   ))
 
   v(4mm)
@@ -415,6 +442,10 @@
     (
       line(length: 9mm, stroke: (paint: dg_grau, thickness: 0.7pt, dash: "dashed")),
       [Zuordnung von Spezifikation und Prüfung],
+    ),
+    (
+      line(length: 9mm, stroke: 0.7pt + dg_akzent),
+      [Rückkopplung aus der Erprobung in die Auswahl],
     ),
   )
 }
@@ -716,6 +747,263 @@
 }
 
 // ===========================================================================
+// ---------------------------------------------------------------------------
+// Abbildung: Arbeitsablauf des Entwicklungsteils  (Kapitel 5)
+// ---------------------------------------------------------------------------
+// ACHTUNG, abweichende Kodierung wie bei abb_vmodell: Diese Abbildung zeigt
+// keinen Datenpfad, sondern einen Arbeitsablauf. Die Kanten tragen deshalb
+// eine eigene Bedeutung, die in der Legende ausgewiesen wird:
+//   durchgezogene Kante  = Arbeitsschritt des Entwicklungsteils
+//   gestrichelte Kante   = Zulauf aus anderen Kapiteln und Ruecklauf aus der
+//                          Pruefung
+// Entsprechend sind die Schritte des Kapitels als dg_phase gesetzt, die
+// Bausteine ausserhalb des Kapitels als dg_werkzeug.
+//
+// Aufbau: Hauptkette senkrecht bei x = 0, Zulauf und Nebenergebnis links bei
+// x = -1, der Ruecklauf aus der Pruefung rechts bei x = 1.
+
+#let abb_ablauf_entwicklung = {
+  set text(font: "Arial", size: dg_schrift, fill: dg_text)
+  align(center, diagram(
+    spacing: (7mm, 9mm),
+    edge-stroke: dg_linie_betrieb,
+    label-size: dg_klein,
+    label-sep: 3pt,
+    label-wrapper: kante => box(
+      fill: white,
+      inset: (x: 2pt, y: 1pt),
+      text(fill: dg_grau)[#kante.label],
+    ),
+
+    // --- Zulauf aus Kapitel 3 ---
+    dg_werkzeug(
+      (0, 0),
+      [Registerkarte],
+      zusatz: [5169 Datenpunkte je Strang\ mit Adressen und Formaten],
+      name: <karte>,
+      breite: 58mm,
+    ),
+    dg_werkzeug(
+      (-1, 1),
+      [Anwendungsfälle\ und Anforderungen],
+      zusatz: [Zweck und Nachweis\ je Datenpunkt],
+      name: <bedarf>,
+      breite: 42mm,
+    ),
+
+    // --- Kette des Entwicklungsteils ---
+    dg_phase(
+      (0, 1),
+      [Kriterien der Datenauswahl],
+      zusatz: [sieben begründete Kriterien],
+      name: <kriterien>,
+      breite: 58mm,
+    ),
+    dg_phase(
+      (0, 2),
+      [Auswahl der Datenpunkte],
+      zusatz: [929 gelesene Register je Strang],
+      name: <auswahl>,
+      breite: 58mm,
+    ),
+    dg_phase(
+      (0, 3),
+      [Typbeschreibung im #acro("PDE")],
+      zusatz: [Benennung, Gruppen, Datentypen\ und Registeradressen],
+      name: <typ>,
+      breite: 58mm,
+    ),
+    dg_phase(
+      (0, 4),
+      [Übernahme in Desigo CC],
+      zusatz: [Objekttyp und Instanz je Gerät],
+      name: <uebernahme>,
+      breite: 58mm,
+    ),
+
+    // --- Nebenergebnis ---
+    dg_phase(
+      (-1, 4),
+      [Begleitende\ Unterlage],
+      zusatz: [Voraussetzungen,\ Schritte, Grenzen],
+      name: <doku>,
+      breite: 42mm,
+    ),
+
+    // --- Pruefung aus Kapitel 6 ---
+    dg_werkzeug(
+      (0, 5),
+      [Prüfung am Testaufbau],
+      zusatz: [Testfälle des Validierungsteils],
+      name: <pruefung>,
+      breite: 58mm,
+    ),
+
+    // --- Arbeitsschritte ---
+    edge(<karte>, <kriterien>, "->", dash: "dashed", stroke: dg_linie_engineering),
+    edge(<bedarf>, <kriterien>, "->", dash: "dashed", stroke: dg_linie_engineering),
+    edge(<kriterien>, <auswahl>, "->"),
+    edge(<auswahl>, <typ>, "->"),
+    edge(<typ>, <uebernahme>, "->"),
+    edge(<uebernahme>, <doku>, "->"),
+    edge(<uebernahme>, <pruefung>, "->", dash: "dashed", stroke: dg_linie_engineering),
+
+    // --- Ruecklauf aus der Pruefung ---
+    // Rechts an der Kette vorbei zurueck auf die Typbeschreibung, weil erst die
+    // Pruefung Alarmzerlegung und Datentypen abschliessend geklaert hat.
+    edge(
+      <pruefung>,
+      (1, 5),
+      (1, 3),
+      <typ>,
+      "->",
+      dash: "dashed",
+      stroke: dg_linie_engineering,
+      label: [Rücklauf],
+      label-pos: 0.5,
+    ),
+  ))
+
+  v(4mm)
+
+  dg_legende(
+    (line(length: 9mm, stroke: dg_linie_betrieb), [Arbeitsschritt des Kapitels]),
+    (
+      line(length: 9mm, stroke: (paint: dg_grau, thickness: 0.7pt, dash: "dashed")),
+      [Zulauf aus anderen Kapiteln und Rücklauf aus der Prüfung],
+    ),
+  )
+}
+
+
+
+// ---------------------------------------------------------------------------
+// Abbildung: Laboraufbau des Testaufbaus  (Abschnitt 4.1)
+// ---------------------------------------------------------------------------
+// Ergaenzt das Lichtbild um die Verschaltung, die auf einem Foto nicht zu
+// erkennen ist. Neben dem Datenpfad traegt diese Abbildung als einzige auch
+// den Stromkreis, weshalb die Bildsprache hier um eine dritte Kantenart
+// erweitert ist:
+//   durchgezogen dunkel  = Datenpfad im Betrieb
+//   gestrichelt dunkel   = Funkstrecke, wie in abb_systemaufbau
+//   gestrichelt grau     = Zugriff neben dem laufenden Datenpfad
+//   durchgezogen petrol  = Stromversorgung und Laststrom
+// Alle vier sind in der Legende ausgewiesen.
+//
+// Aufbau: Hauptkette senkrecht bei x = 0 von Desigo CC bis zur Last, die
+// Einspeisung links bei x = -1, das unabhaengige Modbus-Werkzeug rechts.
+
+#let abb_testaufbau = {
+  set text(font: "Arial", size: dg_schrift, fill: dg_text)
+  align(center, diagram(
+    spacing: (12mm, 11mm),
+    edge-stroke: dg_linie_betrieb,
+    label-size: dg_klein,
+    label-sep: 3pt,
+    label-wrapper: kante => box(inset: (x: 2pt, y: 1pt), kante.label),
+
+    // --- Datenpfad ---
+    dg_geraet(
+      (0, 0),
+      [Desigo CC],
+      zusatz: [Modbus-Treiber, Abfrageintervall $1space.thin"s"$],
+      name: <dcc>,
+      breite: 56mm,
+    ),
+    dg_geraet(
+      (0, 1),
+      [SENTRON Powercenter 1100],
+      zusatz: [Firmware 7.3.0,\ Unit Identifier 255],
+      name: <pc>,
+      breite: 56mm,
+    ),
+    dg_geraet(
+      (0, 2),
+      [#acro("ECPD") 5TY1-3MF16 COM],
+      zusatz: [Firmware 5.5.0, Unit Identifier 1,\ eingestellter Nennstrom $10space.thin"A"$],
+      name: <ecpd>,
+      breite: 56mm,
+    ),
+    dg_geraet(
+      (0, 3),
+      [Last (nicht im Bild)],
+      zusatz: [zwei Wasserkocher zu je $1800space.thin"W"$,\ über eine Steckdosenleiste],
+      name: <last>,
+      breite: 56mm,
+    ),
+
+    edge(
+      <pc>,
+      <dcc>,
+      "<->",
+      label: [Modbus #acro("TCP")\ über Ethernet],
+      label-side: right,
+    ),
+    edge(
+      <ecpd>,
+      <pc>,
+      "<->",
+      dash: "dashed",
+      stroke: dg_linie_betrieb,
+      label: [Funkstrecke],
+      label-side: right,
+    ),
+
+    // --- Einspeisung und Laststrom ---
+    dg_geraet(
+      (-1, 2),
+      [Einspeisung],
+      zusatz: [Raumabsicherung $16space.thin"A"$,\ Steckdose $230space.thin"V"$],
+      name: <netz>,
+      breite: 38mm,
+    ),
+    dg_geraet(
+      (-1, 1),
+      [Netzteil],
+      zusatz: [Hutschiene, speist\ das Powercenter],
+      name: <nt>,
+      breite: 38mm,
+    ),
+
+    edge(<netz>, <nt>, "->", stroke: dg_linie_strom, label: [$230space.thin"V"$], label-side: left),
+    edge(<nt>, <pc>, "->", stroke: dg_linie_strom, label: [$24space.thin"V"$]),
+    edge(<netz>, <ecpd>, "->", stroke: dg_linie_strom, label: [$230space.thin"V"$]),
+    edge(<ecpd>, <last>, "->", stroke: dg_linie_strom, label: [rund $15\,7space.thin"A"$], label-side: right),
+
+    // --- Werkzeug neben dem Datenpfad ---
+    dg_werkzeug(
+      (1, 1),
+      [QModMaster],
+      zusatz: [liest den Registerraum\ ohne das Datenmodell],
+      name: <qmm>,
+      breite: 38mm,
+    ),
+
+    edge(
+      <qmm>,
+      <pc>,
+      "->",
+      dash: "dashed",
+      stroke: dg_linie_engineering,
+    ),
+  ))
+
+  v(4mm)
+
+  dg_legende(
+    (line(length: 9mm, stroke: dg_linie_betrieb), [Datenpfad im Betrieb]),
+    (
+      line(length: 9mm, stroke: (paint: dg_text, thickness: 0.7pt, dash: "dashed")),
+      [Funkstrecke],
+    ),
+    (
+      line(length: 9mm, stroke: (paint: dg_grau, thickness: 0.7pt, dash: "dashed")),
+      [Gegenprobe am Register],
+    ),
+    (line(length: 9mm, stroke: dg_linie_strom), [Stromversorgung und Last]),
+  )
+}
+
 // Vorschauseite -- wird bei `#import` verworfen
 // ===========================================================================
 
@@ -773,6 +1061,24 @@
   caption: [Aufbau eines Modbus-#acro("TCP")-Telegramms, oben die Kapselung im
     Ethernet-Rahmen, unten die Felder der Anwendungsdateneinheit aus
     #acro("MBAP")-Kopf und Protokolldateneinheit mit ihren Bytepositionen],
+)
+
+#v(8mm)
+
+#figure(
+  abb_ablauf_entwicklung,
+  caption: [Arbeitsablauf des Entwicklungsteils, von der Registerkarte über
+    Kriterien und Auswahl zur Typbeschreibung und ihrer Übernahme, mit dem
+    Rücklauf aus der Prüfung am Testaufbau],
+)
+
+#v(8mm)
+
+#figure(
+  abb_testaufbau,
+  caption: [Verschaltung des Laboraufbaus mit Einspeisung, Last, Funkstrecke,
+    Powercenter, Ethernet-Anbindung an Desigo CC und dem unabhängigen
+    Modbus-Werkzeug],
 )
 
 // Notwendig, damit die Sprungziele von `#acro` auch in der Einzelansicht

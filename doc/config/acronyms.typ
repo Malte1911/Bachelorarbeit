@@ -81,7 +81,7 @@
           [#strong(key) #label("acro-" + key)], acronyms.at(key)
         )
         //linebreak()
-        v(0.2em)
+        v(0em)
       }
     }
   }

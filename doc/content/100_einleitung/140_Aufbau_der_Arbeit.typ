@@ -8,7 +8,7 @@
    Seite. Nicht die Methodik beschreiben, die steht in @sec:vorgehensmodell,
    sondern nur, welches Kapitel welche Frage beantwortet." */
 
-Die Arbeit ist entlang des in @sec:vorgehensmodell beschriebenen Vorgehens gegliedert. Sie führt vom Verständnis des Systems über die Anforderungen zur Umsetzung und von dort zurück zur Prüfung, wobei jedes Kapitel eine Frage beantwortet, die im vorangegangenen offengeblieben ist.
+Die Arbeit ist entlang des in @sec:vorgehensmodell beschriebenen Vorgehens gegliedert. Sie führt vom Verständnis des Systems über die Anforderungen zur Umsetzung und von dort zurück zur Prüfung.
 
 Die Grundlagen ordnen die Arbeit zunächst in den Stand der Technik ein und legen offen, auf welche Art von Quellen sich ihre Aussagen stützen (@sec:stand). Anschließend werden die Bestandteile des betrachteten Systems eingeführt, also die Schaltkreisschutzgeräte (@sec:ecpd), das Powercenter als Datenquelle (@sec:powercenter), das Protokoll der Übertragung (@sec:modbus), die Zielplattform (@sec:desigocc) und das Werkzeug, mit dem die Typbeschreibung entsteht (@sec:pde).
 

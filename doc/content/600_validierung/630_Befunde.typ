@@ -47,7 +47,7 @@ Nicht jede Beobachtung der Prüfung sagt etwas über das Datenmodell aus. Der fo
 
 ==== Der zurückgewiesene Schaltbefehl
 
-Über längere Zeit der Arbeit wies das #acro("ECPD") jeden Schaltbefehl zurück, obwohl es andere schreibende Zugriffe annahm und die Schaltfunktion als geschützter Parameter freigegeben war. Da damit weder die Adressierung noch die Schreibrichtung als Ursache in Betracht kamen, blieb der Befund über zwei Kapitel als Vorbehalt bestehen, in @sec:anforderungsvorbehalte für FA-06 und in @sec:testanmerkungen für T-08.
+Über längere Zeit der Arbeit wies das #acro("ECPD") jeden Schaltbefehl zurück, obwohl es andere schreibende Zugriffe annahm und die Schaltfunktion als geschützter Parameter freigegeben war. Da damit weder die Adressierung noch die Schreibrichtung als Ursache in Betracht kamen, blieb der Befund als Vorbehalt bestehen, in @sec:anforderungsvorbehalte für FA-06 und den zugehörigen Testfall T-08.
 
 Die Ursache liegt außerhalb des Registerraums. Das Gerät führt für das unauthentifizierte Fernschalten über Modbus einen eigenen Schalter, der ab Werk ausgeschaltet ist und sich nur über SENTRON Powerconfig setzen lässt (siehe @sec:geraetekonfiguration). In der Registerkarte erscheint er ohne Registeradresse und ohne Hinweis auf seine Wirkung, sodass aus ihr nicht hervorgeht, dass ein Schaltbefehl ohne diesen Schritt folgenlos bleibt @src:sentronregistermap. Nach Auskunft des Produktsupports ist die Freischaltung dem Inbetriebnahmepersonal geläufig, in den zugänglichen Unterlagen jedoch nicht als Voraussetzung des Fernschaltens erfasst @src:siemenssupport2026. Nach ihrer Aktivierung wird der Schaltbefehl angenommen und über das Statusregister quittiert, wie @sec:testdurchfuehrung für T-08 festhält.
 
@@ -60,7 +60,7 @@ Ein Teil der Alarme ist ab Werk abgeschaltet und liefert dauerhaft den Wert null
 
 Dem #acro("ECPD") fehlt eine Zählfunktion für die elektrische Arbeit. Abgebildet ist die momentane Wirkleistung, sodass eine Verbrauchsauswertung entweder eine Integration über die Zeit in Desigo CC oder ein zusätzliches Messgerät voraussetzt. Für die Anbindung eines Endstromkreises an ein Energiemanagement ist das die spürbarste Lücke des Geräts und in @sec:weiterentwicklung aufgegriffen.
 
-Das Abfrageintervall lässt sich allein am Modbus-Treiber und dort für sämtliche angebundenen Geräte einstellen, was T-03 bestätigt. Eine nach Verwendungszweck abgestufte Abfrage ist damit nicht einrichtbar, obwohl die Auswahl der Datenpunkte sie vorbereitet. Der schnellste benötigte Wert bestimmt den Takt aller übrigen, weshalb die in @sec:datenpunkte begründete Reduktion des Umfangs nicht der Übersicht dient, sondern der Abfragelast.
+Das Abfrageintervall lässt sich allein am Modbus-Treiber und dort für sämtliche angebundenen Geräte einstellen, was T-03 bestätigt. Eine nach Verwendungszweck abgestufte Abfrage ist damit nicht einrichtbar, obwohl die Auswahl der Datenpunkte sie vorbereitet. Der schnellste benötigte Wert bestimmt den Takt aller übrigen, weshalb die in @sec:datenpunkte begründete Reduktion des Umfangs vor allem der Abfragelast dient und weniger der Übersicht.
 
 /* Claude: Abschnitt aus den drei Notizen ausformuliert und bewusst knapp
    gehalten. Alle vier genannten Befunde sind aufgenommen, der Schaltbefehl als

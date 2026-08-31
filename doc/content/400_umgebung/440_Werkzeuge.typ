@@ -33,16 +33,12 @@ Die Ergebnisse dieser Arbeit sind an die Stände der eingesetzten Software gebun
   caption: [Eingesetzte Werkzeuge, ihre Aufgabe im Rahmen der Arbeit und ihr Versionsstand]
 )<tab:werkzeuge>
 
-#kommentar[Bitte die vier Versionsstände eintragen und beim Modbus-Werkzeug zusätzlich den Produktnamen, da die Zeile sonst keinen Nachvollzug erlaubt. Falls weitere Werkzeuge zum Einsatz kamen, die für die Ergebnisse bedeutsam sind, gehören sie in dieselbe Tabelle.]
+// #kommentar[Bitte die vier Versionsstände eintragen und beim Modbus-Werkzeug zusätzlich den Produktnamen, da die Zeile sonst keinen Nachvollzug erlaubt. Falls weitere Werkzeuge zum Einsatz kamen, die für die Ergebnisse bedeutsam sind, gehören sie in dieselbe Tabelle.]
+
+// #kommentar[Bitte ergänzen, welcher Stand von Desigo CC am Testaufbau tatsächlich installiert ist und ob es sich um eine vollständige Installation oder um eine Testinstanz handelt. Weicht der Stand von dem in NFA-04 geforderten V9.0 ab, ist das kein Mangel des Aufbaus, muss aber im Anforderungsabgleich ausgewiesen werden.]
 
 
-Zwei Einträge der Tabelle verdienen eine Erläuterung.
-
-
-Der Stand von Desigo CC ist eine Angabe zur Reproduzierbarkeit und berührt zugleich eine Anforderung. NFA-04 fordert die Lauffähigkeit unter dem Stand V9.0. Die in @tab:modbustreiber zusammengetragenen Eigenschaften des Modbus-Treibers stammen aus der Engineering-Dokumentation und sind am eingesetzten Stand nachzuvollziehen. Wo Beobachtung und Dokumentation auseinandergehen, wie beim Abfrageintervall vermerkt, gilt nach @sec:quellenlage die Beobachtung am Gerät. #kommentar[Bitte ergänzen, welcher Stand von Desigo CC am Testaufbau tatsächlich installiert ist und ob es sich um eine vollständige Installation oder um eine Testinstanz handelt. Weicht der Stand von dem in NFA-04 geforderten V9.0 ab, ist das kein Mangel des Aufbaus, muss aber im Anforderungsabgleich ausgewiesen werden.]
-
-
-Das unabhängige Modbus-Werkzeug ist kein Hilfsmittel der Bequemlichkeit, sondern folgt unmittelbar aus dem in @sec:quellenlage festgelegten Umgang mit der Herstellerdokumentation. Zeigt ein Datenpunkt in Desigo CC einen unerwarteten Wert, so lässt sich ohne einen zweiten, vom Datenmodell unabhängigen Zugang nicht entscheiden, ob die Ursache im Objektmodell, in der Registerkarte oder im Verhalten des Geräts liegt. Erst der direkte Blick auf das Register trennt diese drei Fälle. Der Zugang ist deshalb bereits in @sec:kommunikationsstrecke als eigener Weg auf denselben Registerraum beschrieben.
+Das unabhängige Modbus-Werkzeug folgt aus dem in @sec:quellenlage festgelegten Umgang mit der Herstellerdokumentation. Zeigt ein Datenpunkt in Desigo CC einen unerwarteten Wert, so lässt sich ohne einen zweiten, vom Datenmodell unabhängigen Zugang nicht entscheiden, ob die Ursache im Objektmodell, in der Registerkarte oder im Verhalten des Geräts liegt. Erst der direkte Blick auf das Register trennt diese drei Fälle. Der Zugang ist deshalb bereits in @sec:kommunikationsstrecke als eigener Weg auf denselben Registerraum beschrieben.
 
 /* Claude: Abschnitt nach der Vorgabe aus dem Kommentar ausformuliert
    (Werkzeuge mit Versionsstand fuer die Reproduzierbarkeit, Powerconfig, PDE,

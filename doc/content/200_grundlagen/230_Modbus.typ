@@ -10,14 +10,7 @@ Modbus ist ein serielles Kommunikationsprotokoll, das ursprünglich 1979 von der
 
 
 Das Protokoll basiert auf einem Request-Response-Prinzip, bei dem ein anfragendes Gerät (z. B. ein Leitsystem) Anfragen an eines oder mehrere antwortende Geräte (z. B. Sensoren, Aktoren oder Messgeräte) sendet. Die antwortenden Geräte reagieren ausschließlich auf eingehende Anfragen und initiieren keine eigenständige Kommunikation @src:modbusserial.
-
-Modbus unterstützt verschiedene Übertragungsvarianten:
-
-- *Modbus #acro("RTU")*: Eine kompakte binäre Darstellung der Daten, die über serielle Schnittstellen wie RS-232 oder RS-485 übertragen wird @src:modbusserial. Modbus #acro("RTU") wird in der Praxis häufig eingesetzt @src:modbusrtuprotocol.
-
-- *Modbus #acro("ASCII")*: Eine zeichenbasierte Darstellung, bei der Daten als #acro("ASCII")-Zeichen übertragen werden. Diese Variante ist weniger effizient als #acro("RTU"), ermöglicht jedoch Kommunikation mit Geräten oder über Verbindungen, die nicht die #acro("RTU") Timing-Anforderungen erfüllen können @src:modbusserial.
-
-- *Modbus #acro("TCP")/#acro("IP")*: Eine Adaption des Protokolls für Ethernet-Netzwerke, bei der Modbus-Nachrichten in TCP/IP-Pakete eingebettet werden @src:modbustcp. Es wird vor allem aufgrund seiner Einfachheit und Kompatibilität verwendet, jedoch ist es nicht verschlüsselt @src:modbustcp2.
+Modbus kennt drei Übertragungsvarianten. Modbus #acro("RTU") überträgt die Daten in einer kompakten binären Darstellung über serielle Schnittstellen wie RS-232 oder RS-485 @src:modbusserial und wird in der Praxis häufig eingesetzt @src:modbusrtuprotocol. Modbus #acro("ASCII") stellt dieselben Daten als #acro("ASCII")-Zeichen dar, arbeitet dadurch weniger effizient und eignet sich für Geräte oder Verbindungen, welche die Zeitanforderungen von #acro("RTU") nicht erfüllen @src:modbusserial. Modbus #acro("TCP")/#acro("IP") bettet die Nachrichten in TCP/IP-Pakete ein @src:modbustcp und wird vor allem wegen seiner Einfachheit und Kompatibilität verwendet, kennt jedoch keine Verschlüsselung @src:modbustcp2.
 
 Das Protokoll definiert vier Datenbereiche, auf die über standardisierte Funktionscodes zugegriffen wird:
 
@@ -67,7 +60,7 @@ Der Kopf führt vier Felder, die @img:modbustcp im Zusammenhang zeigt. Der Trans
 Aus der seriellen Herkunft des Protokolls folgt eine Längenbegrenzung von 253 Byte für die #acro("PDU") und 260 Byte für die #acro("ADU") @src:modbusspec. Eine einzelne Anfrage kann damit höchstens 125 Register lesen und 123 Register schreiben @src:modbusspec, sodass ein umfangreicher Registerraum blockweise abzufragen ist.
 
 
-Besondere Bedeutung für diese Arbeit hat der Unit Identifier. Wird ein Server unmittelbar über seine #acro("IP")-Adresse angesprochen, ist das Feld ohne Aussage und trägt den nicht signifikanten Wert 0xFF. Sitzt hinter der #acro("IP")-Adresse dagegen ein Gateway, benennt der Unit Identifier das dahinterliegende Endgerät, an das die Anfrage weitergereicht wird @src:modbustcp. Genau diese Rolle nimmt der in @sec:powercenter_modbus beschriebene Datentransceiver ein.
+Besondere Bedeutung für diese Arbeit hat der Unit Identifier. Sitzt hinter der #acro("IP")-Adresse ein Gateway, benennt das Feld das Endgerät, an das die Anfrage weitergereicht wird. Wird ein Server unmittelbar angesprochen, ist das Feld entbehrlich, und der Implementation Guide empfiehlt dem Client dafür den nicht signifikanten Wert 0xFF, lässt den Wert 0 aber ebenso zu @src:modbustcp. Die Empfehlung gilt dem Aufbau der Anfrage und nicht der Auslegung des Werts im Gerät. Der in @sec:powercenter_modbus beschriebene Datentransceiver ist ein solches Gateway und belegt den Wert 255 mit einer eigenen Bedeutung, nämlich sich selbst.
 
 
 /* Claude: Abschnitt und Abbildung neu angelegt und nach der Durchsicht auf
@@ -97,3 +90,20 @@ Besondere Bedeutung für diese Arbeit hat der Unit Identifier. Wird ein Server u
    verwendet eine abweichende Kodierung (Schachtelung statt Kanten), was dort
    im Quelltext vermerkt und in der Legende der Abbildung ausgewiesen ist. Die
    Feldbreiten sind bewusst nicht massstaeblich. */
+
+/* Claude: Absatz zum Unit Identifier nach der Anmerkung des Betreuers
+   eingegrenzt. Belegstelle im Messaging Implementation Guide ist 4.4.1.2
+   "Build a MODBUS Request", S. 23, also eine Vorgabe an den Client und keine
+   Aussage ueber Geraeteverhalten. Wortlaut: "On TCP/IP, the MODBUS server is
+   addressed using its IP address; therefore, the MODBUS Unit Identifier is
+   useless. The value 0xFF has to be used. [...] 0xFF is recommended for the
+   'Unit Identifier' as non-significant value. Remark: The value 0 is also
+   accepted to communicate directly to a MODBUS/TCP device."
+   Der Guide schwankt selbst zwischen "has to be used" und "is recommended",
+   und 0x00 ist ausdruecklich zugelassen. Die alte Formulierung ("ist das Feld
+   ohne Aussage und traegt den nicht signifikanten Wert 0xFF") war deshalb zu
+   stark und liess 0x00 weg.
+
+   Der Schlusssatz ist neu und loest einen Widerspruch zu @sec:powercenter_modbus
+   auf, wo 255 als Adresse des Datentransceivers selbst gefuehrt wird. Bei
+   diesem Geraet ist 0xFF gerade nicht nicht-signifikant. */
