@@ -46,7 +46,7 @@ Diese Festlegung wiegt schwerer, als sie zunächst erscheint. Eine einheitliche 
 
 ==== Adressierung
 
-Gelesen wird mit den Funktionscodes 3 und 4, geschrieben mit 6 und 16. Alle vier sind nach @tab:modbustreiber vom Treiber der Zielplattform abgedeckt, sodass an dieser Stelle keine Einschränkung besteht.
+Gelesen wird mit den Funktionscodes 3 und 4, geschrieben mit 6 und 16. Alle vier sind nach @tab:modbustreiber vom Treiber der Zielplattform abgedeckt, sodass an dieser Stelle keine Einschränkung besteht. Dass der Treiber darüber hinaus für einzelne Datenpunkte Coils liest, zeigt erst die Messung in @sec:testdurchfuehrung.
 
 Der in @sec:geraetekonfiguration beschriebene Versatz von eins zwischen der Zählweise der Registerkarte und der Adressierung im Telegramm wird nicht in jeder einzelnen Eigenschaft nachgeführt, sondern einmalig über das Merkmal des Adressversatzes gesetzt, das das Werkzeug zur Basisadresse addiert @src:pdemanual. Das ist mehr als eine Bequemlichkeit. Jede Eigenschaft der Typbeschreibung trägt dadurch dieselbe Registernummer wie die Registerkarte @src:sentronregistermap und wie die Aufstellung in #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]), sodass sich jeder Datenpunkt ohne Umrechnung zurückverfolgen lässt. Für die nach NFA-01 geforderte Dokumentation ist das die Voraussetzung dafür, dass eine spätere Änderung an der richtigen Stelle ansetzt.
 
@@ -81,9 +81,18 @@ Die Formate der Registerkarte lassen sich mit einer Ausnahme unmittelbar auf die
 
 Von den drei Vorbehalten, die @sec:datenpunkte offengelassen hat, klären sich zwei an dieser Stelle. Die beiden Betriebsstundenzähler in doppelter Genauigkeit lassen sich abbilden, da das Werkzeug den Gleitkommatyp auch mit acht Byte führt; die Annahme, es biete dafür keinen Datentyp an, hat sich am Testaufbau nicht bestätigt. Der Vorbehalt entfällt damit ersatzlos.
 
-Das Register der Softwareversion dagegen bleibt wegen seiner gemischten Kodierung nicht dekodierbar und wird nach K-06 aus der Auswahl gestrichen. Der Verlust ist gering. Ein Firmware-Stand ändert sich allein durch ein Update, das Servicepersonal über SENTRON Powerconfig einspielt und das sich aus Desigo CC heraus weder auslösen noch veranlassen lässt. Der Datenpunkt beantwortete damit eine Frage, die im laufenden Betrieb nicht gestellt wird.
+Das Register der Softwareversion dagegen bleibt wegen seiner gemischten Kodierung nicht dekodierbar und wird nach K-06 aus der Auswahl gestrichen, und zwar an beiden Gerätetypen, da es dort dieselbe Kodierung trägt. Der Verlust ist gering. Ein Firmware-Stand ändert sich allein durch ein Update, das Servicepersonal über SENTRON Powerconfig einspielt und das sich aus Desigo CC heraus weder auslösen noch veranlassen lässt. Der Datenpunkt beantwortete damit eine Frage, die im laufenden Betrieb nicht gestellt wird.
 
-#kommentar[Die Streichung wirkt auf drei Stellen zurück, die nachzuziehen sind. In @tab:datenpunkte_ecpd sinken die Stammdaten von acht auf sieben Register und die Summe von 38 auf 37 Register beziehungsweise von 65 auf 64 Datenpunkte. In @tab:bilanz_datenpunkte werden aus 55 gelesenen Registern je Strang 54 und aus 84 Datenpunkten 83, während @tab:ausschluss_ecpd von 115 auf 116 steigt; die Reduktion beträgt dann weiterhin rund 85 Prozent. In #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]) ist die Zeile zu Register 22 zu entfernen oder als gestrichen zu kennzeichnen.]
+/* Anmerkung des Autors, erledigt am 01.09.2026: Die Streichung ist nach der
+   Bestaetigung des Autors, dass sie beide Geraetetypen betrifft, ueberall
+   nachgezogen. Geaendert sind @tab:datenpunkte_ecpd (Stammdaten 8 -> 7, Summe
+   38 -> 37 Register und 65 -> 64 Datenpunkte), @tab:ausschluss_ecpd (16 -> 17
+   in der Gruppe K-06, Summe 115 -> 116), @tab:bilanz_datenpunkte (ECPD
+   152/37/64, Powercenter 211/16/18, Strang 363/53/82) sowie die Saetze dazu in
+   @sec:datenpunkte, @sec:zusammenfassung, in der Kurzfassung und im Abstract.
+   Die Reduktion betraegt weiterhin rund 85 Prozent. Im Anhang bleiben die
+   beiden Zeilen zu Register 22 nachrichtlich stehen und sind dort als
+   gestrichen gekennzeichnet. */
 
 Der dritte Vorbehalt betrifft den Zeit- und Synchronisationsstatus des Powercenters. Er ist in der Auswahl dokumentiert, in der Typbeschreibung des Powercenters jedoch ausgespart geblieben, da diese bewusst schmal gehalten ist. Seine Aufnahme bleibt damit eine kleine Ergänzung, die @sec:weiterentwicklung aufgreift.
 
@@ -189,13 +198,11 @@ Ob sich die beiden Dateien in Desigo CC einlesen lassen und was dabei aus den ei
    die tatsaechlich umgesetzte Form des Alarmregisters sowie die Ausgangsgroesse
    der JSON-Datei und die Verortung des Absatzes dazu.
 
-   Zwei Rueckwirkungen auf bereits geschriebene Abschnitte sind im Text als
-   #kommentar vermerkt und bewusst noch nicht ausgefuehrt:
-   1. Streichung der Softwareversion: @tab:datenpunkte_ecpd 38 -> 37 Register und
-      65 -> 64 Datenpunkte, @tab:bilanz_datenpunkte 55 -> 54 Register und
-      84 -> 83 Datenpunkte je Strang, Reduktion weiterhin rund 85 Prozent,
-      dazu die Zeile zu Register 22 im Anhang. Der Satz in @sec:datenpunkte, der
-      den Vorbehalt formuliert, ist dann ebenfalls anzupassen.
+   Zwei Rueckwirkungen auf bereits geschriebene Abschnitte waren im Text als
+   #kommentar vermerkt; die erste ist inzwischen ausgefuehrt, die zweite nicht:
+   1. Streichung der Softwareversion: am 01.09.2026 erledigt, siehe die
+      Anmerkung oberhalb des dritten Vorbehalts. Sie betrifft nach Auskunft des
+      Autors beide Geraetetypen.
    2. Die 27 Alarmdatenpunkte in @tab:datenpunkte_ecpd, @tab:bilanz_datenpunkte
       und in der Begruendung zu K-07 setzen die Zerlegung des Bitfelds voraus.
       Solange nicht feststeht, in welcher Form die Alarme im Modell erscheinen,

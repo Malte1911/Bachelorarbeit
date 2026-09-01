@@ -12,6 +12,8 @@
   JSON: "JavaScript Object Notation",
   MQTT: "Message Queuing Telemetry Transport",
   VPN: "Virtual Private Network",
+  VLAN: "Virtual Local Area Network",
+  DHCP: "Dynamic Host Configuration Protocol",
   HTTP: "Hypertext Transfer Protocol",
   HTTPS: "Hypertext Transfer Protocol Secure",
   API: "Application Programming Interface",

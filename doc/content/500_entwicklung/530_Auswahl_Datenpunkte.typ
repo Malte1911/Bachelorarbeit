@@ -16,7 +16,7 @@ Die Darstellung folgt dabei einer Regel. Eine Reduktion um mehr als vier Fünfte
 Die Gruppe des Live-Zustands umfasst fünf Register und beantwortet die Frage, in welchem Zustand sich ein Abgang befindet. Der Schalterstatus in Register 3110 unterscheidet planmäßiges Ausschalten von störungsbedingtem Auslösen und bildet zusätzlich die Standby-Zustände des elektronischen Schaltpfads ab, womit er UC-02 unmittelbar trägt. Register 3113 meldet zurück, ob ein Fernschaltbefehl ausgeführt wurde, und ist die Voraussetzung dafür, dass UC-05 nicht bei der Absendung des Befehls endet. Das Sammelregister 2560 trägt sämtliche Alarme des Geräts. Der Verbindungszustand aus Register $16484+n$ und die Empfangsfeldstärke aus Register 2622 tragen UC-04, wobei die Feldstärke die Verschlechterung einer Funkstrecke sichtbar macht, bevor die Verbindung abreißt. Von dem Feld über alle 24 Endgeräte wird nach K-04 nur der Index des jeweiligen Geräts abgebildet.
 
 
-Aus dem Sammelregister 2560 werden 27 Alarmdatenpunkte gebildet, also alle für das #acro("ECPD") belegten Bits. Diese Gruppe zeigt die Wirkung von K-07 am deutlichsten. Sie hebt die Zahl der Datenpunkte je Gerät von 38 auf 65 und erhöht die Abfragelast um kein einziges Register, weil alle Bits aus demselben Register stammen. Die Bits 14 und 17 entfallen, da sie zur Fehlerlichtbogenerkennung einer anderen Gerätevariante gehören und auf dem #acro("ECPD") nicht gesetzt werden können, die Bits 21 bis 23 sind in der Bitfeldbeschreibung nicht vergeben. Beide Ausschlüsse folgen K-06. Die Alarme sind zugleich der Punkt, an dem das Modell allein nicht genügt. Von den 27 Bits sind 13 ab Werk abgeschaltet und liefern ohne Parametrierung dauerhaft den Wert null, darunter die beiden #acro("RCM")-Alarme. Welche Bits betroffen sind, weist @tab:apx_ecpd_alarme aus. Genau hierauf zielt NFA-06, und die zugehörige Einstellung des Testaufbaus ist in @sec:geraetekonfiguration beschrieben.
+Aus dem Sammelregister 2560 werden 27 Alarmdatenpunkte gebildet, also alle für das #acro("ECPD") belegten Bits. Diese Gruppe zeigt die Wirkung von K-07 am deutlichsten. Sie hebt die Zahl der Datenpunkte je Gerät von 37 auf 64 und erhöht die Abfragelast um kein einziges Register, weil alle Bits aus demselben Register stammen. Die Bits 14 und 17 entfallen, da sie zur Fehlerlichtbogenerkennung einer anderen Gerätevariante gehören und auf dem #acro("ECPD") nicht gesetzt werden können, die Bits 21 bis 23 sind in der Bitfeldbeschreibung nicht vergeben. Beide Ausschlüsse folgen K-06. Die Alarme sind zugleich der Punkt, an dem das Modell allein nicht genügt. Von den 27 Bits sind 13 ab Werk abgeschaltet und liefern ohne Parametrierung dauerhaft den Wert null, darunter die beiden #acro("RCM")-Alarme. Welche Bits betroffen sind, weist @tab:apx_ecpd_alarme aus. Genau hierauf zielt NFA-06, und die zugehörige Einstellung des Testaufbaus ist in @sec:geraetekonfiguration beschrieben.
 
 
 Die Messwerte umfassen acht Register. Aufgenommen sind Strom, Spannung, Netzfrequenz, Wirkleistung, Leistungsfaktor, Temperatur und der Differenzstrom des #acro("RCM")-Tiefpasses als Momentanwerte sowie der vom Gerät gespeicherte Maximalwert des Stroms. Der Maximalwert ist der in @sec:auswahlkriterien beschriebene Grenzfall von K-05, denn eine Stromspitze zwischen zwei Abfragen ist im Archiv nicht mehr herstellbar. Der Differenzstrom trägt UC-07 in besonderer Weise, da er den Isolationszustand als Verlauf zeigt und damit eine Verschlechterung erkennbar macht, bevor das Gerät abschaltet.
@@ -37,7 +37,7 @@ Prüfung und Betriebsart umfassen drei Register. Der Status des Gerätetests und
 Als Kommandos sind sechs schreibende Register aufgenommen, die den in FA-06 gezogenen Rahmen ausfüllen. Das elektronische Schalten trägt UC-05, die Quittierung der Auslösemeldung UC-03, das Rücksetzen der #acro("RCM")-Alarme ebenfalls UC-03, der Anstoß des Gerätetests UC-06 und der Blinkmodus zur Lokalisierung UC-08. Der Blinkmodus ist relevant, da ein Servicetechniker im Verteiler bis zu 24 baugleiche Geräte vorfindet. Das sechste Kommando, das mechanische Trennen in Register 3694, ist der einzige Grenzfall der Auswahl. Es lässt sich als Befehl des laufenden Betriebs auffassen und fällt damit unter FA-06, es wirkt jedoch nicht rückstellbar, denn ein Register für das mechanische Einschalten existiert nicht. Ein aus der Ferne ausgelöstes Trennen erzwingt somit stets einen Einsatz vor Ort. Aufgenommen ist es unter dem Vorbehalt, dass die zugehörige Freigabe am Gerät gesetzt sein muss.
 
 
-Die Stammdaten umfassen acht Register und tragen UC-09 sowie die von FA-03 geforderte Beschriftung. Anlagenkennzeichen und Einbauort machen aus einer Störungsmeldung eine verwertbare Information, Seriennummer und Artikelnummer tragen die Anlagendokumentation, die Phasenzuordnung erlaubt die Betrachtung der Schieflast über alle Abgänge eines Verteilers. Zwei Register dieser Gruppe haben eine besondere Aufgabe. Der eingestellte Nennstrom in Register 5376 ist zwingend erforderlich, weil die Stromgrenzwerte des Geräts in Prozent des Nennstroms angegeben sind und ein Messwert ohne diese Bezugsgröße nicht einzuordnen ist. Der Freigabestatus des elektronischen Schaltens in Register 5425 wird ausschließlich lesend genutzt und ist ein reines Diagnosemerkmal, das erklärt, weshalb ein Schaltbefehl wirkungslos bleibt. Der Nutzen dieses Datenpunkts hat sich im Verlauf der Arbeit bestätigt, wie @sec:befunde zeigt.
+Die Stammdaten umfassen sieben Register und tragen UC-09 sowie die von FA-03 geforderte Beschriftung. Anlagenkennzeichen und Einbauort machen aus einer Störungsmeldung eine verwertbare Information, Seriennummer und Artikelnummer tragen die Anlagendokumentation, die Phasenzuordnung erlaubt die Betrachtung der Schieflast über alle Abgänge eines Verteilers. Zwei Register dieser Gruppe haben eine besondere Aufgabe. Der eingestellte Nennstrom in Register 5376 ist zwingend erforderlich, weil die Stromgrenzwerte des Geräts in Prozent des Nennstroms angegeben sind und ein Messwert ohne diese Bezugsgröße nicht einzuordnen ist. Der Freigabestatus des elektronischen Schaltens in Register 5425 wird ausschließlich lesend genutzt und ist ein reines Diagnosemerkmal, das erklärt, weshalb ein Schaltbefehl wirkungslos bleibt. Der Nutzen dieses Datenpunkts hat sich im Verlauf der Arbeit bestätigt, wie @sec:befunde zeigt.
 
 
 Die letzte Gruppe besteht aus einem einzigen Register. Das #acro("ECPD") führt intern ein Auslöseprotokoll und legt darin zu jeder Auslösung einen Eintrag mit Zeitpunkt und Messwerten ab. Das Protokoll selbst wird über ein eigenes, mehrstufiges Leseverfahren abgerufen, das nach K-01 nicht in das Modell aufgenommen ist. Register 3671 trägt die Kennung des jüngsten Eintrags und ändert sich deshalb bei jeder neuen Auslösung. Der Datenpunkt kostet ein einziges Register und zeigt an, dass eine weitere Auslösung hinzugekommen ist, auch wenn der zugehörige Alarm noch ansteht oder bereits quittiert wurde. Aus dem Alarmbit allein ließe sich das nicht erkennen.
@@ -58,19 +58,18 @@ Die letzte Gruppe besteht aus einem einzigen Register. Das #acro("ECPD") führt 
     [Zähler und Wartung], [7], [7], [UC-07],
     [Prüfung und Betriebsart], [3], [3], [UC-06],
     [Kommandos], [6], [6], [UC-03, UC-05, UC-06, UC-08],
-    [Stammdaten], [8], [8], [UC-09],
+    [Stammdaten], [7], [7], [UC-09],
     [Ereignis-Trigger], [1], [1], [UC-03, UC-07],
-    [*Summe*], [*38*], [*65*], [],
+    [*Summe*], [*37*], [*64*], [],
   ),
   caption: [Aufgenommene Datenpunkte des #acro("ECPD") nach Gruppen, gegliedert nach gelesenen Registern und daraus gebildeten Datenpunkten]
 )<tab:datenpunkte_ecpd>
 
 ==== Nicht aufgenommene Register des ECPD
 
-Von den 152 Einträgen, welche die Registerkarte für das #acro("ECPD") ausweist, bleiben 115 unberücksichtigt. Sie verteilen sich auf sieben Gruppen, die sich jeweils einem Kriterium zuordnen lassen. Zwei dieser Gruppen tragen zusammen drei Viertel des Ausschlusses und verdienen deshalb eine eigene Begründung.
+Von den 152 Einträgen, welche die Registerkarte für das #acro("ECPD") ausweist, bleiben 116 unberücksichtigt. Sie verteilen sich auf sieben Gruppen, die sich jeweils einem Kriterium zuordnen lassen. Zwei dieser Gruppen tragen zusammen drei Viertel des Ausschlusses und verdienen deshalb eine eigene Begründung.
 
 Die größte Gruppe bilden mit 61 Registern die Alarm- und Grenzwertkonfiguration sowie die zugehörigen Mittelungszeiträume. Zu nahezu jedem Alarm gehören ein Ein- und Ausschalter, ein Grenzwert und eine Hysterese. Diese Register werden bei der Inbetriebnahme gesetzt und verbleiben nach FA-09 bei SENTRON Powerconfig, während für den Betrieb allein das Ergebnis zählt, das über das Sammelregister 2560 vollständig vorliegt. Die zweite große Gruppe umfasst 23 geschützte Schutzeinstellungen, die nach K-03 nicht über die Leitwarte veränderbar sein sollen. Die Felder der Funk- und Pairing-Diagnose erscheinen dagegen nicht in dieser Aufstellung, da sie nach der Registerkarte dem Powercenter gehören und dort geführt werden.
-Die größte Gruppe bilden mit 61 Registern die Alarm- und Grenzwertkonfiguration sowie die zugehörigen Mittelungszeiträume. Zu nahezu jedem Alarm gehören ein Ein- und Ausschalter, ein Grenzwert und eine Hysterese. Diese Register werden bei der Inbetriebnahme gesetzt und verbleiben nach FA-09 bei SENTRON Powerconfig, während für den Betrieb allein das Ergebnis zählt, das über das Sammelregister 2560 vollständig vorliegt. Die zweite große Gruppe umfasst 52 Register der Funk- und Pairing-Diagnose, die am Endgerät als Felder über alle 24 Endgeräte des Strangs erscheinen. Sie gehören nach K-04 an das Powercenter, und von ihnen ist je Endgerät genau ein Index bedeutsam, der bereits in der Gruppe des Live-Zustands enthalten ist. Pairing- und Identifikationsstatus sind darüber hinaus reine Inbetriebnahmewerte.
 
 
 #figure(
@@ -84,11 +83,11 @@ Die größte Gruppe bilden mit 61 Registern die Alarm- und Grenzwertkonfiguratio
     [Alarm- und Grenzwertkonfiguration einschließlich Mittelungszeiträumen], [61], [K-02],
     [Werksrückstellung und Schreibschutz], [2], [K-03],
     [Geschützte Schutzeinstellungen], [23], [K-03],
-    [Geräteweit konstante oder nicht lesbare Identifikationsregister], [16], [K-06],
+    [Geräteweit konstante oder nicht lesbare Identifikationsregister], [17], [K-06],
     [Abgeleitete Messwerte und nicht beschaltete Ein- und Ausgänge], [9], [K-05],
     [Zeitschaltuhr-Funktionsblöcke], [3], [K-05],
     [Im Auswahlblatt nicht erfasst (Funk-Sendeleistung 1050)], [1], [K-02],
-    [*Summe*], [*115*], [],
+    [*Summe*], [*116*], [],
   ),
   caption: [Nicht aufgenommene Register des #acro("ECPD") und das jeweils tragende Kriterium aus @tab:auswahlkriterien]
 )<tab:ausschluss_ecpd>
@@ -101,7 +100,7 @@ Drei der kleineren Gruppen verdienen eine Erläuterung, weil ihr Ausschluss auf 
 Für das Powercenter fällt die Reduktion deutlicher aus, und zwar aus einem einzigen Grund. Von den 211 Einträgen der Registerkarte entfallen 126 auf Funkparameter, also überwiegend auf Felder je Endgeräteplatz, dazu auf Schalterzustände, Zähler von Parameteränderungen sowie Pairing-, Verbindungs- und Identifikationszustände. Sie sämtlich am Powercenter abzubilden hieße, jeden dieser Werte doppelt zu führen und bis zu 24 fremde Geräte in ein Objekt zu mischen. K-04 löst diese Doppelung zugunsten des Endgeräts auf und trägt damit den größten Teil des Ausschlusses.
 
 
-Aufgenommen sind 17 Register, die ausschließlich das Powercenter selbst betreffen. Das Sammelregister 2560 trägt auch hier die Alarme, von denen beim Powercenter nur die Übertemperatur und die Betriebsstunden belegt sind, da das Gerät weder misst noch schaltet. Die Temperatur des Powercenters ist der beste verfügbare Anhaltspunkt für das Klima im Verteiler, weil das Gerät dort zentral sitzt. Der Zeit- und Synchronisationsstatus entscheidet über die Güte sämtlicher Zeitstempel des Strangs, denn eine abweichende Uhr des Datentransceivers entwertet jedes Auslöseprotokoll der angeschlossenen Endgeräte. Der aktive Funkkanal erklärt gehäufte Verbindungsabbrüche eines ganzen Strangs und ergänzt damit die Empfangsfeldstärke der einzelnen Endgeräte.
+Aufgenommen sind 16 Register, die ausschließlich das Powercenter selbst betreffen. Das Sammelregister 2560 trägt auch hier die Alarme, von denen beim Powercenter nur die Übertemperatur und die Betriebsstunden belegt sind, da das Gerät weder misst noch schaltet. Die Temperatur des Powercenters ist der beste verfügbare Anhaltspunkt für das Klima im Verteiler, weil das Gerät dort zentral sitzt. Der Zeit- und Synchronisationsstatus entscheidet über die Güte sämtlicher Zeitstempel des Strangs, denn eine abweichende Uhr des Datentransceivers entwertet jedes Auslöseprotokoll der angeschlossenen Endgeräte. Der aktive Funkkanal erklärt gehäufte Verbindungsabbrüche eines ganzen Strangs und ergänzt damit die Empfangsfeldstärke der einzelnen Endgeräte.
 
 
 Fünf Register beschreiben die Netzanbindung mit Adresse, Subnetzmaske, Gateway und Hardwareadresse sowie dem Zustand der Bluetooth-Schnittstelle. Sie tragen UC-04 aus der Sicht des IT-Betriebs, und der Zustand der Bluetooth-Schnittstelle ist darüber hinaus sicherheitsrelevant, weil er zeigt, ob der lokale Zugang für die Inbetriebnahme im Regelbetrieb offen steht. Die zugehörigen Konfigurationsregister sind demgegenüber nach K-02 und K-03 ausgeschlossen, da sie einmalig eingerichtet werden und einem geschützten Zugriff unterliegen. Abgebildet werden folglich die Ist-Werte, nicht deren Einstellung. Als einziger schreibender Datenpunkt ist die Uhrzeit aufgenommen, was den Fall abdeckt, dass am Standort kein Zeitserver vorgesehen ist. Die Stammdaten entsprechen denen des #acro("ECPD").
@@ -112,7 +111,7 @@ Aus dieser Auswahl entsteht in @sec:umsetzung eine eigene Typbeschreibung, die g
 
 ==== Bilanz der Reduktion
 
-Die Wirkung der Kriterien lässt sich beziffern. Ein Strang aus einem Powercenter und einem Endgerät umfasst nach @sec:registerraum 363 Einträge der Registerkarte. Nach Anwendung der Kriterien werden davon 55 Register gelesen, aus denen in Desigo CC 84 Datenpunkte entstehen. Die Abfragelast sinkt damit um rund 85 Prozent, während die in der Leitwarte verfügbare Information deutlich weniger stark abnimmt, weil die Alarme aus einem einzigen Register gewonnen werden. Jedes weitere Endgerät fügt 152 Einträge der Registerkarte, 38 gelesene Register und 65 Datenpunkte hinzu.
+Die Wirkung der Kriterien lässt sich beziffern. Ein Strang aus einem Powercenter und einem Endgerät umfasst nach @sec:registerraum 363 Einträge der Registerkarte. Nach Anwendung der Kriterien werden davon 53 Register gelesen, aus denen in Desigo CC 82 Datenpunkte entstehen. Die Abfragelast sinkt damit um rund 85 Prozent, während die in der Leitwarte verfügbare Information deutlich weniger stark abnimmt, weil die Alarme aus einem einzigen Register gewonnen werden. Jedes weitere Endgerät fügt 152 Einträge der Registerkarte, 37 gelesene Register und 64 Datenpunkte hinzu.
 
 
 #figure(
@@ -123,14 +122,14 @@ Die Wirkung der Kriterien lässt sich beziffern. Ein Strang aus einem Powercente
     table.header(
       [*Bezugsgröße*], [*Registerkarte*], [*Gelesene Register*], [*Datenpunkte in Desigo CC*],
     ),
-    [Ein #acro("ECPD")], [152], [38], [65],
-    [Ein Powercenter], [211], [17], [19],
-    [Ein Strang mit einem Endgerät], [363], [55], [84],
+    [Ein #acro("ECPD")], [152], [37], [64],
+    [Ein Powercenter], [211], [16], [18],
+    [Ein Strang mit einem Endgerät], [363], [53], [82],
   ),
   caption: [Bilanz der Datenauswahl je Gerät und für einen Strang aus einem Powercenter und einem Endgerät]
 )<tab:bilanz_datenpunkte>
 
-Die Zahl der gelesenen Register ist dabei die für den Betrieb maßgebliche Größe. Gezählt sind die Einträge der Registerkarte, von denen einzelne nach K-07 je nach Datenformat mehrere aufeinanderfolgende Register belegen. Das Systemhandbuch empfiehlt, jedes Gerät höchstens einmal je Sekunde abzufragen und die Endgeräte sequenziell abzuarbeiten @src:sentronsystemhandbuch. Da der Treiber der Zielplattform benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp, entspricht die verbleibende Last je Gerät einer geringen Zahl von Leseblöcken je Abfrage. Von den 55 Registern entfallen 9 auf die Gruppe des Live-Zustands, deren Werte am schnellsten aktuell sein müssen.
+Die Zahl der gelesenen Register ist dabei die für den Betrieb maßgebliche Größe. Gezählt sind die Einträge der Registerkarte, von denen einzelne nach K-07 je nach Datenformat mehrere aufeinanderfolgende Register belegen. Das Systemhandbuch empfiehlt, jedes Gerät höchstens einmal je Sekunde abzufragen und die Endgeräte sequenziell abzuarbeiten @src:sentronsystemhandbuch. Da der Treiber der Zielplattform benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp, fällt die verbleibende Last je Gerät deutlich geringer aus als die Zahl der Register vermuten lässt. Die Messung in @sec:testdurchfuehrung beziffert sie für das #acro("ECPD") auf zwölf Anfragen je Abfragezyklus, von denen neun die insgesamt 69 Register in Blöcken zwischen einem und 42 Wörtern abholen. Ein voll bestückter Strang mit 24 Endgeräten käme damit rechnerisch auf 288 Anfragen je Zyklus zuzüglich derjenigen des Powercenters. Von den 53 Registern entfallen 9 auf die Gruppe des Live-Zustands, deren Werte am schnellsten aktuell sein müssen.
 
 
 Diese Unterscheidung nach Aktualität ist in der Arbeitsmappe zu jedem Datenpunkt vermerkt, lässt sich am eingesetzten Stand nach @sec:konzept jedoch nicht umsetzen. Die Angaben zum Zyklus sind deshalb als Vorgabe für die Projektierung und für eine spätere Weiterentwicklung zu verstehen und nicht als Bestandteil der Typbeschreibung. Sie erhöhen zugleich das Gewicht der Reduktion, denn solange alle Datenpunkte denselben Takt teilen, bestimmt der schnellste benötigte Zyklus die Last sämtlicher übrigen Register.
@@ -158,20 +157,23 @@ Was diese Auswahl nicht festlegt, ist die Form, in der die Datenpunkte im Modell
 
    Jetzt gilt die Gerätespalte der Registerkarte: ECPD 152 Eintraege,
    POC 1100 211 Eintraege. Gegengeprueft wurde jedes ausgewaehlte Register.
-   Alle 37 numerischen ECPD-Register sind dort auch fuer das ECPD markiert.
-   Das 38. ist 16484+n (Device Status), ein Powercenter-Register, das nach der
+   Alle 36 numerischen ECPD-Register sind dort auch fuer das ECPD markiert.
+   Das 37. ist 16484+n (Device Status), ein Powercenter-Register, das nach der
    Modellierungsentscheidung am ECPD-Objekt haengt; das ist im Text benannt.
 
    Bezugsfall ist jetzt ein Strang aus einem Powercenter und einem Endgeraet
-   (363 / 55 / 84, Reduktion rund 85 Prozent). Der Zuwachs je weiterem
+   (363 / 53 / 82, Reduktion rund 85 Prozent). Der Zuwachs je weiterem
    Endgeraet steht im Text.
 
-   Rechenweg @tab:ausschluss_ecpd: 152 Eintraege minus 37 ausgewaehlte = 115.
+   Rechenweg @tab:ausschluss_ecpd: 152 Eintraege minus 36 ausgewaehlte = 116.
+   Seit dem 01.09.2026 ist die Softwareversion nach @sec:umsetzung gestrichen,
+   weshalb 37 statt 38 Register uebernommen sind und von diesen 36 in der
+   Geraetespalte der Registerkarte dem ECPD zugeordnet sind.
    Die alte Summe 170 enthielt 57 Powercenter-Zeilen (52 Funk/Pairing,
-   3 Delayed ACK, 2 Security), diese Zeilen sind entfallen. Es bleiben 113.
+   3 Delayed ACK, 2 Security), diese Zeilen sind entfallen. Es bleiben 114.
    Dazu Register 1050 "Funk Sendeleistung", das die Registerkarte fuer das ECPD
    markiert, das im Auswahlblatt aber fehlt, und ein Eintrag, den die Karte auf
-   zwei Blaettern fuehrt. 113 + 2 = 115.
+   zwei Blaettern fuehrt. 114 + 2 = 116.
 
    VORBEHALT: Diese letzten beiden Eintraege sind aus dem Abgleich hergeleitet
    und nicht im Auswahlblatt begruendet. Register 1050 gehoert in das Blatt

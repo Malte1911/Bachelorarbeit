@@ -32,9 +32,21 @@ T-14 ist nur eingeschränkt nachweisbar. Der betroffene Alarm lässt sich am Auf
 
 T-03 ist im zwingenden Teil erfüllt. Das am Modbus-Treiber eingestellte Intervall von $1space.thin"s"$ wirkt, eine am Gerät hervorgerufene Änderung erscheint innerhalb dieser Zeitspanne in Desigo CC, sobald sie am Powercenter vorliegt. Der zweite Schritt des Testfalls bestätigt zugleich die Gegenprobe: Ein für ein einzelnes Gerät oder für eine Gruppe von Datenpunkten abweichendes Intervall lässt sich nicht einstellen, sodass der als _soll_ formulierte Teil von FA-02 offenbleibt. Diese Einschränkung ist eine Eigenschaft des Treibers und in @sec:befunde eingeordnet.
 
+Der Telegrammverkehr bestätigt das Intervall unabhängig von der Anzeige. Eine Aufzeichnung mit dem Netzwerkanalysator aus @tab:werkzeuge zeigt für das #acro("ECPD") einen Abfragezyklus je Sekunde aus zwölf Anfragen. Neun davon lesen Register und umfassen 42, 14, 4, 2, 2, 2, 1, 1 und 1 Wort, zusammen also 69 Register, die übrigen drei lesen Coils.
+
+Die Verteilung dieser Blockgrößen belegt die in @tab:modbustreiber beschriebene Blockbildung und zugleich ihre Grenze. Ein einziges Telegramm holt mit 42 Wörtern nahezu zwei Drittel aller gelesenen Register, während fünf Telegramme nur ein oder zwei Wörter tragen. Der Aufwand je Zyklus hängt damit weniger an der Zahl der Register als an ihrer Verteilung im Adressraum, was die in @tab:modbustreiber genannte Wirkung einer dichten Belegung an der Messung bestätigt.
+
+Drei der zwölf Anfragen tragen keine Daten. Sie lesen Coils an den Telegrammadressen 96, 2559 und 3692, was nach dem in @sec:geraetekonfiguration beschriebenen Versatz von eins den Registern 97, 2560 und 3693 der Registerkarte entspricht, also dem Blinkmodus, dem Sammelregister der Alarme und dem Kommando des elektronischen Schaltens. Das Powercenter beantwortet alle drei mit dem Ausnahmecode für eine unzulässige Funktion @src:modbusspec. Das deckt sich mit @tab:modbustreiber, wonach das Gerät allein die Funktionscodes 0x03, 0x04, 0x06 und 0x10 verwendet und ein Lesen von Coils nicht vorgesehen ist.
+
+Die Typbeschreibung erklärt diese drei Anfragen nicht. Das Sammelregister ist in der geprüften Fassung ein einziges Feld einer vorzeichenlosen Ganzzahl mit vier Byte, das keine bitweise Adressierung trägt, und die beiden Kommandos sind nach @sec:uebernahme als schreibende Werte ausgeführt. Kein Datenpunkt des Modells verlangt somit ein Lesen von Coils. Auffällig bleibt allein, dass zwei der drei Adressen genau jene Kommandos betreffen, die zunächst als digitale Ausgänge angelegt waren. Woher die Anfragen stammen, lässt sich am Aufbau nicht entscheiden. Auf die in @sec:umsetzung offen gebliebene Frage nach der gescheiterten Zerlegung wirkt der Befund nicht, da beide dort erprobten Wege bereits am Import scheiterten und nie auf die Leitung kamen.
+
+Für die Abfragelast bedeutet der Befund, dass ein Viertel jedes Zyklus ohne Ertrag bleibt, je Endgerät drei Telegramme in der Sekunde und bei einem voll bestückten Strang 72. Da die Anfragen keine Nutzdaten liefern, betrifft die Einsparung die Zahl der Telegramme und nicht die übertragene Datenmenge. Der Punkt ist in @sec:weiterentwicklung aufgegriffen.
+
+Aus derselben Aufzeichnung ergibt sich, in welchem Sinn die Empfehlung des Systemhandbuchs eingehalten ist, jedes Gerät höchstens einmal je Sekunde abzufragen @src:sentronsystemhandbuch. Erfüllt ist sie für den Abfragezyklus, nicht für das einzelne Telegramm, denn ein Zyklus besteht aus zwölf Anfragen.
+
 Die beobachtete Verzögerung ist dabei nicht dem Intervall allein zuzurechnen. Das Endgerät überträgt seine Werte nach @sec:ecpd_konnektivitaet in nach Größe gestaffelten Abständen von $2space.thin"s"$, $10space.thin"s"$ und $60space.thin"s"$ über die Funkstrecke, sodass die Abfrage in Desigo CC nur den Weg vom Powercenter zur Leitwarte bestimmt. Für Werte des langsamsten Rasters, etwa Spannung, Netzfrequenz oder Energie, liegt die Zeit bis zur Anzeige entsprechend über dem eingestellten Intervall, ohne dass darin ein Mangel der Anbindung läge. Das Ergebnis von T-03 gilt deshalb für den Weg zwischen Powercenter und Desigo CC und nicht für die Strecke vom Endgerät bis zur Anzeige.
 
-#kommentar[Bitte den Datenpunkt nennen, an dem die Aktualisierung beobachtet wurde, und ob die Änderung am Gerät oder über SENTRON Powerconfig hervorgerufen wurde. Der Absatz trennt bewusst die Abfrage von der Funkstrecke. Welches der drei Sendraster für den geprüften Wert galt, entscheidet darüber, ob die Beobachtung die $1space.thin"s"$ tatsächlich belegt.]
+#kommentar[Bitte den Datenpunkt nennen, an dem die Aktualisierung beobachtet wurde, und ob die Änderung am Gerät oder über SENTRON Powerconfig hervorgerufen wurde. Der Absatz trennt bewusst die Abfrage von der Funkstrecke. Welches der drei Sendraster für den geprüften Wert galt, entscheidet darüber, ob die Beobachtung die $1space.thin"s"$ auch an der Anzeige belegt; für die Abfrage selbst leistet das die Aufzeichnung des Telegrammverkehrs.]
 
 T-04 ist erfüllt. Die Messwerte folgen der aufgeschalteten Last in Betrag und Richtung und stimmen der Größenordnung nach mit der Referenz überein. Eine Verwechslung von Kanälen, Vorzeichen oder Skalierungen ist nicht aufgetreten.
 
@@ -154,3 +166,31 @@ D-02 und D-03 bleiben dagegen offen. Die Durchsicht hat nach @sec:pruefablauf de
    Bewusst nicht aufgenommen: Erfuellungsaussagen zu einzelnen FA und NFA (gehoert
    nach @sec:anforderungsabgleich), die Ursache des zurueckgewiesenen
    Schreibzugriffs (@sec:befunde) und die Belege selbst (Anhang). */
+
+/* Claude: Am 31.08.2026 nach Angabe des Autors ergaenzt ist der Absatz zum
+   Telegrammverkehr bei T-03. Gemessen mit Wireshark 4.4.17, ein Zyklus je
+   Sekunde aus zwoelf Anfragen, davon neun auf Register mit 42, 14, 4, 2, 2, 2,
+   1, 1 und 1 Wort und drei auf Coils. Damit ist das
+   Abfrageintervall erstmals unabhaengig von der Anzeige belegt, und die
+   Blockbildung des Treibers ist nicht mehr nur aus @src:desigoccenghelp
+   uebernommen, sondern beobachtet.
+
+   Nachgezogen sind vier weitere Stellen. @tab:werkzeuge fuehrt Wireshark als
+   Werkzeug, @sec:pruefablauf nennt es als vierten Zugang allein fuer T-03,
+   @sec:testfaelle verlangt die Aufzeichnung im Pruefschritt von T-03, und
+   @sec:datenpunkte beziffert die Last je Geraet jetzt mit den gemessenen
+   gemessenen Anfragen statt mit "einer geringen Zahl von Leseblöcken".
+
+   Offen und im #kommentar bei T-03 vermerkt sind zwei Punkte: die Summe elf
+   gegen die zuvor genannten zwoelf, und die drei Coil-Anfragen, die zu der
+   Aussage in :umsetzung querstehen, es werde nur mit den Funktionscodes 3
+   und 4 gelesen.
+
+   Die Rechnung 24 x 12 = 288 Anfragen je Zyklus fuer einen voll bestueckten
+   Strang steht in @sec:datenpunkte ausdruecklich als rechnerisch, da am Aufbau
+   nach RB-04 nur ein Endgeraet vorhanden ist.
+
+   Bewusst zurueckhaltend gefasst ist die Empfehlung des Systemhandbuchs. Zwoelf
+   Telegramme je Sekunde an dasselbe Geraet erfuellen "hoechstens einmal pro
+   Sekunde abfragen" im Sinne des Zyklus, nicht im Sinne des einzelnen
+   Telegramms. Der Text sagt genau das und wertet es nicht. */

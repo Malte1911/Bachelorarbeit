@@ -57,7 +57,7 @@ Die Unterlage entsteht gegen die Kriterien D-01 bis D-05, die @sec:dokukriterien
 
 D-05 ist dabei das Kriterium, das am ehesten verfehlt wird, denn es verlangt von der Unterlage, gegen das eigene Ergebnis zu sprechen. Eine Vorlage, die ihre Grenzen verschweigt, besteht die Durchsicht dem Wortlaut nach, führt in der Anwendung jedoch zu Erwartungen, die sie nicht einlöst. Der in @sec:uebernahme beschriebene Fall der Alarme ist das deutlichste Beispiel, da die Zerlegung des Sammelregisters in der Auswahl vorgesehen war und erst bei der Übernahme scheiterte.
 
-#kommentar[Zu entscheiden ist, in welcher Form die Unterlage der Arbeit beiliegt. Möglich sind eine Aufnahme in den Anhang oder eine Führung als eigenständige Beilage mit Verweis an dieser Stelle. Für die Beilage spricht, dass die Unterlage außerhalb der Arbeit fortgeschrieben wird und ein eigenes Deckblatt mit Revisionsstand trägt. Die Entscheidung berührt auch @sec:pruefablauf, da die durchsehende Person auf einen benannten Stand verweisen muss.]
+Die Unterlage selbst ist in #ref(<apx:anwenderdoku>, supplement: [Anhang]) wiedergegeben. Durchgesehen und in @sec:testdurchfuehrung bewertet ist damit ein benannter Stand, auf den sich T-13 beziehen kann.
 
 /* Claude: Abschnitt nach dem mit dem Autor abgestimmten Konzept ausformuliert.
    Der urspruengliche #kommentar ist damit abgearbeitet, einschliesslich seiner

@@ -48,6 +48,8 @@ Die Ursache liegt im Zusammenspiel beider Werkzeuge. Ein im #acro("PDE") als dig
 
 Aus dieser Beobachtung folgt die Festlegung, beide Kommandos wie die übrigen vier als schreibende Werte auszuführen. Eine Schaltfläche, die vorhanden ist, den Zustand nicht anzeigt und nur in eine Richtung wirkt, ist irreführender als gar keine. Die in @sec:umsetzung beschriebene Zuordnung der sechs Kommandos ist somit nicht am Werkzeug hergeleitet, sondern das Ergebnis dieser Übernahme.
 
+Die Umstellung wirkt allerdings nur auf die Schreibseite. Die Aufzeichnung des Telegrammverkehrs in @sec:testdurchfuehrung zeigt, dass Desigo CC beide Kommandos weiterhin als Coils zu lesen versucht und dabei einen Ausnahmecode erhält.
+
 
 ==== Was die Übernahme offenlässt
 

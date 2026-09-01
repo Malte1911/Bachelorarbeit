@@ -22,6 +22,8 @@ Die Parametrierung der Geräte ist dabei kein fester Zustand des Aufbaus, sonder
 
 Drei Zugänge auf dieselben Daten stehen zur Verfügung. Die Ansicht in Desigo CC zeigt, was am Ende der Kette ankommt, und ist damit der eigentliche Prüfgegenstand. Das unabhängige Modbus-Werkzeug aus @tab:werkzeuge liest denselben Registerraum ohne das Datenmodell und trennt nach @sec:werkzeuge einen Fehler des Modells von einem Fehler der Registerkarte.
 
+Daneben tritt für einen einzelnen Zweck ein vierter Zugang. Der ebenfalls in @tab:werkzeuge genannte Netzwerkanalysator zeichnet den Modbus-Verkehr zwischen Desigo CC und dem Datentransceiver auf und macht damit sichtbar, was keiner der drei übrigen Zugänge zeigt, nämlich in welchem Abstand und in wie vielen Telegrammen der Treiber tatsächlich abfragt. Er dient allein T-03.
+
 Der Online-Modus des #acro("PDE") fällt als drittes Prüfmittel weitgehend aus. Er ist nach @sec:pde_online auf einfache Datentypen ohne Transformation beschränkt und liefert für Zeichenketten, Wahrheitswerte und #acro("BLOB") keine Werte. Betroffen sind gerade jene Datenpunkte, deren Prüfung vor der Übernahme den größten Nutzen gehabt hätte, nämlich die als Zeichenkette geführten Stammdaten und die in @sec:umsetzung erprobte Zerlegung des Alarmregisters. Für die numerischen Register bleibt er nutzbar, dort steht mit dem Modbus-Werkzeug jedoch bereits ein Zugang bereit.
 
 Weichen zwei Zugänge voneinander ab, gilt nach @sec:quellenlage die Beobachtung am Gerät. Belegt wird jeder Testfall durch einen Bildschirmabzug der Ansicht in Desigo CC, bei abweichenden Werten zusätzlich durch den unmittelbar am Register abgelesenen Wert. Die Belege liegen im Anhang, während @sec:testdurchfuehrung allein das Ergebnis und dessen Bewertung führt.

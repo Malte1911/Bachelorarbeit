@@ -39,9 +39,9 @@ Der Nachweis durch Begutachtung betrifft jene Anforderungen, die sich einer Mess
     [FA-01, NFA-05],
 
     [T-03],
-    [Das Abfrageintervall am Modbus-Treiber einstellen, einen Wert am Gerät verändern und die Zeit messen, bis Desigo CC den neuen Wert anzeigt. Anschließend prüfen, ob sich für ein einzelnes Gerät oder für eine Gruppe von Datenpunkten ein davon abweichendes Intervall einstellen lässt.],
+    [Das Abfrageintervall am Modbus-Treiber einstellen, einen Wert am Gerät verändern und die Zeit messen, bis Desigo CC den neuen Wert anzeigt. Den Modbus-Verkehr dabei aufzeichnen und daraus den Abstand der Abfragen sowie die Zahl der Anfragen je Zyklus bestimmen. Anschließend prüfen, ob sich für ein einzelnes Gerät oder für eine Gruppe von Datenpunkten ein davon abweichendes Intervall einstellen lässt.],
 
-    [Desigo CC zeigt den geänderten Wert spätestens nach Ablauf des eingestellten Intervalls an, gerechnet von dem Zeitpunkt an, zu dem der Wert am Powercenter bereitsteht. Davor liegt die Zeit, die das Endgerät nach @sec:ecpd_konnektivitaet für die Übertragung über die Funkstrecke benötigt. Ein je Gerät oder je Datenpunktgruppe abweichendes Intervall steht nicht zur Verfügung, die Einstellung wirkt auf alle Datenpunkte aller angebundenen Geräte gleichermaßen.],
+    [Desigo CC zeigt den geänderten Wert spätestens nach Ablauf des eingestellten Intervalls an, gerechnet von dem Zeitpunkt an, zu dem der Wert am Powercenter bereitsteht. Davor liegt die Zeit, die das Endgerät nach @sec:ecpd_konnektivitaet für die Übertragung über die Funkstrecke benötigt. Die Aufzeichnung weist Abfragen im eingestellten Abstand aus, wobei ein Zyklus aus weniger Anfragen besteht, als Register gelesen werden. Ein je Gerät oder je Datenpunktgruppe abweichendes Intervall steht nicht zur Verfügung, die Einstellung wirkt auf alle Datenpunkte aller angebundenen Geräte gleichermaßen.],
 
     [FA-02],
 

@@ -2,7 +2,7 @@
 % (name/id), NonCHM/en-US/23986237451.html (Version) und dem Dateistand des Exports.
 @manual{src:pdemanual,
   author = {{Siemens AG}},
-  title = {SENTRON Power Device Engineer -- Online-Hilfe},
+  title = {SENTRON Power Device Engineer -- Online-Hilfe, Version V9.1.0},
   edition = {V9.1.0},
   organization = {Siemens AG, Smart Infrastructure},
   year = {2025},
@@ -14,7 +14,7 @@
 % Impressum von doc/resources/datasheets/MAN_L1V30827018A_RS-AC_009_de_de-DE.pdf.
 @manual{src:sentronsystemhandbuch,
   author = {{Siemens AG}},
-  title = {SENTRON Schutzschaltgeräte mit Kommunikations- und Messfunktion -- Systemhandbuch},
+  title = {SENTRON Schutzschaltgeräte mit Kommunikations- und Messfunktion -- Systemhandbuch, Ausgabe L1V30827018A_RS-AC_009},
   edition = {L1V30827018A\_RS-AC\_009},
   organization = {Siemens AG, Smart Infrastructure, Electrical Products},
   address = {Regensburg},
@@ -28,7 +28,7 @@
 @online{src:sentronregistermap,
   url = {https://support.industry.siemens.com/cs/ww/de/view/109973540},
   author = {{Siemens AG}},
-  title = {SENTRON Schutzschaltgeräte mit Kommunikations- und Messfunktion -- Übersicht der Datenpunkte und Modbus-Register},
+  title = {SENTRON Schutzschaltgeräte mit Kommunikations- und Messfunktion -- Übersicht der Datenpunkte und Modbus-Register, Version V7.3},
   edition = {V7.3},
   year = {2026},
   note = {Siemens Industry Online Support, Beitrags-ID 109973540},
@@ -41,26 +41,28 @@
 % EnergyAndPower_Device_Modbus_HQ_2. Metadaten (Dokument-ID, Ausgabestand, Version)
 % entnommen aus den Seiten "Edition Notice" (13789687051) und "Version Information"
 % (13832500107) der Hilfe selbst.
-% ANMERKUNG 1: Zugriff erfolgte ueber oeffentlich erreichbare Installationen der Hilfe,
-% nicht ueber die offizielle Siemens-Auslieferung. Herangezogen wurden zwei Staende:
-% Plattform V5.1 (https://bureau.sygma.ie/WepApp/Help/EngineeringHelp/en-US/index.html,
-% vom Autor als inhaltsgleich bestaetigt) und Plattform V7 (URL unten). Alle in der
-% Arbeit verwendeten Aussagen wurden in beiden Staenden geprueft und sind identisch.
-% ANMERKUNG 2 (Stand 27.08.2026): Der Autor hat bestaetigt, dass die hier herangezogenen
-% Aussagen zu Import, Objektmodell und Modbus-Treiber auch gegenueber dem eingesetzten
-% Stand unveraendert gelten. Die frueheren Vorbehalte im Text, die eine veraltete
-% Dokumentationslage geltend machten, sind daraufhin entfallen. Der Vorbehalt zu NFA-04
-% in content/300_anforderungen/320_Anforderungen.typ betrifft seither allein den Import
-% der konkreten Typbeschreibung am Testaufbau.
+% ANMERKUNG 1 (Stand 01.09.2026): Der Eintrag nennt bewusst keine URL. Zugriff
+% erfolgte waehrend der Arbeit ueber oeffentlich erreichbare Fremdinstallationen
+% der Hilfe (Plattform V5.1 und V7); eine solche Adresse als Fundstelle zu
+% fuehren waere irrefuehrend, da die Hilfe mit der Plattform ausgeliefert wird
+% und nicht oeffentlich publiziert ist. Der Autor hat bestaetigt, dass die in
+% der Arbeit verwendeten Aussagen zu Import, Objektmodell und Modbus-Treiber im
+% eingesetzten Stand V9 unveraendert gelten; der Eintrag ist deshalb auf V9
+% gesetzt.
+% ACHTUNG: Das Jahr 2025 ist der angesetzte Freigabestand von V9 und vor der
+% Abgabe an der Installation zu pruefen, ebenso die Dokument-ID des V9-Standes,
+% die hier nicht mehr gefuehrt wird, weil die frueher genannte ID
+% A6V10431913_en--_a_09 zum V7-Stand gehoerte.
+% ANMERKUNG 2: Der Vorbehalt zu NFA-04 in
+% content/300_anforderungen/320_Anforderungen.typ betrifft allein den Import der
+% konkreten Typbeschreibung am Testaufbau.
 @manual{src:desigoccenghelp,
-  url = {https://bms.megapps.com.bo/AppClient/Help/EngineeringHelp/en-US/index.html},
   author = {{Siemens AG}},
-  title = {Desigo CC Engineering Help},
-  edition = {V7},
+  title = {Desigo CC Engineering Help, Ausgabe V9},
+  edition = {V9},
   organization = {Siemens Switzerland Ltd., Smart Infrastructure},
-  year = {2022},
-  note = {Dokument-ID A6V10431913\_en--\_a\_09},
-  urldate = {2026-8-6}
+  year = {2025},
+  note = {Produktdokumentation, mit der Plattform ausgeliefert und nicht öffentlich verfügbar}
 }
 
 @online{src:modbusspec,
@@ -89,7 +91,7 @@
   number={6},
   pages={1073-1101},
   keywords={Field buses;Automation;Standardization;History;Actuators;Media Access Protocol;Paper technology;Joining processes;Access protocols;Standards development;Application relationships;architecture;client–server;cooperation models;fieldbus history;medium access control (MAC);protocol classification;publisher–consumer;real time;standardization},
-  doi={10.1109/JPROC.2005.849724}
+  doi = {10.1109/JPROC.2005.849724}
 }
 
 @online{src:modbusserial,
@@ -116,8 +118,7 @@ pages = {1983-1993},
 year = {2025},
 note = {Sixth International Conference on Futuristic Trends in Networks and Computing Technologies (FTNCT06), held in Uttarakhand, India},
 issn = {1877-0509},
-doi = {https://doi.org/10.1016/j.procs.2025.04.154},
-url = {https://www.sciencedirect.com/science/article/pii/S1877050925012566},
+doi = {10.1016/j.procs.2025.04.154},
 author = {Marifat Rashid and Yashwant Singh and Sheikh Imroza Manzoor},
 keywords = {Modbus, Security, Industrial Control Systems, SCADA, Vulnerability Assessment},
 abstract = {Modbus protocol is one of the most extensively used communication protocols in Industrial Control Systems (ICS) because of its simplicity reliability, and basic position in ICS communication and availability as an open-source solution, However, the rising use of Ethernet Modbus TCP/IP connections and their integration with the internet have exposed this protocol to a variety of security concerns. A comprehensive assessment of related literature shows that the lack of encryption is a fundamental flaw in the Modbus protocol used in ICS systems. In this study, we evaluate the vulnerability of Modbus communication configuration by providing the methodology for assessing the existing vulnerability: Lack of Encryption, which includes an Allen-Bradley (1769-L30ER) Programmable Logic Controller (PLC) as the server and a Modbus Poll client (PC). The results revealed clearly that the sent data remained in plain text, making it vulnerable to interception and modification. In addition, we performed a Denial-of-Service (DoS) attack on the experimental setup to demonstrate how easily inside attackers may exploit this existing vulnerability. As a result, improving the security of the Modbus protocol is essential. This study attempts to throw attention on the critical need to improve Modbus protocol security mechanisms in order to protect ICS systems from possible attacks.}
@@ -130,8 +131,7 @@ volume = {126},
 pages = {110485},
 year = {2025},
 issn = {0045-7906},
-doi = {https://doi.org/10.1016/j.compeleceng.2025.110485},
-url = {https://www.sciencedirect.com/science/article/pii/S0045790625004288},
+doi = {10.1016/j.compeleceng.2025.110485},
 author = {Valentine Machaka and Santiago Figueroa-Lorenzo and Saioa Arrizabalaga and Beñat Elduayen-Echave and Josune Hernantes},
 keywords = {ICS security, Digital twins, Sensor networks, Adversary emulation, Threat assessment, Critical infrastructure protection},
 abstract = {Cyberattacks pose significant risks to the safety and functionality of industrial control systems (ICS), particularly in critical sectors such as water. Understanding the implications of these cyberattacks is essential for evaluating their environmental and economic repercussions to develop defensive strategies and implement security mechanisms. This study seeks to create a controlled and reproducible virtualised ICS testbed, enabling a risk-free environment for cybersecurity testing. Based on the IEC 62264 Industrial Automation Pyramid (IAP), the proposed virtual ICS testbed features a scalable multi-layered network architecture that supports multiple ICS protocols. This case study features an Operational Technology (OT) environment with a digital twin of a Wastewater Treatment Plant (WWTP) developed using MATLAB/Simulink, OpenPLC and SCADA-LTS. The MITRE ATT&CK adversary emulation technique was utilised to assess the potential impacts of Modbus/TCP protocol attacks on a WWTP industrial process by targeting levels 1 and 2 of the IAP. The findings highlight the necessity for threat emulation to simulate real-world attack scenarios, vulnerability assessments, and operational impact analysis. Furthermore, establishing robust detection mechanisms guarantees that threats are identified early, minimising potential risks to operational integrity and environmental safety. In conclusion, the significance of creating ICS testbeds for cybersecurity testing is emphasised, ultimately suggesting directions for future research.}
@@ -186,8 +186,7 @@ number = {4},
 pages = {139-145},
 year = {2009},
 issn = {1874-5482},
-doi = {https://doi.org/10.1016/j.ijcip.2009.10.001},
-url = {https://www.sciencedirect.com/science/article/pii/S1874548209000419},
+doi = {10.1016/j.ijcip.2009.10.001},
 author = {Igor {Nai Fovino} and Andrea Carcano and Marcelo Masera and Alberto Trombetta},
 keywords = {Critical Infrastructures, SCADA Systems, Malware, Attacks},
 abstract = {Modern critical infrastructures are continually exposed to new threats due to the vulnerabilities and architectural weaknesses introduced by the extensive use of information and communications technologies (ICT). Of particular significance are the vulnerabilities in the communication protocols used in supervisory control and data acquisition (SCADA) systems that are commonly employed to control industrial processes. This paper presents the results of our research on the impact of traditional ICT malware on SCADA systems. In addition, it discusses the potential damaging effects of computer malware created for SCADA systems.}
@@ -206,7 +205,7 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 % DIN-Katalog gegenzulesen, insbesondere bei IEC 61008-1 und IEC 61009-1.
 @manual{src:iec60898,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 60898-1: Electrical accessories -- Circuit-breakers for overcurrent protection for household and similar installations -- Part 1: Circuit-breakers for a.c. operation},
+  title = {IEC 60898-1: Electrical accessories -- Circuit-breakers for overcurrent protection for household and similar installations -- Part 1: Circuit-breakers for a.c. operation, Ausgabe 2.1 (2019), konsolidiert mit AMD1:2019},
   edition = {2.1, konsolidiert mit AMD1:2019},
   organization = {IEC},
   address = {Genf},
@@ -215,7 +214,7 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 
 @manual{src:iec61008,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 61008-1: Residual current operated circuit-breakers without integral overcurrent protection for household and similar uses (RCCBs) -- Part 1: General rules},
+  title = {IEC 61008-1: Residual current operated circuit-breakers without integral overcurrent protection for household and similar uses (RCCBs) -- Part 1: General rules, Ausgabe 4.0 (2024)},
   edition = {4.0},
   organization = {IEC},
   address = {Genf},
@@ -224,7 +223,7 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 
 @manual{src:iec61009,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 61009-1: Residual current operated circuit-breakers with integral overcurrent protection for household and similar uses (RCBOs) -- Part 1: General rules},
+  title = {IEC 61009-1: Residual current operated circuit-breakers with integral overcurrent protection for household and similar uses (RCBOs) -- Part 1: General rules, Ausgabe 4.0 (2024)},
   edition = {4.0},
   organization = {IEC},
   address = {Genf},
@@ -233,7 +232,7 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 
 @manual{src:iec62606,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 62606: General requirements for arc fault detection devices},
+  title = {IEC 62606: General requirements for arc fault detection devices, Ausgabe 1.2 (2022), konsolidiert mit AMD1:2017 und AMD2:2022},
   edition = {1.2, konsolidiert mit AMD1:2017 und AMD2:2022},
   organization = {IEC},
   address = {Genf},
@@ -242,7 +241,7 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 
 @manual{src:iec60947,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 60947-2: Low-voltage switchgear and controlgear -- Part 2: Circuit-breakers},
+  title = {IEC 60947-2: Low-voltage switchgear and controlgear -- Part 2: Circuit-breakers, Ausgabe 6.0 (2024)},
   edition = {6.0},
   organization = {IEC},
   address = {Genf},
@@ -251,7 +250,7 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 
 @manual{src:iec62020,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 62020-1: Electrical accessories -- Residual current monitors (RCMs) -- Part 1: RCMs for household and similar uses},
+  title = {IEC 62020-1: Electrical accessories -- Residual current monitors (RCMs) -- Part 1: RCMs for household and similar uses, Ausgabe 1.0 (2020)},
   edition = {1.0},
   organization = {IEC},
   address = {Genf},
@@ -284,7 +283,7 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 @manual{src:desigoccdatasheet,
   url = {https://cache.industry.siemens.com/dl/files/590/109789590/att_1046355/v6/A6V10395661.pdf},
   author = {{Siemens AG}},
-  title = {Desigo CC -- Architect \& Engineer Specifications},
+  title = {Desigo CC -- Architect \& Engineer Specifications, Ausgabe V9.0, Dokument-ID A6V10395661},
   edition = {V9.0},
   organization = {Siemens, Smart Infrastructure -- Building Products},
   year = {2025},
@@ -298,7 +297,7 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 @manual{src:powermanager,
   url = {https://support.industry.siemens.com/cs/attachments/109771760/GettingStartedEN_pm_9.0.pdf},
   author = {{Siemens AG}},
-  title = {SENTRON Powermanager -- Getting Started},
+  title = {SENTRON Powermanager -- Getting Started, Ausgabe V9.0},
   edition = {V9.0},
   organization = {Siemens AG, Smart Infrastructure},
   year = {2024},
@@ -343,12 +342,18 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 @online{src:pdejsonimport,
   url = {https://support.industry.siemens.com/cs/document/109798692},
   author = {{Siemens AG}},
-  title = {SENTRON Power Device Engineer -- Integration of JSON device files},
+  title = {SENTRON Power Device Engineer -- Integration of JSON device files, Beitrags-ID 109798692},
   year = {2025},
   note = {Siemens Industry Online Support, Beitrags-ID 109798692},
   urldate = {2026-8-10}
 }
 % ---------------------------------------------------------------------------
+% OFFEN (Stand 01.09.2026): Die DOI der Eintraege dieses Abschnitts und der
+% drei Modbus-Sicherheitsaufsaetze sind auf die nackte Form ohne den Praefix
+% https://doi.org/ vereinheitlicht, und die zusaetzlichen Verlags-URL sind
+% entfallen, damit im Literaturverzeichnis nicht Adresse und DOI nebeneinander
+% erscheinen. Der Autor prueft vor der Abgabe, ob jede DOI aufloest und ob im
+% erzeugten PDF kein Verweis ins Leere fuehrt.
 % Wissenschaftliche Einordnung (Abschnitt Stand der Technik und Quellenlage)
 % ---------------------------------------------------------------------------
 % Eintraege von Claude recherchiert und ergaenzt. Die bibliographischen Angaben
@@ -432,11 +437,25 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 % ---------------------------------------------------------------------------
 % Muendliche Auskuenfte
 % ---------------------------------------------------------------------------
+% OFFEN (Stand 01.09.2026, vom Autor selbst nachzutragen): Beide Eintraege
+% dieses Abschnitts tragen ein angesetztes und kein belegtes Datum, und beiden
+% fehlt die vom Gutachten geforderte Angabe zu Rolle, Kontext und Form der
+% Auskunft. Der Autor hat zugesagt, das vor der Abgabe zu pruefen und zu
+% korrigieren. Nachzutragen sind:
+%   - src:ulmer2026: das tatsaechliche Datum, die Funktionsbezeichnung von
+%     Andreas Ulmer und die Form der Auskunft (Gespraech, Telefonat, E-Mail).
+%   - src:siemenssupport2026: das tatsaechliche Datum und, falls die Antwort
+%     schriftlich vorliegt, die Vorgangs- oder Beitragsnummer des Supportfalls.
+%     Ein belegbarer Supportvorgang ist einer muendlichen Auskunft vorzuziehen.
+% Zu pruefen ist ausserdem, welche Zitierform fuer muendliche Quellen die
+% Pruefungsordnung der Hochschule vorschreibt; der Eintragstyp @misc ist hier
+% nur die naheliegende Wahl und nicht durch eine Vorgabe gedeckt.
+% ---------------------------------------------------------------------------
 % Eintrag von Claude ergaenzt auf Anweisung des Autors. Muendliche Auskunft zur
 % Verwendbarkeit der mobilen Anwendung SENTRON Powerconfig, gestuetzt auf die
 % Erfahrungen des Inbetriebnahmepersonals. Andreas Ulmer nimmt die fachliche
 % Betreuung der Arbeit wahr. ACHTUNG: Der Monat ist vom Autor bestaetigt, der
-% Tag ist mit dem 15. Juni 2026 nur angesetzt und vor der Abgabe zu praezisieren.
+% Tag ist mit dem 15. Juni 2026 nur angesetzt.
 @misc{src:ulmer2026,
   author = {Andreas Ulmer},
   title = {Mündliche Auskunft zur Verwendbarkeit der mobilen Anwendung SENTRON Powerconfig, Siemens AG},
@@ -446,11 +465,9 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 % Eintrag von Claude ergaenzt. Auskunft des Siemens-Produktsupports zur
 % gesonderten Freischaltung des Fernschaltens ueber Modbus, die in der
 % vorliegenden Produktdokumentation nicht als Voraussetzung erfasst ist.
-% ACHTUNG: Datum und Form der Auskunft sind anzupassen. Der 20. August 2026 ist
-% nur angesetzt; liegt die Antwort schriftlich vor, gehoert die Vorgangsnummer
-% in den Titel. Zitiert wird der Eintrag erst im Validierungsteil, in
-% content/600_validierung/630_Befunde.typ; bis dahin erscheint er nicht im
-% Literaturverzeichnis.
+% ACHTUNG: Datum und Form der Auskunft sind angesetzt, siehe den Hinweis oben.
+% Zitiert wird der Eintrag erst im Validierungsteil, in
+% content/600_validierung/630_Befunde.typ.
 @misc{src:siemenssupport2026,
   author = {{Siemens AG}},
   title = {Auskunft des Produktsupports zur Freischaltung des Fernschaltens über Modbus am SENTRON 5TY1 COM},

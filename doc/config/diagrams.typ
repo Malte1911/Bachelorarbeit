@@ -968,7 +968,7 @@
     edge(<netz>, <nt>, "->", stroke: dg_linie_strom, label: [$230space.thin"V"$], label-side: left),
     edge(<nt>, <pc>, "->", stroke: dg_linie_strom, label: [$24space.thin"V"$]),
     edge(<netz>, <ecpd>, "->", stroke: dg_linie_strom, label: [$230space.thin"V"$]),
-    edge(<ecpd>, <last>, "->", stroke: dg_linie_strom, label: [rund $15\,7space.thin"A"$], label-side: right),
+    edge(<ecpd>, <last>, "->", stroke: dg_linie_strom, label: [rund $15class("normal", ",")7space.thin"A"$], label-side: right),
 
     // --- Werkzeug neben dem Datenpfad ---
     dg_werkzeug(

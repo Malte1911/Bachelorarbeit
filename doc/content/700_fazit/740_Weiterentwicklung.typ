@@ -17,6 +17,8 @@
 
 Aus den Befunden in @sec:befunde und den Grenzen in @sec:wuerdigung ergeben sich mehrere Anknüpfungspunkte für zukünftige Entwicklungen.
 
+Am schnellsten abzustellen wäre eine Last, die keinen Ertrag bringt. Nach @sec:testdurchfuehrung entfallen drei der zwölf Anfragen je Abfragezyklus auf Coils, die das Powercenter nicht bedient. Ließe sich klären, woher sie stammen, sänke die Zahl der Telegramme je Gerät um ein Viertel, ohne dass ein Wert verloren geht. Der Weg dorthin ist kurz, denn eine erneute Aufzeichnung nach dem Entfernen eines der drei Datenpunkte zeigt, ob die Anfrage an einem Datenpunkt hängt oder vom Treiber selbst stammt.
+
 Am nächsten liegt die nach Verwendungszweck abgestufte Abfrage. Ließe sich das Intervall entgegen @sec:befunde je Datenpunktgruppe einstellen, wäre FA-02 erfüllt und die Abfragelast eines vollen Strangs weiter zu senken. Die Angaben dazu liegen in der Arbeitsmappe bereits vor.
 
 Die Typbeschreibung des Powercenters lässt sich abrunden. Sie ist nach @sec:umsetzung bewusst schmal gehalten und über Import und Instanzbildung hinaus ungeprüft, und der Zeit- und Synchronisationsstatus ist darin ausgespart geblieben. Seine Aufnahme wäre eine kleine Ergänzung, deren Nutzen allerdings an derselben Alarmierung hängt, denn eine abweichende Uhr des Datentransceivers entwertet die Zeitstempel des Strangs und fällt erst auf, wenn sie gemeldet wird.

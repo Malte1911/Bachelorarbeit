@@ -23,20 +23,34 @@ Die Ergebnisse dieser Arbeit sind an die Stände der eingesetzten Software gebun
     [V 9.1.0],
 
     [Desigo CC],
-    [Zielplattform, in die die Typbeschreibung importiert und in der instanziiert wird.],
+    [Zielplattform, in die die Typbeschreibung importiert und in der instanziiert wird. Vollständige Installation der Standardausführung.],
     [V 9],
 
     [QModMaster],
     [Unabhängige Gegenprobe der Registerwerte am Datentransceiver, getrennt vom Datenmodell.],
     [V 0.5.2],
+
+    [Wireshark],
+    [Aufzeichnung des Modbus-Verkehrs zwischen Desigo CC und dem Datentransceiver, um Abfrageintervall und Blockbildung am Telegramm nachzuweisen (siehe @sec:testdurchfuehrung).],
+    [V 4.4.17],
   ),
   caption: [Eingesetzte Werkzeuge, ihre Aufgabe im Rahmen der Arbeit und ihr Versionsstand]
 )<tab:werkzeuge>
 
-// #kommentar[Bitte die vier Versionsstände eintragen und beim Modbus-Werkzeug zusätzlich den Produktnamen, da die Zeile sonst keinen Nachvollzug erlaubt. Falls weitere Werkzeuge zum Einsatz kamen, die für die Ergebnisse bedeutsam sind, gehören sie in dieselbe Tabelle.]
+/* Anmerkung des Autors, erledigt: "Bitte die vier Versionsstände eintragen und
+   beim Modbus-Werkzeug zusätzlich den Produktnamen, da die Zeile sonst keinen
+   Nachvollzug erlaubt. Falls weitere Werkzeuge zum Einsatz kamen, die für die
+   Ergebnisse bedeutsam sind, gehören sie in dieselbe Tabelle." */
 
-// #kommentar[Bitte ergänzen, welcher Stand von Desigo CC am Testaufbau tatsächlich installiert ist und ob es sich um eine vollständige Installation oder um eine Testinstanz handelt. Weicht der Stand von dem in NFA-04 geforderten V9.0 ab, ist das kein Mangel des Aufbaus, muss aber im Anforderungsabgleich ausgewiesen werden.]
+/* Anmerkung des Autors, erledigt: "Bitte ergänzen, welcher Stand von Desigo CC
+   am Testaufbau tatsächlich installiert ist und ob es sich um eine
+   vollständige Installation oder um eine Testinstanz handelt. Weicht der Stand
+   von dem in NFA-04 geforderten V9.0 ab, ist das kein Mangel des Aufbaus, muss
+   aber im Anforderungsabgleich ausgewiesen werden." */
 
+Zu Desigo CC gehört eine Angabe, die sich aus der Versionsnummer allein nicht ergibt. Am Testaufbau liegt eine vollständige Installation der Standardausführung vor und keine eingeschränkte Test- oder Demonstrationsinstanz. Für die Prüfung ist das wesentlich, denn eine eingeschränkte Instanz könnte Funktionen ausblenden, deren Fehlen sonst dem Datenmodell zugerechnet würde. Der in NFA-04 geforderte Nachweis der Verträglichkeit bezieht sich damit auf einen Stand der Plattform, wie er auch im Betrieb anzutreffen ist.
+
+Die Hauptversion ist dabei die für diese Plattform angemessene Genauigkeit. Zwar trägt die Installation darunter noch eine Buildnummer, die Freigabe erfolgt jedoch versionsweise, und ein Wechsel auf einen neueren Stand ist ein eigener, von Hand vorgenommener Schritt. Eine Abstufung zwischen zwei Hauptversionen, wie sie die übrigen Werkzeuge der Tabelle führen, gibt es nicht, weshalb sich die Beobachtungen dieser Arbeit der Version 9 als Ganzes zuordnen lassen.
 
 Das unabhängige Modbus-Werkzeug folgt aus dem in @sec:quellenlage festgelegten Umgang mit der Herstellerdokumentation. Zeigt ein Datenpunkt in Desigo CC einen unerwarteten Wert, so lässt sich ohne einen zweiten, vom Datenmodell unabhängigen Zugang nicht entscheiden, ob die Ursache im Objektmodell, in der Registerkarte oder im Verhalten des Geräts liegt. Erst der direkte Blick auf das Register trennt diese drei Fälle. Der Zugang ist deshalb bereits in @sec:kommunikationsstrecke als eigener Weg auf denselben Registerraum beschrieben.
 
@@ -51,3 +65,18 @@ Das unabhängige Modbus-Werkzeug folgt aus dem in @sec:quellenlage festgelegten 
    Die beiden Erlaeuterungen greifen den Vorbehalt zu NFA-04 und die Begruendung
    des zweiten Modbus-Zugangs auf, damit die Tabelle nicht als blosse Liste
    stehen bleibt. */
+
+/* Claude: Am 31.08.2026 ergaenzt nach der Rueckfrage zu Versionsstaenden und
+   Installationsart. Neu sind der Absatz zur vollstaendigen Installation der
+   Standardausfuehrung von Desigo CC, der Zusatz in der Tabellenzeile und die
+   Zeile zu Wireshark 4.4.17, dessen Aufzeichnung das Ergebnis von T-03 traegt.
+   Die beiden auskommentierten Rueckfragen sind damit beantwortet und als
+   erledigt gekennzeichnet.
+
+   Dass Desigo CC allein mit der Hauptversion steht, waehrend die uebrigen vier
+   Werkzeuge auf die Patchebene genannt sind, ist nach Auskunft des Autors keine
+   Ungenauigkeit, sondern eine Eigenschaft der Plattform. Sie wird versionsweise
+   freigegeben, eine Buildnummer existiert zwar, eine Abstufung zwischen zwei
+   Hauptversionen jedoch nicht. Der zweite Absatz haelt das fest, damit die Zeile
+   im Vergleich zu den uebrigen nicht als nachlaessig gelesen wird. Der zuvor
+   hier gesetzte Arbeitskommentar ist damit erledigt. */
