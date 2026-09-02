@@ -18,18 +18,18 @@ Bevor Anforderungen an das Datenmodell formuliert werden können, ist zu klären
 
 === Systemaufbau und Systemgrenzen<sec:systemanalyse>
 
-Die in @sec:ecpd bis @sec:desigocc beschriebenen Komponenten stehen im Betrieb nicht nebeneinander, sondern in einer festen Kette. Die #acro("ECPD") vom Typ 5TY1 COM sitzen als Endstromkreisschutz im Installationsverteiler, erreichen über die Funkstrecke ausschließlich das SENTRON Powercenter, und erst dieses stellt die Daten über das Gebäudenetz bereit, wo Desigo CC sie abfragen kann. @img:systemaufbau zeigt diese Kette zusammen mit den beiden Werkzeugen, die nicht Teil des laufenden Datenpfads sind, für den Lebenszyklus der Lösung aber maßgeblich bleiben. SENTRON Powerconfig dient der Inbetriebnahme und Parametrierung der Geräte und setzt dabei stets am Powercenter an, entweder über #acro("BLE") vor Ort oder über dessen REST-#acro("API") im Netz @src:sentronsystemhandbuch. Das Werkzeug liegt als Desktop-Anwendung und als mobile Anwendung vor, von denen diese Arbeit ausschließlich die Desktop-Anwendung einsetzt (siehe @sec:rb). Auch für dieses Werkzeug bleibt ein einzelnes Endgerät unmittelbar unerreichbar, denn seine Parametrierung reicht das Powercenter über die Funkstrecke weiter. Der #acro("PDE") erzeugt demgegenüber die Gerätetypbeschreibung als #acro("JSON")-Datei (siehe @sec:pde).
+Die in @sec:ecpd bis @sec:desigocc beschriebenen Komponenten stehen im Betrieb nicht nebeneinander, sondern in einer festen Kette. Die #acro("ECPD") vom Typ 5TY1 COM sitzen als Endstromkreisschutz im Installationsverteiler, erreichen über die Funkstrecke ausschließlich das SENTRON Powercenter, und erst dieses stellt die Daten über das Gebäudenetz bereit, wo Desigo CC sie abfragen kann. @img:systemaufbau zeigt diese Kette zusammen mit den beiden Werkzeugen, die nicht Teil des laufenden Datenpfads sind, für den Lebenszyklus der Lösung aber maßgeblich sind. SENTRON Powerconfig dient der Inbetriebnahme und Parametrierung der Geräte und setzt dabei stets am Powercenter an, entweder über #acro("BLE") vor Ort oder über dessen REST-#acro("API") im Netz @src:sentronsystemhandbuch. Das Werkzeug liegt als Desktop-Anwendung und als mobile Anwendung vor, von denen diese Arbeit ausschließlich die Desktop-Anwendung einsetzt (siehe @sec:rb). Auch für dieses Werkzeug bleibt ein einzelnes Endgerät unmittelbar unerreichbar, denn seine Parametrierung reicht das Powercenter über die Funkstrecke weiter. Der #acro("PDE") erzeugt demgegenüber die Gerätetypbeschreibung als #acro("JSON")-Datei (siehe @sec:pde).
 
 #figure(
   abb_systemaufbau,
   caption: [Datenpfad vom #acro("ECPD") über die Funkstrecke zum Powercenter, von dort über Modbus #acro("TCP") im Gebäudenetz zu Desigo CC, seitlich angetragen die Werkzeuge SENTRON Powerconfig und #acro("PDE") mit ihren jeweiligen Zugriffspunkten],
 )<img:systemaufbau>
 
-Eine Einheit aus einem Powercenter und den ihm zugeordneten Endgeräten wird im Folgenden als _Strang_ bezeichnet. Eine Liegenschaft kann mehrere solcher Stränge enthalten. Der konkrete Laboraufbau, an dem die Lösung erprobt wird, ist von dieser allgemeinen Betrachtung zu unterscheiden und wird im Kapitel zur Systemumgebung beschrieben.
+Eine Einheit aus einem Powercenter und den ihm zugeordneten Endgeräten wird im Folgenden als _Strang_ bezeichnet. Eine Liegenschaft kann mehrere solcher Stränge enthalten. Der konkrete Laboraufbau, an dem die Lösung erprobt wird, ist von dieser allgemeinen Betrachtung zu unterscheiden und wird im Kapitel zur Systemumgebung beschrieben. //Claude: Referenz??
 
 Aus der Kette ergibt sich die Systemgrenze der Arbeit. Gegenstand ist die Abbildung zwischen dem Modbus-Registerraum, den das Powercenter bereitstellt, und dem Objektmodell in Desigo CC. Nicht Gegenstand sind die Schutzfunktion der Geräte selbst, die Funkstrecke zwischen Endgerät und Powercenter, die elektrotechnische Installation sowie die Systemarchitektur von Desigo CC einschließlich ihrer Redundanz- und Betriebskonzepte. Welche Gestalt die Lösung innerhalb dieser Grenze annimmt, ist an dieser Stelle noch offen und wird erst in @sec:konzept aus den Ergebnissen der folgenden Abschnitte abgeleitet.
 
-Für die Ausgangslage ist dabei bedeutsam, dass die betrachtete Gerätereihe in Desigo CC bislang nicht zur Verfügung steht. Das Erweiterungsmodul „Modbus TCP Power Devices" bringt eine Bibliothek vorgefertigter Objektmodelle für diverse Siemens-Niederspannungsgeräten für Gebäude mit, jedoch weder das #acro("ECPD") noch das Powercenter sind darin enthalten @src:desigoccenghelp. Rückwärtskompatibilität zu einer Vorgängerlösung ist folglich keine Anforderung.
+Für die Ausgangslage ist dabei bedeutsam, dass die betrachtete Gerätereihe in Desigo CC bislang nicht zur Verfügung steht. Das Erweiterungsmodul "Modbus TCP Power Devices" bringt eine Bibliothek vorgefertigter Objektmodelle für diverse Siemens-Niederspannungsgeräten für Gebäude mit, jedoch weder das #acro("ECPD") noch das Powercenter sind darin enthalten @src:desigoccenghelp. Rückwärtskompatibilität zu einer Vorgängerlösung ist folglich keine Anforderung.
 
 /* Claude: Der Kommentar aus der ersten Pruefungsrunde ("ist das hier zu frueh
    beschrieben, wie der Aufbau aussehen wird?") ist abgearbeitet. Der Abschnitt
@@ -125,32 +125,41 @@ Bleibt der Umweg über ein vorgelagertes Fremdsystem (W6). Die vom #acro("PDE") 
 Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zwei Ebenen wirken. Die beiden Ausschlusskriterien, das Vorhandensein der Schnittstelle und die Eignung für den Dauerbetrieb, haben bereits W1, W2 und W5 ausgeschieden und werden von W3, W4 und W6 erfüllt. Die Entscheidung fällt deshalb über die drei Abwägungskriterien, die keine Gewichtung tragen, sondern den Preis des jeweiligen Wegs benennen. Die Informationssicherheit wird dabei nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie sich im Gegensatz zu den übrigen durch Maßnahmen außerhalb des Protokolls beeinflussen lässt.
 
 #figure(
-  table(
-    columns: (1fr, auto, auto, auto),
-    inset: 7pt,
-    align: (left, center, center, center),
-    table.header(
-      [*Kriterium*], [*W3*], [*W4*], [*W6*],
-    ),
+  {
+    // Die Spaltenbreiten sind bewusst als Anteile gesetzt. Mit `auto` bemassen
+    // sich die drei Wegspalten an der laengsten Zelle, also an der Schlusszeile,
+    // wodurch die Tabelle breiter als der Satzspiegel wurde: Die erste Spalte
+    // fiel auf ein Wort je Zeile zusammen und die Schlusszeile lief in die
+    // Nachbarspalte. Die Trennung erlaubt den langen Woertern der Schlusszeile
+    // den Umbruch innerhalb ihrer Zelle.
+    set text(hyphenate: true)
+    table(
+      columns: (1.4fr, 1fr, 1fr, 1fr),
+      inset: 6pt,
+      align: (left + horizon, center + horizon, center + horizon, center + horizon),
+      table.header(
+        [*Kriterium*], [*W3*], [*W4*], [*W6*],
+      ),
 
-    table.cell(colspan: 4)[_Ausschlusskriterien_],
-    [Schnittstelle am Powercenter vorhanden], [ja], [ja], [ja],
-    [Für zyklischen Dauerbetrieb geeignet], [ja], [ja], [ja],
+      table.cell(colspan: 4)[_Ausschlusskriterien_],
+      [Schnittstelle am Powercenter vorhanden], [ja], [ja], [ja],
+      [Für zyklischen Dauerbetrieb geeignet], [ja], [ja], [ja],
 
-    table.cell(colspan: 4)[_Abwägungskriterien_],
-    [Anbindung mit der vorgesehenen Werkzeugkette], [ja], [nein], [ja],
-    [Voller Datenumfang mit Schreibzugriff], [ja], [ja], [eingeschränkt],
-    [Ohne zusätzliches System], [ja], [ja], [nein],
+      table.cell(colspan: 4)[_Abwägungskriterien_],
+      [Anbindung mit der vorgesehenen Werkzeugkette], [ja], [nein], [ja],
+      [Voller Datenumfang mit Schreibzugriff], [ja], [ja], [eingeschränkt],
+      [Ohne zusätzliches System], [ja], [ja], [nein],
 
-    [*Ausschlaggebender Nachteil*],
-    [*keine Verschlüsselung im Protokoll*],
-    [*Eigenentwicklung statt Werkzeugkette*],
-    [*zweites Leitsystem für eine Quelle*],
-  ),
+      [*Ausschlaggebender Nachteil*],
+      [keine Verschlüsselung im Protokoll],
+      [Eigenentwicklung statt Werkzeugkette],
+      [zweites Leitsystem für eine Quelle],
+    )
+  },
   caption: [Abwägung zwischen den gangbaren Integrationswegen. W3 Modbus #acro("TCP"), W4 REST-Schnittstelle, W6 vorgelagerter Powermanager. W1, W2 und W5 sind zuvor an den Ausschlusskriterien gescheitert]
 )<tab:integrationswege>
 
-Modbus #acro("TCP") über das Powercenter ist damit der einzige Weg, der ohne Eigenentwicklung und ohne zusätzliches System auskommt. Diese Feststellung ist weniger eine Auswahl unter gleichwertigen Alternativen als vielmehr die Bestätigung, dass die Schnittstellenlage von Quell- und Zielsystem nur eine Schnittmenge zulässt. Bemerkenswert ist dabei, dass ausgerechnet der sicherheitstechnisch schwächste Weg der einzige durchgängig unterstützte ist.
+Modbus #acro("TCP") über das Powercenter ist damit der einzige Weg, der ohne Eigenentwicklung und ohne zusätzliches System auskommt. Diese Feststellung ist weniger eine Auswahl unter gleichwertigen Alternativen als vielmehr die Bestätigung, dass die Schnittstellenlage von Quell- und Zielsystem nur einen der Wege zulässt. Bemerkenswert ist dabei, dass ausgerechnet der sicherheitstechnisch schwächste Weg der einzige durchgängig unterstützte ist.
 
 Die sicherheitstechnische Schwäche ist die zentrale Einschränkung des gewählten Wegs. Da das Protokoll selbst weder Verschlüsselung noch Authentifizierung kennt (siehe @sec:modbus) und die rollenbasierte Zugriffskontrolle des Powercenters ausschließlich auf die #acro("HTTPS")-Kommunikation wirkt @src:sentronsystemhandbuch, kann ein Schutz nur außerhalb des Protokolls auf Netzebene entstehen. Daraus folgen drei Voraussetzungen, die als Randbedingungen in die Anforderungen einfließen. Die Modbus-Schnittstelle wird nur dort aktiviert, wo sie benötigt wird, was am Powercenter 1100 separat möglich ist @src:sentronsystemhandbuch. Die Kommunikation verbleibt in einem eigenen Netzsegment. Ein Zugriff über das lokale Netz hinaus erfolgt ausschließlich über #acro("VPN"). 
 
@@ -190,10 +199,10 @@ Mit der Festlegung auf Modbus #acro("TCP") ist noch nicht bestimmt, in welcher F
    Der folgende Absatz ist entsprechend umgeschrieben. */
 
 Von den Mitteln, die die Plattform für eine Modbus-Anbindung bereithält, ist für diese Arbeit im Wesentlichen eines maßgeblich. Ein Gerätetyp wird in Desigo CC als Objektmodell beschrieben, und dieses Objektmodell lässt sich als #acro("JSON")-Datei importieren @src:desigoccenghelp. Damit besteht eine unmittelbare Entsprechung zu dem Format, das der #acro("PDE") erzeugt (siehe @sec:pde), und genau an dieser Stelle setzt das Datenmodell dieser Arbeit an. Die Dokumentation des #acro("PDE") führt Desigo CC allerdings nicht als Zielapplikation (siehe @sec:pde_ziel), weshalb diese Entsprechung nicht dokumentiert ist, sondern am Testaufbau zu bestätigen war.
-
+// Claude: wie sinnvoll ist der folgende Abschnitt? Das ergibt sich doch eigentlich im Verlauf der Arbeit, muss das hier nochmal erwähnt
 Für den Zuschnitt der Lösung ist dabei entscheidend, dass die Typbeschreibung des #acro("PDE") die Adressierung bereits enthält. Zu jeder Eigenschaft werden dort Registeradresse, Funktionscode, Datentyp, Subindex und Skalierungsfaktor hinterlegt (siehe @tab:pde_schritte), sodass Objektmodell und Adressbelegung in derselben Datei liegen. Die Lösung dieser Arbeit besteht folglich aus einem einzigen zu entwickelnden Artefakt. Daneben beschreibt die Engineering-Dokumentation einen allgemeinen Weg, auf dem ein Objektmodell ohne Adressangaben eingelesen und die Zuordnung von Registeradressen und Funktionscodes in eigenen Regelwerken danebengelegt wird @src:desigoccenghelp. Dieser Weg kommt ohne den #acro("PDE") aus, gibt dessen Werkzeugkette damit aber auch auf und wird hier nicht beschritten.
 
-Nicht Gegenstand der Entwicklung sind zwei weitere Bestandteile einer vollständigen Integration. Das sind zum einen Grafiken, Symbole und Textgruppen für die Darstellung in der Bedienoberfläche, zum anderen die Liste der tatsächlich anzulegenden Geräteinstanzen @src:desigoccenghelp. Beides fällt im jeweiligen Projekt an und hängt an der konkreten Anlage, nicht am Gerätetyp.
+Nicht Gegenstand der Entwicklung sind zwei weitere Bestandteile einer vollständigen Integration. Das sind zum einen Grafiken, Symbole und Textgruppen für die Darstellung in der Bedienoberfläche, zum anderen die Liste der tatsächlich anzulegenden Geräteinstanzen @src:desigoccenghelp. Beides ist projektspezifisch, es ist somit von der Anlage und nichgt vom Gerätetyp abhängig.
 
 Die Kommunikation selbst trägt ein Treiber, der im Projekt eigens angelegt, einem Netzwerk zugeordnet und gestartet wird @src:desigoccenghelp. Er ist eine Voraussetzung dafür, dass überhaupt Werte fließen, hat auf die Gestalt des Datenmodells jedoch keinen Einfluss und wird deshalb hier nicht weiter betrachtet.
 
@@ -221,7 +230,7 @@ Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modb
     [Wird global oder je Treiberinstanz über einen Konfigurationseintrag gesetzt; für Geräte mit Big-Endian-Anordnung ist er auf 0 zu setzen. Für die mitgelieferten Energiemessgeräte schreibt die Dokumentation dies ausdrücklich vor.],
 
     [Abfrageintervall],
-    [Das Intervall, in dem der Treiber die Geräte abfragt, wird an der Treiberkonfiguration eingestellt und gilt für sämtliche Datenpunkte aller Geräte dieses Treibers. Eine nach Geräten oder nach Datenpunktgruppen abgestufte Abfrage steht am eingesetzten Stand nicht zur Verfügung, was von der Dokumentation abweicht und deshalb nach @sec:quellenlage der Beobachtung folgt. Die Abfragelast lässt sich damit allein über die Zahl der abgebildeten Datenpunkte und über dieses eine Intervall steuern.],
+    [Das Intervall, in dem der Treiber die Geräte abfragt, wird an der Treiberkonfiguration eingestellt und gilt für sämtliche Datenpunkte aller Geräte dieses Treibers. Eine nach Geräten oder nach Datenpunktgruppen abgestufte Abfrage steht am eingesetzten Stand nicht zur Verfügung, was von der Dokumentation abweicht und deshalb nach @sec:quellenlage der Beobachtung folgt. Die Abfragelast lässt sich damit allein über die Zahl der abgebildeten Datenpunkte und über dieses eine Intervall steuern.], //Claude: hier bitte nochmal Dokumentation prüfen und ggf mir sagen was da drin steht, damit man das hier in dem Punkt richtig sagt
 
 
     [Blockbildung],
@@ -269,7 +278,7 @@ Aus der Festlegung auf Modbus #acro("TCP"), den Eigenschaften des Powercenters u
 
 Den Kern des Entwurfs bildet die Trennung von Gerätetyp und Geräteinstanz. Die Registeradressen sind bei allen Geräten desselben Typs identisch; unterschieden werden die Geräte allein über den Unit Identifier @src:sentronsystemhandbuch. Eine einzige Typbeschreibung genügt daher, um beliebig viele physische Geräte abzubilden, und genau darin liegt die Wiederverwendbarkeit des Modells über Projektgrenzen hinweg. 
 
-Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein erheblicher Teil der Register stimmt zwar überein, es handelt sich jedoch um verschiedene Geräte mit unterschiedlicher Aufgabe und unterschiedlicher Adressierung. Auf der Zielseite entspricht ein Strang damit bis zu 25 Kommunikationsschnittstellen mit gemeinsamer #acro("IP")-Adresse und unterschiedlicher Slave-Adresse, unter denen jeweils genau ein Geräteobjekt liegt @src:desigoccenghelp. Der Schwerpunkt liegt dabei auf dem Objektmodell des #acro("ECPD"), da dieses Gerät die Messwerte, die Zählerstände und die Schaltfunktion trägt. Für das Powercenter entsteht eine eigene Typbeschreibung geringeren Umfangs, da es weder misst noch schaltet und im Wesentlichen Zustands- und Diagnoseangaben des Strangs führt.
+Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein erheblicher Teil der Register stimmt zwar überein, es handelt sich jedoch um verschiedene Geräte mit unterschiedlichen Aufgaben und unterschiedlicher Adressierung. Auf der Zielseite entspricht ein Strang damit bis zu 25 Kommunikationsschnittstellen mit gemeinsamer #acro("IP")-Adresse und unterschiedlicher Slave-Adresse, unter denen jeweils genau ein Geräteobjekt liegt @src:desigoccenghelp. Der Schwerpunkt liegt dabei auf dem Objektmodell des #acro("ECPD"), da dieses Gerät die Messwerte, die Zählerstände und die Schaltfunktion trägt. Für das Powercenter entsteht eine eigene Typbeschreibung geringeren Umfangs, da es weder misst noch schaltet und im Wesentlichen Zustands- und Diagnoseangaben des Strangs führt.
 
 #figure(
   abb_konzept,
@@ -278,7 +287,7 @@ Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein e
 
 Für die Abfrage gibt das Systemhandbuch drei Empfehlungen, nämlich jedes Gerät höchstens einmal pro Sekunde abzufragen, die Endgeräte sequenziell abzuarbeiten und Register blockweise zu lesen @src:sentronsystemhandbuch. Desigo CC setzt diese Methodik bereits um, da der Treiber einen einstellbaren Abstand zwischen den Anfragen kennt und benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp. Eine schnellere Abfrage brächte ohnehin keinen Gewinn, weil die Messwerte frühestens alle $2space.thin"s"$ aktualisiert werden @src:sentronsystemhandbuch. Das Intervall gilt nach @tab:modbustreiber jedoch für sämtliche Datenpunkte aller Geräte eines Treibers, sodass der am schnellsten benötigte Wert den Takt aller übrigen bestimmt. Die Abfragelast hängt damit unmittelbar an der Zahl der abgebildeten Datenpunkte, und eine nach Verwendungszweck abgestufte Abfrage bleibt ein Ansatzpunkt für eine Weiterentwicklung.
 
-Ungültige Messwerte kennzeichnet das Powercenter als _Not a Number_, und zusätzlich zeigt ein Statusdatenpunkt an, ob die Verbindung zum Endgerät besteht @src:sentronsystemhandbuch. Beides ist im Modell auszuwerten, damit ein ausgefallenes Gerät nicht als Gerät mit dem Messwert null erscheint.
+Ungültige Messwerte kennzeichnet das Powercenter als _Not a Number_, und zusätzlich zeigt ein Statusdatenpunkt an, ob die Verbindung zum Endgerät besteht @src:sentronsystemhandbuch. Beides ist im Modell auszuwerten, damit ein ausgefallenes Gerät nicht als Gerät mit dem Messwert null erscheint. //Claude: Not a number ist eine Dopplung von vorhin, weiß ich nicht ob ich das drinnen lassen würde oder nicht, gib mir deine Meinung
 
 Schließlich sieht der Entwurf eine feste Arbeitsteilung zwischen den beiden Werkzeugen vor. Die Parametrierung der Geräte, also Grenzwerte, Hysteresen und Schutzeinstellungen, verbleibt bei SENTRON Powerconfig. Desigo CC übernimmt den laufenden Betrieb mit Anzeige, Archivierung, Alarmierung und Bedienung. SENTRON Powerconfig lässt sich damit nicht ablösen und wird von der errichtenden Fachkraft weiterhin benötigt, denn sobald in den elektrotechnischen Aufbau oder in die Wirkungsweise eines Geräts eingegriffen wird, hat dies über Powerconfig zu geschehen. Diese Aufteilung ist nicht nur eine Frage des Aufwands, sondern auch eine der Zuständigkeit. Änderungen an der Schutzwirkung setzen eine Elektrofachkraft voraus, während Desigo CC vom Personal der Gebäudeverwaltung bedient wird. Bleibt die Parametrierung außerhalb des Datenmodells, so ist ausgeschlossen, dass sie aus der Leitwarte heraus unbeabsichtigt verändert wird. Die Aufteilung hält das Datenmodell zugleich frei von Inbetriebnahmedaten und begründet, dass ein großer Teil des Registerraums unberücksichtigt bleiben kann. Die Auswirkung auf den Anforderungskatalog wird bei FA-06 und FA-09 in @sec:fa aufgegriffen.
 

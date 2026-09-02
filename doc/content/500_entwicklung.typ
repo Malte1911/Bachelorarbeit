@@ -7,7 +7,7 @@ Das erste Lösungskonzept in @sec:konzept legt das Gerüst der Lösung fest. Ein
 
 @sec:auswahlkriterien benennt die Kriterien der Auswahl und führt sie auf die Anwendungsfälle und die Eigenschaften des Registerraums zurück, bevor sie angewandt werden. @sec:datenpunkte wendet sie auf beide Gerätetypen an und stellt die getroffene Auswahl der vollständigen Abbildung gegenüber. Aus dem Ergebnis entstehen in @sec:umsetzung die Typbeschreibungen im #acro("PDE") mit der Zuordnung zu Datentypen, Transformationen und Registeradressen. @sec:uebernahme beschreibt den Import in Desigo CC und das Anlegen der Geräteinstanzen, @sec:modelldoku die begleitende Dokumentation, ohne die das Entwicklungsergebnis nach NFA-01 und NFA-02 unvollständig bliebe. Der Schwerpunkt liegt durchgehend auf dem Objektmodell des #acro("ECPD"). Für das Powercenter entsteht eine eigene Typbeschreibung geringeren Umfangs, deren Prüfung sich auf Import und Instanzbildung beschränkt.
 
-#kommentar[Zu prüfen, ob eine Abbildung den Ablauf des Entwicklungsteils trägt, also den Weg von der Registerkarte über Kriterien und Auswahl zur Typbeschreibung und zurück aus der Prüfung. @img:konzept zeigt die Werkzeugkette, nicht den Arbeitsablauf, und wäre dadurch nicht doppelt belegt. Diese Abbildung gehörte an diese Stelle.]
+// #kommentar[Zu prüfen, ob eine Abbildung den Ablauf des Entwicklungsteils trägt, also den Weg von der Registerkarte über Kriterien und Auswahl zur Typbeschreibung und zurück aus der Prüfung. @img:konzept zeigt die Werkzeugkette, nicht den Arbeitsablauf, und wäre dadurch nicht doppelt belegt. Diese Abbildung gehörte an diese Stelle.]
 
 #include "../content/500_entwicklung/520_Auswahlkriterien.typ"
 #include "../content/500_entwicklung/530_Auswahl_Datenpunkte.typ"

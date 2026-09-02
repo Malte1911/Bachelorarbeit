@@ -133,7 +133,7 @@ T-13 ist der einzige Testfall, dessen Nachweis nicht an einer Beobachtung am Auf
   caption: [Kriterien für die Durchsicht der begleitenden Unterlage nach T-13]
 )<tab:doku_kriterien>
 
-#kommentar[Hier Tabelle Overkill? Ich bin grundsätzlich Fan davon, diese Tabellen zu verwenden, das zeigt Struktur aber ich weiß nicht ob es sich lohnt das so oft zu machen]
+// #kommentar[Hier Tabelle Overkill? Ich bin grundsätzlich Fan davon, diese Tabellen zu verwenden, das zeigt Struktur aber ich weiß nicht ob es sich lohnt das so oft zu machen]
 
 Die fünf Kriterien unterscheiden sich in dem, was ihre Prüfung voraussetzt. D-01, D-04 und D-05 sind am Artefakt selbst zu entscheiden, indem Unterlage, Modell und Registerkarte gegeneinander gehalten werden. D-02 und D-03 richten sich dagegen auf die Wirkung der Unterlage bei einem Leser und setzen eine an ihrer Erstellung unbeteiligte Person voraus. Welche Form die Durchsicht tatsächlich angenommen hat, hält @sec:pruefablauf fest.
 

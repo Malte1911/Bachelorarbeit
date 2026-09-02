@@ -227,7 +227,7 @@
     edge(
       <pcfg>,
       <pc>,
-      "->",
+      "<->",
       dash: "dashed",
       stroke: dg_linie_engineering,
       label: text(fill: dg_grau)[#acro("BLE") oder\ REST-#acro("API")],
@@ -321,7 +321,7 @@
     // durch. Es liegt deshalb auf der untersten Ebene und ohne Pfeilspitzen.
     // Die Endpunkte liegen bewusst etwas oberhalb der ersten Zeile, damit die
     // Aeste nicht mitten im obersten Kasten abbrechen.
-    edge(
+    /*edge(
       (0, -0.4),
       (1, 3),
       stroke: (paint: dg_akzent_flaeche, thickness: 16mm, cap: "round", join: "round"),
@@ -332,7 +332,7 @@
       (2, -0.4),
       stroke: (paint: dg_akzent_flaeche, thickness: 16mm, cap: "round", join: "round"),
       layer: -3,
-    ),
+    ),*/
 
     // --- absteigender Ast: zunehmende Konkretisierung ---
     dg_phase(
@@ -434,7 +434,7 @@
       label: [Erprobung ändert die Auswahl],
     ),
   ))
-
+/*
   v(4mm)
 
   dg_legende(
@@ -447,7 +447,7 @@
       line(length: 9mm, stroke: 0.7pt + dg_akzent),
       [Rückkopplung aus der Erprobung in die Auswahl],
     ),
-  )
+  )*/
 }
 
 
@@ -712,7 +712,7 @@
       row-gutter: (0mm, 1.5mm),
 
       // Baender ueber den Feldern, die sie zusammenfassen
-      grid.cell(colspan: 4, dg_band([#acro("MBAP")-Kopf], [Byte 0 bis 6, zusammen 7 Byte])),
+      grid.cell(colspan: 4, dg_band([#acro("MBAP")-Kopf], [Byte 0 bis 6])),
       grid.cell(colspan: 2, dg_band([Modbus-#acro("PDU")], [ab Byte 7, max. 253 Byte])),
 
       // Felder
@@ -727,7 +727,7 @@
       grid.cell(colspan: 3, none),
     )
   }))
-
+/*
   v(4mm)
 
   dg_legende(
@@ -743,7 +743,7 @@
       rect(width: 9mm, height: 3.2mm, stroke: none, fill: dg_akzent_flaeche),
       [vergrößerter Ausschnitt],
     ),
-  )
+  )*/
 }
 
 // ===========================================================================

@@ -145,7 +145,7 @@ Drei weitere Beobachtungen betreffen nicht einzelne Datenpunkte, sondern die Arb
 
 Die Eigenschaften sind nicht einzeln von Hand angelegt, sondern über das Tabellenblatt eingelesen, das das Werkzeug zu diesem Zweck bereitstellt @src:pdemanual. Da die Auswahl ohnehin als Arbeitsmappe vorliegt, entfällt damit eine fehleranfällige Doppelerfassung. Von dieser Möglichkeit ausgenommen sind gerade die aufwendigen Typen, also #acro("BLOB"), #acro("BCD"), Modulo-10 und Zeitstempel @src:pdemanual. Für dieses Modell wirkt sich das kaum aus, weil es ausschließlich Standardtypen verwendet.
 
-Der vierte Arbeitsschritt des Werkzeugs, in dem Vorbelegungen, Favoriten und Trenddarstellungen festgelegt werden, richtet sich nach @tab:pde_schritte an den SENTRON Powermanager. Für Desigo CC bleibt er ohne Wirkung, da die Darstellung dort im Projekt angelegt wird. Er ist deshalb nur so weit ausgefüllt, wie das Werkzeug es zum Speichern verlangt.
+Der vierte Arbeitsschritt des Werkzeugs, in dem Vorbelegungen, Favoriten und Trenddarstellungen festgelegt werden, richtet sich nach @tab:pde_schritte an den SENTRON Powermanager. Für Desigo CC bleibt er ohne Wirkung, da die Darstellung dort im Projekt angelegt wird. Er ist deshalb nur so weit ausgefüllt, wie das Werkzeug es zum Speichern verlangt. Das ist die unmittelbare Folge daraus, dass Desigo CC keine dokumentierte Zielapplikation des #acro("PDE") ist.
 
 Zuletzt ein Verhalten, für das sich keine Erklärung finden ließ. Nach dem Entfernen des #acro("BLOB")-Datentyps aus der Typbeschreibung stieg die Größe der #acro("JSON")-Datei von 22 auf 150 Megabyte, obwohl der Vorgang Inhalt entfernt und die Datei somit hätte verkleinern müssen. Das Werkzeug ließ die Datei danach nicht mehr öffnen, und ihr Import in Desigo CC nahm entsprechend viel Zeit in Anspruch. Für die Bewertung ist das kein Randbefund, denn NFA-03 verlangt, dass sich das Modell fortschreiben lässt, und eine Typbeschreibung, die sich nicht mehr öffnen lässt, ist nicht fortschreibbar. Für die Arbeitsweise folgt daraus, Zwischenstände zu sichern und eine Änderung an einem Datentyp nicht durch Löschen und Neuanlegen vorzunehmen.
 
@@ -213,8 +213,3 @@ Ob sich die beiden Dateien in Desigo CC einlesen lassen und was dabei aus den ei
 
    Der Befund zum abgewiesenen Schreibzugriff beim Fernschalten ist bewusst nicht
    aufgenommen, da er nach der Notiz in @sec:befunde dorthin gehoert. */
-
-/* Claude: Am 02.09.2026 gekuerzt. Der Schlusssatz zum vierten Arbeitsschritt
-   nannte zum dritten Mal in dieser Datei, dass Desigo CC keine dokumentierte
-   Zielapplikation des PDE ist. Die Aussage steht in der Einleitung des
-   Abschnitts und im Alarmteil, wo sie die Argumentation traegt. */

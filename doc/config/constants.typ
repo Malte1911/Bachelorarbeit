@@ -14,7 +14,7 @@
 #let tutor = "Johannes Otto"
 #let evaluator = "Giovanni Viglialoro"
 #let show_company = true // Show company information in cover page
-#let show_comments = true // Arbeitskommentare (#kommentar[...]) im Dokument anzeigen; für die Abgabe auf false setzen
+#let show_comments = false // Arbeitskommentare (#kommentar[...]) im Dokument anzeigen; für die Abgabe auf false setzen
 
 // Document type
 // Uncomment the appropriate document type
