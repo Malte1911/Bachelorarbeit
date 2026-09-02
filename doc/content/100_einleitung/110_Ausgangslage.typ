@@ -3,7 +3,7 @@
 #include "../../config/config.typ"
 
 == Ausgangslage und Motivation<sec:ausgangslage>
-
+// claude: den ganzen Abschnitt muss man deutlich vereinfachen, das versteht so niemand direkt. Für den Einstieg in die gesamte Arbeit echt zu kompliziert, vor allem die ganzen Begriffe müssen viel besser verständlich sein
 Der Betrieb einer Immobilie wird über eine Leitebene geführt, auf der Heizung, Lüftung, Beleuchtung und Sicherheitstechnik in einer gemeinsamen Oberfläche zusammenlaufen. Die elektrische Energieverteilung ist dort üblicherweise bis zur Ebene der Verteilung abgebildet, der einzelne Endstromkreis dagegen nicht. Welcher Abgang in Betrieb ist, welche Leistung er bezieht und aus welchem Grund ein Schutzgerät ausgelöst hat, ist am Verteiler abzulesen und nicht am Arbeitsplatz des Betreibers.
 
 Die Gerätetechnik hat diese Lücke inzwischen geschlossen. Mit den SENTRON #acro("ECPD") steht eine Reihe elektronischer Schaltkreisschutzgeräte zur Verfügung, die neben der Schutzfunktion je Endstromkreis misst, sich aus der Ferne schalten lässt und ihren Zustand über ein zugehöriges Kommunikationsgerät, das SENTRON Powercenter, im Gebäudenetz bereitstellt @src:sentronsystemhandbuch. Ein Verteiler mit bis zu 24 solcher Abgänge liefert damit eine Auflösung, die eine zentrale Messung nicht erreicht.

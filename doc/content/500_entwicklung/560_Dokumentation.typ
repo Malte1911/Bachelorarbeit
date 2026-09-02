@@ -6,7 +6,7 @@
 
 Eine Typbeschreibung, die niemand erklärt, ist eine Datei und keine Integrationsvorlage. Wer sie einsetzen will, muss wissen, welche Register sie liest, welche Einstellungen sie am Gerät voraussetzt, was sie bewusst offenlässt und wie sie sich ändern lässt. Nichts davon geht aus der Datei selbst hervor. NFA-01 und NFA-02 erheben die Dokumentation deshalb zur Anforderung, und T-13 macht sie zum Prüfgegenstand. Sie ist damit Bestandteil des Entwicklungsergebnisses und nicht dessen Beiwerk.
 
-Diese Einordnung deckt sich mit dem Stand der Technik. Die Zuordnung von Datenpunkten eines Gebäudeleitsystems zu einer einheitlichen Beschreibung erfolgt überwiegend von Hand und bleibt arbeitsintensiv und kostentreibend @src:wang2018. Der Nutzen einer Vorlage entscheidet sich folglich daran, ob die einmal getroffene Zuordnung in nachvollziehbarer Form mitgeliefert wird. Andernfalls fällt der Aufwand im nächsten Projekt erneut an.
+Diese Einordnung deckt sich mit dem Stand der Technik. Da die Zuordnung von Datenpunkten nach @sec:standdertechnik von Hand zu leisten ist, entscheidet sich der Nutzen einer Vorlage daran, ob die einmal getroffene Zuordnung in nachvollziehbarer Form mitgeliefert wird. Andernfalls fällt der Aufwand im nächsten Projekt erneut an.
 
 
 ==== Adressatenkreise und die Wahl einer einzigen Unterlage
@@ -44,11 +44,11 @@ Der Anspruch dahinter ist derselbe, den @src:balaji2018 an eine über Anlagengre
 
 ==== Vorausgesetzte Geräteparametrierung
 
-Eine Aussage der Unterlage verdient hier eine eigene Erwähnung, weil das Datenmodell ohne sie unvollständig bleibt. Nach @sec:registerraum sind 13 der 27 Alarmbits des #acro("ECPD") ab Werk abgeschaltet und liefern ohne vorherige Einstellung in SENTRON Powerconfig dauerhaft den Wert null, darunter beide #acro("RCM")-Alarme. Ein Modell, das diese Bits abbildet, ist formal vollständig und in der Sache wirkungslos, solange die Parametrierung fehlt. Genau hierauf zielt NFA-06.
+Eine Aussage der Unterlage verdient hier eine eigene Erwähnung, weil das Datenmodell ohne sie unvollständig bleibt. Ein Modell, das die nach @sec:registerraum ab Werk abgeschalteten Alarmbits abbildet, ist formal vollständig und in der Sache wirkungslos, solange die Parametrierung fehlt. Genau hierauf zielt NFA-06.
 
 Die Unterlage benennt diese Voraussetzung deshalb an hervorgehobener Stelle und weist über @tab:apx_ecpd_alarme aus, welche Alarme betroffen sind. Zwei weitere Voraussetzungen stehen daneben. Das Fernschalten über Modbus ist ab Werk gesperrt und lässt sich nach @sec:geraetekonfiguration ausschließlich über SENTRON Powerconfig freigeben, ein Umstand, der sich aus der zugänglichen Produktdokumentation nicht ergibt und in @sec:befunde ausgewertet wird. Anlagenkennzeichen und Einbauort sind nach @sec:umsetzung im Modell nur lesend geführt und ebenfalls am Gerät zu vergeben. Alle drei Punkte eint, dass ihr Fehlen keine Fehlermeldung erzeugt, sondern einen Datenpunkt ohne Aussage. Sie sind damit genau die Art von Wissen, die eine Unterlage tragen muss.
 
-Hinzu treten die Randbedingungen aus @tab:rb, die nach @sec:testabdeckung keine geprüfte Eigenschaft der Lösung beschreiben, sondern die Voraussetzungen ihres Betriebs, und deren Einhaltung folglich zu dokumentieren ist. Betroffen sind vor allem die Begrenzung der Modbus-Schnittstelle auf Netzebene, die angesichts der fehlenden Authentifizierung des Protokolls unmittelbar sicherheitsrelevant ist.
+Hinzu treten die Randbedingungen aus @tab:rb, deren Einhaltung nach @sec:testabdeckung zu dokumentieren und nicht zu prüfen ist, vor allem die Begrenzung der Modbus-Schnittstelle auf Netzebene.
 
 
 ==== Ausrichtung an den Kriterien der Durchsicht
@@ -88,3 +88,10 @@ Die Unterlage selbst ist in #ref(<apx:anwenderdoku>, supplement: [Anhang]) wiede
    Der Hinweis auf die Beschreibungsfelder des PDE als erste Dokumentationsebene
    ist belegt ueber @src:pdemanual, siehe doc/resources/pde_referenz.md,
    Abschnitt 4. */
+
+/* Claude: Am 02.09.2026 an drei Stellen gekuerzt. Das Zitat @src:wang2018 ist
+   durch den Verweis auf @sec:standdertechnik ersetzt, wo es hergeleitet wird;
+   es bleibt in @sec:stakeholder und @sec:nachhaltigkeit erhalten. Die
+   Aufzaehlung der ab Werk abgeschalteten Alarmbits verweist auf
+   @sec:registerraum, und der Absatz zu den Randbedingungen gibt deren Inhalt
+   nicht mehr wieder. */

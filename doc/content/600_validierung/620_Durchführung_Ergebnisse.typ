@@ -59,14 +59,14 @@ T-06 ist nicht erfüllt. Die Überlast nach @sec:testaufbau lässt das #acro("EC
 
 #kommentar[Zwei Angaben sind hier zu schärfen. Die Zeit bis zum Übergang in den Standby ist geschätzt und lag zwischen etwa 30 und 60 Sekunden, gemessen wurde sie nicht. Und der Schalterstatus in Register 3110 unterscheidet den planmäßigen Standby vom störungsbedingten. Welchen der beiden Werte das Gerät nach der Überlast führte, gehört an diese Stelle, da genau diese Unterscheidung nach @sec:datenpunkte der Grund für die Aufnahme des Registers ist.]
 
-T-07 ist nicht durchführbar. Der Testfall setzt eine eingerichtete Alarmkonfiguration voraus, die sich aus dem Datenmodell heraus nicht anlegen lässt und die auf einen Datenpunkt je Zustand angewiesen wäre. Solange die Zerlegung des Sammelregisters nicht trägt, fehlt dieser Konfiguration die Grundlage. Die in @sec:fa getroffene Feststellung, dass FA-04 und FA-05 erst im Zusammenwirken von Modell und Projektierung erfüllbar sind, bestätigt sich hier in verschärfter Form.
+T-07 ist nicht durchführbar. Der Testfall setzt eine eingerichtete Alarmkonfiguration voraus, die sich aus dem Datenmodell heraus nicht anlegen lässt und die auf einen Datenpunkt je Zustand angewiesen wäre. Solange die Zerlegung des Sammelregisters nicht trägt, fehlt dieser Konfiguration die Grundlage.
 
 
 ==== Kommandos
 
 T-08 ist nach der Freischaltung des Fernschaltens erfüllt. Der Befehl wird angenommen, die Ausführung ist über Register 3113 und der erreichte Schaltzustand über Register 3110 getrennt erkennbar, und ein weiterer Befehl ist nach dem Rücksetzen möglich. Bis zu dieser Freischaltung wies das Gerät jeden Schaltbefehl zurück. Der Vorgang ist als Befund in @sec:befunde ausgeführt, da seine Ursache außerhalb des Datenmodells liegt. Eine Einschränkung betrifft die Bedienung. Als digitaler Ausgang ausgeführt sendet die Schaltfläche nach @sec:uebernahme stets den Wert eins, weshalb beide wertabhängigen Kommandos als schreibende Werte umgesetzt und über die erweiterte Bedienung bedient werden.
 
-T-09 ist erfüllt. Der Gerätetest und der #acro("RCD")-Test lassen sich als Kommando aus Desigo CC anstoßen, und ihre Ergebnisse stehen dort als eigene Datenpunkte zur Auswertung bereit. Die wiederkehrende Prüfung nach #acro("DGUV") Vorschrift 3 lässt sich damit unterstützen und dokumentieren, jedoch nicht allein aus der Leitwarte abwickeln, da sie nach @sec:stakeholder die Beurteilung durch eine befähigte Person voraussetzt und diese Beurteilung kein Vorgang ist, den ein Gerät selbsttätig ausführt. Auch in der Praxis wird der Nachweis daher nicht über die Leitwarte allein geführt werden. Der Testfall prüft nach der Anpassung in @sec:testuebersicht genau diesen Beitrag des Modells und nicht mehr die Abwicklung der Prüfung als Ganzes.
+T-09 ist erfüllt. Der Gerätetest und der #acro("RCD")-Test lassen sich als Kommando aus Desigo CC anstoßen, und ihre Ergebnisse stehen dort als eigene Datenpunkte zur Auswertung bereit. Die wiederkehrende Prüfung nach #acro("DGUV") Vorschrift 3 lässt sich damit unterstützen und dokumentieren, nach @sec:stakeholder jedoch nicht allein aus der Leitwarte abwickeln. Der Testfall prüft nach der Anpassung in @sec:testuebersicht genau diesen Beitrag des Modells und nicht mehr die Abwicklung der Prüfung als Ganzes.
 
 
 ==== Verhalten im Betrieb und bei Ausfall
@@ -194,3 +194,9 @@ D-02 und D-03 bleiben dagegen offen. Die Durchsicht hat nach @sec:pruefablauf de
    Telegramme je Sekunde an dasselbe Geraet erfuellen "hoechstens einmal pro
    Sekunde abfragen" im Sinne des Zyklus, nicht im Sinne des einzelnen
    Telegramms. Der Text sagt genau das und wertet es nicht. */
+
+/* Claude: Am 02.09.2026 gekuerzt. Bei T-07 ist der Satz zum Zusammenwirken von
+   Modell und Projektierung entfallen, der in @sec:fa, @sec:umsetzung,
+   @sec:uebernahme und @sec:anforderungsabgleich gleichlautend steht; der
+   Befund selbst bleibt. Bei T-09 ist die Begruendung der DGUV-Grenze auf den
+   Verweis nach @sec:stakeholder reduziert. */

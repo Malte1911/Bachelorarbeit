@@ -10,7 +10,9 @@ Modbus ist ein serielles Kommunikationsprotokoll, das ursprünglich 1979 von der
 
 
 Das Protokoll basiert auf einem Request-Response-Prinzip, bei dem ein anfragendes Gerät (z. B. ein Leitsystem) Anfragen an eines oder mehrere antwortende Geräte (z. B. Sensoren, Aktoren oder Messgeräte) sendet. Die antwortenden Geräte reagieren ausschließlich auf eingehende Anfragen und initiieren keine eigenständige Kommunikation @src:modbusserial.
-Modbus kennt drei Übertragungsvarianten. Modbus #acro("RTU") überträgt die Daten in einer kompakten binären Darstellung über serielle Schnittstellen wie RS-232 oder RS-485 @src:modbusserial und wird in der Praxis häufig eingesetzt @src:modbusrtuprotocol. Modbus #acro("ASCII") stellt dieselben Daten als #acro("ASCII")-Zeichen dar, arbeitet dadurch weniger effizient und eignet sich für Geräte oder Verbindungen, welche die Zeitanforderungen von #acro("RTU") nicht erfüllen @src:modbusserial. Modbus #acro("TCP")/#acro("IP") bettet die Nachrichten in TCP/IP-Pakete ein @src:modbustcp und wird vor allem wegen seiner Einfachheit und Kompatibilität verwendet, kennt jedoch keine Verschlüsselung @src:modbustcp2.
+
+
+Modbus kennt drei Übertragungsvarianten. Modbus #acro("RTU") überträgt die Daten binär über serielle Schnittstellen wie RS-232 oder RS-485 @src:modbusserial und wird in der Praxis häufig eingesetzt @src:modbusrtuprotocol, Modbus #acro("ASCII") stellt dieselben Daten als Zeichen dar und arbeitet dadurch weniger effizient @src:modbusserial, und Modbus #acro("TCP")/#acro("IP") bettet die Nachrichten in TCP/IP-Pakete ein @src:modbustcp2. Für diese Arbeit ist allein die letzte Variante von Belang, da das Powercenter seine Daten über Ethernet bereitstellt.
 
 Das Protokoll definiert vier Datenbereiche, auf die über standardisierte Funktionscodes zugegriffen wird:
 
@@ -40,9 +42,9 @@ Das Protokoll definiert vier Datenbereiche, auf die über standardisierte Funkti
 
 )
 
-Jede Modbus-Nachricht besteht aus der Adresse des antwortenden Geräts, einem Funktionscode, den Nutzdaten sowie einem Fehlerprüffeld @src:modbusserial. Der Kommunikationsablauf folgt dabei stets demselben Schema: Das anfragende Gerät sendet eine Request-Nachricht, woraufhin das adressierte Gerät mit einer Response-Nachricht antwortet. Im Fehlerfall wird anstelle einer regulären Antwort eine Ausnahme-Response (Exception Response) zurückgesendet @src:modbusspec.
+Jede Modbus-Nachricht besteht aus der Adresse des antwortenden Geräts, einem Funktionscode, den Nutzdaten sowie einem Fehlerprüffeld @src:modbusserial. Im Fehlerfall antwortet das adressierte Gerät anstelle einer regulären Antwort mit einer Ausnahmemeldung, der Exception Response @src:modbusspec.
 
-Ein wesentlicher Vorteil von Modbus liegt in seiner Einfachheit und Interoperabilität: Da das Protokoll offen spezifiziert und lizenzfrei ist, wird es von einer Vielzahl von Herstellern unterstützt. Allerdings weist Modbus auch Einschränkungen auf: Das Protokoll bietet keine nativen Mechanismen für Sicherheit, Authentifizierung oder Verschlüsselung, was in modernen vernetzten Umgebungen ein erhebliches Sicherheitsrisiko darstellen kann @src:modbussecurity.
+Für den Einsatz im Gebäudenetz ist eine Eigenschaft des Protokolls maßgeblich. Modbus kennt keine nativen Mechanismen für Authentifizierung oder Verschlüsselung, weshalb ein Schutz der Kommunikation nur außerhalb des Protokolls auf Netzebene entstehen kann @src:modbussecurity. Welche Folgen das für den gewählten Integrationsweg hat, behandelt @sec:integrationswege.
 
 === Modbus TCP<sec:modbus_tcp>
 
@@ -62,6 +64,26 @@ Aus der seriellen Herkunft des Protokolls folgt eine Längenbegrenzung von 253 B
 
 Besondere Bedeutung für diese Arbeit hat der Unit Identifier. Sitzt hinter der #acro("IP")-Adresse ein Gateway, benennt das Feld das Endgerät, an das die Anfrage weitergereicht wird. Wird ein Server unmittelbar angesprochen, ist das Feld entbehrlich, und der Implementation Guide empfiehlt dem Client dafür den nicht signifikanten Wert 0xFF, lässt den Wert 0 aber ebenso zu @src:modbustcp. Die Empfehlung gilt dem Aufbau der Anfrage und nicht der Auslegung des Werts im Gerät. Der in @sec:powercenter_modbus beschriebene Datentransceiver ist ein solches Gateway und belegt den Wert 255 mit einer eigenen Bedeutung, nämlich sich selbst.
 
+
+/* Claude: Am 02.09.2026 im allgemeinen Teil gekuerzt. Der Absatz zu den drei
+   Uebertragungsvarianten ist auf einen Satz je Variante zusammengezogen, da
+   RTU und ASCII im weiteren Verlauf der Arbeit nicht wieder vorkommen; der
+   Schlusssatz sagt das jetzt ausdruecklich. Aus dem Absatz zur
+   Nachrichtenstruktur ist die Wiederholung des Request-Response-Ablaufs
+   entfallen, der zwei Absaetze darueber bereits steht; die Exception Response
+   bleibt, sie wird in @sec:testdurchfuehrung gebraucht.
+
+   Der Absatz zu Vorteilen und Einschraenkungen ist auf die Sicherheitsaussage
+   reduziert. Der Vorteilsteil (offen spezifiziert, lizenzfrei, breite
+   Herstellerunterstuetzung) stand sinngemaess bereits im ersten Absatz des
+   Abschnitts. Die Sicherheitsaussage bleibt vollstaendig erhalten, weil
+   @sec:integrationswege, @sec:rb und @sec:kommunikationsstrecke mit
+   "siehe @sec:modbus" auf sie verweisen; sie ist jetzt zusaetzlich mit einer
+   Ueberleitung dorthin versehen, damit die Folgerung nur einmal gezogen wird.
+
+   Saemtliche Zitationen sind erhalten. @src:modbusrtuprotocol,
+   @src:modbustcp2 und @src:modbussecurity kommen ausschliesslich in dieser
+   Datei vor und fielen sonst aus dem Literaturverzeichnis. */
 
 /* Claude: Abschnitt und Abbildung neu angelegt und nach der Durchsicht auf
    etwa die Haelfte gekuerzt. Entfallen sind die Angaben zur parametrierbaren

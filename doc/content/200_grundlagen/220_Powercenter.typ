@@ -3,7 +3,7 @@
 #include "../../config/config.typ"
 
 == SENTRON Powercenter<sec:powercenter>
-
+// Claude: ändere mal den begriff gebäudeüblich, der ist irgendwie komisch
 Da die in @sec:ecpd beschriebenen Schutzschaltgeräte über keine eigene netzwerkseitige Schnittstelle verfügen, benötigt die Gerätereihe eine Komponente, die die Funkstrecke auf ein gebäudeübliches Netz umsetzt. Diese Aufgabe übernimmt der Datentransceiver SENTRON Powercenter. Er koppelt bis zu 24 Endgeräte an, sammelt deren Messwerte und Zustände, speichert sie über einen begrenzten Zeitraum und stellt sie an seinen netzwerkseitigen Schnittstellen bereit. Baulich ist er auf den Installationsverteiler zugeschnitten, belegt eine Teilungseinheit und wird mit $24space.thin"V"$ Gleichspannung versorgt, die sich über steckbare Klemmen an weitere Geräte durchschleifen lässt @src:sentronsystemhandbuch. Die folgenden Angaben sind, soweit nicht anders angegeben, dem Systemhandbuch der Gerätefamilie entnommen @src:sentronsystemhandbuch.
 
 Das Gerät ist in drei Varianten verfügbar, die sich in ihren Schnittstellen und Sicherheitsfunktionen unterscheiden und nicht denselben Umfang an Endgeräten unterstützen. @tab:powercenter stellt sie einander gegenüber.

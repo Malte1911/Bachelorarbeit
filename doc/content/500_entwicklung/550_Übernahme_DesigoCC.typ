@@ -55,7 +55,7 @@ Die Umstellung wirkt allerdings nur auf die Schreibseite. Die Aufzeichnung des T
 
 An dieser Stelle hat sich auch gezeigt, dass die Zerlegung des Alarmregisters nicht trägt. Der Befund ist in @sec:umsetzung ausgeführt, weil er dort eine Festlegung des Modells erzwingt. Für die Übernahme bleibt festzuhalten, dass die Grenze nicht beim Erzeugen der Typbeschreibung sichtbar wird, sondern erst bei ihrem Einlesen.
 
-Die Alarmierung ist damit vollständig Sache der Projektierung. Was an dieser Stelle ergänzt würde, um die Meldungen zum Laufen zu bringen, müsste ein Techniker bei jeder Einrichtung erneut leisten, da es nicht in der Typbeschreibung abgelegt werden kann. Das ist nicht allein ein Mangel. Welche Meldung in einer Anlage als dringend gilt, welche in der Leitwarte erscheint und welche stumm bleibt, hängt am Betreiber und an der Anlage, und diese Entscheidung lässt sich in der Entwicklung eines Gerätetyps nicht sinnvoll vorwegnehmen. Die in @sec:fa getroffene Feststellung, dass FA-04 und FA-05 erst im Zusammenwirken von Modell und Projektierung erfüllbar sind, bestätigt sich hier von der praktischen Seite. Sie gilt allerdings verschärft, denn das Modell schafft die Voraussetzung für diese Projektierung derzeit nicht in der vorgesehenen Form.
+Die Alarmierung ist damit vollständig Sache der Projektierung. Was an dieser Stelle ergänzt würde, um die Meldungen zum Laufen zu bringen, müsste ein Techniker bei jeder Einrichtung erneut leisten, da es nicht in der Typbeschreibung abgelegt werden kann. Das ist nicht allein ein Mangel. Welche Meldung in einer Anlage als dringend gilt, welche in der Leitwarte erscheint und welche stumm bleibt, hängt am Betreiber und an der Anlage, und diese Entscheidung lässt sich in der Entwicklung eines Gerätetyps nicht sinnvoll vorwegnehmen. Die in @sec:umsetzung gezogene Folgerung für FA-04 und FA-05 bestätigt sich hier von der praktischen Seite.
 
 /* Claude: Abschnitt aus den Stichpunkten des Autors ausformuliert. Alle sieben
    Notizen sind aufgegangen:
@@ -89,3 +89,8 @@ Die Alarmierung ist damit vollständig Sache der Projektierung. Was an dieser St
 
    Nicht aufgenommen ist T-01 und T-02 als Nachweis. Der Abschnitt beschreibt
    die Entwicklung, die Pruefung gehoert nach @sec:testdurchfuehrung. */
+
+/* Claude: Am 02.09.2026 gekuerzt. Der Schlussabsatz wiederholte die
+   Feststellung zu FA-04 und FA-05 im Wortlaut von @sec:fa samt der
+   Verschaerfung, die @sec:umsetzung bereits zieht; er verweist jetzt dorthin.
+   Die praktische Beobachtung selbst bleibt unveraendert. */

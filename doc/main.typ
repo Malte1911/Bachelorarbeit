@@ -28,7 +28,11 @@
   
   // Cover page (no header/footer on cover)
   include "config/cover.typ"
-  
+
+  // Sperrvermerk
+  pagebreak()
+  include "content/000_Sperrvermerk.typ"
+
   // Inhaltsverzeichnis
   pagebreak()
   heading(level: 1, outlined: false)[Inhaltsverzeichnis]

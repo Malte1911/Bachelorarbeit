@@ -78,7 +78,7 @@ FA-08 ist erfüllt, jedoch in einem Umfang, der zu benennen ist. Der Gerätetest
 
 Die drei teilweise erfüllten Anforderungen sind aus verschiedenen Gründen begrenzt. Bei FA-10 liegt die Grenze in der Zielplattform. Von ihr ist die Kennzeichnung gestörter Werte erfüllt, da Desigo CC betroffene Datenpunkte als kommunikationsgestört ausgibt und nicht als gültig, während der Ausfall eines einzelnen Endgeräts ohne Meldung bleibt und allein am Verbindungszustand ablesbar ist, dessen Auswertung dieselbe Alarmierung voraussetzt, die schon FA-04 fehlt. Bei NFA-05 liegt die Grenze dagegen im Testaufbau. Nachgewiesen ist, dass sich aus einer Typbeschreibung beliebig viele Instanzen anlegen lassen, nicht aber, dass ein voll bestückter Strang im Betrieb trägt, was mit einem einzelnen #acro("ECPD") nach RB-04 auch nicht zu leisten war. Bei NFA-02 liegt sie schließlich in der Form des Nachweises. Die Anleitung ist vorhanden und trennt beide Adressatenkreise, doch verlangt NFA-02 ihre Eignung für diese Kreise, und darüber entscheidet nach @tab:doku_kriterien D-02, das eine an der Erstellung unbeteiligte Person voraussetzt. Die Durchsicht hat nach @sec:pruefablauf der Verfasser selbst vorgenommen, weshalb die Anforderung im Nachweis und nicht in der Sache offenbleibt.
 
-Zwei der erfüllten Anforderungen tragen ihre Aussage schwächer als die übrigen. Bei FA-02 gilt das eingestellte Intervall nach @tab:modbustreiber für sämtliche Datenpunkte aller Geräte eines Treibers, sodass der am schnellsten benötigte Wert den Takt aller übrigen bestimmt. Eine nach Verwendungszweck abgestufte Abfrage bleibt damit der in @sec:konzept benannte Ansatzpunkt einer Weiterentwicklung. NFA-01 stützt sich allein auf die Begutachtung, wenn auch auf deren am Artefakt entscheidbaren Teil. Ob die Anleitung darüber hinaus im Projektgeschäft trägt, erweist sich erst an einer Integration durch Dritte.
+Zwei der erfüllten Anforderungen tragen ihre Aussage schwächer als die übrigen. Bei FA-02 ist das Intervall nach @sec:befunde nur einheitlich einstellbar, sodass eine nach Verwendungszweck abgestufte Abfrage der in @sec:konzept benannte Ansatzpunkt einer Weiterentwicklung bleibt. NFA-01 stützt sich allein auf die Begutachtung, wenn auch auf deren am Artefakt entscheidbaren Teil. Ob die Anleitung darüber hinaus im Projektgeschäft trägt, erweist sich erst an einer Integration durch Dritte.
 
 /* Claude: Abschnitt kompakt gehalten, eine Tabelle und fuenf kurze Absaetze.
    Die Ergebnisse folgen unmittelbar @sec:testdurchfuehrung, es ist kein
@@ -115,3 +115,7 @@ Zwei der erfüllten Anforderungen tragen ihre Aussage schwächer als die übrige
    @tab:anforderungsabgleich und @tab:testergebnisse. Mitgefuehrt sind
    @sec:zusammenfassung, die Kurzfassung, der Abstract und
    @tab:apx_rueckverfolgung. */
+
+/* Claude: Am 02.09.2026 gekuerzt. Die Erlaeuterung zu FA-02 gab die
+   Eigenschaft des Treibers erneut vollstaendig wieder und verweist jetzt auf
+   @sec:befunde, wo sie als Befund belegt ist. */
