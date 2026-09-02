@@ -66,10 +66,18 @@
   )
 ]
 
-#let create_header() = {
+// Die Logos sollen mittig zwischen Seitenoberkante und Trennlinie stehen.
+// Typst richtet den Seitenkopf am unteren Rand seines Bereichs aus, und dieser
+// Bereich ist so hoch wie der obere Seitenrand abzueglich header-ascent. Seit
+// der Verkleinerung des Randes auf 3 cm fuellt der Kopf ihn fast vollstaendig
+// aus, weshalb die Logoreihe ohne die folgende Vorgabe an der Seitenoberkante
+// klebte. Der Abstand zwischen Logoreihe und Linie bestimmt zugleich, wie viel
+// Luft oberhalb der Logos bleibt.
+#let create_header() = block(width: 100%, {
+  set block(spacing: 0.21cm)
   insertCompanyImage
   line(length: 100%)
-}
+})
 
 // Define a function to create footers
 #let create_footer() = context {

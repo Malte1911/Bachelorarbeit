@@ -1,4 +1,8 @@
 #import "functions.typ": *
+
+// Das Deckblatt ist zentriert gesetzt; der Blocksatz aus main.typ wuerde den
+// Titel auseinanderziehen und trennen. Deshalb hier ausdruecklich aus.
+#set par(justify: false)
 #set page(
   margin: (top: 2cm, bottom: 4cm, left: 2.5cm, right: 2.5cm)
 )

@@ -2,6 +2,23 @@
 #import "config/functions.typ": *
 #include "config/config.typ"
 #import "config/acronyms.typ" : acro
+
+// Blocksatz mit deutscher Silbentrennung. Die Regeln stehen bewusst VOR der
+// folgenden show-Regel. Alles, was innerhalb von deren Funktionskoerper erzeugt
+// wird, also Deckblatt, Vorspann, Verzeichnisse und Anhang, sieht set-Regeln
+// nicht mehr, die weiter unten in dieser Datei stehen. Die Ueberschriften-
+// numerierung bleibt deshalb unten, sonst traegt der Abstract eine Nummer.
+// Ohne die Sprachangabe wendet Typst die englischen Trennmuster auf den
+// deutschen Text an; content/001_abstract.typ setzt sie fuer sich auf "en".
+#set text(lang: "de")
+#set par(justify: true)
+
+// Tabellenzellen, Bildunterschriften und Verzeichniseintraege bleiben im
+// Flattersatz. In schmalen Spalten reisst der Blocksatz sonst grosse Luecken
+// zwischen die Woerter.
+#show table: set par(justify: false)
+#show figure.caption: set par(justify: false)
+#show outline: set par(justify: false)
 // Define a function to create headers
 
 // Front matter
@@ -27,7 +44,14 @@
   
   // Insert main content
   set page(
-    margin: (top: 4cm, bottom: 4cm, left: 2.5cm, right: 2.5cm), 
+    margin: (top: 3.5cm, bottom: 3cm, left: 2.5cm, right: 2.5cm),
+    // Ohne diese Vorgabe waere der Abstand zwischen Kopfzeile und Textkoerper
+    // 30 Prozent des oberen Randes. Fest gesetzt bleibt der Abstand von der
+    // Linie zum Text gleich, waehrend der groessere Rand Logos und Text
+    // gemeinsam um 0,5 cm nach unten schiebt, damit der Drucker die Logos
+    // nicht mehr anschneidet.
+    header-ascent: 0.9cm,
+    
     header: create_header(),
     footer: context create_footer(),
     numbering: "1"
@@ -39,7 +63,14 @@
   doc
   
     set page(
-    margin: (top: 4cm, bottom: 4cm, left: 2.5cm, right: 2.5cm), 
+    margin: (top: 3.5cm, bottom: 3cm, left: 2.5cm, right: 2.5cm),
+    // Ohne diese Vorgabe waere der Abstand zwischen Kopfzeile und Textkoerper
+    // 30 Prozent des oberen Randes. Fest gesetzt bleibt der Abstand von der
+    // Linie zum Text gleich, waehrend der groessere Rand Logos und Text
+    // gemeinsam um 0,5 cm nach unten schiebt, damit der Drucker die Logos
+    // nicht mehr anschneidet.
+    header-ascent: 0.9cm,
+    
     header: create_header(),
     footer: context create_footer_(),
     numbering: "1"

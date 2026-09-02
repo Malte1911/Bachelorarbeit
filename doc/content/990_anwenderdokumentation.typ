@@ -17,7 +17,7 @@
 // Die Referenz der Datenpunkte traegt zehn Spalten und steht deshalb quer.
 #let doku_breitseite(inhalt) = page(
   flipped: true,
-  margin: (top: 2.5cm, bottom: 2.5cm, left: 2.5cm, right: 2.5cm),
+  margin: (top: 3.5cm, bottom: 3cm, left: 2.5cm, right: 2.5cm),
   inhalt,
 )
 

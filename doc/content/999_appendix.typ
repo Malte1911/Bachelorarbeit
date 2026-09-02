@@ -27,7 +27,7 @@
 // Hochformat nicht mehr lesbar auf die Seite. Sie stehen deshalb quer.
 #let breitseite(inhalt) = page(
   flipped: true,
-  margin: (top: 2.5cm, bottom: 2.5cm, left: 2.5cm, right: 2.5cm),
+  margin: (top: 3.5cm, bottom: 3cm, left: 2.5cm, right: 2.5cm),
   inhalt,
 )
 

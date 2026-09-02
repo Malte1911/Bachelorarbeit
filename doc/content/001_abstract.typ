@@ -2,6 +2,8 @@
 #import "../config/functions.typ": *
 
 
+#set text(lang: "en")
+
 = Abstract
 
 Electronic circuit protection devices of the SENTRON #acro("ECPD") series measure current, voltage and active power for each final circuit and can be switched remotely through an associated data transceiver, the SENTRON Powercenter. The object model library supplied with the building management platform Desigo CC does not cover this device series, so every integration has so far been a one-off. The recurring effort of mapping Modbus registers to named data points is labour-intensive and arises anew in every project.
