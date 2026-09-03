@@ -488,7 +488,7 @@
     // --- Werkzeugkette auf der Typebene ---
     dg_werkzeug(
       (0, 0),
-      [SENTRON #acro("PDE")],
+      [SENTRON #acro("PDE")], 
       zusatz: [erzeugt die\ Gerätetypbeschreibung],
       name: <pde>,
       breite: 36mm,
@@ -987,7 +987,7 @@
       stroke: dg_linie_engineering,
     ),
   ))
-
+/*
   v(4mm)
 
   dg_legende(
@@ -1001,7 +1001,7 @@
       [Gegenprobe am Register],
     ),
     (line(length: 9mm, stroke: dg_linie_strom), [Stromversorgung und Last]),
-  )
+  )*/
 }
 
 // Vorschauseite -- wird bei `#import` verworfen

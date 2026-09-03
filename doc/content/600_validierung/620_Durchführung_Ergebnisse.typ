@@ -75,7 +75,7 @@ T-10 ist erfüllt. Eine Parametrierung über SENTRON Powerconfig während der la
 
 T-11 ist teilweise erfüllt, und die beiden geprüften Fehlerbilder verhalten sich unterschiedlich. Die Unterbrechung der Funkstrecke zwischen #acro("ECPD") und Powercenter führt zu keiner Meldung in Desigo CC. Sie ist allein am Verbindungszustand des betroffenen Endgeräts ablesbar, dessen Auswertung dieselbe Alarmkonfiguration voraussetzt, die schon T-07 fehlt. Die Unterbrechung der Modbus-Verbindung zwischen Desigo CC und dem Powercenter löst dagegen einen Alarm aus, den die Plattform für die Kommunikation ihrer Subsysteme selbst führt und der ohne Zutun des Datenmodells entsteht. Der schwerwiegendere der beiden Fälle wird somit sicher gemeldet, der Ausfall eines einzelnen Endgeräts nicht.
 
-Die zweite Forderung von FA-10 ist dagegen erfüllt. Fällt die Verbindung aus, kennzeichnet Desigo CC die betroffenen Datenpunkte mit dem Kürzel „\#COM" und gibt sie als kommunikationsgestört aus, statt einen letzten oder auf null gesetzten Wert als gültig darzustellen. Eine Verwechslung eines ausgefallenen Abgangs mit einem stromlosen ist damit ausgeschlossen.
+Die zweite Forderung von FA-10 ist dagegen erfüllt. Fällt die Verbindung aus, kennzeichnet Desigo CC die betroffenen Datenpunkte mit dem Kürzel "\#COM" und gibt sie als kommunikationsgestört aus, statt einen letzten oder auf null gesetzten Wert als gültig darzustellen. Eine Verwechslung eines ausgefallenen Abgangs mit einem stromlosen ist damit ausgeschlossen.
 
 // #kommentar[Gegenzulesen, ob diese Kennzeichnung auch bei der unterbrochenen Funkstrecke auftritt oder nur beim Ausfall der Modbus-Verbindung. Im ersten Fall ist der Ausfall eines Endgeräts immerhin erkennbar, wenn auch ohne Meldung.]
 

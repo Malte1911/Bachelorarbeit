@@ -4,7 +4,7 @@
 
 == Testfälle<sec:testfaelle>
 
-Eine Anforderung ist nur dann brauchbar, wenn sich feststellen lässt, ob sie erfüllt ist. Der vorliegende Abschnitt ordnet den Anforderungen aus @sec:anforderungen daher Testfälle zu und legt für jeden fest, woran die Erfüllung erkannt wird. Die Testfälle werden hier definiert, nicht durchgeführt; die Strategie ihrer Ausführung, die Durchführung selbst und die Ergebnisse sind Gegenstand des Validierungsteils. Die Trennung ist beabsichtigt: Die Prüfkriterien entstehen aus den Anforderungen und damit vor der Entwicklung des Datenmodells, nicht nachträglich aus dem, was sich am fertigen Modell zeigen lässt.
+Eine Anforderung ist nur dann brauchbar, wenn sich feststellen lässt, ob sie erfüllt ist. Der vorliegende Abschnitt ordnet den Anforderungen aus @sec:anforderungen daher Testfälle zu und legt für jeden fest, woran die Erfüllung erkannt wird. Die Testfälle werden hier definiert, die Strategie ihrer Ausführung, die Durchführung selbst und die Ergebnisse sind Gegenstand des Validierungsteils. Die Prüfkriterien entstehen aus den Anforderungen und damit vor der Entwicklung des Datenmodells, nicht nachträglich aus dem, was sich am fertigen Modell zeigen lässt.
 
 
 === Arten des Nachweises<sec:nachweisarten>
@@ -140,7 +140,7 @@ Die fünf Kriterien unterscheiden sich in dem, was ihre Prüfung voraussetzt. D-
 
 === Abdeckung und Grenzen der Prüfung<sec:testabdeckung>
 
-Jede funktionale und jede nichtfunktionale Anforderung ist mindestens einem Testfall zugeordnet. FA-01, FA-03 und FA-04 werden von jeweils zwei Testfällen abgedeckt, weil sie unterschiedliche Nachweisarten erfordern. Welcher Testfall am Ende welchen Anwendungsfall trägt und mit welchem Ergebnis, führt @tab:apx_rueckverfolgung im Anhang über die gesamte Kette zusammen. Die Randbedingungen aus @tab:rb sind dagegen nicht Gegenstand von Testfällen. Sie beschreiben die Voraussetzungen der Entstehung und des Betriebs und keine geforderte Eigenschaft der Lösung, weshalb ihre Einhaltung zu dokumentieren und nicht zu prüfen ist.
+Jede funktionale und jede nichtfunktionale Anforderung ist mindestens einem Testfall zugeordnet. FA-01, FA-03 und FA-04 werden von jeweils zwei Testfällen abgedeckt, weil sie unterschiedliche Nachweisarten erfordern. Welcher Testfall am Ende welchen Anwendungsfall trägt und mit welchem Ergebnis, führt @tab:apx_rueckverfolgung im Anhang über die gesamte Kette zusammen. Die Randbedingungen aus @tab:rb sind dagegen nicht Gegenstand von Testfällen. Sie beschreiben die Voraussetzungen der Entstehung und des Betriebs und keine geforderte Eigenschaft der Lösung, weshalb ihre Einhaltung nur zu dokumentieren und nicht zu prüfen ist.
 
 Zwei Testfälle tragen dabei weniger, als ihre Formulierung nahelegt. T-04 prüft die Plausibilität der Messwerte und nicht deren Genauigkeit, die mit den verfügbaren Mitteln nicht nachweisbar und zudem keine Eigenschaft des Datenmodells wäre. T-13 stützt sich als einziger Testfall auf eine Durchsicht und nicht auf eine Beobachtung. Seine Kriterien stehen mit @tab:doku_kriterien fest, bevor die Unterlage entsteht. Die Unabhängigkeit der durchsehenden Person bleibt daneben eine Bedingung für sich, deren Einlösung @sec:pruefablauf festhält.
 

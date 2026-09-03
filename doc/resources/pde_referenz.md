@@ -362,7 +362,7 @@ Andere Zeichen sind nicht erlaubt.
   Geräte**, die unter diesem Gerätetyp angelegt werden.
 - Es wird **dringend empfohlen, Property-Name und Property-Typ nicht zu ändern**, wenn die JSON
   bereits in der Applikation verwendet wird und Instanzen dieses Gerätetyps existieren:
-  *„All functions using this device as the source in SENTRON will be disrupted."*
+  *"All functions using this device as the source in SENTRON will be disrupted."*
 
 > **Verwertbar in Kapitel 700 (Bewertung / kritische Würdigung):** Das Datenmodell ist nach dem
 > ersten produktiven Einsatz faktisch schemastarr. Versionierung und Namensstabilität sind damit
@@ -385,7 +385,7 @@ wählen → Ergebnisdialog → `OK` → `Next`.
 ### Nicht per Bulk Import konfigurierbar `[33770547723]`
 
 **Harmonics-Properties, BLOB, BCD, MOD10 und DateTime.** Diese erfordern manuelle Konfiguration —
-die Doku formuliert das in `[30652824203]` als *„specialized properties require manual
+die Doku formuliert das in `[30652824203]` als *"specialized properties require manual
 configuration"*.
 
 > **Verwertbar in Kapitel 700:** Genau die aufwendigsten Datentypen sind von der Automatisierung
@@ -445,7 +445,7 @@ Mehrere Datenpunkte lassen sich gleichzeitig auswählen; erneutes `Check Values`
 | 9 | BOOLEAN | bool |
 
 Bei Auswahlversuch erscheint der Tooltip
-*„Selection not allowed for unsupported property in online mode"*.
+*"Selection not allowed for unsupported property in online mode"*.
 
 > **Zentraler Befund für Kapitel 600 (Validierung) und 700:** Der Online-Modus kann **keinen
 > einzigen** BCD-, MOD10-, BLOB-, DateTime-, String- oder Boolean-Datenpunkt verifizieren.
