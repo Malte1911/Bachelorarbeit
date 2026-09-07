@@ -35,6 +35,7 @@
   AFDD: "Arc Fault Detection Device",
   MCCB: "Moulded Case Circuit Breaker",
   RBAC: "Role Based Access Control",
+  REST: "Representational State Transfer",
   TLS: "Transport Layer Security",
   RSSI: "Received Signal Strength Indicator",
   FEP: "Front End Processor",

@@ -8,7 +8,7 @@ Der Betrieb einer Immobilie wird über eine Leitebene geführt, auf der Heizung,
 
 Die Gerätetechnik hat diese Lücke inzwischen geschlossen. Mit den SENTRON #acro("ECPD") steht eine Reihe elektronischer Schaltkreisschutzgeräte zur Verfügung, die neben der Schutzfunktion je Endstromkreis misst, sich aus der Ferne schalten lässt und ihren Zustand über ein zugehöriges Kommunikationsgerät, das SENTRON Powercenter, im Gebäudenetz bereitstellt @src:sentronsystemhandbuch. Ein Verteiler mit bis zu 24 solcher Abgänge liefert damit eine Auflösung, die eine zentrale Messung nicht erreicht.
 
-Der Nutzen dieser Daten entsteht vor allem dort, wo sie beobachtet, archiviert und mit den übrigen Gewerken zusammen betrachtet werden. Mit Desigo CC führt die Siemens AG eine Gebäudemanagementplattform, die genau diese Aufgabe erfüllt @src:desigoccdatasheet. Beide Enden der Kette sind somit vorhanden, eine Verbindung dazwischen existiert jedoch noch nicht. Woran sie derzeit scheitert und welcher Aufwand daraus in jedem Projekt entsteht, behandelt @sec:problemstellung.
+Der Nutzen dieser Daten entsteht vor allem dort, wo sie beobachtet, archiviert und mit den übrigen Gewerken zusammen betrachtet werden. Mit Desigo CC führt die Siemens AG eine Gebäudemanagementplattform, die genau diese Aufgabe erfüllt @src:desigoccdatasheet. Beide Enden dieser Kette zwischen Gerät und Managementplattform sind somit vorhanden, eine Verbindung dazwischen existiert jedoch noch nicht. Woran sie derzeit scheitert und welcher Aufwand daraus in jedem Projekt entsteht, behandelt @sec:problemstellung.
 
 /* Claude: Abschnitt neu angelegt und bewusst schmal gehalten, damit er sich
    nicht mit den uebrigen Unterkapiteln ueberschneidet. Ausgespart sind deshalb

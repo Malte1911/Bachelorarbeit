@@ -33,17 +33,15 @@
 
 == Aufgenommene Datenpunkte des ECPD<apx:datenpunkte_ecpd>
 
-Die Aufstellung gibt die 37 Register wieder, die nach den Kriterien aus @sec:auswahlkriterien in das Objektmodell des #acro("ECPD") übernommen sind, sowie die 27 Alarmdatenpunkte, die aus dem Sammelregister 2560 gebildet werden. Zusätzlich geführt ist die Zeile des Registers 22, das die Auswahl zunächst enthielt und das nach @sec:umsetzung gestrichen wurde; sie bleibt stehen, weil die Streichung selbst ein Ergebnis der Umsetzung ist, und zählt in der Spalte des Nachweises nicht mit. Die Variablennamen sind Vorschläge und werden in @sec:umsetzung auf die Eigenschaften der Typbeschreibung abgebildet. Der Index $n$ bezeichnet die Stelle des Endgeräts am Powercenter und läuft von 1 bis 24.
-
-Die Spalte des Anwendungsfalls nennt die Tätigkeit, aus der die Aufnahme hervorgeht, und daneben die Anforderung, sofern der Katalog aus @sec:anforderungen den Datenpunkt ausdrücklich verlangt. Wo sie fehlt, folgt die Aufnahme unmittelbar dem Anwendungsfall; die Gründe dafür sind in @sec:wuerdigung ausgeführt. Die Spalte des Nachweises benennt die Testfälle aus @tab:testfaelle, unter denen der Datenpunkt am Testaufbau geprüft wurde. T-05 erstreckt sich dabei auf jeden abgebildeten Datenpunkt, während ein allein mit T-01 ausgewiesener Datenpunkt nach dem Import vorhanden, im Betrieb jedoch nicht ausgelöst worden ist.
-
-Eine eigene Spalte für die Skalierung führt die Aufstellung nicht, da sie nach @sec:umsetzung keine Aussage trüge. Das Gerät liefert seine Messwerte als Gleitkommazahlen bereits in der angegebenen Einheit, sodass der Skalierungsfaktor der Typbeschreibung durchgehend eins beträgt. Die beiden Ausnahmen, der in Milliampere geführte Nennstrom und die in Sekunden geführten Betriebsstunden, sind in der Spalte des Formats vermerkt.
+@tab:apx_ecpd_register führt die nach @sec:datenpunkte aufgenommenen Register, @tab:apx_ecpd_alarme die Alarmdatenpunkte. Der Index $n$ bezeichnet die Stelle des Endgeräts am Powercenter und läuft von 1 bis 24. Die Zeile des nach @sec:umsetzung gestrichenen Registers 22 ist nachrichtlich geführt und zählt beim Nachweis nicht mit. Eine Spalte für die Skalierung entfällt, da der Faktor nach @sec:umsetzung durchgehend eins beträgt; die beiden Ausnahmen sind in der Spalte des Formats vermerkt. Fehlt neben dem Anwendungsfall die Anforderung, folgt die Aufnahme unmittelbar dem Anwendungsfall, was @sec:wuerdigung ausführt.
 
 #breitseite[
 #figure(
   text(size: 8pt, lang: "de", hyphenate: true)[#table(
     columns: (4.5em, 1fr, 1fr, 3.4em, 1fr, 5.6em, 4.4em, 1.65fr),
-    inset: 4pt,
+    // Siehe die Aufstellung des Powercenters: beide Registertabellen tragen
+    // denselben verringerten senkrechten Innenabstand.
+    inset: (x: 4pt, y: 3pt),
     align: (left + horizon, left, left, center + horizon, left, left + horizon, left + horizon, left),
     table.header(
       [*Register*], [*Bezeichnung*], [*Variablenname*], [*Zugriff*], [*Format und Einheit*], [*Anwendungsfall und Anforderung*], [*Nachweis*], [*Begründung der Aufnahme*],
@@ -131,7 +129,7 @@ Eine eigene Spalte für die Skalierung führt die Aufstellung nicht, da sie nach
 )<tab:apx_ecpd_register>
 ]
 
-Die folgenden Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers 2560 und belegen kein weiteres Register. Sie tragen durchgehend UC-03 sowie FA-04 und FA-05, und ihr Nachweis liegt bei T-05 und T-06; eine eigene Spalte dafür entfällt deshalb. Am Testaufbau ließ sich nach @sec:testdurchfuehrung allein das Bit 5 auslösen. Die Spalte zum Werkszustand gibt an, ob ein Alarm ab Werk eingeschaltet ist. Die mit _aus_ gekennzeichneten Alarme liefern ohne vorherige Einstellung in SENTRON Powerconfig dauerhaft den Wert null, worauf NFA-06 zielt. Ereignisbasierte Alarme besitzen keinen Schalter und sind stets wirksam.
+Die Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers 2560 und tragen durchgehend UC-03, FA-04 und FA-05 mit dem Nachweis T-05 und T-06, weshalb eigene Spalten dafür entfallen. Die mit _aus_ gekennzeichneten Alarme liefern bis zu ihrer Einstellung in SENTRON Powerconfig dauerhaft null, während ereignisbasierte Alarme keinen Schalter besitzen.
 
 #figure(
   text(size: 8pt, lang: "de", hyphenate: true)[#table(
@@ -176,13 +174,17 @@ Die folgenden Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers
 
 == Aufgenommene Datenpunkte des Powercenters<apx:datenpunkte_powercenter>
 
-Die Aufstellung gibt die 16 Register wieder, die ausschließlich das Powercenter selbst betreffen; die Zeile des ebenfalls gestrichenen Registers 22 ist wie beim #acro("ECPD") nachrichtlich geführt. Die Felder über alle 24 Endgeräte sind nach dem Kriterium K-04 nicht enthalten und stehen im Objektmodell des jeweiligen Endgeräts. Die Prüfung des Powercenters endet nach @sec:pruefablauf bei Import und Instanzbildung, weshalb für sämtliche Zeilen dieser Aufstellung T-01 und T-02 den Nachweis tragen und eine eigene Spalte dafür entfällt.
+@tab:apx_pc_register führt die Register, die ausschließlich das Powercenter selbst betreffen; die Felder über alle 24 Endgeräte stehen nach K-04 im Objektmodell des jeweiligen Endgeräts. Den Nachweis tragen für sämtliche Zeilen T-01 und T-02, weshalb eine eigene Spalte dafür entfällt.
 
 #breitseite[
 #figure(
   text(size: 8pt, lang: "de", hyphenate: true)[#table(
     columns: (4.5em, 1fr, 1fr, 3.4em, 1fr, 5.2em, 1.65fr),
-    inset: 4pt,
+    // Der senkrechte Innenabstand ist in den beiden Registeraufstellungen um
+    // einen Punkt verringert. Ohne das rutscht die Unterschrift der
+    // Powercenter-Aufstellung allein auf die Folgeseite, weil die letzte Zeile
+    // den Satzspiegel bis auf wenige Millimeter ausfuellt.
+    inset: (x: 4pt, y: 3pt),
     align: (left + horizon, left, left, center + horizon, left, left + horizon, left),
     table.header(
       [*Register*], [*Bezeichnung*], [*Variablenname*], [*Zugriff*], [*Format und Einheit*], [*Anwendungsfall*], [*Begründung der Aufnahme*],
@@ -226,7 +228,7 @@ Die Aufstellung gibt die 16 Register wieder, die ausschließlich das Powercenter
 )<tab:apx_pc_register>
 ]
 
-Am Powercenter sind im Sammelregister 2560 nur zwei Bits belegt, da das Gerät weder misst noch schaltet.
+Am Powercenter sind im Sammelregister 2560 nur zwei Bits belegt, da das Gerät weder misst noch schaltet. @tab:apx_pc_alarme weist beide aus.
 
 #figure(
   text(size: 8pt, lang: "de", hyphenate: true)[#table(
@@ -242,16 +244,18 @@ Am Powercenter sind im Sammelregister 2560 nur zwei Bits belegt, da das Gerät w
   caption: [Aus dem Sammelregister 2560 gebildete Alarmdatenpunkte des Powercenters]
 )<tab:apx_pc_alarme>
 
-Die nicht aufgenommenen Register sind hier bewusst nicht Zeile für Zeile geführt. Für die Nachvollziehbarkeit der Reduktion genügt die Ausschlussgruppe mit ihrem Umfang und dem tragenden Kriterium, wie sie @tab:ausschluss_ecpd ausweist; die Begründung der einzelnen Zeile ist in der Arbeitsmappe des Anforderungskatalogs hinterlegt.
+Die nicht aufgenommenen Register sind nicht Zeile für Zeile geführt. @tab:ausschluss_ecpd weist die Ausschlussgruppen mit Umfang und tragendem Kriterium aus, die Begründung der einzelnen Zeile steht in der Arbeitsmappe des Anforderungskatalogs.
 
 == Rückverfolgbarkeit von Anwendungsfall bis Ergebnis<apx:rueckverfolgung>
 
-Die Zuordnungen zwischen Anwendungsfällen, Anforderungen, Datenmodell, Testfällen und Ergebnissen sind über @sec:usecases, @sec:fa, @sec:nfa, @sec:testfaelle und @sec:anforderungsabgleich verteilt. @tab:apx_rueckverfolgung führt sie an einer Stelle zusammen, sodass sich jede Anforderung von dem Anwendungsfall, aus dem sie hervorgeht, über das tragende Element des Datenmodells und den zugehörigen Testfall bis zum Ergebnis verfolgen lässt. Die Matrix enthält keine Aussage, die nicht bereits an einer der genannten Stellen steht; die Spalte zum Nachweis verweist auf den Abschnitt, in dem die Beobachtung ausgeführt ist.
+@tab:apx_rueckverfolgung führt die über @sec:usecases, @sec:fa, @sec:nfa, @sec:testfaelle und @sec:anforderungsabgleich verteilten Zuordnungen an einer Stelle zusammen. Sie enthält keine Aussage, die nicht bereits an einer dieser Stellen steht.
 
 #figure(
   text(size: 8pt, lang: "de", hyphenate: true)[#table(
     columns: (6em, 5em, 1fr, 4.5em, 7em, 6.5em),
-    inset: 4pt,
+    // Verringerter senkrechter Innenabstand wie in den Registeraufstellungen,
+    // damit die Unterschrift auf der Seite der letzten Zeilen bleibt.
+    inset: (x: 4pt, y: 3pt),
     align: (left + horizon, left + horizon, left, left + horizon, left + horizon, left + horizon),
     table.header(
       [*Anwendungsfall*], [*Anforderung*], [*Umsetzung im Modell*], [*Testfall*], [*Nachweis*], [*Ergebnis*],
@@ -289,10 +293,10 @@ Die Zuordnungen zwischen Anwendungsfällen, Anforderungen, Datenmodell, Testfäl
   caption: [Rückverfolgbarkeit vom Anwendungsfall über die Anforderung und das tragende Element des Datenmodells zum Testfall und zum Ergebnis]
 )<tab:apx_rueckverfolgung>
 
-Zwei Stellen bleiben in der Matrix offen und sind als solche zu benennen. NFA-06 entspringt als einzige Anforderung keinem Anwendungsfall, sondern einer Eigenschaft der Geräte, was in @sec:nfa begründet ist. Umgekehrt erscheinen zwei Gruppen des Datenmodells nicht, weil ihnen keine Anforderung gegenübersteht. Die Zähler und Wartungsdaten mit sieben Registern und die Stammdaten mit sieben Registern sind in @tab:datenpunkte_ecpd über UC-07 und UC-09 begründet, der Katalog verlangt sie jedoch nicht, da FA-03 nach @sec:fa bewusst auf die Messwerte begrenzt ist. Die Auswahl folgt an dieser Stelle unmittelbar den Anwendungsfällen und nicht dem Anforderungskatalog. Ihre Richtigkeit ist gleichwohl geprüft, denn T-05 erstreckt sich auf jeden abgebildeten Datenpunkt und nicht allein auf die Messwerte.
+Zwei Stellen bleiben offen. NFA-06 entspringt als einzige Anforderung keinem Anwendungsfall, sondern einer Eigenschaft der Geräte (@sec:nfa), und die Zähler-, Wartungs- und Stammdaten des #acro("ECPD") erscheinen nicht in der Matrix, da sie über UC-07 und UC-09 in der Auswahl stehen, ohne dass eine Anforderung sie verlangt. Beides ist in @sec:wuerdigung ausgeführt.
 
 == Anwenderdokumentation zur Integrationsvorlage<apx:anwenderdoku>
 
-Die folgende Unterlage ist neben den beiden Typbeschreibungen und der Aufstellung der Datenpunkte das dritte Ergebnis dieser Arbeit. Sie ist der Gegenstand von NFA-01 und NFA-02 und wird in T-13 gegen die Kriterien aus @tab:doku_kriterien durchgesehen, weshalb sie hier vollständig wiedergegeben ist. Wiedergegeben ist der Stand vom 26.08.2026, in Gliederung und Wortlaut unverändert und allein im Satz an diese Arbeit angepasst. Sie richtet sich an einen Leser, der die Vorlage einsetzt, und nicht an den Leser dieser Arbeit; Wiederholungen gegenüber @sec:datenpunkte und @sec:umsetzung sind deshalb beabsichtigt. Ihre Referenz führt dieselben Datenpunkte wie #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]), dort jedoch aus der Sicht der Projektierung mit Registerlänge, Datentyp und Skalierungsfaktor statt mit Anwendungsfall, Nachweis und Begründung.
+Die folgende Unterlage ist das dritte Ergebnis dieser Arbeit und Gegenstand von NFA-01, NFA-02 und T-13, weshalb sie hier vollständig wiedergegeben ist. Wiedergegeben ist der Stand vom 26.08.2026, in Gliederung und Wortlaut unverändert und allein im Satz an diese Arbeit angepasst. Sie richtet sich an den Anwender der Vorlage, weshalb sie @sec:datenpunkte und @sec:umsetzung an mehreren Stellen wiederholt; ihre Referenz führt dieselben Datenpunkte wie #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]), dort jedoch aus der Sicht der Projektierung.
 
 #include "../content/990_anwenderdokumentation.typ"

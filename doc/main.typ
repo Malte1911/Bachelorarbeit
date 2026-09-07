@@ -19,6 +19,48 @@
 #show table: set par(justify: false)
 #show figure.caption: set par(justify: false)
 #show outline: set par(justify: false)
+// Auch der Inhalt der Abbildungen bleibt im Flattersatz. Die Beschriftungen in
+// den Diagrammen stehen in schmalen Kaesten, in denen der Blocksatz sichtbare
+// Luecken zwischen die Woerter reisst.
+#show figure.where(kind: image): set par(justify: false)
+
+// Aus jeder Bild- und Tabellenunterschrift fuehrt ein Verweis zurueck in das
+// zugehoerige Verzeichnis. Verlinkt ist allein die Marke, also "Abbildung 3.2"
+// oder "Tabelle 12", nicht der Beschriftungstext. Die Marken <lof> und <lot>
+// setzt config/functions.typ an den beiden Verzeichnisueberschriften. Die
+// Gegenrichtung leisten die Verzeichnisse bereits von sich aus, da Typst ihre
+// Eintraege auf die jeweilige Abbildung verlinkt.
+// Die Regel steht bewusst vor der folgenden show-Regel, damit sie auch fuer
+// den Anhang gilt, der innerhalb von deren Funktionskoerper erzeugt wird.
+#show figure.caption: it => {
+  let verzeichnis = if it.kind == image {
+    label("lof")
+  } else if it.kind == table {
+    label("lot")
+  } else {
+    none
+  }
+  let inhalt = if verzeichnis == none or it.numbering == none {
+    it
+  } else {
+    context {
+      link(verzeichnis)[#it.supplement #numbering(it.numbering, ..it.counter.at(here()))]
+      it.separator
+      it.body
+    }
+  }
+  // Die Unterschrift nimmt die volle Satzbreite ein und ist linksbuendig
+  // gesetzt. Ohne diese Regel folgt sie der Zentrierung der Abbildung, wodurch
+  // eine mehrzeilige Bildunterschrift eingerueckt beginnt und nicht auf
+  // derselben Hoehe wie eine Tabellenunterschrift ansetzt.
+  block(width: 100%, align(left, inhalt))
+}
+
+// Abstand zwischen Abbildung beziehungsweise Tabelle und ihrer Unterschrift,
+// ausdruecklich gesetzt und fuer beide Arten gleich, damit eine Bildunterschrift
+// denselben Abstand haelt wie eine Tabellenunterschrift. Wirkt der Abstand unter
+// einem Diagramm groesser, traegt das Diagramm selbst Weissraum am unteren Rand.
+#set figure(gap: 0.65em)
 // Define a function to create headers
 
 // Front matter
@@ -31,6 +73,7 @@
 
   // Sperrvermerk
   pagebreak()
+  set page(numbering: "I", number-align: right)
   include "content/000_Sperrvermerk.typ"
 
   // Inhaltsverzeichnis

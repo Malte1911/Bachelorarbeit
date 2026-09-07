@@ -708,8 +708,12 @@
     // der Bytezahl; siehe Anmerkung im Kopf dieses Abschnitts.
     grid(
       columns: (2.7fr, 2.4fr, 1.4fr, 2fr, 2.5fr, 3fr),
-      rows: (7mm, 14mm, 6mm),
-      row-gutter: (0mm, 1.5mm),
+      // Die dritte Zeile trug ein leeres Band von 6mm Hoehe, das den
+      // Geltungsbereich des Laengenfelds zeigen sollte, aber nie gefuellt
+      // wurde. Sie ist entfernt, da ihr Weissraum den Abstand zur
+      // Bildunterschrift gegenueber den Tabellen sichtbar vergroessert hat.
+      rows: (7mm, 14mm),
+      row-gutter: 0mm,
 
       // Baender ueber den Feldern, die sie zusammenfassen
       grid.cell(colspan: 4, dg_band([#acro("MBAP")-Kopf], [Byte 0 bis 6])),
@@ -722,9 +726,6 @@
       dg_feld([Unit Identifier], [Byte 6]),
       dg_feld([Funktionscode], [Byte 7]),
       dg_feld([Daten], [ab Byte 8]),
-
-      // Geltungsbereich des Laengenfelds, ebenfalls als geschlossenes Band
-      grid.cell(colspan: 3, none),
     )
   }))
 /*

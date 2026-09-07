@@ -30,7 +30,7 @@ T-14 ist nur eingeschränkt nachweisbar. Der betroffene Alarm lässt sich am Auf
 
 ==== Messwerte und ihre Darstellung
 
-T-03 ist im zwingenden Teil erfüllt. Das am Modbus-Treiber eingestellte Intervall von $1space.thin"s"$ wirkt, eine am Gerät hervorgerufene Änderung erscheint innerhalb dieser Zeitspanne in Desigo CC, sobald sie am Powercenter vorliegt. Der zweite Schritt des Testfalls bestätigt zugleich die Gegenprobe: Ein für ein einzelnes Gerät oder für eine Gruppe von Datenpunkten abweichendes Intervall lässt sich nicht einstellen, sodass der als _soll_ formulierte Teil von FA-02 offenbleibt. Diese Einschränkung ist eine Eigenschaft des Treibers und in @sec:befunde eingeordnet.
+T-03 ist erfüllt. Das am Modbus-Treiber eingestellte Intervall von $1space.thin"s"$ wirkt, eine am Gerät hervorgerufene Änderung erscheint innerhalb dieser Zeitspanne in Desigo CC, sobald sie am Powercenter vorliegt. Der zweite Schritt des Testfalls bestätigt zugleich die Gegenprobe. Ein für ein einzelnes Gerät oder für eine Gruppe von Datenpunkten abweichendes Intervall lässt sich nicht einstellen. Das berührt FA-02 nicht, da die Anforderung allein das am Treiber einstellbare Intervall verlangt. Die Einschränkung ist eine Eigenschaft des Treibers und in @sec:befunde eingeordnet.
 
 Der Telegrammverkehr bestätigt das Intervall unabhängig von der Anzeige. Eine Aufzeichnung mit dem Netzwerkanalysator aus @tab:werkzeuge zeigt für das #acro("ECPD") einen Abfragezyklus je Sekunde aus zwölf Anfragen. Neun davon lesen Register und umfassen 42, 14, 4, 2, 2, 2, 1, 1 und 1 Wort, zusammen also 69 Register, die übrigen drei lesen Coils.
 

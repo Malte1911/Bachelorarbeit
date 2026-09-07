@@ -126,15 +126,20 @@
 
 #let insertListOfFigures = {
   // List of figures
+  // Die Ueberschrift steht hier von Hand statt als `title` des Outlines, damit
+  // sie die Marke <lof> tragen kann. Die Bildunterschriften verweisen ueber
+  // diese Marke zurueck in das Verzeichnis (Show-Regel in main.typ).
   pagebreak()
-  outline(title: "Abbildungsverzeichnis", target: figure.where(kind: image))
+  [#heading("Abbildungsverzeichnis", outlined: false, numbering: none) <lof>]
+  outline(title: none, target: figure.where(kind: image))
   v(1fr)
 }
 
 #let insertListOfTables = {
   // List of tables
   pagebreak()
-  outline(title: "Tabellenverzeichnis", target: figure.where(kind: table, ))
+  [#heading("Tabellenverzeichnis", outlined: false, numbering: none) <lot>]
+  outline(title: none, target: figure.where(kind: table))
   v(1fr)
 }
 

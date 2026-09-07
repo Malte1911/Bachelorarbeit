@@ -12,8 +12,6 @@ Das Wasserfallmodell zählt zu den ältesten Vorgehensmodellen der Softwaretechn
 Das V-Modell erweitert das Wasserfallmodell, indem es jeder konstruktiven Phase eine korrespondierende prüfende Phase gegenüberstellt @src:ludewig2023. Grafisch werden die Phasen in Form eines "V" angeordnet. Der absteigende, linke Ast beschreibt die zunehmende Detaillierung von den Anforderungen über den System- bis zum Feinentwurf, während der aufsteigende, rechte Ast die schrittweise Integration und Prüfung abbildet. Jeder Prüfebene ist dabei genau eine Spezifikationsebene des linken Astes zugeordnet, gegen die verifiziert und validiert wird @src:ludewig2023. Ein charakteristisches Merkmal besteht darin, dass die zugehörigen Testfälle bereits parallel zur jeweiligen Spezifikationsphase entworfen werden und nicht erst nach der Implementierung. Für die Entwicklung mechatronischer und eingebetteter Systeme, in denen Hardware- und Softwareanteile zusammenwirken, ist das V-Modell als Entwicklungsmethodik etabliert und in der VDI-Richtlinie 2206 beschrieben, die es in ihrer aktuellen Fassung ausdrücklich auf cyber-physische Systeme erweitert @src:vdi2206.
 
 
-=== Auswahl für diese Arbeit<sec:vorgehensmodell_auswahl>
-
 Für die vorliegende Arbeit wird das V-Modell als Vorgehensmodell gewählt. Ausschlaggebend sind drei Überlegungen.
 
 Erstens ist die Aufgabenstellung ihrem Wesen nach prüfungsorientiert. Aus der Analyse des Systemkontexts und der Stakeholder werden die Anforderungen an das Datenmodell abgeleitet, aus denen wiederum die Testfälle entstehen. Diese entstehen damit gemeinsam mit den Anforderungen und nicht erst nach der Umsetzung, was genau dem kennzeichnenden Merkmal des V-Modells entspricht.

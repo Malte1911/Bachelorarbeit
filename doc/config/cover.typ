@@ -3,8 +3,12 @@
 // Das Deckblatt ist zentriert gesetzt; der Blocksatz aus main.typ wuerde den
 // Titel auseinanderziehen und trennen. Deshalb hier ausdruecklich aus.
 #set par(justify: false)
+// Auf dem Deckblatt steht keine Seitenzahl. Die Nummerierung des Vorspanns
+// setzt main.typ nach dem Seitenumbruch wieder auf "I"; der Seitenzaehler
+// laeuft dabei weiter, der Sperrvermerk bleibt also Seite II.
 #set page(
-  margin: (top: 2cm, bottom: 4cm, left: 2.5cm, right: 2.5cm)
+  margin: (top: 2cm, bottom: 4cm, left: 2.5cm, right: 2.5cm),
+  numbering: none
 )
 // Header with logos
 #insertCompanyImage

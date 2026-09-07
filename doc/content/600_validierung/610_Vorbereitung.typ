@@ -7,7 +7,7 @@
 /* Anmerkung des Autors, erledigt: "onlinemodus von PDE basically useless, da
    kein blob verarbeitet werden kann" */
 
-Der Validierungsteil bildet den aufsteigenden Ast des in @sec:vorgehensmodell_auswahl gewählten Vorgehens ab. Seine Aussagekraft hängt daran, dass die Bedingungen der Prüfung feststehen, bevor deren Ergebnisse vorliegen. Dieser Abschnitt hält sie fest. Die Arten des Nachweises und die Grenzen der Prüfung sind mit @sec:nachweisarten und @sec:testabdeckung bereits benannt und werden hier nicht wiederholt.
+Der Validierungsteil bildet den aufsteigenden Ast des in @sec:vorgehensmodell gewählten Vorgehens ab. Seine Aussagekraft hängt daran, dass die Bedingungen der Prüfung feststehen, bevor deren Ergebnisse vorliegen. Dieser Abschnitt hält sie fest. Die Arten des Nachweises und die Grenzen der Prüfung sind mit @sec:nachweisarten und @sec:testabdeckung bereits benannt und werden hier nicht wiederholt.
 
 
 ==== Ausgangszustand

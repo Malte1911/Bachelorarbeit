@@ -18,7 +18,7 @@ Bevor Anforderungen an das Datenmodell formuliert werden können, ist zu klären
 
 === Systemaufbau und Systemgrenzen<sec:systemanalyse>
 
-Die in @sec:ecpd bis @sec:desigocc beschriebenen Komponenten stehen im Betrieb nicht nebeneinander, sondern in einer festen Kette. Die #acro("ECPD") vom Typ 5TY1 COM sitzen als Endstromkreisschutz im Installationsverteiler, erreichen über die Funkstrecke ausschließlich das SENTRON Powercenter, und erst dieses stellt die Daten über das Gebäudenetz bereit, wo Desigo CC sie abfragen kann. @img:systemaufbau zeigt diese Kette zusammen mit den beiden Werkzeugen, die nicht Teil des laufenden Datenpfads sind, für den Lebenszyklus der Lösung aber maßgeblich sind. SENTRON Powerconfig dient der Inbetriebnahme und Parametrierung der Geräte und setzt dabei stets am Powercenter an, entweder über #acro("BLE") vor Ort oder über dessen REST-#acro("API") im Netz @src:sentronsystemhandbuch. Das Werkzeug liegt als Desktop-Anwendung und als mobile Anwendung vor, von denen diese Arbeit ausschließlich die Desktop-Anwendung einsetzt (siehe @sec:rb). Auch für dieses Werkzeug bleibt ein einzelnes Endgerät unmittelbar unerreichbar, denn seine Parametrierung reicht das Powercenter über die Funkstrecke weiter. Der #acro("PDE") erzeugt demgegenüber die Gerätetypbeschreibung als #acro("JSON")-Datei (siehe @sec:pde).
+Die in @sec:ecpd bis @sec:desigocc beschriebenen Komponenten stehen im Betrieb nicht nebeneinander, sondern in einer festen Kette. Die #acro("ECPD") vom Typ 5TY1 COM sitzen als Endstromkreisschutz im Installationsverteiler, erreichen über die Funkstrecke ausschließlich das SENTRON Powercenter, und erst dieses stellt die Daten über das Gebäudenetz bereit, wo Desigo CC sie abfragen kann. @img:systemaufbau zeigt diese Kette zusammen mit den beiden Werkzeugen, die nicht Teil des laufenden Datenpfads sind, für den Lebenszyklus der Lösung aber maßgeblich sind. SENTRON Powerconfig dient der Inbetriebnahme und Parametrierung der Geräte und setzt dabei stets am Powercenter an, entweder über #acro("BLE") vor Ort oder über dessen #acro("REST")-#acro("API") im Netz @src:sentronsystemhandbuch. Das Werkzeug liegt als Desktop-Anwendung und als mobile Anwendung vor, von denen diese Arbeit ausschließlich die Desktop-Anwendung einsetzt (siehe @sec:rb). Auch für dieses Werkzeug bleibt ein einzelnes Endgerät unmittelbar unerreichbar, denn seine Parametrierung reicht das Powercenter über die Funkstrecke weiter. Der #acro("PDE") erzeugt demgegenüber die Gerätetypbeschreibung als #acro("JSON")-Datei (siehe @sec:pde).
 
 #figure(
   abb_systemaufbau,
@@ -46,7 +46,7 @@ Für die Ausgangslage ist dabei bedeutsam, dass die betrachtete Gerätereihe in 
 
 === Stakeholderanalyse<sec:stakeholder>
 
-Das Datenmodell wird von unterschiedlichen Personengruppen mit deutlich verschiedenen Erwartungen genutzt. Die folgende Einordnung unterscheidet sie nach ihrer Rolle im Lebenszyklus der Lösung und benennt jeweils die Erwartung, aus der später Anforderungen abgeleitet werden. Die Stakeholder arbeiten von der Entwicklung über die Inbetriebnahme bis zum laufenden Betrieb mit dem Modell.
+Das Datenmodell wird von unterschiedlichen Personengruppen mit deutlich verschiedenen Erwartungen genutzt. Die Einordnung in @tab:stakeholder unterscheidet sie nach ihrer Rolle im Lebenszyklus der Lösung und benennt jeweils die Erwartung, aus der später Anforderungen abgeleitet werden. Die Stakeholder arbeiten von der Entwicklung über die Inbetriebnahme bis zum laufenden Betrieb mit dem Modell.
 
 #figure(
   table(
@@ -118,11 +118,11 @@ Drei Wege scheiden ohne nähere Bewertung aus. Der unmittelbare Zugriff auf das 
 
 Modbus #acro("TCP") über das Powercenter (W3) ist auf beiden Seiten unterstützt. Das Powercenter tritt als Modbus-#acro("TCP")-Server auf und stellt die Daten aller unterlagerten Endgeräte über eine einzige #acro("IP")-Adresse bereit, wobei die Unterscheidung der Geräte über den Unit Identifier erfolgt @src:sentronsystemhandbuch. Lesende wie schreibende Zugriffe sind möglich, und auf der Gegenseite steht mit dem Erweiterungsmodul "Modbus TCP" ein vollständiger Treiber bereit, in dem Desigo CC als Client auftritt @src:desigoccenghelp. Die Ausgestaltung dieses Wegs wird in @sec:desigoccmechanik gesondert untersucht.
 
-Die REST-Schnittstelle über #acro("HTTPS") (W4) ist der Modbus-Variante sicherheitstechnisch überlegen, da sie über #acro("TLS") verschlüsselt ist und der rollenbasierten Zugriffskontrolle des Powercenters unterliegt @src:sentronsystemhandbuch. Sie ist jedoch herstellerspezifisch, sodass in Desigo CC kein generisches Erweiterungsmodul dafür bereitsteht @src:desigoccenghelp und eine Anbindung eine Eigenentwicklung über das Software Development Kit erforderte. Ebenso wenig ließe sich der #acro("PDE") nutzen, dessen Ergebnis ausdrücklich eine Beschreibung der Modbus-Kommunikation ist @src:pdemanual. Die vorgesehene Werkzeugkette entfiele damit vollständig.
+Die #acro("REST")-Schnittstelle über #acro("HTTPS") (W4) ist der Modbus-Variante sicherheitstechnisch überlegen, da sie über #acro("TLS") verschlüsselt ist und der rollenbasierten Zugriffskontrolle des Powercenters unterliegt @src:sentronsystemhandbuch. Sie ist jedoch herstellerspezifisch, sodass in Desigo CC kein generisches Erweiterungsmodul dafür bereitsteht @src:desigoccenghelp und eine Anbindung eine Eigenentwicklung über das Software Development Kit erforderte. Ebenso wenig ließe sich der #acro("PDE") nutzen, dessen Ergebnis ausdrücklich eine Beschreibung der Modbus-Kommunikation ist @src:pdemanual. Die vorgesehene Werkzeugkette entfiele damit vollständig.
 
 Bleibt der Umweg über ein vorgelagertes Fremdsystem (W6). Die vom #acro("PDE") unterstützten Zielapplikationen sind der SENTRON Powermanager und das SENTRON Powercenter 3000 @src:pdemanual. Von beiden lässt sich allein der Powermanager an Desigo CC koppeln, da er nach oben OPC DA bereitstellt @src:sentronsoftwareguide und Desigo CC dieses Protokoll auf der Feldebene unterstützt @src:desigoccdatasheet, während das Powercenter 3000 dafür ausschließlich #acro("MQTT") anbietet. Gangbar ist der Weg somit, er führt jedoch ein zweites Leitsystem mit eigener Datenhaltung, eigener Alarmierung und eigenem Wartungsbedarf ein und verschiebt die Abbildung der Gerätedaten lediglich in ein anderes System. Ein solches Zwischensystem entspricht dem in der Gebäudeautomation verbreiteten Muster der vermittelnden Schicht @src:perumal2010, deren Gewinn im Zusammenführen mehrerer ungleichartiger Quellen liegt. Genau diese Bedingung fehlt hier, da eine einzige Quelle anzubinden ist, die mit Modbus #acro("TCP") bereits ein von der Zielplattform unterstütztes Protokoll spricht. Auf den Fall mehrerer Stränge kommt @sec:weiterentwicklung zurück.
 
-Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zwei Ebenen wirken. Die beiden Ausschlusskriterien, das Vorhandensein der Schnittstelle und die Eignung für den Dauerbetrieb, haben bereits W1, W2 und W5 ausgeschieden und werden von W3, W4 und W6 erfüllt. Die Entscheidung fällt deshalb über die drei Abwägungskriterien, die keine Gewichtung tragen, sondern den Preis des jeweiligen Wegs benennen. Die Informationssicherheit wird dabei nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie sich im Gegensatz zu den übrigen durch Maßnahmen außerhalb des Protokolls beeinflussen lässt.
+Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zwei Ebenen wirken. Die beiden Ausschlusskriterien, das Vorhandensein der Schnittstelle und die Eignung für den Dauerbetrieb, haben bereits W1, W2 und W5 ausgeschieden und werden von W3, W4 und W6 erfüllt. Die Entscheidung fällt deshalb über die drei Abwägungskriterien, die keine Gewichtung tragen, sondern den Preis des jeweiligen Wegs benennen. @tab:integrationswege stellt die drei Wege entlang dieser Kriterien gegenüber. Die Informationssicherheit wird dabei nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie sich im Gegensatz zu den übrigen durch Maßnahmen außerhalb des Protokolls beeinflussen lässt.
 
 #figure(
   {
@@ -135,7 +135,9 @@ Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zw
     set text(hyphenate: true)
     table(
       columns: (1.4fr, 1fr, 1fr, 1fr),
-      inset: 6pt,
+      // Der senkrechte Innenabstand ist verringert, damit die Tabelle mit ihrer
+      // Unterschrift auf einer Seite bleibt.
+      inset: (x: 6pt, y: 4pt),
       align: (left + horizon, center + horizon, center + horizon, center + horizon),
       table.header(
         [*Kriterium*], [*W3*], [*W4*], [*W6*],
@@ -156,7 +158,7 @@ Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zw
       [zweites Leitsystem für eine Quelle],
     )
   },
-  caption: [Abwägung zwischen den gangbaren Integrationswegen. W3 Modbus #acro("TCP"), W4 REST-Schnittstelle, W6 vorgelagerter Powermanager. W1, W2 und W5 sind zuvor an den Ausschlusskriterien gescheitert]
+  caption: [Abwägung zwischen den gangbaren Integrationswegen. W3 Modbus #acro("TCP"), W4 #acro("REST")-Schnittstelle, W6 vorgelagerter Powermanager. W1, W2 und W5 sind zuvor an den Ausschlusskriterien gescheitert]
 )<tab:integrationswege>
 
 Modbus #acro("TCP") über das Powercenter ist damit der einzige Weg, der ohne Eigenentwicklung und ohne zusätzliches System auskommt. Diese Feststellung ist weniger eine Auswahl unter gleichwertigen Alternativen als vielmehr die Bestätigung, dass die Schnittstellenlage von Quell- und Zielsystem nur einen der Wege zulässt. Bemerkenswert ist dabei, dass ausgerechnet der sicherheitstechnisch schwächste Weg der einzige durchgängig unterstützte ist.
@@ -208,14 +210,14 @@ Die Kommunikation selbst trägt ein Treiber, der im Projekt eigens angelegt, ein
 
 Bedeutsam ist dagegen die Trennung von Typ und Instanz auf der Zielseite. Das importierte Objektmodell beschreibt einen Gerätetyp und ist damit zunächst nur eine Vorlage. Für jedes physisch vorhandene Gerät ist in Desigo CC eine eigene Instanz anzulegen, die ihre Kommunikationsparameter mitbringt, also die #acro("IP")-Adresse und den Unit Identifier des Geräts @src:desigoccenghelp. Eine Kommunikationsschnittstelle besteht dabei aus der Kombination von Adresse und Slave-Kennung und trägt genau ein Gerät.
 
-==== Randbedingungen des Treibers
-
 Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modbus-Treibers entnehmen, die für die Modellierung unmittelbar bedeutsam sind.
 
 #figure(
   table(
     columns: (8em, 1fr),
-    inset: 7pt,
+    // Wie bei @tab:integrationswege ist der senkrechte Innenabstand verringert,
+    // damit Tabelle und Unterschrift zusammen auf eine Seite passen.
+    inset: (x: 7pt, y: 5pt),
     align: (left + horizon, left),
     table.header(
       [*Eigenschaft*], [*Bedeutung für das Datenmodell*],

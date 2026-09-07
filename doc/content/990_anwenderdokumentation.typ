@@ -22,6 +22,7 @@
 )
 
 #figure(
+  outlined: false,
   table(
     columns: (9em, 1fr),
     inset: 6pt,
@@ -51,7 +52,7 @@ Ohne die folgenden drei Schritte liefert das Modell unvollständige oder gar kei
 
 *Alarme einschalten.* 13 der 27 Alarme des Geräts sind ab Werk deaktiviert und liefern ohne vorherige Einstellung dauerhaft den Wert null. Betroffen sind unter anderem beide RCM-Alarme, die zu den aussagekräftigsten Meldungen des Geräts zählen. Welche Alarme betroffen sind, weist die Spalte Werkszustand in @apxdoc:bitbelegung aus.
 
-*Fernschalten über Modbus freischalten.* Das elektronische Schalten über Modbus ist ab Werk gesperrt. Der zugehörige Schalter trägt in der Registerkarte keine Registeradresse und lässt sich deshalb nicht über Modbus, sondern ausschließlich über Powerconfig setzen. Bleibt er aus, weist das Gerät den Schaltbefehl ab, obwohl andere schreibende Zugriffe angenommen werden und die Schaltfunktion als geschützter Parameter freigegeben ist. Der Datenpunkt `remote_control_electronic_switching_enabled` bildet diesen Zustand lesend ab und ist der erste Punkt, an dem bei einem wirkungslosen Schaltbefehl nachzusehen ist. Zu beachten sind etwaige Cyber-Security-Vorgaben in der Anwendung. *Modbus ist unverschlüsselt: Jeder Teilnehmer des Netzes kann mitlesen und eigene Befehle senden.*
+*Fernschalten über Modbus freischalten.* Das elektronische Schalten über Modbus ist ab Werk gesperrt. Der zugehörige Schalter trägt in der Registerkarte keine Registeradresse und lässt sich deshalb ausschließlich über Powerconfig setzen. Bleibt er aus, weist das Gerät jeden Schaltbefehl ab, obwohl andere schreibende Zugriffe angenommen werden. Der Datenpunkt `remote_control_electronic_switching_enabled` bildet diesen Zustand lesend ab und ist bei einem wirkungslosen Schaltbefehl die erste Stelle, an der nachzusehen ist. Zum Schutz der freigeschalteten Schnittstelle siehe den Sicherheitshinweis in @apxdoc:inbetriebnahme.
 
 *Stammdaten setzen.* Anlagenkennzeichen und Einbauort sind im Modell nur lesend geführt, da sich Zeichenketten über die Vorlage nicht beschreiben lassen. Beide werden in Powerconfig vergeben. Das gilt ebenso für die Phasenzuordnung und den eingestellten Nennstrom.
 
@@ -61,6 +62,7 @@ Für geschützte Parameter ist zu beachten, dass ihre Änderung eine Freigabe vo
 ==== Bekannte Grenzen
 
 #figure(
+  outlined: false,
   text(size: 9pt)[#table(
     columns: (1.2fr, 1fr, 1fr),
     inset: 5pt,
@@ -116,7 +118,7 @@ Der Ablauf entspricht der gewohnten Inbetriebnahme der Gerätefamilie und wird h
 
 *Für die Projektierung festzuhalten* sind die IP-Adresse des Powercenters und die vergebenen Geräteadressen. Die Geräteadresse aus Schritt 2 ist zugleich der Unit Identifier, unter dem das Gerät später über Modbus angesprochen wird. Der Datentransceiver selbst antwortet unter 255. Die Adressvergabe der Inbetriebnahme legt damit unmittelbar die Adressierung im Leitsystem fest.
 
-*Sicherheitshinweis.* Modbus TCP kennt weder Verschlüsselung noch Authentifizierung, und die rollenbasierte Zugriffskontrolle des Powercenters wirkt ausschließlich auf die HTTPS-Kommunikation. Der Schutz muss deshalb vollständig auf Netzebene erfolgen. Die Schnittstelle ist nur dort einzuschalten, wo sie für die Anbindung benötigt wird, die Verbindung gehört in ein eigenes Netzsegment, und ein Zugriff über das lokale Netz hinaus ist an eine VPN-Verbindung oder ein vorgelagertes Gateway zu binden. Das gilt verschärft, sobald das Fernschalten freigeschaltet ist.
+*Sicherheitshinweis.* Modbus TCP kennt weder Verschlüsselung noch Authentifizierung, weshalb der Schutz vollständig auf Netzebene erfolgen muss. Die Schnittstelle ist nur dort einzuschalten, wo die Anbindung sie benötigt, die Verbindung gehört in ein eigenes Netzsegment, und ein Zugriff über das lokale Netz hinaus ist an eine VPN-Verbindung oder ein vorgelagertes Gateway zu binden. Das gilt verschärft, sobald das Fernschalten freigeschaltet ist.
 
 
 === Integration in Desigo CC<apxdoc:integration>
@@ -125,9 +127,7 @@ Der Ablauf entspricht der gewohnten Inbetriebnahme der Gerätefamilie und wird h
 
 Der Treiber wird im Projekt eigens erzeugt, einem Netzwerk zugeordnet und gestartet. Für diese Vorlage ist dabei eine Einstellung maßgeblich.
 
-*Abfrageintervall.* Das Intervall wird am Treiber eingestellt und gilt für sämtliche Datenpunkte aller an diesem Treiber angebundenen Geräte. Eine nach Geräten oder Datenpunktgruppen abgestufte Abfrage steht nicht zur Verfügung. Als Orientierung gilt die Empfehlung des Systemhandbuchs, jedes Gerät höchstens einmal je Sekunde abzufragen. Eine schnellere Abfrage bringt ohnehin keinen Gewinn, da die Messwerte frühestens alle zwei Sekunden aktualisiert werden.
-
-Zur Größenordnung: Ein vollständig bestückter Strang aus einem Powercenter und 24 Endgeräten belegt mit dieser Vorlage 905 Register. Die Grenze des Treibers liegt deutlich höher, die Abfragedauer je Durchlauf wächst jedoch mit jedem angebundenen Gerät.
+*Abfrageintervall.* Das Intervall wird am Treiber eingestellt und gilt für sämtliche Datenpunkte aller an diesem Treiber angebundenen Geräte; eine abgestufte Abfrage steht nicht zur Verfügung. Als Orientierung gilt die Empfehlung des Systemhandbuchs, jedes Gerät höchstens einmal je Sekunde abzufragen. Schneller abzufragen bringt keinen Gewinn, da die Messwerte frühestens alle zwei Sekunden aktualisiert werden. Ein voll bestückter Strang belegt mit dieser Vorlage 905 Register, was den Treiber nicht an seine Grenze bringt, die Abfragedauer je Durchlauf aber mit jedem Gerät verlängert.
 
 
 ==== Typbeschreibung importieren
@@ -140,6 +140,7 @@ Die JSON-Datei wird als Objektmodell importiert. Sie trägt zu jeder Eigenschaft
 Eine Kommunikationsschnittstelle ist durch IP-Adresse und Unit Identifier bestimmt und trägt genau ein Gerät. Ein vollständiger Strang erscheint deshalb nicht als ein Gerät mit Untergeräten, sondern als eine Reihe getrennter Schnittstellen mit derselben IP-Adresse und unterschiedlichem Unit Identifier.
 
 #figure(
+  outlined: false,
   table(
     columns: (1fr, 1fr, 1fr, 4em),
     inset: 6pt,
@@ -153,7 +154,7 @@ Eine Kommunikationsschnittstelle ist durch IP-Adresse und Unit Identifier bestim
   caption: [Adressierung der Geräte eines Strangs in Desigo CC]
 )<tab:apxdoc_adressierung>
 
-Je Strang entstehen so bis zu 25 Schnittstellen. Für das Powercenter selbst existiert keine eigene Vorlage, es wird über Powerconfig betreut.
+Je Strang entstehen so bis zu 25 Schnittstellen. Für das Powercenter liegt eine zweite, bewusst schmal gehaltene Typbeschreibung bei, die allein die Datenpunkte des Datentransceivers führt und auf Import und Instanzbildung geprüft ist. Die Parametrierung des Powercenters bleibt in Powerconfig.
 
 Ein Datenpunkt der Vorlage hängt an der Stelle des Geräts am Powercenter. `device_status` liegt auf Register $16484 + n$, wobei $n$ der Geräteadresse entspricht. Diese Adresse ist je Instanz nachzuführen, alle übrigen Register sind bei allen Geräten identisch.
 
@@ -162,11 +163,12 @@ Ein Datenpunkt der Vorlage hängt an der Stelle des Geräts am Powercenter. `dev
 
 Das Gerät meldet seine 27 Alarme als Bitfeld in einem einzigen Register. Eine Zerlegung in einzelne Datenpunkte ist über diese Werkzeugkette nicht möglich, weshalb `alarm_state` als vorzeichenlose Ganzzahl ankommt und die Auswertung im Projekt stattfindet.
 
-@apxdoc:bitbelegung führt zu jedem Bit die Meldung, seine Wertigkeit im Register und den Werkszustand. Zu beachten ist dabei, dass eine Bedingung ohne Maskierung stets den gesamten Registerinhalt prüft. Ein Vergleich gegen die Wertigkeit eines einzelnen Bits trifft deshalb nur zu, solange kein weiteres Bit gesetzt ist. Da eine Auslösung typischerweise mehrere Bits zugleich setzt, ist ein solcher Vergleich für sicherheitsrelevante Meldungen nicht geeignet.
+@apxdoc:bitbelegung führt zu jedem Bit die Meldung, seine Wertigkeit im Register und den Werkszustand. Eine Bedingung ohne Maskierung prüft stets den gesamten Registerinhalt, weshalb ein Vergleich gegen die Wertigkeit eines einzelnen Bits nur zutrifft, solange kein weiteres Bit gesetzt ist. Für sicherheitsrelevante Meldungen ist er damit ungeeignet, da eine Auslösung typischerweise mehrere Bits zugleich setzt.
 
 Für die nach Dringlichkeit gestaffelte Zuordnung der Meldungen zu Alarmklassen bietet sich die folgende Einteilung an, die im Projekt zu prüfen und an die Anlage anzupassen ist.
 
 #figure(
+  outlined: false,
   table(
     columns: (10em, 1fr),
     inset: 6pt,
@@ -196,11 +198,11 @@ Nach dem Anlegen der Instanzen empfiehlt sich die folgende Reihenfolge.
 
 === Vorlage anpassen<apxdoc:anpassen>
 
-Die Vorlage ist keine geschlossene Datei. Sie lässt sich im Power Device Engineer erneut öffnen und bearbeiten, sodass sich Datenpunkte ohne Neuerstellung des Modells ergänzen oder entfernen lassen. Wer mit dem Werkzeug vertraut ist, kann die Vorlage ohne besondere Vorkehrungen an die Bedürfnisse eines Kunden anpassen. Einführende Unterlagen zum Werkzeug stehen intern zur Verfügung.
+Die Vorlage lässt sich im Power Device Engineer erneut öffnen, sodass sich Datenpunkte ohne Neuerstellung des Modells ergänzen oder entfernen lassen.
 
 *Namen und Typen bestehender Eigenschaften nicht ändern.* Sobald zu einem Gerätetyp Instanzen angelegt sind, unterbricht eine Änderung des Namens oder des Typs einer Eigenschaft alle Funktionen, die auf ihr aufsetzen. Ergänzen und Entfernen sind unkritisch, Umbenennen ist es nicht. Wird eine Umbenennung dennoch nötig, ist sie wie ein neuer Gerätetyp zu behandeln.
 
-*Zwischenstände sichern.* Beim Entfernen eines Datentyps aus einer bestehenden Typbeschreibung ist die Dateigröße im Verlauf dieser Arbeit unerwartet stark angestiegen, woraufhin sich die Datei nicht mehr öffnen ließ. Eine Erklärung dafür ließ sich nicht finden. Vor größeren Eingriffen sollte deshalb eine Kopie abgelegt werden.
+*Zwischenstände sichern.* Beim Entfernen eines Datentyps aus einer bestehenden Typbeschreibung ist die Dateigröße im Verlauf dieser Arbeit ohne erkennbaren Grund stark angestiegen, woraufhin sich die Datei nicht mehr öffnen ließ. Vor größeren Eingriffen ist deshalb eine Kopie abzulegen.
 
 Nach jeder Änderung ist die Typbeschreibung erneut zu importieren und die Nachführung bestehender Instanzen zu prüfen.
 
@@ -213,6 +215,7 @@ Nach jeder Änderung ist die Typbeschreibung erneut zu importieren und die Nachf
 
 #doku_breitseite[
 #figure(
+  outlined: false,
   text(size: 8pt, lang: "de", hyphenate: true)[#table(
     columns: (1fr, 6.5em, 4em, 2.6em, 1fr, 5em, 5em, 3em, 3em, 1.4fr),
     inset: 4pt,
@@ -273,6 +276,7 @@ Der Funktionscode ist nicht Teil der Registerkarte. Gelesen wird mit FC3, geschr
 Die Spalte Wertigkeit gibt den Zahlenwert an, den das Bit im Register beiträgt. Die Spalte Werkszustand gibt an, ob der Alarm ab Werk wirksam ist. Ereignisbasierte Alarme besitzen keinen Schalter und sind stets wirksam. Die Bits 14, 17 und 21 bis 23 sind für dieses Gerät nicht belegt.
 
 #figure(
+  outlined: false,
   text(size: 9pt)[#table(
     columns: (3em, 7em, 1fr, 8em),
     inset: 4pt,
@@ -335,3 +339,10 @@ Die Spalte Wertigkeit gibt den Zahlenwert an, den das Bit im Register beiträgt.
    7. Ein Deckblatt mit Dokumentnummer, Freigabe und Revisionsstand fehlt und
       waere bei einer eigenstaendigen Auslieferung zu ergaenzen. Innerhalb des
       Anhangs traegt @tab:apxdoc_kopf diese Angaben ersatzweise. */
+
+/* Claude: Am 07.09.2026 tragen die sechs Tabellen dieser Unterlage
+   `outlined: false` und erscheinen damit nicht mehr im Tabellenverzeichnis der
+   Arbeit. Grund ist, dass jede dort gelistete Tabelle im Fliesstext erwaehnt
+   sein soll, die Unterlage nach @apx:anwenderdoku aber im Wortlaut unveraendert
+   wiedergegeben ist und deshalb keine Verweise der Arbeit aufnehmen kann.
+   Die Nummerierung laeuft weiter, die Tabellen behalten also ihre Nummern. */

@@ -37,7 +37,7 @@ Prüfung und Betriebsart umfassen drei Register. Der Status des Gerätetests und
 Als Kommandos sind sechs schreibende Register aufgenommen, die den in FA-06 gezogenen Rahmen ausfüllen. Das elektronische Schalten trägt UC-05, die Quittierung der Auslösemeldung UC-03, das Rücksetzen der #acro("RCM")-Alarme ebenfalls UC-03, der Anstoß des Gerätetests UC-06 und der Blinkmodus zur Lokalisierung UC-08. Der Blinkmodus ist relevant, da ein Servicetechniker im Verteiler bis zu 24 baugleiche Geräte vorfindet. Das sechste Kommando, das mechanische Trennen in Register 3694, ist der einzige Grenzfall der Auswahl. Es lässt sich als Befehl des laufenden Betriebs auffassen und fällt damit unter FA-06, es wirkt jedoch nicht rückstellbar, denn ein Register für das mechanische Einschalten existiert nicht. Ein aus der Ferne ausgelöstes Trennen erzwingt somit stets einen Einsatz vor Ort. Aufgenommen ist es unter dem Vorbehalt, dass die zugehörige Freigabe am Gerät gesetzt sein muss.
 
 
-Die Stammdaten umfassen sieben Register und tragen UC-09 sowie die von FA-03 geforderte Beschriftung. Anlagenkennzeichen und Einbauort machen aus einer Störungsmeldung eine verwertbare Information, Seriennummer und Artikelnummer tragen die Anlagendokumentation, die Phasenzuordnung erlaubt die Betrachtung der Schieflast über alle Abgänge eines Verteilers. Zwei Register dieser Gruppe haben eine besondere Aufgabe. Der eingestellte Nennstrom in Register 5376 ist zwingend erforderlich, weil die Stromgrenzwerte des Geräts in Prozent des Nennstroms angegeben sind und ein Messwert ohne diese Bezugsgröße nicht einzuordnen ist. Der Freigabestatus des elektronischen Schaltens in Register 5425 wird ausschließlich lesend genutzt und ist ein reines Diagnosemerkmal, das erklärt, weshalb ein Schaltbefehl wirkungslos bleibt. Der Nutzen dieses Datenpunkts hat sich im Verlauf der Arbeit bestätigt, wie @sec:befunde zeigt.
+Die Stammdaten umfassen sieben Register und tragen UC-09 sowie die von FA-03 geforderte Beschriftung. Anlagenkennzeichen und Einbauort machen aus einer Störungsmeldung eine verwertbare Information, Seriennummer und Artikelnummer tragen die Anlagendokumentation, die Phasenzuordnung erlaubt die Betrachtung der Schieflast /* Claude: Begriffserklärung?*/ über alle Abgänge eines Verteilers. Zwei Register dieser Gruppe haben eine besondere Aufgabe. Der eingestellte Nennstrom in Register 5376 ist zwingend erforderlich, weil die Stromgrenzwerte des Geräts in Prozent des Nennstroms angegeben sind und ein Messwert ohne diese Bezugsgröße nicht einzuordnen ist. Der Freigabestatus des elektronischen Schaltens in Register 5425 wird ausschließlich lesend genutzt und ist ein reines Diagnosemerkmal, das erklärt, weshalb ein Schaltbefehl wirkungslos bleibt. Der Nutzen dieses Datenpunkts hat sich im Verlauf der Arbeit bestätigt, wie @sec:befunde zeigt.
 
 
 Die letzte Gruppe besteht aus einem einzigen Register. Das #acro("ECPD") führt intern ein Auslöseprotokoll und legt darin zu jeder Auslösung einen Eintrag mit Zeitpunkt und Messwerten ab. Das Protokoll selbst wird über ein eigenes, mehrstufiges Leseverfahren abgerufen, das nach K-01 nicht in das Modell aufgenommen ist. Register 3671 trägt die Kennung des jüngsten Eintrags und ändert sich deshalb bei jeder neuen Auslösung. Der Datenpunkt kostet ein einziges Register und zeigt an, dass eine weitere Auslösung hinzugekommen ist, auch wenn der zugehörige Alarm noch ansteht oder bereits quittiert wurde. Aus dem Alarmbit allein ließe sich das nicht erkennen.
@@ -53,7 +53,7 @@ Die letzte Gruppe besteht aus einem einzigen Register. Das #acro("ECPD") führt 
       [*Gruppe*], [*Register*], [*Datenpunkte*], [*Tragende Anwendungsfälle*],
     ),
     [Live-Zustand], [5], [5], [UC-02, UC-04, UC-05],
-    [Alarme aus Register 2560], [keines], [27], [UC-03],
+    [Alarme aus Register 2560], [keines], [27], [UC-03], // Claude: Alarme aus Register 2560 --> Register: keines? hä
     [Messwerte], [8], [8], [UC-02, UC-07],
     [Zähler und Wartung], [7], [7], [UC-07],
     [Prüfung und Betriebsart], [3], [3], [UC-06],
@@ -92,7 +92,7 @@ Die größte Gruppe bilden mit 61 Registern die Alarm- und Grenzwertkonfiguratio
   caption: [Nicht aufgenommene Register des #acro("ECPD") und das jeweils tragende Kriterium aus @tab:auswahlkriterien]
 )<tab:ausschluss_ecpd>
 
-Drei der kleineren Gruppen verdienen eine Erläuterung, weil ihr Ausschluss auf einer Eigenschaft der Zielplattform oder des Geräts beruht. Die Zeitschaltuhr-Funktionsblöcke liegen als Felder mit gepackten Zeitstempeln vor, die sich in Desigo CC nicht sinnvoll beschreiben lassen, während dieselbe Aufgabe über den Zeitplaner der Plattform und das bereits abgebildete Schaltkommando erfüllt werden kann. Die Protokollregister der verzögerten Quittierung gehören zum Schreibverfahren über die Funkstrecke und sind vom Modbus-Treiber auszuwerten, für den Betreiber tragen sie keine Tätigkeit und fallen damit unter K-01. Die digitalen Ein- und Ausgänge schließlich sind nur dann von Belang, wenn die zugehörige Zusatzfunktion des Geräts tatsächlich beschaltet ist, was am Testaufbau nicht der Fall ist.
+Drei der kleineren Gruppen verdienen eine Erläuterung, weil ihr Ausschluss auf einer Eigenschaft der Zielplattform oder des Geräts beruht. Die Zeitschaltuhr-Funktionsblöcke liegen als Felder mit gepackten Zeitstempeln vor, die sich in Desigo CC nicht sinnvoll beschreiben lassen, während dieselbe Aufgabe über den Zeitplaner der Plattform und das bereits abgebildete Schaltkommando erfüllt werden kann. Die Protokollregister der verzögerten Quittierung gehören zum Schreibverfahren über die Funkstrecke und sind vom Modbus-Treiber auszuwerten, für den Betreiber tragen sie keine Tätigkeit und fallen damit unter K-01. Die digitalen Ein- und Ausgänge schließlich sind nur dann von Belang, wenn die zugehörige Zusatzfunktion des Geräts tatsächlich beschaltet ist, was am Testaufbau nicht der Fall ist. // Claude: nochmal schauen ob die digitalen Ein und Ausgänge überhaupt schon erwähnt wurden, was die machen und so. es klingt hier so als ob das für den testaufbau nicht relevant wäre und man es deswegen rauslässt, das muss man aber anders argumentieren als dass sie am testaufbau nicht eingesteckt sind
 
 
 ==== Datenpunkte des Powercenters
@@ -111,7 +111,10 @@ Aus dieser Auswahl entsteht in @sec:umsetzung eine eigene Typbeschreibung, die g
 
 ==== Bilanz der Reduktion
 
-Die Wirkung der Kriterien lässt sich beziffern. Ein Strang aus einem Powercenter und einem Endgerät umfasst nach @sec:registerraum 363 Einträge der Registerkarte. Nach Anwendung der Kriterien werden davon 53 Register gelesen, aus denen in Desigo CC 82 Datenpunkte entstehen. Die Abfragelast sinkt damit um rund 85 Prozent, während die in der Leitwarte verfügbare Information deutlich weniger stark abnimmt, weil die Alarme aus einem einzigen Register gewonnen werden. Jedes weitere Endgerät fügt 152 Einträge der Registerkarte, 37 gelesene Register und 64 Datenpunkte hinzu.
+Die Wirkung der Kriterien lässt sich beziffern. Ein Strang aus einem Powercenter und einem Endgerät umfasst nach @sec:registerraum 363 Einträge der Registerkarte. Nach Anwendung der Kriterien werden davon 53 Register gelesen, aus denen in Desigo CC 82 Datenpunkte entstehen. Der abgebildete Anteil des Registerraums sinkt damit um rund 85 Prozent, während die in der Leitwarte verfügbare Information deutlich weniger stark abnimmt, weil die Alarme aus einem einzigen Register gewonnen werden. Jedes weitere Endgerät fügt 152 Einträge der Registerkarte, 37 gelesene Register und 64 Datenpunkte hinzu.
+
+
+Die Angabe bezieht sich auf die Einträge der Registerkarte und nicht auf die tatsächliche Kommunikationslast. Ein Eintrag umfasst nach @sec:registerraum je nach Format ein oder mehrere Register, und der Treiber fasst benachbarte Register nach @tab:modbustreiber selbsttätig zu Leseblöcken zusammen. Was daraus auf der Leitung wird, weist erst die Aufzeichnung in @sec:testdurchfuehrung mit 69 gelesenen Registerworten je Abfragezyklus eines #acro("ECPD") aus. Eine Messung des vollständig abgebildeten Registerraums als Vergleichsgröße liegt nicht vor, weshalb die Reduktion der Abfragelast begründet zu erwarten, aber nicht in derselben Höhe belegt ist.
 
 
 #figure(
@@ -124,19 +127,19 @@ Die Wirkung der Kriterien lässt sich beziffern. Ein Strang aus einem Powercente
     ),
     [Ein #acro("ECPD")], [152], [37], [64],
     [Ein Powercenter], [211], [16], [18],
-    [Ein Strang mit einem Endgerät], [363], [53], [82],
+    [Ein Strang mit einem Endgerät], [363], [53], [82], // Claude: hier bitte nochmal evaluieren ob es sinnvoll ist, die Kombi aus einem Gerät und einem Strang so als Summe vorzustellen, das ist aus meiner Sicht keine relevante Größe, da in eigentlich allen Anwendungen mehr als ein ECPD verbaut sein wird und die Summe einfach nicht aussagekräftig ist
   ),
   caption: [Bilanz der Datenauswahl je Gerät und für einen Strang aus einem Powercenter und einem Endgerät]
 )<tab:bilanz_datenpunkte>
 
-Die Zahl der gelesenen Register ist dabei die für den Betrieb maßgebliche Größe. Gezählt sind die Einträge der Registerkarte, von denen einzelne nach K-07 je nach Datenformat mehrere aufeinanderfolgende Register belegen. Das Systemhandbuch empfiehlt, jedes Gerät höchstens einmal je Sekunde abzufragen und die Endgeräte sequenziell abzuarbeiten @src:sentronsystemhandbuch. Da der Treiber der Zielplattform benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp, fällt die verbleibende Last je Gerät deutlich geringer aus als die Zahl der Register vermuten lässt. Die Messung in @sec:testdurchfuehrung beziffert sie für das #acro("ECPD") auf zwölf Anfragen je Abfragezyklus, von denen neun die insgesamt 69 Register in Blöcken zwischen einem und 42 Wörtern abholen. Ein voll bestückter Strang mit 24 Endgeräten käme damit rechnerisch auf 288 Anfragen je Zyklus zuzüglich derjenigen des Powercenters. Von den 53 Registern entfallen 9 auf die Gruppe des Live-Zustands, deren Werte am schnellsten aktuell sein müssen.
+Die Zahl der gelesenen Register ist dabei die für den Betrieb maßgebliche Größe. Gezählt sind die Einträge der Registerkarte, von denen einzelne nach K-07 je nach Datenformat mehrere aufeinanderfolgende Register belegen. Das Systemhandbuch empfiehlt, jedes Gerät höchstens einmal je Sekunde abzufragen und die Endgeräte sequenziell abzuarbeiten @src:sentronsystemhandbuch. Da der Treiber der Zielplattform benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp, fällt die verbleibende Last je Gerät deutlich geringer aus als die Zahl der Register vermuten lässt. Die Messung in @sec:testdurchfuehrung beziffert sie für das #acro("ECPD") auf zwölf Anfragen je Abfragezyklus, von denen neun die insgesamt 69 /*Clauide: woher kommen plötzlich 69 Register?*/Register in Blöcken zwischen einem und 42 Wörtern abholen. Ein voll bestückter Strang mit 24 Endgeräten käme damit rechnerisch auf 288 Anfragen je Zyklus zuzüglich derjenigen des Powercenters. Von den 53 Registern entfallen 9 auf die Gruppe des Live-Zustands, deren Werte am schnellsten aktuell sein müssen. // Claude: bitte nochmal die gesamte Rechnung prüfen
 
 
 Diese Unterscheidung nach Aktualität ist in der Arbeitsmappe zu jedem Datenpunkt vermerkt, lässt sich am eingesetzten Stand nach @sec:konzept jedoch nicht umsetzen. Die Angaben zum Zyklus sind deshalb als Vorgabe für die Projektierung und für eine spätere Weiterentwicklung zu verstehen und nicht als Bestandteil der Typbeschreibung. Sie erhöhen zugleich das Gewicht der Reduktion.
 
 
 
-Drei Datenpunkte der Auswahl stehen unter einem Vorbehalt, der sich erst bei der Umsetzung klären lässt. Das Register der Softwareversion ist wegen einer gemischten Kodierung derzeit nicht dekodierbar und widerspricht damit K-06, es bleibt vorläufig in der Auswahl und ist zu streichen, falls sich daran nichts ändert. Die beiden Betriebsstundenzähler liegen als Gleitkommazahlen doppelter Genauigkeit vor. Ob das Werkzeug der Typbeschreibung dafür einen Datentyp anbietet, war zum Zeitpunkt der Auswahl offen. Der Zeit- und Synchronisationsstatus des Powercenters schließlich war zum Zeitpunkt der Auswahl noch nicht am Testaufbau erprobt. Alle drei Punkte werden in @sec:umsetzung wieder aufgegriffen, wo die Zuordnung zu Datentypen und Transformationen erfolgt.
+Drei Datenpunkte der Auswahl stehen unter einem Vorbehalt, der sich erst bei der Umsetzung klären lässt. Das Register der Softwareversion ist wegen einer gemischten Kodierung derzeit nicht dekodierbar und widerspricht damit K-06, es bleibt vorläufig in der Auswahl und ist zu streichen, falls sich daran nichts ändert. Die beiden Betriebsstundenzähler liegen als Gleitkommazahlen doppelter Genauigkeit vor. Ob das Werkzeug der Typbeschreibung dafür einen Datentyp anbietet, war zum Zeitpunkt der Auswahl offen. Der Zeit- und Synchronisationsstatus des Powercenters schließlich war zum Zeitpunkt der Auswahl noch nicht am Testaufbau erprobt. Alle drei Punkte werden in @sec:umsetzung wieder aufgegriffen, wo die Zuordnung zu Datentypen und Transformationen erfolgt. // Claude: würde ich nicht so formulieren, die Sache mit der doppelten Genauigkeit war aus meiner Sicht geklärt, würde ich so jetzt hier nicht aufgreifen. Bitte anders formulieren
 
 
 Was diese Auswahl nicht festlegt, ist die Form, in der die Datenpunkte im Modell erscheinen. Benennung, Datentyp, Skalierung, Byte-Reihenfolge und der Versatz zwischen Registerkarte und Telegramm sind Gegenstand von @sec:umsetzung. Die Auswahl legt allein fest, welche Register gelesen werden und aus welchem Grund.
@@ -188,3 +191,24 @@ Was diese Auswahl nicht festlegt, ist die Form, in der die Datenpunkte im Modell
    DGUV-Grenze auf den bereits vorhandenen Verweis nach @sec:stakeholder, und
    die Herleitung des einheitlichen Abfrageintervalls am Ende der Bilanz
    entfaellt, da sie im selben Absatz ueber @sec:konzept schon angefuehrt ist. */
+
+/* Claude: Am 07.09.2026 nach einem Gutachterhinweis praezisiert. Die 85 Prozent
+   sind das Verhaeltnis 53 zu 363 und damit eine Aussage ueber Eintraege der
+   Registerkarte, nicht ueber die gemessene Kommunikationslast. Der Satz nennt
+   deshalb den abgebildeten Registerraum, und der neue Absatz trennt beide
+   Groessen und verweist auf die 69 Registerworte je ECPD-Zyklus aus
+   @sec:testdurchfuehrung.
+
+   Zahlenbasis aus der Spalte "Laenge" der Registerkarte, Geraetespalten
+   "5TY1 COM ECPD" und "POC 1100": ECPD 152 Eintraege = 307 Registerworte
+   (lesbar 140 Eintraege = 294 Worte), Powercenter 211 Eintraege = 3471 Worte
+   (lesbar 201 Eintraege = 1192 Worte), Strang 363 Eintraege = 3778 Worte
+   (lesbar 1486 Worte). Fuer das ECPD allein decken sich Eintrags- und
+   Wortbetrachtung (37/152 = 76 Prozent gegenueber 69/294 = 77 Prozent), fuer
+   den Strang nicht, weil die Powercenter-Eintraege deutlich laenger sind.
+   Diese Zahlen sind hier nicht in den Text uebernommen, sie stuenden bereit,
+   falls die Bilanz um eine wortbezogene Angabe ergaenzt werden soll.
+
+   Mitgefuehrt sind der Abstract, die Kurzfassung, @sec:zusammenfassung und
+   @sec:nachhaltigkeit. Die aelteren Anmerkungen oben nennen die 85 Prozent
+   weiterhin als Reduktion schlechthin und sind als Verlauf stehen geblieben. */

@@ -82,7 +82,7 @@ Für die spätere Prüfung ist eine weitere Unterscheidung wesentlich, die der K
 Die funktionalen Anforderungen lassen sich vier Wirkbereichen zuordnen, die sich aus dem Datenpfad selbst ergeben.
 // Claude: kannst du das hier noch so ändern dass das nicht diese fette Schrift ist?
 
-*Anbindung und Übertragung.* FA-01 und FA-02 betreffen die Verbindung als solche. FA-01 ist mit der Entscheidung für Modbus #acro("TCP") über das Powercenter (siehe @sec:integrationswege) dem Grunde nach beantwortet, verlangt darüber hinaus aber ausdrücklich Import und Instanziierung. Die Anforderung ist damit nicht erfüllt, wenn die Daten lediglich lesbar sind, sondern erst, wenn ein Gerät in Desigo CC als Objekt vorliegt. FA-02 verlangt eine konfigurierbare Abtastfrequenz. Sie lässt sich am eingesetzten Stand ausschließlich am Modbus-Treiber und dort nur einheitlich einstellen (siehe @sec:konzept), weshalb der zwingende Teil der Anforderung erfüllt ist, die als _soll_ formulierte Konfigurierbarkeit jedoch nur eingeschränkt. Die Empfehlung des Systemhandbuchs, jedes Gerät höchstens einmal pro Sekunde abzufragen @src:sentronsystemhandbuch, bildet dabei die Grenze, an der sich das eingestellte Intervall zu orientieren hat.
+*Anbindung und Übertragung.* FA-01 und FA-02 betreffen die Verbindung als solche. FA-01 ist mit der Entscheidung für Modbus #acro("TCP") über das Powercenter (siehe @sec:integrationswege) dem Grunde nach beantwortet, verlangt darüber hinaus aber ausdrücklich Import und Instanziierung. Die Anforderung ist damit nicht erfüllt, wenn die Daten lediglich lesbar sind, sondern erst, wenn ein Gerät in Desigo CC als Objekt vorliegt. FA-02 verlangt die zyklische Übertragung in einem am Modbus-Treiber einstellbaren Intervall. Diese Einstellung steht am eingesetzten Stand zur Verfügung, wirkt dort aber einheitlich für alle angebundenen Geräte (siehe @sec:konzept). Eine nach Gerät oder Datenpunktgruppe abgestufte Abfrage verlangt die Anforderung nicht, sie bleibt als Eigenschaft der Plattform benannt. Die Empfehlung des Systemhandbuchs, jedes Gerät höchstens einmal pro Sekunde abzufragen @src:sentronsystemhandbuch, bildet dabei die Grenze, an der sich das eingestellte Intervall zu orientieren hat.
 
 
 *Abbildung der Daten.* FA-03 bestimmt, welche Werte in welcher Form erscheinen. Die Anforderung ist bewusst auf die Messwerte begrenzt und nicht auf den gesamten Registerraum; die in @sec:registerraum begründete Reduktion steht ihr damit nicht entgegen, solange kein Messwert entfällt. Die geforderte korrekte Beschriftung ist keine Formalie: /*Claude: den Satz hier mit der Verneinung bitte noch ändern*/Sie umfasst Einheit, Skalierung und Vorzeichen und ist der Punkt, an dem sich Fehler in der Registerkarte unmittelbar auf die Anzeige durchschlagen. Nicht Gegenstand von FA-03 ist die Frage, wie diese Werte in der Leitwarte dargestellt und historisiert werden; Archivierung und Visualisierung sind Projektierungsleistungen in Desigo CC und lassen sich im Objektmodell nicht festlegen (siehe @sec:anforderungsvorbehalte).
@@ -314,3 +314,11 @@ Nicht Gegenstand des Katalogs sind schließlich die Punkte, die @sec:ziel als Ab
    zwei teilweise, zwei nicht statt neun, drei, drei.
 
    Requirements.xlsx traegt weiterhin die alten Formulierungen. */
+
+/* Claude: Am 07.09.2026 nach einem Gutachterhinweis nachgezogen. Der Absatz zu
+   FA-02 sprach weiterhin von einem zwingenden und einem als soll formulierten
+   Teil, obwohl die Anforderung nach der Anmerkung darueber allein das am
+   Modbus-Treiber einstellbare Intervall verlangt. Damit stimmt der Text jetzt
+   mit @tab:anforderungsabgleich ueberein, wo FA-02 als erfuellt gefuehrt ist.
+   Mitgefuehrt sind @sec:testdurchfuehrung, @sec:wuerdigung und
+   @sec:weiterentwicklung, die dieselbe alte Lesart trugen. */

@@ -14,7 +14,7 @@ Das Protokoll basiert auf einem Request-Response-Prinzip, bei dem ein anfragende
 
 Modbus kennt drei Übertragungsvarianten. Modbus #acro("RTU") überträgt die Daten binär über serielle Schnittstellen wie RS-232 oder RS-485 @src:modbusserial und wird in der Praxis häufig eingesetzt @src:modbusrtuprotocol, Modbus #acro("ASCII") stellt dieselben Daten als Zeichen dar und arbeitet dadurch weniger effizient @src:modbusserial, und Modbus #acro("TCP")/#acro("IP") bettet die Nachrichten in TCP/IP-Pakete ein @src:modbustcp2. Für diese Arbeit ist allein die letzte Variante von Belang, da das Powercenter seine Daten über Ethernet bereitstellt.
 
-Das Protokoll definiert vier Datenbereiche, auf die über standardisierte Funktionscodes zugegriffen wird:
+Das Protokoll definiert vier Datenbereiche, auf die über standardisierte Funktionscodes zugegriffen wird. @tab:modbusdatenbereiche stellt sie mit ihren Zugriffsrechten zusammen.
 
 
 #figure(
@@ -39,14 +39,11 @@ Das Protokoll definiert vier Datenbereiche, auf die über standardisierte Funkti
     [Nur Lesen]
   ),
   caption: [Datenbereiche und Zugriffsrechte des Modbus-Protokolls]
-
-)
+)<tab:modbusdatenbereiche>
 
 Jede Modbus-Nachricht besteht aus der Adresse des antwortenden Geräts, einem Funktionscode, den Nutzdaten sowie einem Fehlerprüffeld @src:modbusserial. Im Fehlerfall antwortet das adressierte Gerät anstelle einer regulären Antwort mit einer Ausnahmemeldung, der Exception Response @src:modbusspec.
 
 Für den Einsatz im Gebäudenetz ist eine Eigenschaft des Protokolls maßgeblich. Modbus kennt keine nativen Mechanismen für Authentifizierung oder Verschlüsselung, weshalb ein Schutz der Kommunikation nur außerhalb des Protokolls auf Netzebene entstehen kann @src:modbussecurity. Welche Folgen das für den gewählten Integrationsweg hat, behandelt @sec:integrationswege.
-
-=== Modbus TCP<sec:modbus_tcp>
 
 Modbus #acro("TCP") überträgt das unveränderte Anwendungsprotokoll über Ethernet und ist damit die Variante, über die ein Gerät im Gebäudenetz an ein übergeordnetes System angebunden wird. Die Modbus Organization hat dafür bei der #acro("IANA") den #acro("TCP")-Port 502 registrieren lassen @src:ianaports, auf dem ein Server standardmäßig erreichbar sein muss @src:modbustcp. Eine vollständige Nachricht wird als #acro("ADU") bezeichnet und besteht aus einem sieben Byte langen Kopf mit der Bezeichnung #acro("MBAP") sowie der #acro("PDU") aus Funktionscode und Daten. Der Kopf ersetzt die bei Modbus #acro("RTU") vorangestellte Geräteadresse ebenso wie die angehängte Prüfsumme @src:modbustcp.
 
@@ -57,7 +54,6 @@ Der Kopf führt vier Felder, die @img:modbustcp im Zusammenhang zeigt. Der Trans
   abb_modbus_tcp,
   caption: [Aufbau eines Modbus-#acro("TCP")-Telegramms, oben die Kapselung im Ethernet-Rahmen, unten die Felder der Anwendungsdateneinheit aus #acro("MBAP")-Kopf und Protokolldateneinheit mit ihren Bytepositionen, die Feldbreiten sind nicht maßstäblich @src:modbustcp @src:modbusspec],
 )<img:modbustcp>
-
 
 Aus der seriellen Herkunft des Protokolls folgt eine Längenbegrenzung von 253 Byte für die #acro("PDU") und 260 Byte für die #acro("ADU") @src:modbusspec. Eine einzelne Anfrage kann damit höchstens 125 Register lesen und 123 Register schreiben @src:modbusspec, sodass ein umfangreicher Registerraum blockweise abzufragen ist.
 

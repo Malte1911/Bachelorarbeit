@@ -473,3 +473,19 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
   title = {Auskunft des Produktsupports zur Freischaltung des Fernschaltens über Modbus am SENTRON 5TY1 COM},
   date = {2026-08-20}
 }
+
+% Eintrag von Claude ergaenzt: Die Arbeit nennt IEEE 754 an zwei Stellen, naemlich
+% bei der Kennzeichnung ungueltiger Messwerte als Not a Number (@sec:powercenter)
+% und bei der Abbildung der Formate FP32 und FP64 auf die Datentypen der
+% Typbeschreibung (@sec:umsetzung). Beide Stellen standen zuvor ohne Beleg.
+% FP32 und FP64 der Registerkarte entsprechen den Austauschformaten binary32 und
+% binary64 der Norm. Die Angabe DOI ist gegen den IEEE-Katalog gegenzulesen.
+@manual{src:ieee754,
+  author = {{IEEE}},
+  title = {IEEE Std 754-2019: IEEE Standard for Floating-Point Arithmetic},
+  edition = {2019, Revision von IEEE Std 754-2008},
+  organization = {Institute of Electrical and Electronics Engineers},
+  address = {New York},
+  year = {2019},
+  doi = {10.1109/IEEESTD.2019.8766229}
+}

@@ -5,7 +5,7 @@
 
 == Testaufbau<sec:testaufbau>
 
-Die Umgebung wird vor der Entwicklung des Datenmodells beschrieben, weil beide nach dem in @sec:vorgehensmodell_auswahl gewählten Vorgehen wechselseitig voneinander abhängen. Welche Datenpunkte sich sinnvoll abbilden lassen, zeigt sich erst am realen Gerät, und was sich am Gerät überhaupt beobachten lässt, bestimmt umgekehrt der Aufbau. Der Testaufbau ist somit die Voraussetzung für die Auswahl der Datenpunkte.
+Die Umgebung wird vor der Entwicklung des Datenmodells beschrieben, weil beide nach dem in @sec:vorgehensmodell gewählten Vorgehen wechselseitig voneinander abhängen. Welche Datenpunkte sich sinnvoll abbilden lassen, zeigt sich erst am realen Gerät, und was sich am Gerät überhaupt beobachten lässt, bestimmt umgekehrt der Aufbau. Der Testaufbau ist somit die Voraussetzung für die Auswahl der Datenpunkte.
 
 
 Gegenstand dieses Abschnitts sind ausschließlich die konkreten Exemplare des Laboraufbaus. @img:testaufbau zeigt sie als Lichtbild, @img:testaufbau_schema ihre Verschaltung, die auf dem Lichtbild nicht zu erkennen ist. Die allgemeine Kette aus Endgerät, Datentransceiver und Managementplattform ist in @sec:systemanalyse beschrieben und wird hier nicht wiederholt.
@@ -50,7 +50,7 @@ Aus dem Aufbau folgt unmittelbar seine Reichweite. Da nur ein einziges Endgerät
 
 /* Claude: Abschnitt nach den Vorgaben aus dem Kommentar ausformuliert
    (konkrete Exemplare statt generischer Kette, einleitende Begruendung ueber
-   die Kopplung nach @sec:vorgehensmodell_auswahl, Fernzugriff).
+   die Kopplung nach @sec:vorgehensmodell, Fernzugriff).
 
    Die nachgereichten Angaben des Autors sind eingearbeitet und die zugehoerigen
    Arbeitskommentare entfallen. Die Notiz "ca. 18 A Leistung" ist im Fliesstext

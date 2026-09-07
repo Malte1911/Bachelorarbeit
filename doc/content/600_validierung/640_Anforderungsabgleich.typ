@@ -10,7 +10,7 @@
    oder nicht erfuellt, jeweils mit Verweis auf den Abschnitt der Durchfuehrung.
    Teilweise erfuellte Anforderungen sind zu begruenden." */
 
-Mit diesem Abschnitt schließt sich der aufsteigende Ast des in @sec:vorgehensmodell_auswahl gewählten Vorgehens. @tab:anforderungsabgleich stellt jeder Anforderung aus @tab:fa und @tab:nfa die Testfälle gegenüber, die sie abdecken, und hält das Ergebnis fest. Die Beobachtungen selbst stehen in @sec:testdurchfuehrung und werden hier nicht wiederholt. Um dieselbe Kette auch in ihrer vollen Länge nachvollziehbar zu halten, führt @tab:apx_rueckverfolgung im Anhang die über @sec:usecases, @sec:fa, @sec:testfaelle und diesen Abschnitt verteilten Zuordnungen zusammen und ergänzt sie um den Anwendungsfall und das jeweils tragende Element des Datenmodells.
+Mit diesem Abschnitt schließt sich der aufsteigende Ast des in @sec:vorgehensmodell gewählten Vorgehens. @tab:anforderungsabgleich stellt jeder Anforderung aus @tab:fa und @tab:nfa die Testfälle gegenüber, die sie abdecken, und hält das Ergebnis fest. Die Beobachtungen selbst stehen in @sec:testdurchfuehrung und werden hier nicht wiederholt. Um dieselbe Kette auch in ihrer vollen Länge nachvollziehbar zu halten, führt @tab:apx_rueckverfolgung im Anhang die über @sec:usecases, @sec:fa, @sec:testfaelle und diesen Abschnitt verteilten Zuordnungen zusammen und ergänzt sie um den Anwendungsfall und das jeweils tragende Element des Datenmodells.
 
 #figure(
   table(
@@ -68,7 +68,7 @@ Mit diesem Abschnitt schließt sich der aufsteigende Ast des in @sec:vorgehensmo
   caption: [Abgleich der Anforderungen aus @tab:fa und @tab:nfa mit den Ergebnissen aus @sec:testdurchfuehrung]
 )<tab:anforderungsabgleich>
 
-Zehn der fünfzehn Anforderungen sind erfüllt, drei teilweise und zwei nicht. Erfüllt ist durchweg, was die Abbildung zwischen Registerraum und Objektmodell betrifft, also der Kern des entwickelten Artefakts. Nicht erfüllt ist, was über diese Abbildung hinausgeht und in der Zielplattform oder außerhalb der Technik liegt.
+Zehn der 15 Anforderungen sind erfüllt, drei teilweise und zwei nicht. Erfüllt ist durchweg, was die Abbildung zwischen Registerraum und Objektmodell betrifft, also der Kern des entwickelten Artefakts. Nicht erfüllt ist, was über diese Abbildung hinausgeht und in der Zielplattform oder außerhalb der Technik liegt.
 
 Auf die Anwendungsfälle übertragen ergibt sich ein etwas anderes Bild, das @tab:apx_rueckverfolgung Zeile für Zeile ausweist. Acht der zehn Anwendungsfälle aus @tab:usecases sind getragen, zwei davon mit einem Vorbehalt. UC-01 ist es nur in dem Umfang, den der Aufbau nach RB-04 nachzuweisen erlaubt, und bei UC-10 bleibt offen, ob die Unterlage einem fremden Leser genügt. Nicht getragen ist UC-03, das Erkennen, Einordnen und Quittieren einer Störung, da beide ihn tragenden Anforderungen nicht erfüllt sind. UC-04 ist zur Hälfte getragen. Beide Lücken haben dieselbe Ursache, denn auch das Erkennen eines ausgefallenen Endgeräts setzt die Alarmkonfiguration voraus, die FA-04 fehlt. Gemessen an den Anwendungsfällen wiegt das Ergebnis damit schwerer als die Zählung der Anforderungen vermuten lässt, weil sich die beiden nicht erfüllten Anforderungen auf denselben Anwendungsfall bündeln, während sich die erfüllten über mehrere verteilen.
 

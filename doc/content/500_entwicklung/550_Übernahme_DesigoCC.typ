@@ -39,7 +39,7 @@ Deutlicher zeigt sich die Wirkung der Modellierung an den Kommandos. @img:bedien
 
 #figure(
   image("../../resources/img/button_no_workey.png", width: 100%, format: "png"),
-  caption: [Bedienoberfläche von Desigo CC mit den beiden als digitale Ausgänge angelegten Kommandos. Der Blinkmodus ist bedienbar, das elektronische Schalten nicht, da die Schaltfläche nur den Wert eins sendet],
+  caption: [Bedienoberfläche von Desigo CC mit den beiden als digitale Ausgänge angelegten Kommandos. Der Blinkmodus ist bedienbar, das elektronische Schalten nicht, da die Schaltfläche nur den Wert 1 sendet],
 )<img:bedienung_digitalausgaenge>
 
 Die Ursache liegt im Zusammenspiel beider Werkzeuge. Ein im #acro("PDE") als digitaler Ausgang angelegtes Kommando erscheint in Desigo CC als Schaltfläche, und die Plattform fragt den Zustand des Geräts vor dem Schalten nicht ab. Sie kann deshalb weder den anstehenden Zustand anzeigen noch den jeweils entgegengesetzten Wert senden. Über die erweiterte Bedienung bleibt das Kommando gleichwohl vollständig nutzbar, da sich dort jeder zulässige Wert und damit auch die Null von Hand setzen lässt. Der Mangel betrifft somit die Bedienbarkeit und nicht die Funktion.
