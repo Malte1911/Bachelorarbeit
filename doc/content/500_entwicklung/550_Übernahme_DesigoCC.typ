@@ -31,9 +31,7 @@ Für das Powercenter verläuft der Weg gleich. Auch seine Typbeschreibung wird a
 
 ==== Darstellung und Bedienung
 
-Die Messwerte erscheinen vollständig und mit den erwarteten Größenordnungen. Eine Beobachtung betrifft jedoch die Frage, an welcher Stelle der Bedienoberfläche ein Datenpunkt auftaucht. Die Seriennummer des Geräts wird in der Messwertansicht geführt, erscheint in der erweiterten Bedienung dagegen nicht. Beide Ansichten treffen damit eine eigene Auswahl aus denselben Eigenschaften, was die in @sec:umsetzung getroffene Gruppenzuordnung im Nachhinein bestätigt. Sie entscheidet nicht allein über die Übersicht, sondern darüber, wo ein Datenpunkt überhaupt erreichbar ist.
-
-#kommentar[Zu klären ist, worauf diese Auswahl beruht, ob also die Gruppe der Eigenschaft, ihr Datentyp oder eine Einstellung der Ansicht darüber entscheidet. Solange das offen ist, bleibt es bei der Beobachtung. Betroffen sind vermutlich sämtliche Zeichenketten und nicht allein die Seriennummer, was am Aufbau leicht nachzusehen ist.]
+Die Messwerte erscheinen vollständig und mit den erwarteten Größenordnungen. Auch die Stammdaten sind erreichbar, die Seriennummer etwa in der Messwertansicht wie in der erweiterten Bedienung. Die in @sec:umsetzung getroffene Gruppenzuordnung wirkt somit auf die Gliederung der Anzeige und nicht darauf, ob ein Datenpunkt überhaupt auffindbar ist. Auch mehrwortige Zeichenketten werden dabei richtig zusammengesetzt dargestellt.
 
 Deutlicher zeigt sich die Wirkung der Modellierung an den Kommandos. @img:bedienung_digitalausgaenge gibt die Bedienoberfläche in dem Zustand wieder, in dem die beiden schaltbaren Kommandos als digitale Ausgänge angelegt waren. Der Blinkmodus lässt sich darüber bedienen, da er einer positiven Logik folgt und der Wert eins den Blinkmodus einschaltet. Das elektronische Schalten lässt sich so nicht bedienen, weil es dieser Logik gerade nicht folgt. Der Wert null bezeichnet beim #acro("ECPD") den Standby-Zustand, während die Schaltfläche stets den Wert eins sendet. Ein Ausschalten ist auf diesem Weg nicht möglich.
 
@@ -68,7 +66,10 @@ Die Alarmierung ist damit vollständig Sache der Projektierung. Was an dieser St
      Alarmprojektierung -> Vorspann und letzter Abschnitt
    - Bildschirmabzug zu den Schaltflaechen -> Darstellung und Bedienung
    - BLOB-Befund -> nur kurz aufgegriffen, ausgefuehrt ist er in @sec:umsetzung
-   - Seriennummer nur in der Messwertansicht -> Darstellung und Bedienung
+   - Seriennummer in der Messwertansicht -> Darstellung und Bedienung. Die
+     urspruengliche Notiz lautete "nur in der Messwertansicht"; der Autor hat
+     am 08.09.2026 nachgesehen, sie steht in beiden Ansichten. Der Absatz
+     stellt das jetzt so dar und zieht daraus keinen Befund mehr.
 
    Zur Gateway-Kommunikation ist die Parallele zum Online-Modus des PDE
    ergaenzt, wo ein Feld fuer den Unit Identifier ebenfalls nur bei
@@ -81,10 +82,11 @@ Die Alarmierung ist damit vollständig Sache der Projektierung. Was an dieser St
    sinnvollerweise beim Errichter liegt, ist sachlich gefuehrt und mit der
    bereits in @sec:fa getroffenen Feststellung verknuepft.
 
-   Offen und als #kommentar markiert sind drei Punkte: die genaue Bezeichnung
-   der Gateway-Einstellung, die Ursache dafuer, dass die Seriennummer nur in
-   einer der beiden Ansichten erscheint, und der fehlende Bibliographieeintrag
-   zur Auskunft von Andreas Ulmer. Der vorhandene Eintrag src:ulmer2026 betrifft
+   Offen und als #kommentar markiert sind noch zwei Punkte: die genaue
+   Bezeichnung der Gateway-Einstellung und der fehlende Bibliographieeintrag
+   zur Auskunft von Andreas Ulmer. Der dritte, die Ursache der vermeintlich
+   nur in einer Ansicht sichtbaren Seriennummer, hat sich am 08.09.2026
+   erledigt, weil die Beobachtung selbst nicht zutraf. Der vorhandene Eintrag src:ulmer2026 betrifft
    die mobile Anwendung und ist hier bewusst nicht zitiert.
 
    Nicht aufgenommen ist T-01 und T-02 als Nachweis. Der Abschnitt beschreibt

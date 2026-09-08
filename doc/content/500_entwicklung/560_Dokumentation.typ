@@ -39,7 +39,7 @@ Der Teil zur Inbetriebnahme fällt dabei bewusst knapp aus. Die Errichtung eines
 
 Vor der Unterlage steht eine Ebene, die häufig übersehen wird. Der #acro("PDE") führt zu jeder Eigenschaft ein Beschreibungsfeld in deutscher und englischer Sprache @src:pdemanual. Was dort abgelegt ist, wandert mit der #acro("JSON")-Datei, übersteht den Import und geht nicht verloren, während eine danebenliegende Unterlage nach wenigen Projekten nicht mehr auffindbar ist. Zusammen mit den in @sec:umsetzung festgelegten sprechenden Bezeichnern und der Gruppenzuordnung trägt diese Ebene die Dokumentation dort, wo sie am haltbarsten ist.
 
-Der Anspruch dahinter ist derselbe, den @src:balaji2018 an eine über Anlagengrenzen hinweg gültige Beschreibung stellt. Erst eine einheitliche und aus sich heraus verständliche Benennung erlaubt es, Anwendungen auf der Beschreibung aufzusetzen, statt sie für jede Anlage neu zuzuschneiden. Die äußere Unterlage trägt folglich nur noch das, was sich im Artefakt nicht unterbringen lässt, also Voraussetzungen, Grenzen, Arbeitsschritte und Begründungen.
+Der Anspruch dahinter ist derselbe, den @src:balaji2018 an eine über Anlagengrenzen hinweg gültige Beschreibung stellt. Dort ist es gerade die uneinheitliche Benennung der Datenpunkte, die eine Übertragung von einer Anlage auf die nächste verhindert. Eine einheitliche und aus sich heraus verständliche Benennung gehört deshalb in das Artefakt und nicht in eine Unterlage daneben. Die äußere Unterlage trägt folglich nur noch das, was sich im Artefakt nicht unterbringen lässt, also Voraussetzungen, Grenzen, Arbeitsschritte und Begründungen.
 
 
 ==== Vorausgesetzte Geräteparametrierung
