@@ -52,7 +52,7 @@
 
     [3113], [Schaltzustand ändern (Rückmeldung)], [`switching_state_feedback`], [RO], [U16: 0=ON, 1=ON Fehler, 2=STBY, 3=STBY Fehler, 4=OFF, 5=OFF Fehler], [UC-05, FA-06], [T-05, T-08], [Ohne diesen Wert bleibt offen, ob ein Fernschaltbefehl gewirkt hat.],
 
-    [16484+n], [Device Status (Funkverbindung)], [`device_status`], [RO], [U16: 0=IDLE, 1=Offline, 2=Verbinden, 3=Verbunden], [UC-04, FA-10], [T-05, T-11], [Überwachung der Funkstrecke auf der Ebene des einzelnen Endgeräts.],
+    [16483+n], [Device Status (Funkverbindung)], [`device_status`], [RO], [U16: 0=IDLE, 1=Offline, 2=Verbinden, 3=Verbunden], [UC-04, FA-10], [T-05, T-11], [Überwachung der Funkstrecke auf der Ebene des einzelnen Endgeräts.],
 
     [2622], [Funk Empfangssignalstärke RSSI], [`radio_rssi`], [RO], [S16 / dBm], [UC-04, FA-10], [T-05, T-11], [Eine über Wochen sinkende Feldstärke kündigt den Verbindungsabbruch an, bevor er eintritt.],
 

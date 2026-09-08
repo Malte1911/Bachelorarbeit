@@ -39,9 +39,21 @@ Zwei Stellen fügen sich nicht bruchlos. Für den Differenzstrom des #acro("RCM"
 
 Die Zuordnung ist dabei nicht allein eine Frage der Übersicht. Die konsumierende Applikation leitet aus Gruppe und Einheit ab, welche Datenpunkte sie für bestimmte Darstellungen überhaupt zur Auswahl stellt @src:pdemanual. Ein Leistungswert, der nicht in der Gruppe der Leistung mit passender Einheit liegt, steht dort nicht zur Verfügung, und zwar unabhängig davon, wie er benannt ist.
 
-Für die Benennung gibt das Werkzeug den Zeichensatz vor. Zulässig sind Ziffern, Buchstaben, Umlaute und der Unterstrich; Leerzeichen und Sonderzeichen weist es zurück @src:pdemanual. Übernommen sind deshalb die in @tab:apx_ecpd_register vorgeschlagenen Bezeichner unverändert, also durchgehend kleingeschriebene englische Wortfolgen mit dem Unterstrich als Trennzeichen. Ein Präfix für den Gerätetyp ist bewusst nicht vergeben, da der Gerätebezug nach @sec:konzept an der Instanz hängt und nicht am Typ; ein Bezeichner `ecpd_current` trüge dieselbe Information ein zweites Mal. Ein funktionales Präfix ist dagegen erforderlich, weil mehrere Alarme denselben Sachverhalt betreffen wie ein Zähler und sich sonst nicht unterscheiden ließen. Der Auslösezähler heißt `trip_counter`, der zugehörige Alarm `alarm_trip_counter`.
+Für die Benennung gibt das Werkzeug den Zeichensatz vor. Zulässig sind Ziffern, Buchstaben, Umlaute und der Unterstrich, während Leerzeichen und Sonderzeichen zurückgewiesen werden @src:pdemanual. Die Sprache der Bezeichner gibt es faktisch ebenfalls vor, denn seine Oberfläche, seine Gruppen und die von ihm bereits mitgelieferten Eigenschaften sind durchgehend englisch benannt @src:pdemanual. Wo eine passende Eigenschaft vorbelegt war, ist ihr Name deshalb unverändert übernommen, und die selbst angelegten Eigenschaften folgen derselben Sprache, damit die Typbeschreibung nicht zwei Benennungen nebeneinander führt. Übernommen sind darüber hinaus die in @tab:apx_ecpd_register vorgeschlagenen Bezeichner unverändert, also durchgehend kleingeschriebene englische Wortfolgen mit dem Unterstrich als Trennzeichen. Ein Präfix für den Gerätetyp ist bewusst nicht vergeben, da der Gerätebezug nach @sec:konzept an der Instanz hängt und nicht am Typ. Ein Bezeichner `ecpd_current` trüge dieselbe Information ein zweites Mal. Ein funktionales Präfix ist dagegen erforderlich, weil mehrere Alarme denselben Sachverhalt betreffen wie ein Zähler und sich sonst nicht unterscheiden ließen. Der Auslösezähler heißt `trip_counter`, der zugehörige Alarm `alarm_trip_counter`.
 
-Diese Festlegung wiegt schwerer, als sie zunächst erscheint. Eine einheitliche und sprechende Benennung ist die Voraussetzung dafür, dass eine über Anlagengrenzen hinweg gültige Beschreibung entsteht und Anwendungen auf ihr aufsetzen können, statt für jede Anlage neu zugeschnitten zu werden @src:balaji2018. Hinzu kommt eine Bindung durch das Werkzeug selbst: Sind zu einem Gerätetyp bereits Instanzen angelegt, so ist von einer nachträglichen Änderung des Namens oder des Typs einer Eigenschaft ausdrücklich abzuraten, da sämtliche darauf aufsetzenden Funktionen der Zielapplikation dadurch unterbrochen werden @src:pdemanual. Die Benennung ist damit keine Frage des Geschmacks, sondern nach dem ersten produktiven Einsatz praktisch unveränderlich, was unmittelbar auf die von NFA-03 geforderte Fortschreibbarkeit wirkt. // Claude: hier ist vielleicht noch dazuzusagen, dass PDE auch englische Begriffe verwendet, weswegen man bestehende Begriffe die schon voreingestellt sind übernommen hat und dann die restlichen eigenen auch in englisch macht um es consistent zu halten
+Diese Festlegung wiegt schwerer, als sie zunächst erscheint. Eine einheitliche und sprechende Benennung ist die Voraussetzung dafür, dass eine über Anlagengrenzen hinweg gültige Beschreibung entsteht und Anwendungen auf ihr aufsetzen können, statt für jede Anlage neu zugeschnitten zu werden @src:balaji2018. Hinzu kommt eine Bindung durch das Werkzeug selbst: Sind zu einem Gerätetyp bereits Instanzen angelegt, so ist von einer nachträglichen Änderung des Namens oder des Typs einer Eigenschaft ausdrücklich abzuraten, da sämtliche darauf aufsetzenden Funktionen der Zielapplikation dadurch unterbrochen werden @src:pdemanual. Die Benennung ist damit keine Frage des Geschmacks, sondern nach dem ersten produktiven Einsatz praktisch unveränderlich, was unmittelbar auf die von NFA-03 geforderte Fortschreibbarkeit wirkt.
+
+/* Anmerkung des Autors, erledigt am 08.09.2026: "hier ist vielleicht noch
+   dazuzusagen, dass PDE auch englische Begriffe verwendet, weswegen man
+   bestehende Begriffe die schon voreingestellt sind übernommen hat und dann
+   die restlichen eigenen auch in englisch macht um es consistent zu halten"
+
+   Claude: Aufgenommen, allerdings einen Absatz weiter oben, wo die Benennung
+   festgelegt wird, und nicht hier, wo ihre Tragweite begruendet ist. Der
+   Absatz zur Benennung nennt jetzt drei Stufen: Zeichensatz, Sprache und
+   Praefix. Die Begruendung ueber die vorbelegten englischen Eigenschaften
+   steht dort im Wortlaut. Das Semikolon in beiden Saetzen ist zugleich
+   entfallen. */
 
 
 ==== Adressierung
@@ -101,9 +113,20 @@ Bemerkenswert ist schließlich, was nicht gebraucht wird. Die Gerätefamilie fü
 
 ==== Kommandos und schreibende Datenpunkte
 
-Nach @tab:modbustreiber kennt ein Datenpunkt entweder die Lese- oder die Schreibrichtung. Ein Schaltbefehl und seine Rückmeldung belegen deshalb zwingend zwei Eigenschaften, selbst wenn sie auf dasselbe Register verwiesen. Beim #acro("ECPD") trifft diese Trennung ohnehin auf getrennte Register, da das Kommando /*Claude: welches Kommando?*/ in Register 3693 geschrieben, die Ausführung über Register 3113 und der erreichte Zustand über Register 3110 zurückgemeldet wird. Was die Plattform erzwingt, entspricht hier also dem Gerät und ist keine Doppelung im Sinne von K-04.
+Nach @tab:modbustreiber kennt ein Datenpunkt entweder die Lese- oder die Schreibrichtung. Ein Schaltbefehl und seine Rückmeldung belegen deshalb zwingend zwei Eigenschaften, selbst wenn sie auf dasselbe Register verwiesen. Beim #acro("ECPD") trifft diese Trennung ohnehin auf getrennte Register, da der Befehl zum elektronischen Schalten in Register 3693 geschrieben, seine Ausführung über Register 3113 und der erreichte Schalterzustand über Register 3110 zurückgemeldet wird @src:sentronregistermap. Was die Plattform erzwingt, entspricht hier also dem Gerät und ist keine Doppelung im Sinne von K-04.
 
-Für die Kommandogruppe unterscheidet das Werkzeug einen fest hinterlegten von einem erst in der Zielapplikation vergebenen Kommandowert @src:pdemanual. Diese Unterscheidung bildet die beiden Arten von Kommandos des #acro("ECPD") genau ab. Vier der sechs Kommandos werden durch das Schreiben eines festen Musters ausgelöst, dessen Inhalt keine Bedeutung trägt, sondern das unbeabsichtigte Schreiben verhindern soll;/* Clude: Beleg? Woher weiß ich dass das gegen unbeabsichtigtes Schreiben schützen soll?*/ sie sind mit fest hinterlegtem Wert ausgeführt, sodass der Bediener eine Handlung auslöst und keinen Wert eingibt. Das betrifft die Quittierung der Auslösemeldung, das Rücksetzen der #acro("RCM")-Alarme, den Anstoß des Gerätetests und das mechanische Trennen. Beim elektronischen Schalten und beim Blinkmodus trägt der geschriebene Wert dagegen die Richtung der Handlung; beide sind deshalb mit dynamischem Kommandowert ausgeführt.
+Für die Kommandogruppe unterscheidet das Werkzeug einen fest hinterlegten von einem erst in der Zielapplikation vergebenen Kommandowert @src:pdemanual. Diese Unterscheidung bildet die beiden Arten von Kommandos des #acro("ECPD") genau ab. Vier der sechs Kommandos werden durch das Schreiben eines festen Musters ausgelöst, das die Registerkarte je Kommando vorgibt @src:sentronregistermap. Der geschriebene Wert trägt dabei keine Information über die gewünschte Handlung, sondern löst sie allein aus. Diese vier sind deshalb mit fest hinterlegtem Wert ausgeführt, sodass der Bediener eine Handlung anstößt und keinen Wert eingibt.
+
+/* Anmerkung des Autors, erledigt am 08.09.2026: "Beleg? Woher weiß ich dass
+   das gegen unbeabsichtigtes Schreiben schützen soll?"
+
+   Claude: Zutreffend, die Aussage war nicht belegbar. Die Registerkarte gibt
+   den je Kommando zu schreibenden Wert vor, sie nennt aber keinen Grund
+   dafuer. Der Schutz vor unbeabsichtigtem Schreiben war eine Deutung und ist
+   entfallen. Der Text sagt jetzt nur noch, was beobachtbar und belegt ist,
+   naemlich dass der Wert vorgegeben ist und keine Information traegt.
+   Die Folgerung fuer die Modellierung bleibt davon unberuehrt. Das Semikolon
+   ist mit der Umstellung ebenfalls entfallen. */ Das betrifft die Quittierung der Auslösemeldung, das Rücksetzen der #acro("RCM")-Alarme, den Anstoß des Gerätetests und das mechanische Trennen. Beim elektronischen Schalten und beim Blinkmodus trägt der geschriebene Wert dagegen die Richtung der Handlung; beide sind deshalb mit dynamischem Kommandowert ausgeführt.
 
 Nicht schreibend geführt wird dagegen ein Teil dessen, was die Registerkarte als beschreibbar ausweist. Anlagenkennzeichen und Einbauort sind Zeichenketten, für die das Modell keine Eingabe vorsieht; sie werden gelesen und in SENTRON Powerconfig gesetzt. Für die Phaseninformation, den eingestellten Nennstrom und den Freigabestatus des elektronischen Schaltens gilt dasselbe, hier jedoch aus den Kriterien K-02 und K-03 heraus, da es sich um Inbetriebnahmewerte handelt. Von den Stammdaten ist damit kein Register schreibend abgebildet.
 
@@ -120,7 +143,7 @@ Beide Wege sind am Testaufbau erprobt worden, und beide führen zu demselben Erg
 
 Dass beide Wege gleich enden, ist dabei der aussagekräftigere Teil der Beobachtung. Sie unterscheiden sich im Werkzeug erheblich, denn der eine bindet einen Wahrheitswert über einen Subindex an eine Bitstelle, der andere schneidet Messpunkte aus einem Registerbereich heraus. Auf der Leitung sind sie kaum zu unterscheiden, weil in beiden Fällen derselbe Registerbereich mit demselben Funktionscode gelesen wird. Ein gleiches Ergebnis bei verschiedener Beschreibung und gleichem Telegramm spricht dafür, dass die Ursache auf der auswertenden Seite liegt und nicht am Gerät.
 
-Der Produktsupport /*Claude: Quelle?*/ führt das Verhalten demgegenüber darauf zurück, dass der #acro("BLOB")-Typ mit dem Powercenter nicht zusammenarbeite. Diese Auskunft ist aus zwei Gründen nicht ohne weiteres auf den hier gegangenen Weg übertragbar. Modbus kennt den #acro("BLOB") nicht als eigene Betriebsart; er ist nach @sec:pde_datentypen eine Beschreibung auf der Seite des Lesenden, während das Gerät in beiden Fällen denselben zusammenhängenden Registerbereich ausliefert. Hinzu kommt, dass die Bezeichnung Powercenter zwei verschiedene Erzeugnisse benennt. Am Testaufbau steht nach @sec:testaufbau ein Powercenter 1100 als Datentransceiver, während der #acro("PDE") nach @sec:pde_ziel das Powercenter 3000 als Zielapplikation führt, also eine Software und kein Gerät der Verteilerebene. Für dieses wäre die Auskunft ohne weiteres schlüssig, da #acro("BLOB") und Zeitstempel neu hinzugekommene Datentypen sind und das Werkzeug ausdrücklich nur zu bestimmten Versionsständen der Zielapplikationen kompatibel ist @src:pdemanual. Auf den Weg über Desigo CC wirkte sie dann nicht.
+Der Produktsupport @src:siemenssupport2026 führt das Verhalten demgegenüber darauf zurück, dass der #acro("BLOB")-Typ mit dem Powercenter nicht zusammenarbeite. Diese Auskunft ist aus zwei Gründen nicht ohne weiteres auf den hier gegangenen Weg übertragbar. Modbus kennt den #acro("BLOB") nicht als eigene Betriebsart; er ist nach @sec:pde_datentypen eine Beschreibung auf der Seite des Lesenden, während das Gerät in beiden Fällen denselben zusammenhängenden Registerbereich ausliefert. Hinzu kommt, dass die Bezeichnung Powercenter zwei verschiedene Erzeugnisse benennt. Am Testaufbau steht nach @sec:testaufbau ein Powercenter 1100 als Datentransceiver, während der #acro("PDE") nach @sec:pde_ziel das Powercenter 3000 als Zielapplikation führt, also eine Software und kein Gerät der Verteilerebene. Für dieses wäre die Auskunft ohne weiteres schlüssig, da #acro("BLOB") und Zeitstempel neu hinzugekommene Datentypen sind und das Werkzeug ausdrücklich nur zu bestimmten Versionsständen der Zielapplikationen kompatibel ist @src:pdemanual. Auf den Weg über Desigo CC wirkte sie dann nicht.
 
 #kommentar[Die Zuschreibung der Ursache ist noch offen und in dieser Fassung bewusst als offen dargestellt. Entscheidbar ist sie an der Frage, an welcher Stelle der Vorgang abbricht. Verweigert Desigo CC bereits den Import der Typbeschreibung, so hat das Powercenter zu keinem Zeitpunkt eine Anfrage erhalten und scheidet als Ursache aus. Kommt der Import dagegen zustande und bleibt erst der Datenpunkt ohne gültigen Wert, so ist der Modbus-Verkehr zu betrachten, und ein Ausnahmecode des Geräts wäre der Beleg für die Auskunft des Supports. Der Online-Modus des #acro("PDE") hilft dabei nicht, da er nach @sec:pde_online weder #acro("BLOB") noch Wahrheitswerte abrufen kann. Sobald das geklärt ist, sind die drei Absätze oben zu einer Aussage zusammenzuziehen und @src:siemenssupport2026 mit Datum und Form der Auskunft zu belegen.]
 
@@ -141,25 +164,54 @@ Die Folgen reichen über diesen Abschnitt hinaus und sind an vier Stellen nachzu
 
 ==== Grenzen des Werkzeugs
 
-Drei weitere Beobachtungen betreffen nicht einzelne Datenpunkte, sondern die Arbeit am Modell als solche.
+Zwei weitere Beobachtungen betreffen nicht einzelne Datenpunkte, sondern die Arbeit am Modell als solche.
 
-Die Eigenschaften sind nicht einzeln von Hand angelegt, sondern über das Tabellenblatt eingelesen, das das Werkzeug zu diesem Zweck bereitstellt @src:pdemanual. Da die Auswahl ohnehin als Arbeitsmappe vorliegt, entfällt damit eine fehleranfällige Doppelerfassung. Von dieser Möglichkeit ausgenommen sind gerade die aufwendigen Typen, also #acro("BLOB"), #acro("BCD"), Modulo-10 und Zeitstempel @src:pdemanual. Für dieses Modell wirkt sich das kaum aus, weil es ausschließlich Standardtypen verwendet. // Claude: ich habe es per Hand gemacht, ich würde den Absatz also einfach weglassen
+/* Anmerkung des Autors, erledigt am 08.09.2026: "ich habe es per Hand gemacht,
+   ich würde den Absatz also einfach weglassen"
+
+   Claude: Der Absatz ist entfernt, "Drei weitere Beobachtungen" ist zu "Zwei"
+   geworden. Er lautete:
+
+   "Die Eigenschaften sind nicht einzeln von Hand angelegt, sondern über das
+   Tabellenblatt eingelesen, das das Werkzeug zu diesem Zweck bereitstellt
+   @src:pdemanual. Da die Auswahl ohnehin als Arbeitsmappe vorliegt, entfällt
+   damit eine fehleranfällige Doppelerfassung. Von dieser Möglichkeit
+   ausgenommen sind gerade die aufwendigen Typen, also BLOB, BCD, Modulo-10 und
+   Zeitstempel @src:pdemanual. Für dieses Modell wirkt sich das kaum aus, weil
+   es ausschließlich Standardtypen verwendet."
+
+   Er beschrieb eine Moeglichkeit des Werkzeugs als tatsaechlich gegangenen
+   Weg, was nicht zutraf. Soll der Tabellenimport als Moeglichkeit erwaehnt
+   bleiben, gehoerte er nach @sec:weiterentwicklung und nicht hierher. */
 
 
-Der vierte Arbeitsschritt des Werkzeugs, in dem Vorbelegungen, Favoriten und Trenddarstellungen festgelegt werden, richtet sich nach @tab:pde_schritte an den SENTRON Powermanager. Für Desigo CC bleibt er ohne Wirkung, da die Darstellung dort im Projekt angelegt wird. Er ist deshalb nur so weit ausgefüllt, wie das Werkzeug es zum Speichern verlangt. 
+Der vierte Arbeitsschritt des Werkzeugs, in dem Vorbelegungen, Favoriten und Trenddarstellungen festgelegt werden, richtet sich nach @tab:pde_schritte an den SENTRON Powermanager. Für Desigo CC bleibt er ohne Wirkung, da die Darstellung dort im Projekt angelegt wird. Er ist deshalb nur so weit ausgefüllt, wie das Werkzeug es zum Speichern verlangt.
 
 Zuletzt ein Verhalten, für das sich keine Erklärung finden ließ. Nach dem Entfernen des #acro("BLOB")-Datentyps aus der Typbeschreibung stieg die Größe der #acro("JSON")-Datei von 22 auf 150 Megabyte, obwohl der Vorgang Inhalt entfernt und die Datei somit hätte verkleinern müssen. Das Werkzeug ließ die Datei danach nicht mehr öffnen, und ihr Import in Desigo CC nahm entsprechend viel Zeit in Anspruch. Für die Bewertung ist das kein Randbefund, denn NFA-03 verlangt, dass sich das Modell fortschreiben lässt, und eine Typbeschreibung, die sich nicht mehr öffnen lässt, ist nicht fortschreibbar. Für die Arbeitsweise folgt daraus, Zwischenstände zu sichern und eine Änderung an einem Datentyp nicht durch Löschen und Neuanlegen vorzunehmen.
 
 #kommentar[Zwei Punkte sind hier noch zu klären. Erstens ist bereits die Ausgangsgröße von 22 Megabyte für eine Typbeschreibung mit rund 40 Eigenschaften auffällig groß; falls sich dazu etwas sagen lässt, gehört es hierher. Zweitens ist zu entscheiden, ob dieser Absatz hier oder in @sec:befunde steht. Für diese Stelle spricht, dass er die Arbeit am Modell betrifft und keine Eigenschaft der Geräte ist; für @sec:befunde spricht, dass er wie die dortigen Beobachtungen erst bei der Erprobung zutage getreten ist.]
 
 
-==== Ergebnis // Claude: hier in dem Abschnitt vielleicht nochmal sinnvoll einen Bezug zum V-Modell aufzubauen?
+==== Ergebnis
 
 Das Ergebnis dieses Arbeitsschritts sind zwei #acro("JSON")-Dateien. Die erste beschreibt den Gerätetyp des #acro("ECPD") und führt zu jeder Eigenschaft den Namen, die Gruppe, den Funktionscode, die Registeradresse, den Datentyp, die Einheit und den Skalierungsfaktor. Sie trägt damit zugleich die Adressbelegung, die bei dem in @sec:desigoccmechanik beschriebenen allgemeinen Importweg gesondert anzulegen wäre.
 
 Die zweite beschreibt das Powercenter und folgt denselben Festlegungen zu Benennung, Gruppenzuordnung, Adressierung und Byte-Reihenfolge. Sie fällt deutlich kleiner aus, da das Gerät weder misst noch schaltet, und bildet einen Teil der in @sec:datenpunkte begründeten Auswahl ab. Aufgenommen sind die Stammdaten, die Temperatur, der aktive Funkkanal, die Netzanbindung samt dem Zustand der Bluetooth-Schnittstelle sowie das Sammelregister der Alarme, das hier allein die Übertemperatur und die Betriebsstunden belegt. Die Uhrzeit ist als einziger schreibender Datenpunkt geführt.
 
+Damit ist die unterste Ebene des absteigenden Astes des in @sec:vorgehensmodell gewählten Vorgehens erreicht. Auf die Anforderungen aus @sec:anforderungen und die Auswahl aus @sec:datenpunkte folgt mit den beiden Typbeschreibungen das Artefakt, gegen das sich der aufsteigende Ast richtet. Zugleich zeigt dieser Arbeitsschritt die Rückkopplung, die @sec:vorgehensmodell für diese Arbeit ausdrücklich vorsieht. Die Erprobung am Gerät fand bereits während der Umsetzung statt und wirkte auf die vorangehende Phase zurück, sichtbar an der gestrichenen Softwareversion, an der geänderten Form des Alarmregisters und an den daraus folgenden Zahlen in @sec:datenpunkte. Die Prüfung dieses Artefakts beginnt mit der Übernahme in die Zielplattform.
+
 Ob sich die beiden Dateien in Desigo CC einlesen lassen und was dabei aus den einzelnen Eigenschaften wird, ist Gegenstand von @sec:uebernahme.
+
+/* Anmerkung des Autors, erledigt am 08.09.2026: "hier in dem Abschnitt
+   vielleicht nochmal sinnvoll einen Bezug zum V-Modell aufzubauen?"
+
+   Claude: Aufgenommen als vorletzter Absatz. Er leistet zwei Dinge, die
+   @sec:vorgehensmodell ankuendigt: Er ordnet die beiden Typbeschreibungen als
+   Artefakt der untersten Ebene des absteigenden Astes ein, und er loest die
+   dort angekuendigte Zusage ein, dass @sec:umsetzung den Rueckfluss aus der
+   Erprobung an den betroffenen Datenpunkten und Zahlen ausweist. Der Bezug
+   steht bewusst hier und nicht am Anfang des Abschnitts, weil er die zuvor
+   beschriebenen Befunde als Rueckkopplung deutet. */
 
 /* Claude: Rohentwurf nach der mit dem Autor abgestimmten Gliederung. Die
    Stichpunkte der bisherigen Fassung sind vollstaendig aufgegangen:

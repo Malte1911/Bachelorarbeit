@@ -25,7 +25,7 @@ Die in @sec:ecpd bis @sec:desigocc beschriebenen Komponenten stehen im Betrieb n
   caption: [Datenpfad vom #acro("ECPD") über die Funkstrecke zum Powercenter, von dort über Modbus #acro("TCP") im Gebäudenetz zu Desigo CC, seitlich angetragen die Werkzeuge SENTRON Powerconfig und #acro("PDE") mit ihren jeweiligen Zugriffspunkten],
 )<img:systemaufbau>
 
-Eine Einheit aus einem Powercenter und den ihm zugeordneten Endgeräten wird im Folgenden als _Strang_ bezeichnet. Eine Liegenschaft kann mehrere solcher Stränge enthalten. Der konkrete Laboraufbau, an dem die Lösung erprobt wird, ist von dieser allgemeinen Betrachtung zu unterscheiden und wird im Kapitel zur Systemumgebung beschrieben. //Claude: Referenz??
+Eine Einheit aus einem Powercenter und den ihm zugeordneten Endgeräten wird im Folgenden als _Strang_ bezeichnet. Eine Liegenschaft kann mehrere solcher Stränge enthalten. Der konkrete Laboraufbau, an dem die Lösung erprobt wird, ist von dieser allgemeinen Betrachtung zu unterscheiden und wird in @sec:testaufbau beschrieben. /* Anmerkung des Autors, erledigt am 08.09.2026: "Referenz??" Claude: Der Verweis zeigt jetzt auf @sec:testaufbau statt auf das Kapitel als Ganzes. */
 
 Aus der Kette ergibt sich die Systemgrenze der Arbeit. Gegenstand ist die Abbildung zwischen dem Modbus-Registerraum, den das Powercenter bereitstellt, und dem Objektmodell in Desigo CC. Nicht Gegenstand sind die Schutzfunktion der Geräte selbst, die Funkstrecke zwischen Endgerät und Powercenter, die elektrotechnische Installation sowie die Systemarchitektur von Desigo CC einschließlich ihrer Redundanz- und Betriebskonzepte. Welche Gestalt die Lösung innerhalb dieser Grenze annimmt, ist an dieser Stelle noch offen und wird erst in @sec:konzept aus den Ergebnissen der folgenden Abschnitte abgeleitet.
 
@@ -163,7 +163,7 @@ Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zw
 
 Modbus #acro("TCP") über das Powercenter ist damit der einzige Weg, der ohne Eigenentwicklung und ohne zusätzliches System auskommt. Diese Feststellung ist weniger eine Auswahl unter gleichwertigen Alternativen als vielmehr die Bestätigung, dass die Schnittstellenlage von Quell- und Zielsystem nur einen der Wege zulässt. Bemerkenswert ist dabei, dass ausgerechnet der sicherheitstechnisch schwächste Weg der einzige durchgängig unterstützte ist.
 
-Die sicherheitstechnische Schwäche ist die zentrale Einschränkung des gewählten Wegs. Da das Protokoll selbst weder Verschlüsselung noch Authentifizierung kennt (siehe @sec:modbus) und die rollenbasierte Zugriffskontrolle des Powercenters ausschließlich auf die #acro("HTTPS")-Kommunikation wirkt @src:sentronsystemhandbuch, kann ein Schutz nur außerhalb des Protokolls auf Netzebene entstehen. Daraus folgen drei Voraussetzungen, die als Randbedingungen in die Anforderungen einfließen. Die Modbus-Schnittstelle wird nur dort aktiviert, wo sie benötigt wird, was am Powercenter 1100 separat möglich ist @src:sentronsystemhandbuch. Die Kommunikation verbleibt in einem eigenen Netzsegment. Ein Zugriff über das lokale Netz hinaus erfolgt ausschließlich über #acro("VPN"). 
+Die sicherheitstechnische Schwäche ist die zentrale Einschränkung des gewählten Wegs. Da das Protokoll selbst weder Verschlüsselung noch Authentifizierung kennt (siehe @sec:modbus) und die rollenbasierte Zugriffskontrolle des Powercenters ausschließlich auf die #acro("HTTPS")-Kommunikation wirkt @src:sentronsystemhandbuch, kann ein Schutz nur außerhalb des Protokolls auf Netzebene entstehen. Daraus folgen drei Voraussetzungen, die als Randbedingungen in die Anforderungen einfließen. Die Modbus-Schnittstelle wird nur dort aktiviert, wo sie benötigt wird, was am Powercenter 1100 separat möglich ist @src:sentronsystemhandbuch. Die Kommunikation verbleibt in einem eigenen Netzsegment. Ein Zugriff über das lokale Netz hinaus erfolgt ausschließlich über #acro("VPN").
 
 Diese drei Punkte sind explizit kein Sicherheitskonzept, sondern als Mindestvoraussetzungen des Betriebs zu verstehen. Wie Segmentierung, Fernzugriff und Überwachung im Einzelnen umgesetzt werden, richtet sich nach den Vorgaben des jeweiligen Kunden und ist, wie in @sec:stakeholder abgegrenzt, kein Gegenstand dieser Arbeit.
 
@@ -201,12 +201,30 @@ Mit der Festlegung auf Modbus #acro("TCP") ist noch nicht bestimmt, in welcher F
    Der folgende Absatz ist entsprechend umgeschrieben. */
 
 Von den Mitteln, die die Plattform für eine Modbus-Anbindung bereithält, ist für diese Arbeit im Wesentlichen eines maßgeblich. Ein Gerätetyp wird in Desigo CC als Objektmodell beschrieben, und dieses Objektmodell lässt sich als #acro("JSON")-Datei importieren @src:desigoccenghelp. Damit besteht eine unmittelbare Entsprechung zu dem Format, das der #acro("PDE") erzeugt (siehe @sec:pde), und genau an dieser Stelle setzt das Datenmodell dieser Arbeit an. Die Dokumentation des #acro("PDE") führt Desigo CC allerdings nicht als Zielapplikation (siehe @sec:pde_ziel), weshalb diese Entsprechung nicht dokumentiert ist, sondern am Testaufbau zu bestätigen war.
-// Claude: wie sinnvoll ist der folgende Abschnitt? Das ergibt sich doch eigentlich im Verlauf der Arbeit, muss das hier nochmal erwähnt
-Für den Zuschnitt der Lösung ist dabei entscheidend, dass die Typbeschreibung des #acro("PDE") die Adressierung bereits enthält. Zu jeder Eigenschaft werden dort Registeradresse, Funktionscode, Datentyp, Subindex und Skalierungsfaktor hinterlegt (siehe @tab:pde_schritte), sodass Objektmodell und Adressbelegung in derselben Datei liegen. Die Lösung dieser Arbeit besteht folglich aus einem einzigen zu entwickelnden Artefakt. Daneben beschreibt die Engineering-Dokumentation einen allgemeinen Weg, auf dem ein Objektmodell ohne Adressangaben eingelesen und die Zuordnung von Registeradressen und Funktionscodes in eigenen Regelwerken danebengelegt wird @src:desigoccenghelp. Dieser Weg kommt ohne den #acro("PDE") aus, gibt dessen Werkzeugkette damit aber auch auf und wird hier nicht beschritten.
+/* Anmerkung des Autors, erledigt am 08.09.2026: "wie sinnvoll ist der folgende
+   Abschnitt? Das ergibt sich doch eigentlich im Verlauf der Arbeit, muss das
+   hier nochmal erwähnt"
+
+   Claude: Der Absatz ist von fuenf auf zwei Saetze gekuerzt. Erhalten bleibt
+   allein die Aussage, die der Zuschnitt der Arbeit an dieser Stelle braucht,
+   naemlich dass nur ein Artefakt zu entwickeln ist. Die Aufzaehlung der
+   Felder je Eigenschaft und die Beschreibung des alternativen Importwegs sind
+   entfallen; beides steht in @sec:pde und @sec:desigoccmechanik und wird in
+   @sec:umsetzung eingeloest. */
+
+Für den Zuschnitt der Lösung ist dabei entscheidend, dass die Typbeschreibung des #acro("PDE") die Adressierung bereits mitführt (siehe @tab:pde_schritte), Objektmodell und Adressbelegung also in derselben Datei liegen. Die Lösung dieser Arbeit besteht folglich aus einem einzigen zu entwickelnden Artefakt und nicht aus einem Objektmodell mit einem daneben zu pflegenden Regelwerk, wie es der allgemeine Importweg der Engineering-Dokumentation vorsieht @src:desigoccenghelp.
 
 Nicht Gegenstand der Entwicklung sind zwei weitere Bestandteile einer vollständigen Integration. Das sind zum einen Grafiken, Symbole und Textgruppen für die Darstellung in der Bedienoberfläche, zum anderen die Liste der tatsächlich anzulegenden Geräteinstanzen @src:desigoccenghelp. Beides ist projektspezifisch, es ist somit von der Anlage und nicht vom Gerätetyp abhängig.
 
-Die Kommunikation selbst trägt ein Treiber, der im Projekt eigens angelegt, einem Netzwerk zugeordnet und gestartet wird @src:desigoccenghelp. Er ist eine Voraussetzung dafür, dass überhaupt Werte fließen, hat auf die Gestalt des Datenmodells jedoch keinen Einfluss und wird deshalb hier nicht weiter betrachtet. // Claude: stimmt nicht so wirklich, der wird noch betrachtet im folgenden
+Die Kommunikation selbst trägt ein Treiber, der im Projekt eigens angelegt, einem Netzwerk zugeordnet und gestartet wird @src:desigoccenghelp. Er ist eine Voraussetzung dafür, dass überhaupt Werte fließen. Als Bestandteil des Datenmodells ist er nicht zu entwickeln, seine Eigenschaften begrenzen jedoch, was ein Objektmodell überhaupt beschreiben kann, weshalb sie im folgenden Abschnitt einzeln aufgeführt sind.
+
+/* Anmerkung des Autors, erledigt am 08.09.2026: "stimmt nicht so wirklich, der
+   wird noch betrachtet im folgenden"
+
+   Claude: Zutreffend, der Satz stand im Widerspruch zu @tab:modbustreiber
+   unmittelbar darunter und zu @sec:kommunikationsstrecke. Er sagt jetzt, dass
+   der Treiber nicht zu entwickeln ist, und kuendigt die Betrachtung seiner
+   Eigenschaften an, statt sie auszuschliessen. */
 
 Bedeutsam ist dagegen die Trennung von Typ und Instanz auf der Zielseite. Das importierte Objektmodell beschreibt einen Gerätetyp und ist damit zunächst nur eine Vorlage. Für jedes physisch vorhandene Gerät ist in Desigo CC eine eigene Instanz anzulegen, die ihre Kommunikationsparameter mitbringt, also die #acro("IP")-Adresse und den Unit Identifier des Geräts @src:desigoccenghelp. Eine Kommunikationsschnittstelle besteht dabei aus der Kombination von Adresse und Slave-Kennung und trägt genau ein Gerät.
 
@@ -232,7 +250,7 @@ Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modb
     [Wird global oder je Treiberinstanz über einen Konfigurationseintrag gesetzt; für Geräte mit Big-Endian-Anordnung ist er auf 0 zu setzen. Für die mitgelieferten Energiemessgeräte schreibt die Dokumentation dies ausdrücklich vor.],
 
     [Abfrageintervall],
-    [Das Intervall, in dem der Treiber die Geräte abfragt, wird an der Treiberkonfiguration eingestellt und gilt für sämtliche Datenpunkte aller Geräte dieses Treibers. Eine nach Geräten oder nach Datenpunktgruppen abgestufte Abfrage steht am eingesetzten Stand nicht zur Verfügung, was von der Dokumentation abweicht und deshalb nach @sec:quellenlage der Beobachtung folgt. Die Abfragelast lässt sich damit allein über die Zahl der abgebildeten Datenpunkte und über dieses eine Intervall steuern.], //Claude: hier bitte nochmal Dokumentation prüfen und ggf mir sagen was da drin steht, damit man das hier in dem Punkt richtig sagt
+    [Das Intervall, in dem der Treiber die Geräte abfragt, wird an der Treiberkonfiguration eingestellt. Daneben kennt die Plattform benannte Abfragegruppen mit eigenem Intervall, die einem lesenden Datenpunkt zugeordnet werden und über den tabellarischen Geräteimport in das Projekt gelangen. Ohne eine solche Zuordnung folgt ein Datenpunkt dem Intervall des übergeordneten Netzknotens. Die vom #acro("PDE") erzeugte Typbeschreibung führt keine Abfragegruppe mit, sodass auf dem hier beschrittenen Weg für sämtliche Datenpunkte aller Geräte eines Treibers dasselbe Intervall gilt und sich die Abfragelast allein über die Zahl der abgebildeten Datenpunkte und über dieses eine Intervall steuern lässt.],
 
 
     [Blockbildung],
@@ -255,9 +273,39 @@ Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modb
    Notiz darunter ist damit ebenfalls beantwortet. */
 
 
-// #kommentar[Prüfung offen: Die Zeile zum Abfrageintervall stützt sich auf die Beobachtung am eingesetzten Stand, dass sich die Abfragegeschwindigkeit nur je Gerät und nicht je Datenpunktgruppe einstellen lässt. Die Engineering-Dokumentation beschreibt dagegen benannte Abfragegruppen mit eigenem Intervall. Vor Abgabe ist zu klären, ob die Gruppen an der installierten Version tatsächlich nicht nutzbar sind oder ob sie lediglich nicht projektiert waren. Von der Antwort hängt ab, ob die abgestufte Abfrage eine Möglichkeit der Weiterentwicklung bleibt oder bereits in dieser Arbeit umgesetzt werden kann.]
+/* Anmerkung des Autors, erledigt am 08.09.2026: "hier bitte nochmal
+   Dokumentation prüfen und ggf mir sagen was da drin steht, damit man das hier
+   in dem Punkt richtig sagt"
 
-Die letzte Zeile der Tabelle verdient besondere Beachtung. Sie bedeutet, dass ein Schaltbefehl und die zugehörige Rückmeldung im Modell zwingend zwei Eigenschaften belegen, selbst wenn beide auf dasselbe Register verweisen. Die Einschränkung trifft damit unmittelbar auf die Kommandoregister des #acro("ECPD"). Ebenso bemerkenswert ist das Mengengerüst. Bei rund 3.900 Einträgen für einen vollständig abgebildeten Strang, dessen Herleitung in @sec:registerraum folgt, ließen sich überschlägig nur etwa acht Stränge über eine einzige Treiberinstanz betreiben. Auch von dieser Seite her ist eine Reduktion des Datenumfangs vonnöten.
+   Claude: Am 08.09.2026 in der Engineering Help nachgesehen (Abschnitt
+   "CSV File for Modbus Device Import", Unterabschnitt "POLL GROUPS", sowie
+   "Additional Configuration Parameters"). Befund im Wortlaut der Hilfe:
+   - Abfragegruppen tragen einen Namen mit dem Pflichtpraefix "PollGr_" und ein
+     Intervall. Sie werden ueber die CSV-Datei des Geraeteimports angelegt.
+   - Sie gelten ausschliesslich fuer Datenpunkte mit der Richtung "Input".
+   - Traegt ein Datenpunkt keine Abfragegruppe oder ist die genannte Gruppe
+     nicht vorhanden, leitet das System die Angabe vom Netzknoten ab.
+   - Angelegt werden sie unter Project > Management System > Servers >
+     Main Server > Poll Groups; das Intervall ist dort spaeter aenderbar.
+   - Das Erweiterungsmodul "Modbus TCP Power Devices 2" bringt vordefinierte
+     Abfragegruppen mit, die an die Eigenschaften seiner Geraetetypen gebunden
+     sind. Dieses Modul fuehrt nach @sec:systemanalyse weder das ECPD noch das
+     Powercenter.
+   Daraus folgt: Die Beobachtung des Autors und die Dokumentation widersprechen
+   sich nicht. Abfragegruppen existieren, sie haengen aber am Datenpunkt und
+   werden ueber den tabellarischen Geraeteimport zugewiesen, nicht ueber die
+   vom PDE erzeugte Typbeschreibung. Auf dem Weg dieser Arbeit ist deshalb
+   tatsaechlich nur das eine Treiberintervall wirksam. Die Tabellenzeile ist
+   entsprechend neu gefasst und sagt jetzt nicht mehr, die Plattform kenne
+   keine abgestufte Abfrage.
+
+   Nachzuziehen waere daraus in @sec:weiterentwicklung, dass die abgestufte
+   Abfrage keine fehlende Faehigkeit der Plattform ist, sondern eine Luecke
+   zwischen Typbeschreibung und Geraeteimport. */
+
+/* Ersetzte Notiz, erledigt: #kommentar[Prüfung offen: Die Zeile zum Abfrageintervall stützt sich auf die Beobachtung am eingesetzten Stand, dass sich die Abfragegeschwindigkeit nur je Gerät und nicht je Datenpunktgruppe einstellen lässt. Die Engineering-Dokumentation beschreibt dagegen benannte Abfragegruppen mit eigenem Intervall. Vor Abgabe ist zu klären, ob die Gruppen an der installierten Version tatsächlich nicht nutzbar sind oder ob sie lediglich nicht projektiert waren. Von der Antwort hängt ab, ob die abgestufte Abfrage eine Möglichkeit der Weiterentwicklung bleibt oder bereits in dieser Arbeit umgesetzt werden kann.] */
+
+Die letzte Zeile der Tabelle verdient besondere Beachtung. Sie bedeutet, dass ein Schaltbefehl und die zugehörige Rückmeldung im Modell zwingend zwei Eigenschaften belegen, selbst wenn beide auf dasselbe Register verweisen. Die Einschränkung trifft damit unmittelbar auf die Kommandoregister des #acro("ECPD"). Ebenso bemerkenswert ist das Mengengerüst. Bei rund 3900 Einträgen für einen vollständig abgebildeten Strang, dessen Herleitung in @sec:registerraum folgt, ließen sich überschlägig nur etwa acht Stränge über eine einzige Treiberinstanz betreiben. Auch von dieser Seite her ist eine Reduktion des Datenumfangs vonnöten.
 
 /* Claude: Der Auftrag "hier bitte noch ausformulieren und mit Quellen belegen"
    ist abgearbeitet; die drei Stichpunkte sind zu drei Absaetzen geworden
@@ -278,7 +326,7 @@ Die letzte Zeile der Tabelle verdient besondere Beachtung. Sie bedeutet, dass ei
 
 Aus der Festlegung auf Modbus #acro("TCP"), den Eigenschaften des Powercenters und den in @sec:desigoccmechanik dargestellten Mitteln der Zielplattform lässt sich ein erster Entwurf der Lösung ableiten, der die Struktur der weiteren Arbeit vorgibt. Er ist als Ausgangspunkt zu verstehen und wird im Entwicklungsteil konkretisiert. @img:konzept stellt seine Bestandteile im Zusammenhang dar.
 
-Den Kern des Entwurfs bildet die Trennung von Gerätetyp und Geräteinstanz. Die Registeradressen sind bei allen Geräten desselben Typs identisch; unterschieden werden die Geräte allein über den Unit Identifier @src:sentronsystemhandbuch. Eine einzige Typbeschreibung genügt daher, um beliebig viele physische Geräte abzubilden, und genau darin liegt die Wiederverwendbarkeit des Modells über Projektgrenzen hinweg. 
+Den Kern des Entwurfs bildet die Trennung von Gerätetyp und Geräteinstanz. Die Registeradressen sind bei allen Geräten desselben Typs identisch; unterschieden werden die Geräte allein über den Unit Identifier @src:sentronsystemhandbuch. Eine einzige Typbeschreibung genügt daher, um beliebig viele physische Geräte abzubilden, und genau darin liegt die Wiederverwendbarkeit des Modells über Projektgrenzen hinweg.
 
 Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein erheblicher Teil der Register stimmt zwar überein, es handelt sich jedoch um verschiedene Geräte mit unterschiedlichen Aufgaben und unterschiedlicher Adressierung. Auf der Zielseite entspricht ein Strang damit bis zu 25 Kommunikationsschnittstellen mit gemeinsamer #acro("IP")-Adresse und unterschiedlicher Slave-Adresse, unter denen jeweils genau ein Geräteobjekt liegt @src:desigoccenghelp. Der Schwerpunkt liegt dabei auf dem Objektmodell des #acro("ECPD"), da dieses Gerät die Messwerte, die Zählerstände und die Schaltfunktion trägt. Für das Powercenter entsteht eine eigene Typbeschreibung geringeren Umfangs, da es weder misst noch schaltet und im Wesentlichen Zustands- und Diagnoseangaben des Strangs führt.
 
@@ -289,7 +337,20 @@ Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein e
 
 Für die Abfrage gibt das Systemhandbuch drei Empfehlungen, nämlich jedes Gerät höchstens einmal pro Sekunde abzufragen, die Endgeräte sequenziell abzuarbeiten und Register blockweise zu lesen @src:sentronsystemhandbuch. Desigo CC setzt diese Methodik bereits um, da der Treiber einen einstellbaren Abstand zwischen den Anfragen kennt und benachbarte Register selbsttätig zu Leseblöcken zusammenfasst @src:desigoccenghelp. Eine schnellere Abfrage brächte ohnehin keinen Gewinn, weil die Messwerte frühestens alle $2space.thin"s"$ aktualisiert werden @src:sentronsystemhandbuch. Das Intervall gilt nach @tab:modbustreiber jedoch für sämtliche Datenpunkte aller Geräte eines Treibers, sodass der am schnellsten benötigte Wert den Takt aller übrigen bestimmt. Die Abfragelast hängt damit unmittelbar an der Zahl der abgebildeten Datenpunkte, und eine nach Verwendungszweck abgestufte Abfrage bleibt ein Ansatzpunkt für eine Weiterentwicklung.
 
-Ungültige Messwerte kennzeichnet das Powercenter als _Not a Number_, und zusätzlich zeigt ein Statusdatenpunkt an, ob die Verbindung zum Endgerät besteht @src:sentronsystemhandbuch. Beides ist im Modell auszuwerten, damit ein ausgefallenes Gerät nicht als Gerät mit dem Messwert null erscheint. //Claude: Not a number ist eine Dopplung von vorhin, weiß ich nicht ob ich das drinnen lassen würde oder nicht, gib mir deine Meinung
+Ungültige Messwerte kennzeichnet das Powercenter nach @sec:powercenter_modbus als _Not a Number_, und ein eigener Statusdatenpunkt zeigt an, ob die Verbindung zum Endgerät besteht. Beides ist im Modell auszuwerten, damit ein ausgefallenes Gerät nicht als Gerät mit dem Messwert null erscheint.
+
+/* Anmerkung des Autors, erledigt am 08.09.2026: "Not a number ist eine
+   Dopplung von vorhin, weiß ich nicht ob ich das drinnen lassen würde oder
+   nicht, gib mir deine Meinung"
+
+   Claude: Empfehlung ist stehen lassen, aber als Rueckverweis. In
+   @sec:powercenter_modbus ist Not a Number eine Eigenschaft des Geraets, hier
+   ist es eine Festlegung fuer das Konzept, naemlich dass das Modell den Wert
+   auswerten muss. Faellt der Satz weg, steht die Forderung in FA-10 und im
+   Entwicklungsteil ohne Herleitung da. Der Satz wiederholt die Erklaerung
+   deshalb nicht mehr, sondern verweist auf sie und zieht nur die Folgerung.
+   Der Beleg @src:sentronsystemhandbuch ist entfallen, da der Verweis auf den
+   belegten Abschnitt zeigt. */
 
 Schließlich sieht der Entwurf eine feste Arbeitsteilung zwischen den beiden Werkzeugen vor. Die Parametrierung der Geräte, also Grenzwerte, Hysteresen und Schutzeinstellungen, verbleibt bei SENTRON Powerconfig. Desigo CC übernimmt den laufenden Betrieb mit Anzeige, Archivierung, Alarmierung und Bedienung. SENTRON Powerconfig lässt sich damit nicht ablösen und wird von der errichtenden Fachkraft weiterhin benötigt, denn sobald in den elektrotechnischen Aufbau oder in die Wirkungsweise eines Geräts eingegriffen wird, hat dies über Powerconfig zu geschehen. Diese Aufteilung ist nicht nur eine Frage des Aufwands, sondern auch eine der Zuständigkeit. Änderungen an der Schutzwirkung setzen eine Elektrofachkraft voraus, während Desigo CC vom Personal der Gebäudeverwaltung bedient wird. Bleibt die Parametrierung außerhalb des Datenmodells, so ist ausgeschlossen, dass sie aus der Leitwarte heraus unbeabsichtigt verändert wird. Die Aufteilung hält das Datenmodell zugleich frei von Inbetriebnahmedaten und begründet, dass ein großer Teil des Registerraums unberücksichtigt bleiben kann. Die Auswirkung auf den Anforderungskatalog wird bei FA-06 und FA-09 in @sec:fa aufgegriffen.
 
@@ -329,7 +390,7 @@ Schließlich sieht der Entwurf eine feste Arbeitsteilung zwischen den beiden Wer
 
 Der gewählte Integrationsweg bestimmt, welche Daten überhaupt zur Verfügung stehen. Der folgende Überblick charakterisiert diesen Datenbestand; die begründete Auswahl der tatsächlich abzubildenden Datenpunkte erfolgt im Entwicklungsteil der Arbeit.
 
-Grundlage ist die Übersicht der Datenpunkte und Modbus-Register der Gerätefamilie @src:sentronregistermap. Sie weist für das Powercenter 211 und für das #acro("ECPD") 152 Einträge aus. Da einem Powercenter bis zu 24 Endgeräte zugeordnet sein können, ergäbe eine vollständige Abbildung eines voll bestückten Strangs rund 3.900 Einträge. Bereits diese Größenordnung zeigt, dass eine unbesehene Übernahme des Registerraums weder gegenüber der Kommunikationslast noch gegenüber der Bedienbarkeit in der Leitwarte zu vertreten wäre.
+Grundlage ist die Übersicht der Datenpunkte und Modbus-Register der Gerätefamilie @src:sentronregistermap. Sie weist für das Powercenter 211 und für das #acro("ECPD") 152 Einträge aus. Da einem Powercenter bis zu 24 Endgeräte zugeordnet sein können, ergäbe eine vollständige Abbildung eines voll bestückten Strangs rund 3900 Einträge. Bereits diese Größenordnung zeigt, dass eine unbesehene Übernahme des Registerraums weder gegenüber der Kommunikationslast noch gegenüber der Bedienbarkeit in der Leitwarte zu vertreten wäre.
 
 Inhaltlich lassen sich die Register des #acro("ECPD") in sieben Gruppen einteilen. Diese Einteilung folgt nicht der Gliederung der Registerkarte, sondern dem Nutzungszweck aus Sicht des Betriebs und wurde im Rahmen dieser Arbeit vorgenommen.
 
@@ -375,9 +436,21 @@ Drittens liegen Werte teilweise doppelt vor. Der Schalterzustand jedes Endgerät
 
 Viertens sind nicht alle dokumentierten Register nutzbar. Ein Teil ist geräteweit konstant und damit ohne Informationsgewinn, ein weiterer Teil antwortet auf dem #acro("ECPD") mit einer Ausnahmemeldung oder liefert konstant null. Die Registerkarte allein ist folglich keine hinreichende Grundlage. Alle Angaben sind am Gerät zu prüfen, wie es der Umgang mit der Herstellerdokumentation nach @sec:quellenlage vorsieht.
 
-Fünftens sind Alarme nicht ohne Weiteres wirksam. Von den für das #acro("ECPD") belegten Alarmbits ist nur ein kleinerer Teil ab Werk aktiv; die übrigen müssen zunächst in SENTRON Powerconfig eingeschaltet werden und liefern andernfalls dauerhaft den Wert null. Betroffen sind unter anderem die beiden #acro("RCM")-Alarme, die zu den aussagekräftigsten Meldungen des Geräts zählen. Ein Datenmodell allein genügt daher nicht; es ist um eine Aussage zur erforderlichen Geräteparametrierung zu ergänzen. // Claude: der letzte Satz passt irgendwie nicht, das klingt komisch und ich checke nicht was er mir sagen soll
+Fünftens sind Alarme nicht ohne Weiteres wirksam. Von den für das #acro("ECPD") belegten Alarmbits ist nur ein kleinerer Teil ab Werk aktiv, die übrigen müssen zunächst in SENTRON Powerconfig eingeschaltet werden und liefern andernfalls dauerhaft den Wert null. Betroffen sind unter anderem die beiden #acro("RCM")-Alarme, die zu den aussagekräftigsten Meldungen des Geräts zählen. Ein solcher Alarm ist im Modell richtig abgebildet und bleibt trotzdem stumm, ohne dass in der Leitwarte ein Fehler erkennbar wäre. Die Auslieferung muss deshalb neben dem Modell eine Angabe darüber enthalten, welche Alarme vor der Inbetriebnahme einzuschalten sind.
 
-Sechstens fehlt ein Energiezähler. Der Registersatz des #acro("ECPD") enthält die momentane Wirkleistung, jedoch besitzt er keine Zählfunktion. Eine Auswertung des Energieverbrauchs setzt daher voraus, dass Desigo CC die Leistung über die Zeit integriert oder in der Anwendung ein weiteres Gerät eingebaut wird. 
+/* Anmerkung des Autors, erledigt am 08.09.2026: "der letzte Satz passt
+   irgendwie nicht, das klingt komisch und ich checke nicht was er mir sagen
+   soll"
+
+   Claude: Gemeint war, dass ein richtig modellierter Alarmdatenpunkt am
+   Auslieferungsgeraet dauerhaft null liefert, ohne dass das auffaellt, und
+   dass die Integrationsvorlage deshalb neben der Typbeschreibung eine
+   Angabe zur noetigen Parametrierung braucht. Genau das steht jetzt in zwei
+   Saetzen da. Das ist die Herleitung von NFA-06 und der Grund dafuer, dass
+   die Anwenderdokumentation in @sec:modelldoku diese Liste fuehrt.
+   Das Semikolon im ersten Satz ist zugleich entfallen. */
+
+Sechstens fehlt ein Energiezähler. Der Registersatz des #acro("ECPD") enthält die momentane Wirkleistung, jedoch besitzt er keine Zählfunktion. Eine Auswertung des Energieverbrauchs setzt daher voraus, dass Desigo CC die Leistung über die Zeit integriert oder in der Anwendung ein weiteres Gerät eingebaut wird.
 
 Aus dieser Charakterisierung folgt die zentrale Erkenntnis des Abschnitts: Der Registerraum ist nicht vollständig, sondern begründet reduziert abzubilden. Die Auswahl hat sich am tatsächlichen Nutzen für den Betrieb zu orientieren, Konfigurationsdaten auszuklammern, Redundanzen aufzulösen und die Abfragelast durch abgestufte Zyklen zu begrenzen. Die Durchführung dieser Auswahl ist Gegenstand des Entwicklungsteils.
 

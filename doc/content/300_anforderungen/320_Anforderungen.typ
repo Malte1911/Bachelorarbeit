@@ -80,16 +80,35 @@ Für die spätere Prüfung ist eine weitere Unterscheidung wesentlich, die der K
    Begruendung siehe @sec:anforderungsvorbehalte. */
 
 Die funktionalen Anforderungen lassen sich vier Wirkbereichen zuordnen, die sich aus dem Datenpfad selbst ergeben.
-// Claude: kannst du das hier noch so ändern dass das nicht diese fette Schrift ist?
 
-*Anbindung und Übertragung.* FA-01 und FA-02 betreffen die Verbindung als solche. FA-01 ist mit der Entscheidung für Modbus #acro("TCP") über das Powercenter (siehe @sec:integrationswege) dem Grunde nach beantwortet, verlangt darüber hinaus aber ausdrücklich Import und Instanziierung. Die Anforderung ist damit nicht erfüllt, wenn die Daten lediglich lesbar sind, sondern erst, wenn ein Gerät in Desigo CC als Objekt vorliegt. FA-02 verlangt die zyklische Übertragung in einem am Modbus-Treiber einstellbaren Intervall. Diese Einstellung steht am eingesetzten Stand zur Verfügung, wirkt dort aber einheitlich für alle angebundenen Geräte (siehe @sec:konzept). Eine nach Gerät oder Datenpunktgruppe abgestufte Abfrage verlangt die Anforderung nicht, sie bleibt als Eigenschaft der Plattform benannt. Die Empfehlung des Systemhandbuchs, jedes Gerät höchstens einmal pro Sekunde abzufragen @src:sentronsystemhandbuch, bildet dabei die Grenze, an der sich das eingestellte Intervall zu orientieren hat.
+/* Anmerkungen des Autors, erledigt am 08.09.2026:
+   "kannst du das hier noch so ändern dass das nicht diese fette Schrift ist?"
+   "hier das bitte auch noch ändern mit der fetten Schrift"
+   "den Satz hier mit der Verneinung bitte noch ändern"
+   "in den drei Absätzen die davor sind bitte noch so ändern, dass keine
+    semikolons mehr vorkommen"
+
+   Claude: Die vier fett gesetzten Absatzanfaenge sind zu Zwischenueberschriften
+   der vierten Ebene geworden, wie es CLAUDE.md fuer diesen Fall vorsieht. Die
+   Semikolons sind im gesamten Abschnitt zu Punkten aufgeloest, ebenso die
+   beiden erlaeuternden Doppelpunkte. Der Satz "Die geforderte korrekte
+   Beschriftung ist keine Formalie" ist ohne die Verneinung neu gefasst. In
+   FA-10 sind zugleich die beiden Spiegelstriche entfallen. */
+
+==== Anbindung und Übertragung
+
+FA-01 und FA-02 betreffen die Verbindung als solche. FA-01 ist mit der Entscheidung für Modbus #acro("TCP") über das Powercenter (siehe @sec:integrationswege) dem Grunde nach beantwortet, verlangt darüber hinaus aber ausdrücklich Import und Instanziierung. Die Anforderung ist damit nicht erfüllt, wenn die Daten lediglich lesbar sind, sondern erst, wenn ein Gerät in Desigo CC als Objekt vorliegt. FA-02 verlangt die zyklische Übertragung in einem am Modbus-Treiber einstellbaren Intervall. Diese Einstellung steht am eingesetzten Stand zur Verfügung, wirkt dort aber einheitlich für alle angebundenen Geräte (siehe @sec:konzept). Eine nach Datenpunkten abgestufte Abfrage verlangt die Anforderung nicht. Die Plattform kennt sie nach @tab:modbustreiber in Gestalt benannter Abfragegruppen, die sich über die Typbeschreibung jedoch nicht zuweisen lassen. Die Empfehlung des Systemhandbuchs, jedes Gerät höchstens einmal pro Sekunde abzufragen @src:sentronsystemhandbuch, bildet dabei die Grenze, an der sich das eingestellte Intervall zu orientieren hat.
 
 
-*Abbildung der Daten.* FA-03 bestimmt, welche Werte in welcher Form erscheinen. Die Anforderung ist bewusst auf die Messwerte begrenzt und nicht auf den gesamten Registerraum; die in @sec:registerraum begründete Reduktion steht ihr damit nicht entgegen, solange kein Messwert entfällt. Die geforderte korrekte Beschriftung ist keine Formalie: /*Claude: den Satz hier mit der Verneinung bitte noch ändern*/Sie umfasst Einheit, Skalierung und Vorzeichen und ist der Punkt, an dem sich Fehler in der Registerkarte unmittelbar auf die Anzeige durchschlagen. Nicht Gegenstand von FA-03 ist die Frage, wie diese Werte in der Leitwarte dargestellt und historisiert werden; Archivierung und Visualisierung sind Projektierungsleistungen in Desigo CC und lassen sich im Objektmodell nicht festlegen (siehe @sec:anforderungsvorbehalte).
+==== Abbildung der Daten
 
-*Meldungen und Überwachung.* FA-04, FA-05 und FA-10 betreffen die Frage, wie sich das System im Störungsfall verhält. FA-04 verlangt ausdrücklich, dass sich die Alarme der Schutzschaltgeräte nicht anders verhalten als die übriger Gewerke; das Datenmodell hat sich insoweit in die vorhandene Alarmstruktur einzufügen und keine eigene zu schaffen. FA-05 verlangt darüber hinaus eine Einordnung nach Dringlichkeit, die das Gerät selbst nicht liefert: Der #acro("ECPD") meldet seine Zustände als Bitfeld ohne Wertung, sodass die Zuordnung zu Alarmkategorien anderweitig stattfinden muss. // Claude: in den drei Absätzen die davor sind bitte noch so ändern, dass keine semikolons mehr vorkommen
+FA-03 bestimmt, welche Werte in welcher Form erscheinen. Die Anforderung ist bewusst auf die Messwerte begrenzt und nicht auf den gesamten Registerraum. Die in @sec:registerraum begründete Reduktion steht ihr damit nicht entgegen, solange kein Messwert entfällt. Die geforderte korrekte Beschriftung umfasst Einheit, Skalierung und Vorzeichen und ist der Punkt, an dem sich Fehler in der Registerkarte unmittelbar auf die Anzeige durchschlagen. Nicht Gegenstand von FA-03 ist die Frage, wie diese Werte in der Leitwarte dargestellt und historisiert werden. Archivierung und Visualisierung sind Projektierungsleistungen in Desigo CC und lassen sich im Objektmodell nicht festlegen (siehe @sec:anforderungsvorbehalte).
 
-Genau an dieser Stelle liegt die deutlichste Grenze des Datenmodells, die sich erst im Verlauf der Entwicklung in vollem Umfang zeigt: Die Auswertung der Alarme findet in Desigo CC statt und nicht im Objektmodell. Das Modell kann die Zustände des Geräts einzeln, richtig benannt und in der geforderten Aktualität bereitstellen und damit die Voraussetzung dafür schaffen, dass Desigo CC sie überhaupt auswerten kann; welche Meldung daraus wird, welcher Kategorie sie zugeordnet ist und wie sie behandelt wird, ist dagegen Teil der Alarmkonfiguration der jeweiligen Anlage. Diese lässt sich nicht allgemeingültig in der Integrationsvorlage vorwegnehmen, sondern muss für den einzelnen Kunden in Desigo CC angelegt werden. FA-04 und FA-05 sind daher durch das Datenmodell allein nicht erfüllbar; sie werden erst im Zusammenwirken von Modell und Projektierung erfüllt.
+==== Meldungen und Überwachung
+
+FA-04, FA-05 und FA-10 betreffen die Frage, wie sich das System im Störungsfall verhält. FA-04 verlangt ausdrücklich, dass sich die Alarme der Schutzschaltgeräte nicht anders verhalten als die übriger Gewerke. Das Datenmodell hat sich insoweit in die vorhandene Alarmstruktur einzufügen und keine eigene zu schaffen. FA-05 verlangt darüber hinaus eine Einordnung nach Dringlichkeit, die das Gerät selbst nicht liefert. Der #acro("ECPD") meldet seine Zustände als Bitfeld ohne Wertung, sodass die Zuordnung zu Alarmkategorien anderweitig stattfinden muss.
+
+Genau an dieser Stelle liegt die deutlichste Grenze des Datenmodells, die sich erst im Verlauf der Entwicklung in vollem Umfang zeigt. Die Auswertung der Alarme findet in Desigo CC statt und nicht im Objektmodell. Das Modell kann die Zustände des Geräts einzeln, richtig benannt und in der geforderten Aktualität bereitstellen und damit die Voraussetzung dafür schaffen, dass Desigo CC sie überhaupt auswerten kann. Welche Meldung daraus wird, welcher Kategorie sie zugeordnet ist und wie sie behandelt wird, ist dagegen Teil der Alarmkonfiguration der jeweiligen Anlage. Diese lässt sich nicht allgemeingültig in der Integrationsvorlage vorwegnehmen, sondern muss für den einzelnen Kunden in Desigo CC angelegt werden. FA-04 und FA-05 sind daher durch das Datenmodell allein nicht erfüllbar und werden erst im Zusammenwirken von Modell und Projektierung erfüllt.
 
 /* Claude: Diese Feststellung stammt aus der Durchsicht und ist bislang nur hier
    formuliert. Sie steht in einem gewissen Spannungsverhaeltnis zur Engineering Help,
@@ -98,9 +117,11 @@ Genau an dieser Stelle liegt die deutlichste Grenze des Datenmodells, die sich e
    tatsaechlich traegt, und die Aussage hier sowie im Entwicklungs- und Validierungsteil
    entsprechend schaerfen. */
 
-FA-10 schließlich grenzt zwei Fälle voneinander ab, die in der Leitwarte leicht verwechselt werden -- ein tatsächliches Anlagenereignis und ein Ausfall der Datenverbindung -- und verlangt zusätzlich, dass ungültige Werte nicht als gültige erscheinen.
+FA-10 schließlich grenzt zwei Fälle voneinander ab, die in der Leitwarte leicht verwechselt werden, nämlich ein tatsächliches Anlagenereignis und einen Ausfall der Datenverbindung, und verlangt zusätzlich, dass ungültige Werte nicht als gültige erscheinen.
 
-*Eingriff und Arbeitsteilung.* /*Claude: hier das bitte auch noch ändern mit der fetten Schrift*/FA-06, FA-08 und FA-09 bestimmen, wie weit die Bedienung über Desigo CC reichen soll. FA-06 beschränkt sich nach der in @sec:anforderungsvorbehalte genannten Änderung auf Befehle des laufenden Betriebs. FA-08 verlangt, den Geräte- und den #acro("RCD")-Test über Desigo CC anzustoßen und ihr Ergebnis dort verfügbar zu halten, und setzt damit einen schreibenden Datenpunkt je Test sowie einen lesenden Datenpunkt je Ergebnis voraus. Die wiederkehrende Prüfung selbst wird dadurch unterstützt und nicht ersetzt, da sie nach @sec:stakeholder die Beurteilung durch eine befähigte Person voraussetzt. FA-09 hält die initiale Konfiguration bei SENTRON Powerconfig und bildet gemeinsam mit FA-06 die in @sec:konzept eingeführte Arbeitsteilung zwischen beiden Werkzeugen ab.
+==== Eingriff und Arbeitsteilung
+
+FA-06, FA-08 und FA-09 bestimmen, wie weit die Bedienung über Desigo CC reichen soll. FA-06 beschränkt sich nach der in @sec:anforderungsvorbehalte genannten Änderung auf Befehle des laufenden Betriebs. FA-08 verlangt, den Geräte- und den #acro("RCD")-Test über Desigo CC anzustoßen und ihr Ergebnis dort verfügbar zu halten, und setzt damit einen schreibenden Datenpunkt je Test sowie einen lesenden Datenpunkt je Ergebnis voraus. Die wiederkehrende Prüfung selbst wird dadurch unterstützt und nicht ersetzt, da sie nach @sec:stakeholder die Beurteilung durch eine befähigte Person voraussetzt. FA-09 hält die initiale Konfiguration bei SENTRON Powerconfig und bildet gemeinsam mit FA-06 die in @sec:konzept eingeführte Arbeitsteilung zwischen beiden Werkzeugen ab.
 
 Beide Anforderungen schreiben damit fest, was die Geräte ohnehin erzwingen, denn ein Teil der Schutzparameter ist nur nach einer Freigabe am Gerät selbst veränderbar @src:sentronsystemhandbuch.
 

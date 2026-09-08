@@ -7,7 +7,32 @@
 Die Geräte des Testaufbaus sind vor der Anbindung an Desigo CC zu parametrieren. Diese Parametrierung erfolgt nach der in @sec:fa begründeten Arbeitsteilung ausschließlich über SENTRON Powerconfig und ist damit selbst nicht Teil des Datenmodells. Sie wird hier dennoch beschrieben, weil das Datenmodell auf einem so eingerichteten Gerät aufsetzt und einzelne Datenpunkte ohne sie ohne Aussage bleiben.
 
 
-Der Zugang zum Powercenter erfolgt über die Bluetooth-Schnittstelle vor Ort oder über die #acro("REST")-#acro("API") im Netz @src:sentronsystemhandbuch. Am Testaufbau wird ausschließlich der Weg über das Netz genutzt. SENTRON Powerconfig kommt nach RB-01 in der Desktop-Variante zum Einsatz und erreicht das Powercenter über dessen Ethernet-Schnittstelle, sodass die Parametrierung beider Geräte über diesen einen Zugang läuft. Der Weg über #acro("BLE") und mit ihm die mobile Anwendung bleiben aus den in @sec:rb genannten Gründen ungenutzt. Bei der Erstinbetriebnahme ist zwingend ein Administrator anzulegen, ein Standardpasswort existiert nicht. Anschließend wird die Modbus-#acro("TCP")-Schnittstelle eingeschaltet, die sich am Powercenter 1100 separat aktivieren und abschalten lässt. RB-05 begrenzt diese Aktivierung ausdrücklich auf den Aufbau, an dem sie für die Anbindung benötigt wird. // Claude: REST-API im Netz? Das muss irgendwie präzisiert werden, man kann ja nicht selbst die REST-API benutzen, das geht ja nur über Powerconfig. Und sonst habe ich das Powercenter eigentlich nicht wirklich gebraucht, außer um später die Werte da mit Modbus abzufragen. Keine Ahnung was da gemeint ist, bitte nochmal mir erklären und dann entsprechend ändern
+Sämtliche Einstellungen an beiden Geräten werden mit SENTRON Powerconfig vorgenommen, das nach RB-01 in der Desktop-Variante zum Einsatz kommt. Das Werkzeug erreicht das Powercenter wahlweise vor Ort über #acro("BLE") oder im Netz über dessen Ethernet-Schnittstelle, auf der das Gerät die mit #acro("TLS") gesicherte #acro("REST")-#acro("API") als Standardweg der Inbetriebnahmesoftware bereitstellt (siehe @sec:powercenter_schnittstellen). Am Testaufbau wird ausschließlich der Weg über das Netz genutzt, der Weg über #acro("BLE") und mit ihm die mobile Anwendung bleiben aus den in @sec:rb genannten Gründen ungenutzt. Die #acro("REST")-#acro("API") ist dabei allein der Übertragungsweg des Werkzeugs und wird nicht selbst bedient. Da die Endgeräte nach @sec:ecpd_konnektivitaet für ein übergeordnetes System unmittelbar unerreichbar sind, reicht das Powercenter die Parametrierung eines #acro("ECPD") über die Funkstrecke weiter, weshalb beide Geräte über diesen einen Zugang eingerichtet werden.
+
+Am Powercenter selbst sind dabei nur zwei Einstellungen zu treffen. Bei der Erstinbetriebnahme ist zwingend ein Administrator anzulegen, ein Standardpasswort existiert nicht. Anschließend wird die Modbus-#acro("TCP")-Schnittstelle eingeschaltet, die sich am Powercenter 1100 separat aktivieren und abschalten lässt. RB-05 begrenzt diese Aktivierung ausdrücklich auf den Aufbau, an dem sie für die Anbindung benötigt wird. Darüber hinaus tritt das Gerät im weiteren Verlauf allein als Modbus-Server auf, über den Desigo CC die Werte des #acro("ECPD") abfragt.
+
+/* Anmerkung des Autors, erledigt am 08.09.2026: "REST-API im Netz? Das muss
+   irgendwie präzisiert werden, man kann ja nicht selbst die REST-API benutzen,
+   das geht ja nur über Powerconfig. Und sonst habe ich das Powercenter
+   eigentlich nicht wirklich gebraucht, außer um später die Werte da mit Modbus
+   abzufragen. Keine Ahnung was da gemeint ist, bitte nochmal mir erklären und
+   dann entsprechend ändern"
+
+   Claude: Zur Erklaerung. Gemeint war nie ein eigener Zugriff auf die
+   REST-API. Das Powercenter 1100 bietet nach @sec:powercenter_schnittstellen
+   zwei Wege fuer die Parametrierung, naemlich BLE vor Ort und HTTPS ueber eine
+   REST-API im Netz. Powerconfig benutzt den zweiten Weg als seinen
+   Transportweg. Der alte Satz stellte beide Wege nebeneinander, als koennte
+   der Bearbeiter zwischen ihnen waehlen, und liess offen, wer die API
+   tatsaechlich anspricht.
+
+   Der Absatz sagt jetzt in dieser Reihenfolge: Powerconfig ist das Werkzeug,
+   es erreicht das Geraet ueber die REST-API, die API wird nicht selbst
+   bedient, und beide Geraete haengen an diesem einen Zugang, weil das ECPD
+   ueber die Funkstrecke dahinter liegt. Der zweite Absatz haelt fest, was am
+   Powercenter ueberhaupt einzustellen war, naemlich Administrator und Modbus,
+   und dass es danach nur noch als Modbus-Server auftritt. Genau das entspricht
+   der Beobachtung des Autors. */
 // #kommentar[Bitte ergänzen, ob am Powercenter neben Modbus #acro("TCP") und dem Zugang für die Parametrierung weitere Schnittstellen aktiv sind. Falls die rollenbasierte Zugriffskontrolle über den angelegten Administrator hinaus eingerichtet wurde, gehört das ebenfalls hierher.]
 
 
@@ -21,7 +46,16 @@ Eine eigene Festlegung betrifft den Nennstrom. Der Aufbau verwendet nach @sec:te
 
 // #kommentar[Zu ergänzen ist der kleinste einstellbare Zeitraum der verzögerten Auslösung als Zahlenwert, damit der Versuch wiederholbar ist.]
 
-Ein Teil der Geräteeinstellungen ist als geschützter Parameter ausgeführt und im Auslieferungszustand deaktiviert. Ihre Änderung setzt voraus, dass der Bereich freigegeben und innerhalb einer vorgegebenen Zeit die Taste am Gerät gedrückt wird, alternativ lässt sich der Zugriff über eine Benutzerrolle mit Vollzugriff freischalten @src:sentronsystemhandbuch. Betroffen sind neben der Empfindlichkeit der Fehlerstromauslösung und dem Verhalten nach einer Auslösung auch die Freigabe des Fernschaltens. Am Testaufbau bleiben diese Einstellungen bis auf eine Ausnahme im Auslieferungszustand. // Claude: wurde glaube ich schonmal gesagt, keine Ahnung warum es hier nochmal erwähnt wird
+Die in @sec:ecpd_geraet beschriebenen geschützten Parameter bleiben am Testaufbau bis auf eine Ausnahme im Auslieferungszustand. Betroffen ist davon neben der Empfindlichkeit der Fehlerstromauslösung und dem Verhalten nach einer Auslösung auch die Freigabe des Fernschaltens.
+
+/* Anmerkung des Autors, erledigt am 08.09.2026: "wurde glaube ich schonmal
+   gesagt, keine Ahnung warum es hier nochmal erwähnt wird"
+
+   Claude: Zutreffend, das Freigabeverfahren steht bereits in @sec:ecpd_geraet.
+   Wiederholt war hier die Beschreibung des Verfahrens, gebraucht wird an
+   dieser Stelle nur die Festlegung fuer den Testaufbau. Der Absatz ist
+   deshalb auf zwei Saetze gekuerzt und verweist fuer das Verfahren zurueck.
+   Der Beleg ist mit der Beschreibung entfallen, er steht am Verweisziel. */
 
 
 Die Ausnahme betrifft das Fernschalten über Modbus und berührt zugleich die Sicherheitsbetrachtung. Da die Schnittstelle nach @sec:modbus keine Authentifizierung kennt, führt das Gerät für das unauthentifizierte Fernschalten über Modbus einen eigenen Schalter, der ab Werk ausgeschaltet ist. Dieser Schalter trägt in der Registerkarte keine Registeradresse und lässt sich folglich nicht über Modbus selbst, sondern nur über SENTRON Powerconfig setzen @src:sentronregistermap. Am Testaufbau ist er eingeschaltet, da UC-05 und der zugehörige Testfall T-08 ohne ihn nicht durchführbar wären. Vertretbar ist das nur in der geschlossenen Umgebung des Laboraufbaus; im späteren Betrieb hängt diese Freischaltung unmittelbar an den Randbedingungen RB-05 bis RB-07, die den Zugang zur Modbus-Schnittstelle auf Netzebene begrenzen (siehe @sec:kommunikationsstrecke).
@@ -32,7 +66,14 @@ Dass diese Freischaltung überhaupt erforderlich ist, geht aus der zugänglichen
 
 
 
-Eine letzte Festlegung betrifft nicht das Gerät, sondern die Zählweise. Die Register sind in der Registerkarte ab 1 nummeriert, im Telegramm jedoch ab 0 adressiert (siehe @sec:powercenter_modbus). Zwischen der Registerkarte und dem Datenmodell besteht damit ein Versatz von eins, der auf beiden Seiten übereinstimmend eingestellt sein muss. Wo diese Einstellung im Datenmodell vorgenommen wird, beschreibt @sec:umsetzung. // Claude: wurde glaube ich auch schon genannt, kann man hier aber finde ich auch nochmal sagen im Zweifel
+Eine letzte Festlegung betrifft nicht das Gerät, sondern die Zählweise. Die Register sind in der Registerkarte ab 1 nummeriert, im Telegramm jedoch ab 0 adressiert (siehe @sec:powercenter_modbus). Zwischen der Registerkarte und dem Datenmodell besteht damit ein Versatz von eins, der auf beiden Seiten übereinstimmend eingestellt sein muss. Wo diese Einstellung im Datenmodell vorgenommen wird, beschreibt @sec:umsetzung.
+
+/* Anmerkung des Autors, erledigt am 08.09.2026: "wurde glaube ich auch schon
+   genannt, kann man hier aber finde ich auch nochmal sagen im Zweifel"
+   Claude: Nach dieser Entscheidung unveraendert stehen geblieben. Der Absatz
+   verweist mit "(siehe @sec:powercenter_modbus)" bereits auf die Herleitung
+   und wiederholt nur die Festlegung fuer den Testaufbau, nicht deren
+   Begruendung. */
 
 
 /* Claude: Abschnitt nach der Vorgabe aus dem Kommentar ausformuliert

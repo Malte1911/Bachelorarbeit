@@ -1,0 +1,6 @@
+- ich habe die fulltext quellen hinzugefügt, kannst du bitte prüfen dass die offenen punkte mit den quellen geklärt werden?
+- kannst du mir erklären was im artefakt mit dois auflösen und tote verweise prüfen gemeint ist? kannst du da eine liste hinzufügen welche quellen noch geprüft werden müssen und wo es passt?
+- die byte reihenfolge wurde mit der netzfrequenz geprüft, füge das bitte noch entsprechend ein
+- die seriennummer ist in beiden ansichten sichtbar, keine ahnung warum das da steht. bitte anpassen
+- die änderung wurde über powerconfig vorgenommen 
+- es waren 30 sekunden bis zum Standby

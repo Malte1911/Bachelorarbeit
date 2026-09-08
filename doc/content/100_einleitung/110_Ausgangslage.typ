@@ -3,12 +3,26 @@
 #include "../../config/config.typ"
 
 == Ausgangslage und Motivation<sec:ausgangslage>
-// claude: den ganzen Abschnitt muss man deutlich vereinfachen, das versteht so niemand direkt. Für den Einstieg in die gesamte Arbeit echt zu kompliziert, vor allem die ganzen Begriffe müssen viel besser verständlich sein
-Der Betrieb einer Immobilie wird über eine Leitebene geführt, auf der Heizung, Lüftung, Beleuchtung und Sicherheitstechnik in einer gemeinsamen Oberfläche zusammenlaufen. Die elektrische Energieverteilung ist dort üblicherweise bis zur Ebene der Verteilung abgebildet, der einzelne Endstromkreis dagegen nicht. Welcher Abgang in Betrieb ist, welche Leistung er bezieht und aus welchem Grund ein Schutzgerät ausgelöst hat, ist am Verteiler abzulesen und nicht am Arbeitsplatz des Betreibers.
 
-Die Gerätetechnik hat diese Lücke inzwischen geschlossen. Mit den SENTRON #acro("ECPD") steht eine Reihe elektronischer Schaltkreisschutzgeräte zur Verfügung, die neben der Schutzfunktion je Endstromkreis misst, sich aus der Ferne schalten lässt und ihren Zustand über ein zugehöriges Kommunikationsgerät, das SENTRON Powercenter, im Gebäudenetz bereitstellt @src:sentronsystemhandbuch. Ein Verteiler mit bis zu 24 solcher Abgänge liefert damit eine Auflösung, die eine zentrale Messung nicht erreicht.
+/* Anmerkung des Autors, erledigt am 08.09.2026: "den ganzen Abschnitt muss man
+   deutlich vereinfachen, das versteht so niemand direkt. Für den Einstieg in
+   die gesamte Arbeit echt zu kompliziert, vor allem die ganzen Begriffe müssen
+   viel besser verständlich sein"
 
-Der Nutzen dieser Daten entsteht vor allem dort, wo sie beobachtet, archiviert und mit den übrigen Gewerken zusammen betrachtet werden. Mit Desigo CC führt die Siemens AG eine Gebäudemanagementplattform, die genau diese Aufgabe erfüllt @src:desigoccdatasheet. Beide Enden dieser Kette zwischen Gerät und Managementplattform sind somit vorhanden, eine Verbindung dazwischen existiert jedoch noch nicht. Woran sie derzeit scheitert und welcher Aufwand daraus in jedem Projekt entsteht, behandelt @sec:problemstellung.
+   Claude: Der Abschnitt ist neu gefasst und von drei auf vier Absaetze
+   gegangen. Jeder Fachbegriff wird jetzt bei seiner ersten Nennung mit einem
+   Halbsatz erklaert, naemlich Gebaeudeleitebene, Endstromkreis, Abgang, ECPD,
+   Powercenter und Desigo CC. Die Kette lautet Beobachtungsluecke,
+   Geraetetechnik schliesst sie, Plattform verwertet die Daten, Verbindung
+   fehlt. Der Umfang der Aussagen ist unveraendert, ebenso beide Belege. */
+
+In einem größeren Gebäude werden Heizung, Lüftung, Beleuchtung und Sicherheitstechnik nicht einzeln vor Ort bedient. Sie laufen auf einer gemeinsamen Bedienoberfläche zusammen, die als Gebäudeleitebene bezeichnet wird. Wer dort arbeitet, sieht den Zustand der Anlagen am Bildschirm, statt ihn im Gebäude nachsehen zu müssen.
+
+Für die elektrische Energieverteilung endet dieser Überblick früh. Sichtbar ist in der Regel nur, wie viel Energie ein ganzer Verteiler bezieht. Ein Verteiler teilt die Versorgung eines Gebäudeabschnitts in einzelne Endstromkreise auf, also in die Leitungen zu einer Steckdosenreihe, einer Beleuchtungsgruppe oder einem einzelnen Verbraucher. Jeder dieser Stromkreise wird als Abgang bezeichnet und ist durch ein eigenes Schutzgerät abgesichert. Ob ein Abgang eingeschaltet ist, welche Leistung er bezieht und weshalb sein Schutzgerät abgeschaltet hat, lässt sich bislang nur am Verteiler selbst ablesen und nicht am Arbeitsplatz des Betreibers.
+
+Die Gerätetechnik kann diese Lücke inzwischen schließen. Mit den SENTRON #acro("ECPD") steht eine Reihe elektronischer Schutzgeräte zur Verfügung, die den Abgang wie bisher schützen, darüber hinaus seine Messwerte erfassen und sich aus der Ferne ein- und ausschalten lassen. Eine eigene Netzwerkverbindung besitzen sie nicht. Ihre Werte gehen über eine Funkstrecke an ein zugehöriges Gerät im selben Verteiler, das SENTRON Powercenter, und erst dieses stellt sie im Gebäudenetz bereit @src:sentronsystemhandbuch. Ein Verteiler mit bis zu 24 solcher Abgänge liefert damit ein Bild je Stromkreis, das eine einzelne Messung am Verteilereingang nicht erreicht.
+
+Nutzen entsteht aus diesen Daten allerdings erst, wenn sie dauerhaft beobachtet, aufgezeichnet und zusammen mit den übrigen Gewerken betrachtet werden. Genau diese Aufgabe erfüllt Desigo CC, die Gebäudemanagementplattform der Siemens AG @src:desigoccdatasheet. Damit liegen beide Enden der Kette vor, die Geräte auf der einen und die Plattform auf der anderen Seite. Eine Verbindung dazwischen besteht bislang nicht. Woran sie scheitert und welcher Aufwand daraus in jedem Projekt entsteht, behandelt @sec:problemstellung.
 
 /* Claude: Abschnitt neu angelegt und bewusst schmal gehalten, damit er sich
    nicht mit den uebrigen Unterkapiteln ueberschneidet. Ausgespart sind deshalb

@@ -156,7 +156,7 @@ Eine Kommunikationsschnittstelle ist durch IP-Adresse und Unit Identifier bestim
 
 Je Strang entstehen so bis zu 25 Schnittstellen. Für das Powercenter liegt eine zweite, bewusst schmal gehaltene Typbeschreibung bei, die allein die Datenpunkte des Datentransceivers führt und auf Import und Instanzbildung geprüft ist. Die Parametrierung des Powercenters bleibt in Powerconfig.
 
-Ein Datenpunkt der Vorlage hängt an der Stelle des Geräts am Powercenter. `device_status` liegt auf Register $16484 + n$, wobei $n$ der Geräteadresse entspricht. Diese Adresse ist je Instanz nachzuführen, alle übrigen Register sind bei allen Geräten identisch.
+Ein Datenpunkt der Vorlage hängt an der Stelle des Geräts am Powercenter. `device_status` liegt auf Register $16483 + n$, wobei $n$ der Geräteadresse entspricht. Das Powercenter führt diesen Wert als Feld über alle 24 Endgeräteplätze, dessen erster Platz auf Register 16484 liegt. Ein Gerät mit der Adresse 1 trägt also Register 16484, ein Gerät mit der Adresse 2 Register 16485 und so fort. Diese Adresse ist je Instanz nachzuführen, alle übrigen Register sind bei allen Geräten identisch.
 
 
 ==== Alarme auswerten<apxdoc:alarme>
@@ -226,7 +226,7 @@ Nach jeder Änderung ist die Typbeschreibung erneut zu importieren und die Nachf
     [`alarm_state`], [State], [2560], [2], [Alarm Zustand (Sammel-Bitfeld)], [R], [UINT 4 Byte], [], [1], [Bitfeld, siehe @apxdoc:bitbelegung],
     [`switch_status`], [State], [3110], [1], [Schalter Status], [R], [UINT 2 Byte], [], [1], [0=unbekannt, 1=AUS, 2=EIN, 3=Ausgelöst, 4=Ausgelöst und Hebel blockiert, 5=Standby, 6=Standby tripped],
     [`switching_state_feedback`], [State], [3113], [1], [Schaltzustand ändern (Rückmeldung)], [R], [UINT 2 Byte], [], [1], [0=ON, 1=ON Fehler, 2=STBY, 3=STBY Fehler, 4=OFF, 5=OFF Fehler],
-    [`device_status`], [State], [16484+n], [1], [Device Status (Funkverbindung)], [R], [UINT 2 Byte], [], [1], [0=IDLE, 1=Offline, 2=Verbinden, 3=Verbunden],
+    [`device_status`], [State], [16483+n], [1], [Device Status (Funkverbindung)], [R], [UINT 2 Byte], [], [1], [0=IDLE, 1=Offline, 2=Verbinden, 3=Verbunden],
     [`radio_rssi`], [State], [2622], [1], [Funk Empfangssignalstärke RSSI], [R], [INT 2 Byte], [dBm], [1], [],
     [`current`], [Value / Current], [3076], [2], [Strom], [R], [FLOAT 4 Byte], [A], [1], [],
     [`current_maximum`], [Value / Current], [3080], [2], [Maximalwert Strom], [R], [FLOAT 4 Byte], [A], [1], [Vom Gerät gespeicherter Extremwert],
