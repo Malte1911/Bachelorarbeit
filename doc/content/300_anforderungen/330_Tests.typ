@@ -152,16 +152,6 @@ Für die Aussagekraft der Prüfung ist diese Lücke von untergeordneter Bedeutun
 
 Ein Restrisiko bleibt und ist im Validierungsteil zu benennen. Die Zuordnung der einzelnen Bitpositionen zu den Alarmbezeichnungen stützt sich für die nicht ausgelösten Alarme allein auf die Registerkarte. Eine dort falsch dokumentierte Position fiele beim Test eines anderen Alarms nicht auf, da jeder Alarm nur seine eigene Position belegt. Da die Registerkarte nach @sec:quellenlage nicht ungeprüft als richtig gilt, ist diese Einschränkung bei der Bewertung von FA-04 ausdrücklich zu vermerken.
 
-/* Anmerkung des Autors, erledigt: "Das hier wird noch aktualisiert sobald das
-   funktioniert"
-   Claude: Der Schaltbefehl funktioniert inzwischen. Der Vorbehalt zu T-08 steht
-   in @sec:anforderungsvorbehalte, die Klaerung im Validierungsteil. */
-
-/* Anmerkung des Autors, erledigt:
-   "hier bitte nochmal argumentieren dass man nicht einfach Fehlerstrom Alarm
-   zum Beispiel testen kann, das aber für die arbeit auch nicht relevant ist.
-   ein alarm sollte zum testen ausreichend sein um sicherzustellen dass das
-   system grundsätzlich funktioniert mit den alarmen" */
 
 /* Claude: Der frueher eigenstaendige Abschnitt "Anmerkungen zu einzelnen
    Testfaellen" (Label sec:testanmerkungen) ist am 27.08.2026 in diesen

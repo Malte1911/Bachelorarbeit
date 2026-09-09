@@ -69,11 +69,6 @@ K-07 besagt, dass jedes Register Zeit zum Abfragen auf der Strecke kostet, weswe
 
 Die Kriterien stehen in einer Rangfolge, die nur an wenigen Stellen wirksam wird. K-03 und K-06 sind unbedingt, da ein Datenpunkt, der Verantwortungsgrenzen verletzt oder keinen verwertbaren Wert liefert, auch bei hohem Nutzen nicht aufzunehmen ist. K-01 geht K-07 vor, solange die Registerzahl je Gerät im Rahmen bleibt, weshalb ein Register mit belegtem Nutzen nicht allein wegen der Last entfällt. Zwischen K-01 und K-05 entscheidet die Frage, ob die Zielplattform den Wert verlustfrei bilden kann. An ihr hängt die einzige Berührung mit FA-03, die in @sec:datenpunkte bei den Messwerten aufgegriffen wird.
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "bitte den satz umformulieren
-   damit da nicht mehr entzündet steht"
-   Claude: "entzuendet sich" ist durch "haengt an" ersetzt, zugleich ist die
-   Wiederholung von "dieser Frage" zu "ihr" gekuerzt. */
-
 
 Zwei Festlegungen trifft dieser Katalog ausdrücklich nicht. Er entscheidet weder über das Abfrageintervall noch über die Archivierung eines Datenpunkts, obwohl die Arbeitsmappe zu jeder Zeile einen Vorschlag dazu führt. Beides ist Projektierungsleistung in Desigo CC und nach @sec:anforderungsvorbehalte nicht Gegenstand des Datenmodells. Ebenso wenig entscheidet er über die Zuordnung der Alarme zu Kategorien nach FA-05, die aus denselben Gründen in der Anlage vorgenommen wird.
 

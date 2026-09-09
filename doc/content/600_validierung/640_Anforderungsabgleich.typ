@@ -4,11 +4,6 @@
 
 == Abgleich mit dem Anforderungskatalog<sec:anforderungsabgleich>
 
-/* Anmerkung des Autors, erledigt: "Hier schliesst sich der aufsteigende Ast des
-   V-Modells. Eine Tabelle fuehrt jede Anforderung aus @tab:fa und @tab:nfa mit
-   dem zugehoerigen Testfall und dem Ergebnis, also erfuellt, teilweise erfuellt
-   oder nicht erfuellt, jeweils mit Verweis auf den Abschnitt der Durchfuehrung.
-   Teilweise erfuellte Anforderungen sind zu begruenden." */
 
 Mit diesem Abschnitt schließt sich der aufsteigende Ast des in @sec:vorgehensmodell gewählten Vorgehens. @tab:anforderungsabgleich stellt jeder Anforderung aus @tab:fa und @tab:nfa die Testfälle gegenüber, die sie abdecken, und hält das Ergebnis fest. Die Beobachtungen selbst stehen in @sec:testdurchfuehrung und werden hier nicht wiederholt. Um dieselbe Kette auch in ihrer vollen Länge nachvollziehbar zu halten, führt @tab:apx_rueckverfolgung im Anhang die über @sec:usecases, @sec:fa, @sec:testfaelle und diesen Abschnitt verteilten Zuordnungen zusammen und ergänzt sie um den Anwendungsfall und das jeweils tragende Element des Datenmodells.
 

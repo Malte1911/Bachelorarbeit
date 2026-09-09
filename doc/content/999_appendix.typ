@@ -199,14 +199,14 @@ Die Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers 2560 und 
 
     [2578], [Betriebsstundenzähler gesamt], [`operating_hours_total`], [RO], [FP64 / s], [UC-07], [Nutzungsdauer des Datentransceivers als Grundlage der Austauschplanung.],
 
-    [1123], [Zähler Parameteränderung Powercenter], [`parameter_change_counter
+    [1124], [Zähler Parameteränderung Powercenter], [`parameter_change_counter
     _powercenter`], [RO], [U16], [UC-07], [Ein Register statt 24 Einzelzählern, die an den Endgeräten ohnehin geführt sind.],
 
-    [528], [Aktuelle IP-Adresse], [`current_ip_address`], [RO], [U32], [UC-04], [Erreichbarkeit des Geräts und im Störungsfall die erste Information für IT und Service.],
+    [669], [Aktuelle IP-Adresse], [`current_ip_address`], [RO], [U32], [UC-04], [Erreichbarkeit des Geräts und im Störungsfall die erste Information für IT und Service.],
 
-    [529], [Aktuelle Subnetzmaske], [`current_subnet_mask`], [RO], [U32], [UC-04], [Zuordnung zum Netzsegment.],
+    [671], [Aktuelle Subnetzmaske], [`current_subnet_mask`], [RO], [U32], [UC-04], [Zuordnung zum Netzsegment.],
 
-    [530], [Aktuelle Gateway Adresse], [`current_gateway_address`], [RO], [U32], [UC-04], [Diagnose des Routings bei einem Kommunikationsausfall.],
+    [673], [Aktuelle Gateway Adresse], [`current_gateway_address`], [RO], [U32], [UC-04], [Diagnose des Routings bei einem Kommunikationsausfall.],
 
     [512], [Ethernet MAC Adresse], [`ethernet_mac_address`], [RO], [UCHAR\[6\]], [UC-04], [Unveränderliche Kennung für die Netzdokumentation.],
 

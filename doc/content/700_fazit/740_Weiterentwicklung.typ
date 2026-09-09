@@ -4,16 +4,6 @@
 
 == Möglichkeiten der Weiterentwicklung <sec:weiterentwicklung>
 
-/* Anmerkung des Autors, erledigt: "Anknuepfungspunkte aus den Befunden in
-   @sec:befunde, unter anderem die nach Verwendungszweck abgestufte Abfrage, ein
-   eigenes Objektmodell fuer das Powercenter und die Behandlung des fehlenden
-   Energiezaehlers." */
-
-/* Anmerkung des Autors, erledigt: "Die naheliegende Frage nach einer
-   Automatisierung von Auswahl und Zuordnung gehoert hierher, mit der ehrlichen
-   Antwort. Verfahren, die Datenpunkte aus Bezeichnern und Messverlaeufen
-   selbsttaetig zuordnen, existieren, erreichen aber keine Guete, die eine
-   Pruefung durch den Menschen ersetzt @src:zhan2020." */
 
 Aus den Befunden in @sec:befunde und den Grenzen in @sec:wuerdigung ergeben sich mehrere Anknüpfungspunkte für zukünftige Entwicklungen.
 

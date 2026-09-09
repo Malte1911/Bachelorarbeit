@@ -139,6 +139,8 @@ Die JSON-Datei wird als Objektmodell importiert. Sie trägt zu jeder Eigenschaft
 
 Eine Kommunikationsschnittstelle ist durch IP-Adresse und Unit Identifier bestimmt und trägt genau ein Gerät. Ein vollständiger Strang erscheint deshalb nicht als ein Gerät mit Untergeräten, sondern als eine Reihe getrennter Schnittstellen mit derselben IP-Adresse und unterschiedlichem Unit Identifier.
 
+*Gateway-Kommunikation.* Bei jedem Endgerät ist der Haken für die Gateway-Kommunikation zu setzen, der daraufhin das Eingabefeld für den Unit Identifier freigibt. Ohne ihn bleibt der Unit Identifier unwirksam, und jede Abfrage erreicht das Powercenter selbst statt des adressierten Endgeräts. Die Einstellung hängt am einzelnen Gerät und ist deshalb bei jeder neuen Instanz erneut vorzunehmen.
+
 #figure(
   outlined: false,
   table(

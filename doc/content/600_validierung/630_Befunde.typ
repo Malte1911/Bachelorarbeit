@@ -4,43 +4,6 @@
 
 == Befunde außerhalb des Datenmodells<sec:befunde>
 
-/* Anmerkung des Autors, erledigt: "Beobachtungen, die keine Fehler des Modells
-   sind, sondern Eigenschaften der Geraete oder der Zielplattform. Sie werden
-   hier erstmals belegt und in @sec:wuerdigung nur noch gewichtet. Betroffen
-   sind der zurueckgewiesene Schreibzugriff beim elektronischen Schalten, die ab
-   Werk deaktivierten Alarme, der fehlende Energiezaehler sowie das nur am
-   Modbus-Treiber einstellbare Abfrageintervall." */
-
-/* Anmerkung des Autors, erledigt: "Zum zurueckgewiesenen Schreibzugriff liegt
-   das Ergebnis vor und ist hier auszufuehren. Das Geraet wies den Schaltbefehl
-   ab, obwohl andere schreibende Zugriffe angenommen wurden und die
-   Schaltfunktion als geschuetzter Parameter freigegeben war. Ursache ist eine
-   gesonderte Freischaltung des Fernschaltens ueber Modbus, die sich nur ueber
-   SENTRON Powerconfig setzen laesst und die in der Registerkarte ohne
-   Registeradresse und ohne Hinweis auf ihre Wirkung gefuehrt wird (siehe
-   @sec:geraetekonfiguration). Nach Auskunft des Herstellersupports ist dieser
-   Schritt dem Inbetriebnahmepersonal gelaeufig, in den zugaenglichen
-   Unterlagen jedoch nicht als Voraussetzung erfasst; Quelle
-   src:siemenssupport2026, dort Datum und Form der Auskunft noch zu
-   praezisieren. Zwei Anschluesse bieten sich an: die Regel aus
-   @sec:quellenlage, bei einer Abweichung zwischen Dokumentation und
-   Beobachtung die Beobachtung als das Massgebliche zu behandeln, und die
-   Aufloesung des Vorbehalts zu FA-06 aus @sec:anforderungsvorbehalte, die in
-   @sec:anforderungsabgleich einzutragen ist." */
-
-/* Anmerkung des Autors, erledigt: "Dieser Abschnitt muss den Bogen tatsaechlich
-   schliessen. Drei Stellen laufen auf ihn zu, ohne die Ursache zu nennen.
-   Erstens der Vorbehalt zu FA-06 in @sec:anforderungsvorbehalte, zweitens die
-   Vorbemerkung zu T-08 in @sec:testanmerkungen, drittens der Absatz zum
-   Fernschalten in @sec:geraetekonfiguration, der die Freischaltung am
-   Testaufbau bereits nennt, ihren Zusammenhang mit dem abgewiesenen
-   Schreibzugriff aber offen laesst. Der Leser traegt den Vorbehalt damit ueber
-   zwei Kapitel mit, und die Aufloesung schuldet ihm allein dieser Abschnitt.
-   Der Befund ist deshalb so zu schreiben, dass er alle drei Faeden aufnimmt,
-   also die Beobachtung, die Ursache, die Feststellung, dass FA-06 damit
-   erfuellt ist, und den Rueckbezug auf die in @sec:geraetekonfiguration
-   beschriebene Einstellung. Bleibt einer der Faeden offen, wirkt der Vorbehalt
-   aus Kapitel 3 unaufgeloest." */
 
 Nicht jede Beobachtung der Prüfung sagt etwas über das Datenmodell aus. Der folgende Abschnitt führt jene, die Eigenschaften der Geräte oder der Zielplattform sind und die auch ein anderes Modell nicht beheben könnte. Sie sind hier belegt und werden in @sec:wuerdigung nur noch gewichtet. Beobachtungen, die die Werkzeugkette betreffen, stehen dagegen im Entwicklungsteil, da sie dort Festlegungen des Modells erzwungen haben.
 
@@ -73,8 +36,9 @@ Das Abfrageintervall lässt sich allein am Modbus-Treiber und dort für sämtlic
    ausdruecklich auf diesen Abschnitt verweist.
 
    @src:siemenssupport2026 ist jetzt erstmals zitiert. Der Eintrag in
-   quellen.bib traegt nur ein angesetztes Datum, Form und Vorgangsnummer der
-   Auskunft sind dort noch zu ergaenzen.
+   quellen.bib ist seit dem 09.09.2026 vollstaendig: Auskunft per E-Mail vom
+   18.08.2026 auf direkte Anfrage beim Produktsupport. Eine Vorgangsnummer gibt
+   es nicht, da die Anfrage nicht ueber das Ticketsystem lief.
 
    Nicht aufgenommen ist der Anstieg der Dateigroesse im PDE. Er steht in
    @sec:umsetzung und ist in @sec:testdurchfuehrung bei T-12 aufgegriffen, weil

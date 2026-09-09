@@ -4,11 +4,6 @@
 
 == SENTRON Powercenter<sec:powercenter>
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "ändere mal den begriff
-   gebäudeüblich, der ist irgendwie komisch"
-   Claude: Ersetzt durch "das Ethernet-Netz der Liegenschaft". Der Begriff
-   benennt damit das Netz, an dem das Geraet tatsaechlich haengt, statt eine
-   Ueblichkeit zu behaupten. */
 
 Da die in @sec:ecpd beschriebenen Schutzschaltgeräte über keine eigene netzwerkseitige Schnittstelle verfügen, benötigt die Gerätereihe eine Komponente, die die Funkstrecke auf das Ethernet-Netz der Liegenschaft umsetzt. Diese Aufgabe übernimmt der Datentransceiver SENTRON Powercenter. Er koppelt bis zu 24 Endgeräte an, sammelt deren Messwerte und Zustände, speichert sie über einen begrenzten Zeitraum und stellt sie an seinen netzwerkseitigen Schnittstellen bereit. Baulich ist er auf den Installationsverteiler zugeschnitten, belegt eine Teilungseinheit und wird mit $24space.thin"V"$ Gleichspannung versorgt, die sich über steckbare Klemmen an weitere Geräte durchschleifen lässt @src:sentronsystemhandbuch. Die folgenden Angaben sind, soweit nicht anders angegeben, dem Systemhandbuch der Gerätefamilie entnommen @src:sentronsystemhandbuch.
 
@@ -38,19 +33,6 @@ Das Gerät ist in drei Varianten verfügbar, die sich in ihren Schnittstellen un
 
 === Schnittstellen<sec:powercenter_schnittstellen>
 
-/* Anmerkungen des Autors, erledigt am 08.09.2026:
-   "hier fehlen komplett die Quellen und Verweise auf Handbücher etc,
-    eigentlich in dem gesamten Abschnitt"
-   "Das Handbuch" Quelle !!"
-
-   Claude: Jeder Absatz dieses Abschnitts traegt jetzt seinen eigenen Beleg,
-   und die unbestimmte Wendung "das Handbuch" ist an allen drei Stellen durch
-   "das Systemhandbuch @src:sentronsystemhandbuch" ersetzt. Die pauschale
-   Vorbemerkung im einleitenden Absatz ("soweit nicht anders angegeben")
-   bleibt stehen, traegt die Aussagen jetzt aber nicht mehr allein. Die
-   Geraeteadressen und der Verbindungszustand sind zusaetzlich mit der
-   Registerkarte @src:sentronregistermap belegt, weil sie dort als
-   Datenpunkte gefuehrt sind. */
 
 Zur Feldebene hin besteht ausschließlich die in @sec:ecpd beschriebene Funkstrecke. Jedes Endgerät muss dem Funknetz des Datentransceivers beitreten und erhält dabei eine Geräteadresse, die standardmäßig fortlaufend von 1 bis 24 vergeben wird und sich bei der Inbetriebnahme auch manuell festlegen lässt @src:sentronsystemhandbuch @src:sentronregistermap.
 

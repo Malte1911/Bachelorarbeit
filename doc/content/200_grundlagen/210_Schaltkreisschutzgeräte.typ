@@ -42,9 +42,9 @@ Ein elektrischer Endstromkreis ist mehreren Gefährdungen ausgesetzt, die sich i
   caption: [Gerätefamilien des Endstromkreisschutzes, ihre Aufgabe und die jeweils führende Produktnorm],
 )<tab:schutzgeraete>
 
-/* #kommentar("Die Standards muss ich nochmal richtig prüfen, hier also unter vorbehalt.") */
-
-// #kommentar[Prüfung offen: Die Ausgabestände und Erscheinungsjahre der sechs Produktnormen in @tab:schutzgeraete sind Katalogeinträgen von IEC und CENELEC entnommen und nicht am Normtext selbst verifiziert. Vor Abgabe gegen den DIN-Katalog gegenlesen, einschließlich der Änderungen A1 und A2. Am unsichersten sind IEC 61008-1 und IEC 61009-1, für die jeweils die dritte Ausgabe von 2010 angesetzt ist. Die Zuordnung Geräteart zu Produktnorm selbst ist für #acro("RCD"), #acro("RCM") und den Leistungsschalter zusätzlich durch das Systemhandbuch @src:sentronsystemhandbuch gedeckt.]
+// Die sechs Ausgabestaende sind am 09.09.2026 gegen den Katalog geprueft und in
+// quellen.bib berichtigt; die Einzelheiten stehen dort als Kommentar. Die
+// Zuordnung Geraeteart zu Produktnorm ist davon unberuehrt.
 
 Als konventionelle Ausführung wird im Folgenden eine Ausführung bezeichnet, die ihre Schutzaufgabe ohne Mess- und Kommunikationsfunktion erfüllt und ihren Zustand ausschließlich örtlich am Gerät anzeigt. Für ein übergeordnetes System ist ein so ausgeführtes Gerät nicht erreichbar. Ob ein Abgang eingeschaltet ist, ob eine Auslösung stattgefunden hat und welche Schutzfunktion sie ausgelöst hat, bleibt am Gerät, ebenso die Betriebsgrößen wie Strom, Spannung oder Temperatur, aus denen sich eine anbahnende Störung ableiten ließe. Die Verteilung ist damit eine unbeobachtete Ebene, und jede Aussage über ihren Zustand setzt voraus, dass eine Person den Verteiler öffnet. Die dieser Arbeit zugrunde liegende Anlage ist in ihrem Ausgangszustand so aufgebaut (siehe @sec:testaufbau).
 
@@ -54,21 +54,6 @@ Die Festlegung gilt der Ausführung und nicht den Gerätefamilien als solchen. F
 
 === Elektronisches Schutzschaltgerät SENTRON ECPD 5TY1 COM<sec:ecpd_geraet>
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "in diesem abschnitt bitte noch
-   belege für die aussagen überall hinzufügen, die fehlen noch"
-
-   Claude: Die Belege stehen jetzt satzweise statt nur am Absatzende. Neu
-   hinzugekommen sind die beiden Normverweise fuer die Fehlerstromschutz- und
-   die Differenzstromfunktion (@src:iec61009, @src:iec62020), die Belege zum
-   Rueckschalten aus dem Standby, zur Freigabe geschuetzter Parameter und zum
-   Selbsttest sowie die Registerkarte @src:sentronregistermap fuer die
-   Speichertiefen, die dort als Datenpunkte gefuehrt sind. Kein Beleg ist neu
-   erfunden, alle Aussagen stammen aus dem Systemhandbuch oder aus den bereits
-   in @tab:schutzgeraete zitierten Produktnormen. Ohne Beleg bleiben allein die
-   Saetze, die eine Folgerung aus dem zuvor Belegten ziehen, naemlich die
-   Einordnung als geschuetzte Parameter und die beiden Ueberleitungen.
-   IEC/EN 62423 ist im Text genannt, aber nicht in quellen.bib gefuehrt; die
-   Zuordnung traegt dort das Systemhandbuch. */
 
 Innerhalb dieser Reihe nimmt das elektronische Schutzschaltgerät 5TY1 COM eine Sonderstellung ein, die sich nicht allein aus seiner Kommunikationsfähigkeit ergibt. Es fasst mehrere Schutzfunktionen zusammen, die sonst auf mehrere Geräte verteilt sind @src:sentronsystemhandbuch. Neben dem Überlast- und Kurzschlussschutz mit einer Auslösecharakteristik in Anlehnung an die Klasse B enthält es eine Fehlerstromschutzfunktion in Anlehnung an IEC/EN 61009-1 @src:iec61009 und IEC/EN 62423 sowie eine Differenzstromüberwachung in Anlehnung an IEC 62020-1 @src:iec62020, ausgeführt als Gerät vom Typ F mit einem Messbereich von $3space.thin"mA"$ bis zur Auslöseschwelle der Fehlerstromschutzfunktion @src:sentronsystemhandbuch. Hinzu kommt eine zuschaltbare Überspannungsschutzfunktion @src:sentronsystemhandbuch. Das Gerät belegt zwei Teilungseinheiten, arbeitet bei einer Nennspannung von $230space.thin"V"$ im Bereich von $85space.thin"V"$ bis $255space.thin"V"$ und ist in den Nennstromstufen $6space.thin"A"$, $10space.thin"A"$ und $16space.thin"A"$ erhältlich, wobei der Nennstrom zusätzlich parametrierbar ist @src:sentronsystemhandbuch.
 
@@ -93,26 +78,9 @@ Ein einzelnes Schutzschaltgerät ist für ein übergeordnetes System folglich ni
    (Geraetefamilien mit Quellen, Alleinstellungsmerkmale des ECPD, Upstream-
    Konnektivitaet). Bewusst ohne Bezug auf die Aufgabenstellung, den gewaehlten
    Integrationsweg oder das Datenmodell. Die Registerinhalte des Geraets sind
-   hier nicht aufgefuehrt, sie gehoeren zur Analyse des Registerraums.
-   Die Normzuordnungen in @tab:schutzgeraete sind neue Eintraege in
-   quellen.bib; Ausgabestand und Jahr sind dort mit einem Vorbehalt versehen
-   und vor Abgabe gegen den DIN-Katalog zu pruefen. */
+   hier nicht aufgefuehrt, sie gehoeren zur Analyse des Registerraums. */
 
-/* Claude: Normpruefung am 31.08.2026 gegen den IEC-Katalog (webstore.iec.ch)
-   durchgefuehrt, quellen.bib entsprechend aktualisiert:
-     IEC 60898-1  -> Ed. 2.1 (2015 + AMD1:2019), 2019-12, keine dritte Ausgabe
-     IEC 61008-1  -> Ed. 4.0, 2024-11 (ersetzt Ed. 3.0:2010 + A1:2012 + A2:2013)
-     IEC 61009-1  -> Ed. 4.0, 2024-11 (ersetzt Ed. 3.0:2010 + A1:2012 + A2:2013)
-     IEC 62606    -> Ed. 1.2 (2013 + AMD1:2017 + AMD2:2022), 2022-11
-     IEC 60947-2  -> Ed. 6.0, 2024-09 (Ed. 5.x am 18.09.2024 zurueckgezogen)
-     IEC 62020-1  -> Ed. 1.0, 2020, unveraendert gueltig
-   Die beiden #kommentar-Notizen darueber sind damit abgearbeitet und nur
-   auskommentiert, nicht entfernt. Offen bleibt der Abgleich mit dem
-   DIN/VDE-Katalog, falls die deutschen Bezeichnungen gefordert sind
-   (DIN EN IEC 60947-2 / VDE 0660-101 usw.); auf CENELEC-Ebene existiert
-   zu IEC 62606 zusaetzlich eine A2:2026.
-
-   Absaetze nach der Tabelle nach der Anmerkung des Betreuers eingegrenzt.
+/* Claude: Absaetze nach der Tabelle nach der Anmerkung des Betreuers eingegrenzt.
    Die Aussage gilt jetzt ausdruecklich der konventionellen, nicht
    kommunikationsfaehigen Ausfuehrung, nicht den Geraetefamilien als solchen.
    Das war auch intern widerspruechlich, weil die RCM-Zeile der Tabelle das

@@ -4,18 +4,11 @@
 
 == Kritische Würdigung<sec:wuerdigung>
 
-/* Anmerkung des Autors, erledigt: "Die folgenden Punkte sind in @sec:befunde
-   erstmals zu belegen und hier nur noch zu gewichten, damit der Leser sie nicht
-   erst im Fazit zum ersten Mal erfaehrt." */
 
 Zielsetzung der Arbeit war es, eine Vorlage zu liefern, mit der sich die Gerätereihe ohne erneute Grundlagenarbeit an Desigo CC anbinden lässt. Der folgende Abschnitt misst das Ergebnis an dieser Zielsetzung und benennt seine Grenzen.
 
 Die Ergebnisse wurden durch drei zentrale Faktoren beeinflusst: erstens die fehlende Zerlegung des Alarmsammelregisters in einzelne Meldungen, zweitens das geräteübergreifend geltende Abfrageintervall und drittens die fehlende Zählfunktion für die elektrische Arbeit. Keiner dieser Faktoren lag im Ermessen des Verfassers. Alle drei liegen an den beiden Enden der Übertragungsstrecke, am Gerät und an der Zielplattform, und nicht in der Auswahl der Datenpunkte oder in ihrer Abbildung, also in dem Teil, den diese Arbeit gestaltet hat. Sie begrenzten die Ergebnisse und den Gestaltungsspielraum der Arbeit gleichwohl in nicht unerheblichem Maße. Für denjenigen, der die Vorlage einsetzt, ändert diese Zuordnung nichts, denn er erhält das Ergebnis und nicht dessen Begründung.
 
-/* Anmerkung des Autors, erledigt: "das passt inhaltlich nicht ganz, ich bin mir
-   nicht sicher ob die Argumentation so passt oder nicht. Der Schluss ist ja
-   eigentlich, dass die Alarme gar nicht übersetzt werden können, weil eine
-   Maskierung eben nicht funktioniert." */
 
 === Zerlegung der Alarme
 

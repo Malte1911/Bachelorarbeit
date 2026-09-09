@@ -9,32 +9,15 @@ Zwischen dem parametrierten Gerät und dem Objektmodell in Desigo CC liegt die K
 
 Die Strecke beginnt am Datentransceiver, der die Endgeräte hinter einer einzigen #acro("IP")-Adresse bündelt und den Modbus-Registerraum über den in @sec:modbus beschriebenen Port 502 bereitstellt. Die Randbedingungen RB-05 bis RB-07 aus @tab:rb richten sich dabei an den Betrieb der Lösung beim Kunden und sind am Laboraufbau nicht eigens nachzuweisen, da sie nach @sec:testabdeckung keine geforderte Eigenschaft der Lösung beschreiben, sondern die Voraussetzungen ihres Betriebs. Der Testaufbau ist demgegenüber eine geschlossene Umgebung, in der die Modbus-Schnittstelle des Powercenters für die Anbindung eingeschaltet ist.
 
-/* Anmerkung des Autors, erledigt: "die spezifische ip adresse ist aus meiner
-   Sicht echt nicht relevant. ich würde an beiden stellen einfach nur über die
-   ip adresse an sich reden. gleiches gilt mit setup von subnetzwerken und so,
-   der netzwerkaspekt ist einfach kein großer fokus der arbeit" */
 
 Die Topologie dieser Umgebung ist einfach und wird hier logisch beschrieben, da die vergebenen Adressen für sich genommen nichts tragen, was sich auf eine andere Anlage übertragen ließe. Der Rechner mit Desigo CC und das Powercenter hängen an demselben Switch und liegen in demselben #acro("VLAN"), sodass zwischen beiden weder ein Gateway noch eine Route liegt. Das Powercenter trägt dabei eine fest vergebene Adresse und bezieht sie nicht über #acro("DHCP"), weil die in Desigo CC eingerichtete Schnittstelle nach @sec:desigoccmechanik auf eine bestimmte Adresse verweist und ein Wechsel diese Zuordnung zerstören würde. Die Zuordnung von Rollen folgt aus @sec:desigocc: Desigo CC tritt als Modbus-Client auf, das Powercenter als Server, der den Registerraum unter Port 502 bereitstellt.
 
 Den Zugang in dieses Segment regelt eine vorgelagerte Firewall. Für den Aufbau sind dort die Ports 80 und 443 für #acro("HTTP") und #acro("HTTPS") sowie der Port 502 für Modbus #acro("TCP") freigegeben, wobei die ersten beiden den Zugang von SENTRON Powerconfig nach @sec:geraetekonfiguration tragen und der letzte den laufenden Datenpfad. Innerhalb des Segments wirkt diese Freigabe nicht, da Desigo CC und Powercenter dort unmittelbar benachbart sind. Der Schutz liegt somit an der Segmentgrenze und entspricht der Sache nach dem, was RB-06 verlangt. Ein Nachweis für den Betrieb beim Kunden ist damit gleichwohl nicht erbracht. Gezeigt ist die Freigabe an einem einzelnen Segment mit einem einzigen Strang, während RB-06 auf eine Anlage mit mehreren Strängen und weiteren Teilnehmern zielt.
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "letzten Satz bitte nochmal
-   umformulieren"
-   Claude: Der Satz sagte zweimal dasselbe und endete auf "sagt nichts aus".
-   Er benennt jetzt, was der Aufbau zeigt und was RB-06 daneben verlangt. */
-
 
 Auf der Gegenseite trägt ein eigens angelegter Treiber die Kommunikation. Er wird im Projekt in Desigo CC erzeugt, einem Netzwerk zugeordnet und gestartet, wie es @sec:desigoccmechanik beschreibt. Der Treiber hat auf die Gestalt des Datenmodells keinen Einfluss, bestimmt aber, ob und wie schnell Werte eintreffen. Das Abfrageintervall, das nach @sec:konzept einheitlich für alle angebundenen Geräte gilt, wird am Treiber auf eine Sekunde konfiguriert. Die Blockbildungsgrenze bleibt auf dem Vorgabewert des Treibers, der nach @src:desigoccenghelp bei einem Adressabstand von 16 liegt, sodass die Zusammenfassung benachbarter Register allein dessen eigener Regel folgt. Welche Last daraus auf der Leitung entsteht, ist keine Frage der Einstellung mehr, sondern am Telegrammverkehr abzulesen und in @sec:testdurchfuehrung gemessen.
 
-/* Anmerkung, teilweise erledigt am 08.09.2026: #kommentar[Zu bestätigen ist, dass die Blockbildungsgrenze am Aufbau tatsächlich unverändert geblieben ist. Trifft das zu, gehört der Vorgabewert des Treibers als Zahl an diese Stelle, damit sich die in @sec:testdurchfuehrung gemessene Blockbildung nachvollziehen lässt.]
-
-   Claude: Der Vorgabewert ist jetzt im Satz genannt. Die Engineering Help
-   fuehrt ihn unter den zusaetzlichen Konfigurationsparametern des
-   Modbus-Treibers als "maxGap", Vorgabe 16, zulaessiger Bereich 0 bis 100,
-   mit der Erlaeuterung, dass zwei aufeinanderfolgende Adressen zu einem
-   Leseblock zusammengefasst werden, wenn ihr Abstand kleiner als maxGap ist.
-   Offen bleibt allein die Bestaetigung durch den Autor, dass der Wert am
-   Aufbau tatsaechlich unveraendert geblieben ist. */
+// #kommentar[Zu bestätigen bleibt, dass die Blockbildungsgrenze des Modbus-Treibers am Aufbau tatsächlich auf dem Vorgabewert stand. Die Engineering Help führt sie als „maxGap“ mit der Vorgabe 16 und einem zulässigen Bereich von 0 bis 100; dieser Wert steht bereits im Satz und trägt die in @sec:testdurchfuehrung gemessene Blockbildung.]
 
 
 Die Adressierung auf der Zielseite folgt der Trennung von Gerätetyp und Geräteinstanz. Eine Schnittstelle ist durch die #acro("IP")-Adresse und den Unit Identifier bestimmt, und unter ihr steht genau ein Gerät @src:desigoccenghelp. Ein vollständiger Strang aus Datentransceiver und Endgeräten erscheint in Desigo CC damit nicht als ein Gerät mit Untergeräten, sondern als eine Reihe getrennter Schnittstellen mit derselben #acro("IP")-Adresse und unterschiedlichem Unit Identifier. Am Testaufbau sind das der Datentransceiver unter 255 und das Endgerät unter seiner bei der Kopplung vergebenen Adresse (siehe @sec:geraetekonfiguration). Beide Kennungen sind keine Festlegung dieses Aufbaus. Die 255 ist am Powercenter fest vergeben, und die Adresse des Endgeräts entsteht bei der Kopplung, sodass in jeder Anlage dieselbe Regel gilt.

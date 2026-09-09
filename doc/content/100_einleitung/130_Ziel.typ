@@ -4,12 +4,6 @@
 
 == Zielsetzung und Abgrenzung<sec:ziel>
 
-/* Anmerkung des Autors, erledigt: "Ziel aus der Anmeldung uebernehmen. Danach
-   die Abgrenzungen buendeln, die bisher verstreut in Kapitel 3 stehen:
-   Informationssicherheit nicht im Scope (siehe @sec:stakeholder), SENTRON
-   Powerconfig wird nicht abgeloest (siehe @sec:konzept), Schutzfunktion der
-   Geraete nicht Gegenstand (siehe @sec:systemanalyse), eigenes Objektmodell
-   fuer das Powercenter nicht gefordert." */
 
 Der folgende Abschnitt wurde aus der Anmeldung dieser Arbeit übernommen.
 
@@ -17,16 +11,6 @@ Ziel der Arbeit ist es, die Daten des SENTRON Powercenters und der mit ihm verbu
 
 Gegenstand ist allein die Abbildung zwischen dem Modbus-Registerraum des Powercenters und dem Objektmodell in Desigo CC. Die Schutzfunktion der Geräte, die Funkstrecke zum Powercenter, die elektrotechnische Installation und die Architektur von Desigo CC bleiben außerhalb der Betrachtung (siehe @sec:systemanalyse), ebenso die Gestaltung von Dashboards und Archivgruppen, die einer konkreten Anlage vorbehalten bleibt (siehe @sec:anforderungsvorbehalte). Auch die Ausgestaltung der Netzsicherheit ist nicht Gegenstand der Arbeit, da sie kundeneigenen Vorgaben folgt. Der Anforderungskatalog hält dafür lediglich einen Mindeststandard fest (siehe @sec:stakeholder).
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "Rb-05 und rb-07 sind ein
-   bisschen früh in der Arbeit, kann man das hier rausnehmen und umformulieren?"
-
-   Claude: Die Abgrenzung nennt an dieser Stelle keine Kennungen des
-   Anforderungskatalogs mehr, weil dieser erst in Kapitel 3 aufgestellt wird.
-   Aus "RB-05 bis RB-07 benennen dafuer lediglich einen Mindeststandard" ist
-   "Der Anforderungskatalog haelt dafuer lediglich einen Mindeststandard fest"
-   geworden, aus dem Nachweis "nach RB-04" der Nachweis "nach einer
-   Randbedingung des Katalogs". Beide Verweisziele sind unveraendert, die
-   Kennungen selbst stehen weiterhin in @sec:rb und @sec:stakeholder. */
 
 Hinzu kommen zwei Festlegungen zum Umfang der Lösung. SENTRON Powerconfig wird nicht abgelöst, da die Parametrierung der Geräte dort und damit bei der Elektrofachkraft verbleibt, während der Schwerpunkt der Umsetzung auf dem Objektmodell des #acro("ECPD") liegt und die Typbeschreibung des Powercenters schmal gehalten und allein auf Import und Instanzbildung geprüft ist (siehe @sec:konzept). Der Nachweis erfolgt nach einer Randbedingung des Katalogs an einem Powercenter 1100 mit einem #acro("ECPD"), weshalb sich über das Verhalten eines voll bestückten Strangs unter Betriebsbedingungen keine Aussage belegen lässt (siehe @sec:anforderungsabgleich).
 

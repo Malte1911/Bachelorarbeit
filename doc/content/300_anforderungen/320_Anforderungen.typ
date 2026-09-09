@@ -81,19 +81,6 @@ Für die spätere Prüfung ist eine weitere Unterscheidung wesentlich, die der K
 
 Die funktionalen Anforderungen lassen sich vier Wirkbereichen zuordnen, die sich aus dem Datenpfad selbst ergeben.
 
-/* Anmerkungen des Autors, erledigt am 08.09.2026:
-   "kannst du das hier noch so ändern dass das nicht diese fette Schrift ist?"
-   "hier das bitte auch noch ändern mit der fetten Schrift"
-   "den Satz hier mit der Verneinung bitte noch ändern"
-   "in den drei Absätzen die davor sind bitte noch so ändern, dass keine
-    semikolons mehr vorkommen"
-
-   Claude: Die vier fett gesetzten Absatzanfaenge sind zu Zwischenueberschriften
-   der vierten Ebene geworden, wie es CLAUDE.md fuer diesen Fall vorsieht. Die
-   Semikolons sind im gesamten Abschnitt zu Punkten aufgeloest, ebenso die
-   beiden erlaeuternden Doppelpunkte. Der Satz "Die geforderte korrekte
-   Beschriftung ist keine Formalie" ist ohne die Verneinung neu gefasst. In
-   FA-10 sind zugleich die beiden Spiegelstriche entfallen. */
 
 ==== Anbindung und Übertragung
 
@@ -224,7 +211,7 @@ NFA-06 ist die einzige nichtfunktionale Anforderung, die keinem Anwendungsfall e
 
 RB-01 bis RB-04 beschreiben die Ausstattung, unter der die Arbeit entsteht. Bemerkenswert ist RB-02, weil die Randbedingung eine Annahme enthält: Die Gleichwertigkeit von Powercenter 1100 und 2000 wird vorausgesetzt, aber nicht geprüft. Für die Aussagekraft der Ergebnisse ist das insofern von Bedeutung, als die Validierung ausschließlich an einem Powercenter 1100 erfolgt (RB-04); eine Übertragung auf das Powercenter 2000 ist damit begründet, aber nicht nachgewiesen. Das Powercenter 1000 scheidet als Grundlage aus, da es das #acro("ECPD") erst ab Firmware-Version 3.0 und ohne die per Firmware-Update nachgelieferten Gerätefunktionen unterstützt @src:sentronsystemhandbuch.
 
-RB-01 nennt SENTRON Powerconfig in der Desktop-Variante, und diese Einschränkung ist begründungsbedürftig. Das Werkzeug steht daneben als mobile Anwendung zur Verfügung, die den Zugang über #acro("BLE") vor Ort eröffnet und für die Inbetriebnahme im Feld naheliegt. In eigenen Vorversuchen an den Geräten vor Beginn der Bearbeitung erwies sie sich jedoch als nicht verlässlich. Das Hinzufügen des Powercenters schlug wiederholt fehl, und ein bereits hinzugefügtes #acro("ECPD") wurde anschließend häufig nicht mehr angezeigt. Auch die fachliche Betreuung riet von ihrem Einsatz ab, gestützt auf die Erfahrungen des Inbetriebnahmepersonals @src:ulmer2026. Für das Datenmodell bleibt die Festlegung ohne Folgen, da SENTRON Powerconfig in beiden Ausführungen außerhalb des laufenden Datenpfads steht (siehe @sec:systemanalyse). Sie ist gleichwohl festzuhalten, weil die in @sec:geraetekonfiguration beschriebenen Einstellungen des Testaufbaus auf diesem Weg entstanden sind.// #kommentar[Der Tag der Auskunft ist in resources/quellen.bib mit dem 15. Juni 2026 nur angesetzt und vor der Abgabe zu präzisieren. Zu überlegen ist außerdem, ob die beiden Beobachtungen aus den Vorversuchen noch um den Gerätestand ergänzt werden, unter dem sie aufgetreten sind.]
+RB-01 nennt SENTRON Powerconfig in der Desktop-Variante, und diese Einschränkung ist begründungsbedürftig. Das Werkzeug steht daneben als mobile Anwendung zur Verfügung, die den Zugang über #acro("BLE") vor Ort eröffnet und für die Inbetriebnahme im Feld naheliegt. In eigenen Vorversuchen an den Geräten vor Beginn der Bearbeitung erwies sie sich jedoch als nicht verlässlich. Das Hinzufügen des Powercenters schlug wiederholt fehl, und ein bereits hinzugefügtes #acro("ECPD") wurde anschließend häufig nicht mehr angezeigt. Auch die fachliche Betreuung riet von ihrem Einsatz ab, gestützt auf die Erfahrungen des Inbetriebnahmepersonals @src:ulmer2026. Für das Datenmodell bleibt die Festlegung ohne Folgen, da SENTRON Powerconfig in beiden Ausführungen außerhalb des laufenden Datenpfads steht (siehe @sec:systemanalyse). Sie ist gleichwohl festzuhalten, weil die in @sec:geraetekonfiguration beschriebenen Einstellungen des Testaufbaus auf diesem Weg entstanden sind.// #kommentar[Der Tag der Auskunft ist seit dem 09.09.2026 geklärt, src:ulmer2026 trägt den 4. August 2026 und die Form „persönliches Gespräch“. Offen bleibt allein, ob die beiden Beobachtungen aus den Vorversuchen noch um den Gerätestand ergänzt werden, unter dem sie aufgetreten sind.]
 
 RB-05 bis RB-07 übernehmen die drei Voraussetzungen, die @sec:integrationswege aus der fehlenden Verschlüsselung des gewählten Wegs abgeleitet hat. Sie sind keine Empfehlungen, sondern Bedingung eines vertretbaren Betriebs, beschreiben dabei aber nur einen Mindeststandard und ersetzen kein Sicherheitskonzept.
 

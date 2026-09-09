@@ -37,16 +37,6 @@ Die Ergebnisse dieser Arbeit sind an die Stände der eingesetzten Software gebun
   caption: [Eingesetzte Werkzeuge, ihre Aufgabe im Rahmen der Arbeit und ihr Versionsstand]
 )<tab:werkzeuge>
 
-/* Anmerkung des Autors, erledigt: "Bitte die vier Versionsstände eintragen und
-   beim Modbus-Werkzeug zusätzlich den Produktnamen, da die Zeile sonst keinen
-   Nachvollzug erlaubt. Falls weitere Werkzeuge zum Einsatz kamen, die für die
-   Ergebnisse bedeutsam sind, gehören sie in dieselbe Tabelle." */
-
-/* Anmerkung des Autors, erledigt: "Bitte ergänzen, welcher Stand von Desigo CC
-   am Testaufbau tatsächlich installiert ist und ob es sich um eine
-   vollständige Installation oder um eine Testinstanz handelt. Weicht der Stand
-   von dem in NFA-04 geforderten V9.0 ab, ist das kein Mangel des Aufbaus, muss
-   aber im Anforderungsabgleich ausgewiesen werden." */
 
 Zu Desigo CC gehört eine Angabe, die sich aus der Versionsnummer allein nicht ergibt. Am Testaufbau liegt eine vollständige Installation der Standardausführung vor und keine eingeschränkte Test- oder Demonstrationsinstanz. Für die Prüfung ist das wesentlich, denn eine eingeschränkte Instanz könnte Funktionen ausblenden, deren Fehlen sonst dem Datenmodell zugerechnet würde. Der in NFA-04 geforderte Nachweis der Verträglichkeit bezieht sich damit auf einen Stand der Plattform, wie er auch im Betrieb anzutreffen ist.
 

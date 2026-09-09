@@ -4,9 +4,6 @@
 
 == Aufbau der Arbeit<sec:aufbau>
 
-/* Anmerkung des Autors, erledigt: "Leserfuehrung ueber die Kapitel, eine knappe
-   Seite. Nicht die Methodik beschreiben, die steht in @sec:vorgehensmodell,
-   sondern nur, welches Kapitel welche Frage beantwortet." */
 
 Die Arbeit ist entlang des in @sec:vorgehensmodell beschriebenen Vorgehens gegliedert. Sie führt vom Verständnis des Systems über die Anforderungen zur Umsetzung und von dort zurück zur Prüfung.
 

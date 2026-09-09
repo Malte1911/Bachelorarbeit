@@ -17,7 +17,7 @@ Innerhalb des Projekts wird anschließend ein Treiber für das Subsystemnetzwerk
 
 Beim Anlegen der Geräte ist eine Einstellung erforderlich, die sich aus der Dokumentation nicht ergibt. Für jedes #acro("ECPD") ist die Kommunikation ausdrücklich als Gateway-Kommunikation zu konfigurieren, da der Unit Identifier andernfalls unwirksam bleibt und das Gerät nicht antwortet. Der Grund liegt in der Bauform des Strangs. Das Powercenter ist kein Gerät mit Untergeräten, sondern ein Übersetzer, der die Funkstrecke auf Modbus abbildet und die Endgeräte hinter einer einzigen #acro("IP")-Adresse führt. Dieselbe Unterscheidung findet sich im #acro("PDE") wieder, dessen Online-Modus ein Feld für den Unit Identifier nur dann anbietet, wenn das Gerät als über ein Gateway erreichbar gekennzeichnet ist @src:pdemanual. Ohne diese Kennzeichnung adressiert die Zielplattform stets das Powercenter selbst.
 
-#kommentar[Die genaue Bezeichnung der Einstellung in der Bedienoberfläche ist einzutragen, damit der Schritt nachvollziehbar bleibt. Zu ergänzen ist außerdem, ob die Einstellung je Gerät oder je Schnittstelle vorgenommen wird und ob sie auch für das Powercenter unter dem Unit Identifier 255 erforderlich ist.]
+In der Bedienoberfläche ist dafür ein Haken für die Gateway-Kommunikation zu setzen, der daraufhin ein Eingabefeld für den Unit Identifier freigibt. Die Einstellung hängt am einzelnen Gerät und ist deshalb bei jedem neu angelegten #acro("ECPD") erneut vorzunehmen. Bei einem voll bestückten Strang mit 24 Endgeräten ist das ein wiederkehrender Handgriff, den weder die Typbeschreibung noch der Import abnehmen kann, weshalb er in #ref(<apx:anwenderdoku>, supplement: [Anhang]) als eigener Schritt aufgeführt ist.
 
 
 ==== Import und Instanzen
@@ -40,9 +40,7 @@ Deutlicher zeigt sich die Wirkung der Modellierung an den Kommandos. @img:bedien
   caption: [Bedienoberfläche von Desigo CC mit den beiden als digitale Ausgänge angelegten Kommandos. Der Blinkmodus ist bedienbar, das elektronische Schalten nicht, da die Schaltfläche nur den Wert 1 sendet],
 )<img:bedienung_digitalausgaenge>
 
-Die Ursache liegt im Zusammenspiel beider Werkzeuge. Ein im #acro("PDE") als digitaler Ausgang angelegtes Kommando erscheint in Desigo CC als Schaltfläche, und die Plattform fragt den Zustand des Geräts vor dem Schalten nicht ab. Sie kann deshalb weder den anstehenden Zustand anzeigen noch den jeweils entgegengesetzten Wert senden. Über die erweiterte Bedienung bleibt das Kommando gleichwohl vollständig nutzbar, da sich dort jeder zulässige Wert und damit auch die Null von Hand setzen lässt. Der Mangel betrifft somit die Bedienbarkeit und nicht die Funktion.
-
-#kommentar[Diese Einschätzung geht auf eine Auskunft von Andreas Ulmer zurück. Der vorhandene Eintrag @src:ulmer2026 bezieht sich auf die mobile Anwendung und passt hier nicht. In quellen.bib ist ein zweiter Eintrag mit dem Datum dieser Auskunft anzulegen und an dieser Stelle zu zitieren.]
+Die Ursache liegt im Zusammenspiel beider Werkzeuge. Ein im #acro("PDE") als digitaler Ausgang angelegtes Kommando erscheint in Desigo CC als Schaltfläche, und die Plattform fragt den Zustand des Geräts vor dem Schalten nicht ab. Sie kann deshalb weder den anstehenden Zustand anzeigen noch den jeweils entgegengesetzten Wert senden @src:ulmer2026b. Über die erweiterte Bedienung bleibt das Kommando gleichwohl vollständig nutzbar, da sich dort jeder zulässige Wert und damit auch die Null von Hand setzen lässt. Der Mangel betrifft somit die Bedienbarkeit und nicht die Funktion.
 
 Aus dieser Beobachtung folgt die Festlegung, beide Kommandos wie die übrigen vier als schreibende Werte auszuführen. Eine Schaltfläche, die vorhanden ist, den Zustand nicht anzeigt und nur in eine Richtung wirkt, ist irreführender als gar keine. Die in @sec:umsetzung beschriebene Zuordnung der sechs Kommandos ist somit nicht am Werkzeug hergeleitet, sondern das Ergebnis dieser Übernahme.
 
@@ -55,41 +53,21 @@ An dieser Stelle hat sich auch gezeigt, dass die Zerlegung des Alarmregisters ni
 
 Die Alarmierung ist damit vollständig Sache der Projektierung. Was an dieser Stelle ergänzt würde, um die Meldungen zum Laufen zu bringen, müsste ein Techniker bei jeder Einrichtung erneut leisten, da es nicht in der Typbeschreibung abgelegt werden kann. Das ist nicht allein ein Mangel. Welche Meldung in einer Anlage als dringend gilt, welche in der Leitwarte erscheint und welche stumm bleibt, hängt am Betreiber und an der Anlage, und diese Entscheidung lässt sich in der Entwicklung eines Gerätetyps nicht sinnvoll vorwegnehmen. Die in @sec:umsetzung gezogene Folgerung für FA-04 und FA-05 bestätigt sich hier von der praktischen Seite.
 
-/* Claude: Abschnitt aus den Stichpunkten des Autors ausformuliert. Alle sieben
-   Notizen sind aufgegangen:
-   - Powermanager-Erweiterung ueber den Projektmanager -> Einrichtung
-   - Treiber fuer das Subsystemnetzwerk und Abfrageintervall 1 s -> Einrichtung,
-     mit Begruendung ueber @tab:modbustreiber und die Empfehlung des
-     Systemhandbuchs
-   - Gateway-Kommunikation je ECPD -> Einrichtung, als eigener Befund
-   - Begrenzung auf das, was der PDE bietet, samt der Ueberlegung zur
-     Alarmprojektierung -> Vorspann und letzter Abschnitt
-   - Bildschirmabzug zu den Schaltflaechen -> Darstellung und Bedienung
-   - BLOB-Befund -> nur kurz aufgegriffen, ausgefuehrt ist er in @sec:umsetzung
-   - Seriennummer in der Messwertansicht -> Darstellung und Bedienung. Die
-     urspruengliche Notiz lautete "nur in der Messwertansicht"; der Autor hat
-     am 08.09.2026 nachgesehen, sie steht in beiden Ansichten. Der Absatz
-     stellt das jetzt so dar und zieht daraus keinen Befund mehr.
-
-   Zur Gateway-Kommunikation ist die Parallele zum Online-Modus des PDE
+/* Claude: Zur Gateway-Kommunikation ist die Parallele zum Online-Modus des PDE
    ergaenzt, wo ein Feld fuer den Unit Identifier ebenfalls nur bei
    Gateway-Anbindung erscheint (belegt ueber @src:pdemanual, siehe
-   doc/resources/pde_referenz.md, Abschnitt 9). Das erklaert die Beobachtung,
-   ohne ihr vorzugreifen.
+   doc/resources/pde_referenz.md, Abschnitt 9). Die Bedienschritte selbst hat
+   der Autor am 09.09.2026 nachgetragen; sie stehen zugleich in
+   @apx:anwenderdoku, weil sie bei jeder Instanz erneut anfallen. Ob der Haken
+   auch fuer das Powercenter unter Unit Identifier 255 noetig ist, ist bewusst
+   nicht behauptet.
 
-   Die Notiz "funktioniert aber sowieso nicht von daher lowkey irrelevant" ist
-   nicht als Abwertung uebernommen. Der Gedanke, dass die Alarmprojektierung
-   sinnvollerweise beim Errichter liegt, ist sachlich gefuehrt und mit der
-   bereits in @sec:fa getroffenen Feststellung verknuepft.
+   Der Bibliographieeintrag zur Auskunft von Andreas Ulmer ueber das Verhalten
+   digitaler Ausgaenge ist als src:ulmer2026b angelegt (Gespraech am
+   20.08.2026). Der aeltere Eintrag src:ulmer2026 betrifft die mobile Anwendung
+   und ist hier bewusst nicht zitiert.
 
-   Offen und als #kommentar markiert sind noch zwei Punkte: die genaue
-   Bezeichnung der Gateway-Einstellung und der fehlende Bibliographieeintrag
-   zur Auskunft von Andreas Ulmer. Der dritte, die Ursache der vermeintlich
-   nur in einer Ansicht sichtbaren Seriennummer, hat sich am 08.09.2026
-   erledigt, weil die Beobachtung selbst nicht zutraf. Der vorhandene Eintrag src:ulmer2026 betrifft
-   die mobile Anwendung und ist hier bewusst nicht zitiert.
-
-   Nicht aufgenommen ist T-01 und T-02 als Nachweis. Der Abschnitt beschreibt
+   Nicht aufgenommen sind T-01 und T-02 als Nachweis. Der Abschnitt beschreibt
    die Entwicklung, die Pruefung gehoert nach @sec:testdurchfuehrung. */
 
 /* Claude: Am 02.09.2026 gekuerzt. Der Schlussabsatz wiederholte die

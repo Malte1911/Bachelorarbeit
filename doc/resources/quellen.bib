@@ -162,6 +162,11 @@ keywords = {ICS security, Digital twins, Sensor networks, Adversary emulation, T
 abstract = {Cyberattacks pose significant risks to the safety and functionality of industrial control systems (ICS), particularly in critical sectors such as water. Understanding the implications of these cyberattacks is essential for evaluating their environmental and economic repercussions to develop defensive strategies and implement security mechanisms. This study seeks to create a controlled and reproducible virtualised ICS testbed, enabling a risk-free environment for cybersecurity testing. Based on the IEC 62264 Industrial Automation Pyramid (IAP), the proposed virtual ICS testbed features a scalable multi-layered network architecture that supports multiple ICS protocols. This case study features an Operational Technology (OT) environment with a digital twin of a Wastewater Treatment Plant (WWTP) developed using MATLAB/Simulink, OpenPLC and SCADA-LTS. The MITRE ATT&CK adversary emulation technique was utilised to assess the potential impacts of Modbus/TCP protocol attacks on a WWTP industrial process by targeting levels 1 and 2 of the IAP. The findings highlight the necessity for threat emulation to simulate real-world attack scenarios, vulnerability assessments, and operational impact analysis. Furthermore, establishing robust detection mechanisms guarantees that threats are identified early, minimising potential risks to operational integrity and environmental safety. In conclusion, the significance of creating ICS testbeds for cybersecurity testing is emphasised, ultimately suggesting directions for future research.}
 }
 
+% GEPRUEFT am 09.09.2026: Der Autor hat die Seitenzaehlung an der benutzten
+% Fassung nachgesehen, 1--9 stimmt. Damit ist der Eintrag vollstaendig. Der
+% Hinweis, dass verbreitete Nachdrucke 328--338 zaehlen, ist hier nur noch
+% festgehalten, damit die Angabe bei einer spaeteren Durchsicht nicht faelschlich
+% als Fehler gelesen wird.
 @inproceedings{src:royce1970,
   author = {Royce, Winston W.},
   title = {Managing the Development of Large Software Systems},
@@ -228,58 +233,96 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 % wird zusaetzlich vom Systemhandbuch @src:sentronsystemhandbuch bestaetigt.
 % ANMERKUNG: Ausgabestaende und Aenderungen (A1, A2) sind vor Abgabe gegen den
 % DIN-Katalog gegenzulesen, insbesondere bei IEC 61008-1 und IEC 61009-1.
+% GEPRUEFT am 09.09.2026: Der Autor hat die Ausgabestaende einzeln aus dem
+% Katalog herausgeschrieben; die Eintraege sind daraufhin berichtigt. Drei
+% stimmten nicht: 60898-1 stand als Ausgabe 2.1 (2019) "konsolidiert mit
+% AMD1:2019" und ist jetzt die Basisausgabe 2.0 (2015-03); 62606 stand als
+% Ausgabe 1.2 (2022) "konsolidiert mit AMD1:2017 und AMD2:2022" und ist jetzt
+% die Basisausgabe 1.0 (2013-07). Beide Konsolidierungen existieren zwar, lagen
+% dem Autor aber nicht vor, weshalb sie nicht zitiert werden. Der dritte Fall
+% ist 62020-1, siehe die Anmerkung an dem Eintrag selbst.
+% Die sechs Normen bezeichnen die Geraetegattungen, aus denen sich das ECPD
+% zusammensetzt, und sind deshalb einzeln zitiert:
+%   IEC 60898-1  Leitungsschutzschalter (MCB), Wechselstrom
+%   IEC 61008-1  Fehlerstrom-Schutzschalter ohne Ueberstromschutz (RCCB)
+%   IEC 61009-1  Fehlerstrom-Schutzschalter mit Ueberstromschutz (RCBO)
+%   IEC 62606    Fehlerlichtbogen-Schutzeinrichtungen (AFDD)
+%   IEC 60947-2  Leistungsschalter, industrielle Schaltgeraete
+%   IEC 62020-1  Differenzstrom-Ueberwachungsgeraete (RCM)
+% Die Eintraege tragen weder DOI noch URL; sie sind ueber Normnummer, Titel und
+% Ausgabestand bezeichnet, bei zwei Normen einschliesslich der konsolidierten
+% Aenderungen.
 @manual{src:iec60898,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 60898-1: Electrical accessories -- Circuit-breakers for overcurrent protection for household and similar installations -- Part 1: Circuit-breakers for a.c. operation, Ausgabe 2.1 (2019), konsolidiert mit AMD1:2019},
-  edition = {2.1, konsolidiert mit AMD1:2019},
+  title = {IEC 60898-1: Electrical accessories -- Circuit-breakers for overcurrent protection for household and similar installations -- Part 1: Circuit-breakers for a.c. operation, Ausgabe 2.0 (2015-03)},
+  edition = {2.0},
   organization = {IEC},
   address = {Genf},
-  year = {2019}
+  year = {2015},
+  month = {März}
 }
 
 @manual{src:iec61008,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 61008-1: Residual current operated circuit-breakers without integral overcurrent protection for household and similar uses (RCCBs) -- Part 1: General rules, Ausgabe 4.0 (2024)},
+  title = {IEC 61008-1: Residual current operated circuit-breakers without integral overcurrent protection for household and similar uses (RCCBs) -- Part 1: General rules, Ausgabe 4.0 (2024-11)},
   edition = {4.0},
   organization = {IEC},
   address = {Genf},
-  year = {2024}
+  year = {2024},
+  month = {November}
 }
 
 @manual{src:iec61009,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 61009-1: Residual current operated circuit-breakers with integral overcurrent protection for household and similar uses (RCBOs) -- Part 1: General rules, Ausgabe 4.0 (2024)},
+  title = {IEC 61009-1: Residual current operated circuit-breakers with integral overcurrent protection for household and similar uses (RCBOs) -- Part 1: General rules, Ausgabe 4.0 (2024-11)},
   edition = {4.0},
   organization = {IEC},
   address = {Genf},
-  year = {2024}
+  year = {2024},
+  month = {November}
 }
 
 @manual{src:iec62606,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 62606: General requirements for arc fault detection devices, Ausgabe 1.2 (2022), konsolidiert mit AMD1:2017 und AMD2:2022},
-  edition = {1.2, konsolidiert mit AMD1:2017 und AMD2:2022},
+  title = {IEC 62606: General requirements for arc fault detection devices, Ausgabe 1.0 (2013-07)},
+  edition = {1.0},
   organization = {IEC},
   address = {Genf},
-  year = {2022}
+  year = {2013},
+  month = {Juli}
 }
 
 @manual{src:iec60947,
   author = {{International Electrotechnical Commission}},
-  title = {IEC 60947-2: Low-voltage switchgear and controlgear -- Part 2: Circuit-breakers, Ausgabe 6.0 (2024)},
+  title = {IEC 60947-2: Low-voltage switchgear and controlgear -- Part 2: Circuit-breakers, Ausgabe 6.0 (2024-09)},
   edition = {6.0},
   organization = {IEC},
   address = {Genf},
-  year = {2024}
+  year = {2024},
+  month = {September}
 }
 
+% ABWEICHENDE FORM, bewusst: Als einziger der sechs Eintraege bezeichnet dieser
+% nicht die internationale IEC-Ausgabe, sondern die deutsche Uebernahme, weil
+% der Autor am 09.09.2026 diese vorliegen hatte. DIN EN IEC 62020-1:2021-10 ist
+% die deutsche Fassung von IEC 62020-1:2020; inhaltlich identisch, aber ein
+% anderes Dokument mit eigenem Ausgabedatum. Zitiert wird, was eingesehen wurde.
+% TITEL BESTAETIGT am 09.09.2026: Der Autor hat den Wortlaut vom Titelblatt
+% abgeschrieben, er steht unten unveraendert. Wichtig ist der Klammerzusatz
+% "IEC 62020-1:2020 + COR1:2020": die deutsche Fassung uebernimmt die
+% internationale Ausgabe einschliesslich des Corrigendums 1 von 2020. Der
+% Eintrag bezeichnet damit genau das eingesehene Dokument.
+% Die Uneinheitlichkeit gegenueber den fuenf IEC-Eintraegen ist vom Autor am
+% 09.09.2026 ausdruecklich so entschieden und bleibt bestehen.
 @manual{src:iec62020,
-  author = {{International Electrotechnical Commission}},
-  title = {IEC 62020-1: Electrical accessories -- Residual current monitors (RCMs) -- Part 1: RCMs for household and similar uses, Ausgabe 1.0 (2020)},
-  edition = {1.0},
-  organization = {IEC},
-  address = {Genf},
-  year = {2020}
+  author = {{DIN Deutsches Institut für Normung}},
+  title = {DIN EN IEC 62020-1: Elektrisches Installationsmaterial -- Differenzstrom-Überwachungsgeräte (RCMs) -- Teil 1: RCMs für Hausinstallationen und ähnliche Verwendungen (IEC 62020-1:2020 + COR1:2020); Deutsche Fassung EN IEC 62020-1:2021, Ausgabe Oktober 2021},
+  edition = {Oktober 2021},
+  organization = {DIN},
+  publisher = {Beuth Verlag},
+  address = {Berlin},
+  year = {2021},
+  month = {Oktober}
 }
 
 % Eintrag von Claude ergaenzt: Uebersichtsartikel zum Stand der Technik bei
@@ -357,13 +400,10 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
   urldate = {2026-8-10}
 }
 
-% Eintrag von Claude ergaenzt auf Anweisung des Autors, der die Fundstelle
-% benannt hat. ACHTUNG: Die Beitragsseite laedt ihren Inhalt per JavaScript nach
-% und war maschinell nicht auslesbar; Titel und Beitrags-ID sind der vom Autor
-% angegebenen URL entnommen, Jahr und Ausgabestand sind nicht belegt und vor
-% Abgabe am Beitrag selbst zu pruefen. Die im Text belegten Aussagen zum
-% Importweg wurden gegen die Bedienungsanleitung des Powercenter 3000
-% gegengelesen.
+
+% GEPRUEFT am 09.09.2026: Jahr und Angaben vom Autor am Beitrag selbst
+% nachgesehen und eingetragen. Die Seite laedt ihren Inhalt per JavaScript,
+% weshalb die Angaben nicht maschinell zu bestaetigen waren.
 @online{src:pdejsonimport,
   url = {https://support.industry.siemens.com/cs/document/109798692},
   author = {{Siemens AG}},
@@ -473,13 +513,12 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 % ---------------------------------------------------------------------------
 % Muendliche Auskuenfte
 % ---------------------------------------------------------------------------
-% OFFEN (Stand 01.09.2026, vom Autor selbst nachzutragen): Beide Eintraege
-% dieses Abschnitts tragen ein angesetztes und kein belegtes Datum, und beiden
-% fehlt die vom Gutachten geforderte Angabe zu Rolle, Kontext und Form der
-% Auskunft. Der Autor hat zugesagt, das vor der Abgabe zu pruefen und zu
-% korrigieren. Nachzutragen sind:
-%   - src:ulmer2026: das tatsaechliche Datum, die Funktionsbezeichnung von
-%     Andreas Ulmer und die Form der Auskunft (Gespraech, Telefonat, E-Mail).
+% OFFEN (Stand 09.09.2026, vom Autor selbst nachzutragen): Nachzutragen sind
+% noch:
+%   - src:ulmer2026: das tatsaechliche Datum (der Monat ist bestaetigt, der Tag
+%     angesetzt) und die Form der Auskunft (Gespraech, Telefonat, E-Mail).
+%     Die Funktionsbezeichnung hat der Autor am 09.09.2026 nachgereicht und ist
+%     in beiden Ulmer-Eintraegen gesetzt.
 %   - src:siemenssupport2026: das tatsaechliche Datum und, falls die Antwort
 %     schriftlich vorliegt, die Vorgangs- oder Beitragsnummer des Supportfalls.
 %     Ein belegbarer Supportvorgang ist einer muendlichen Auskunft vorzuziehen.
@@ -490,23 +529,44 @@ abstract = {Modern critical infrastructures are continually exposed to new threa
 % Eintrag von Claude ergaenzt auf Anweisung des Autors. Muendliche Auskunft zur
 % Verwendbarkeit der mobilen Anwendung SENTRON Powerconfig, gestuetzt auf die
 % Erfahrungen des Inbetriebnahmepersonals. Andreas Ulmer nimmt die fachliche
-% Betreuung der Arbeit wahr. ACHTUNG: Der Monat ist vom Autor bestaetigt, der
-% Tag ist mit dem 15. Juni 2026 nur angesetzt.
+% Betreuung der Arbeit wahr und ist Portfoliomanager Desigo CC bei der Siemens
+% AG; die Funktionsbezeichnung hat der Autor am 09.09.2026 nachgereicht.
+% ACHTUNG: Der Monat ist vom Autor bestaetigt, der Tag ist nur angesetzt, und
+% die Form der Auskunft ist noch offen.
 @misc{src:ulmer2026,
   author = {Andreas Ulmer},
-  title = {Mündliche Auskunft zur Verwendbarkeit der mobilen Anwendung SENTRON Powerconfig, Siemens AG},
+  title = {Mündliche Auskunft zur Verwendbarkeit der mobilen Anwendung SENTRON Powerconfig, persönliches Gespräch, Portfoliomanager Desigo CC, Siemens AG},
   date = {2026-08-04}
+}
+
+% Eintrag von Claude ergaenzt auf Anweisung des Autors vom 09.09.2026. Zweite
+% Auskunft desselben Gespraechspartners, inhaltlich von src:ulmer2026 getrennt:
+% sie erklaert, warum ein als digitaler Ausgang angelegtes Kommando in Desigo CC
+% nur in eine Richtung schaltbar ist, weil die Plattform den Zustand des Geraets
+% vor dem Schalten nicht abfragt. Zitiert wird der Eintrag in
+% content/500_entwicklung/550_Uebernahme_DesigoCC.typ. Datum und Form sind vom
+% Autor bestaetigt (Gespraech am 20.08.2026), Tag und Monat also belegt.
+@misc{src:ulmer2026b,
+  author = {Andreas Ulmer},
+  title = {Mündliche Auskunft zum Verhalten digitaler Ausgänge in Desigo CC, persönliches Gespräch, Portfoliomanager Desigo CC, Siemens AG},
+  date = {2026-08-20}
 }
 
 % Eintrag von Claude ergaenzt. Auskunft des Siemens-Produktsupports zur
 % gesonderten Freischaltung des Fernschaltens ueber Modbus, die in der
 % vorliegenden Produktdokumentation nicht als Voraussetzung erfasst ist.
-% ACHTUNG: Datum und Form der Auskunft sind angesetzt, siehe den Hinweis oben.
-% Zitiert wird der Eintrag erst im Validierungsteil, in
-% content/600_validierung/630_Befunde.typ.
+% ERLEDIGT am 09.09.2026: Datum und Form sind vom Autor bestaetigt. Die
+% Auskunft erging schriftlich per E-Mail, nachdem der Autor den Produktsupport
+% unmittelbar angeschrieben hatte, und nicht ueber das Ticketsystem des Siemens
+% Industry Online Support. Eine Vorgangsnummer existiert deshalb nicht und ist
+% auch nicht nachtraeglich zu beschaffen; der Eintrag ist ueber Datum, Adressat
+% und Gegenstand bezeichnet. Anders als bei den beiden Ulmer-Eintraegen handelt
+% es sich damit nicht um eine muendliche, sondern um eine schriftliche Quelle.
+% Der Fliesstext nennt sie an keiner Stelle "muendlich".
+% Zitiert im Entwicklungs-, Validierungs- und Fazitteil.
 @misc{src:siemenssupport2026,
   author = {{Siemens AG}},
-  title = {Auskunft des Produktsupports zur Freischaltung des Fernschaltens über Modbus am SENTRON 5TY1 COM},
+  title = {Auskunft des Produktsupports zur Freischaltung des Fernschaltens über Modbus am SENTRON 5TY1 COM, per E-Mail auf direkte Anfrage},
   date = {2026-08-18}
 }
 

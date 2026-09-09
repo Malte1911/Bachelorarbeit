@@ -13,9 +13,6 @@ Gegenstand dieses Abschnitts sind ausschließlich die konkreten Exemplare des La
 
 Der Aufbau besteht aus einem SENTRON Powercenter 1100 als Datentransceiver und einem elektronischen Schutzschaltgerät 5TY1-3MF16 COM, also der $16space.thin"A"$ Nennstrom-Variante, als Endgerät, wie es RB-04 vorsieht. Beide Geräte entsprechen damit den in @sec:ecpd und @sec:powercenter beschriebenen Typen. Das Powercenter trägt den Firmwarestand 7.3.0, das #acro("ECPD") den Stand 5.5.0. Sowohl der Umfang der verfügbaren Gerätefunktionen als auch die Registerkarte sind an den Firmwarestand gebunden @src:sentronsystemhandbuch.
 
-/* Anmerkung des Autors, erledigt:
-   "Powercenter hat Firmware Version 7.3.0 und ECPD hat Version 5.5.0" */
-
 
 Ausgeführt ist der Aufbau als Laboraufbau auf einer Hutschiene. Auf derselben Hutschiene sitzt ein Netzteil mit $24space.thin"V"$, welches das Powercenter versorgt, während das #acro("ECPD") über eine gewöhnliche Steckdose mit $230space.thin"V"$ gespeist wird. Der gesamte Aufbau steht in einem Serverschrank in einem Testraum der Siemens AG.
 
@@ -27,11 +24,6 @@ Die Last wird über eine Steckdosenleiste am Abgang des #acro("ECPD") aufgeschal
 Dass diese Überlast am Aufbau vertretbar ist, beruht nicht auf der Kürze des Versuchs, sondern darauf, dass der Prüfstrom unterhalb der Belastbarkeit jedes Glieds der Kette bleibt. Der Testraum ist mit $16space.thin"A"$ abgesichert und während der Versuche ausschließlich mit dem Testaufbau belegt, Steckdose und Steckdosenleiste sind für denselben Strom bemessen. Die rund $15class("normal", ",")7space.thin"A"$ liegen darunter und damit unterhalb jedes Stroms, bei dem die vorgelagerte Absicherung anspricht, unabhängig von deren Bauart. Die Auslösung findet ausschließlich am #acro("ECPD") statt, dessen eingestellter Nennstrom nach @sec:geraetekonfiguration auf $10space.thin"A"$ herabgesetzt ist. Der Prüfstrom entspricht damit dem 1,57-fachen dieses Werts und liegt über dem 1,45-fachen, ab dem die Auslösecharakteristik der Klasse B nach @sec:ecpd_geraet eine Auslösung innerhalb einer Stunde vorsieht. Ohne diese Herabsetzung bliebe die Last unterhalb der Auslöseschwelle des Geräts.
 
 Drei weitere Festlegungen gehören zum Versuch. Die Last wird ausschließlich unter Aufsicht aufgeschaltet und spätestens nach zwei Minuten wieder abgeworfen, unabhängig davon, ob das Gerät zuvor abgeschaltet hat. Erreicht wurde diese Grenze nicht, da das #acro("ECPD") nach @sec:testdurchfuehrung deutlich früher in den Standby-Zustand überging. Zum Abschalten stehen der Bedienhebel des #acro("ECPD"), der Schaltbefehl aus Desigo CC und die vorgelagerte Absicherung unabhängig voneinander zur Verfügung, wofür der Serverschrank während des Versuchs geöffnet bleibt. Verantwortlich für den Aufbau und für die Durchführung der Lastversuche ist Andreas Soffner als verantwortliche Elektrofachkraft der Abteilung. @img:testaufbau zeigt den beschriebenen Aufbau auf der Hutschiene.
-
-/* Anmerkung des Autors, erledigt am 08.09.2026: "Referenz im Text auf
-   Abbildungen fehlt"
-   Claude: Ein Verweis auf @img:testaufbau steht jetzt im Text unmittelbar vor
-   der Abbildung. */
 
 
 #figure(
@@ -46,12 +38,6 @@ Drei weitere Festlegungen gehören zum Versuch. Die Last wird ausschließlich un
 
 Aus dem Aufbau folgt unmittelbar seine Reichweite. Da nur ein einziges Endgerät zur Verfügung steht, lässt sich das Verhalten eines voll bestückten Strangs mit bis zu 24 Endgeräten nicht messen, sondern nach @sec:testabdeckung nur rechnerisch abschätzen. Ebenso wird die in RB-02 vorausgesetzte Gleichwertigkeit des Powercenters 2000 an diesem Aufbau nicht geprüft. Beide Einschränkungen sind bereits bei den Testfällen benannt und werden im Validierungsteil bei der Bewertung der Ergebnisse wieder aufgegriffen.
 
-/* Anmerkung des Autors, in Fliesstext ueberfuehrt:
-   - 24 V Netzteil auch an Hutschiene im Testaufbau installiert, versorgt Powercenter
-   - ECPD mit 230V über normale Steckdose
-   - Überstrom wird simuliert mit Steckdosenleiste und zwei Wasserkochern,
-     Messungen ergeben ca. 18 A Leistung
-   - gesamter Aufbau im Testraum hier bei Siemens in einem Serverschrank aus dem Weg */
 
 /* Claude: Abschnitt nach den Vorgaben aus dem Kommentar ausformuliert
    (konkrete Exemplare statt generischer Kette, einleitende Begruendung ueber

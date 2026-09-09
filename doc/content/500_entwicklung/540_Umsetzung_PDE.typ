@@ -35,25 +35,13 @@ Der #acro("PDE") gibt die Ablage der Datenpunkte vor. Die Wurzelgruppen für Mes
 
 Zwei Stellen fügen sich nicht bruchlos. Für den Differenzstrom des #acro("RCM")-Tiefpasses hält das Werkzeug keine passende Untergruppe bereit; er ist keine gewöhnliche Strommessung, und eine eigene Untergruppe verbrauchte eine der fünf verfügbaren. Ebenso sind der Status des Gerätetests und der Zustand des automatischen Wiedereinschaltens ihrer Natur nach Zustände und keine Parameter, sie sind jedoch nicht als digitale Eingänge des Geräts ausgeführt.
 
-#kommentar[Hier ist einzutragen, wie beide Fälle tatsächlich abgelegt sind und ob überhaupt eine eigene Untergruppe angelegt wurde. Von der Antwort hängt der letzte Satz des Absatzes ab.]
+In beiden Fällen ist der bestehenden Gliederung der Vorzug gegeben worden. Der Differenzstrom des #acro("RCM")-Tiefpasses ist unter den Messwerten geführt, der Status des Gerätetests bei den Datenpunkten zur Prüfung. Eine eigene Untergruppe ist für keinen der beiden Fälle angelegt worden, sodass alle fünf zulässigen Untergruppen für eine spätere Erweiterung verfügbar bleiben. Der Preis dafür ist gering: Beide Datenpunkte sind an der Stelle auffindbar, an der ein Bediener sie zuerst sucht, und die Ungenauigkeit der Zuordnung bleibt eine Frage der Ordnung und nicht der Erreichbarkeit.
 
 Die Zuordnung ist dabei nicht allein eine Frage der Übersicht. Die konsumierende Applikation leitet aus Gruppe und Einheit ab, welche Datenpunkte sie für bestimmte Darstellungen überhaupt zur Auswahl stellt @src:pdemanual. Ein Leistungswert, der nicht in der Gruppe der Leistung mit passender Einheit liegt, steht dort nicht zur Verfügung, und zwar unabhängig davon, wie er benannt ist.
 
 Für die Benennung gibt das Werkzeug den Zeichensatz vor. Zulässig sind Ziffern, Buchstaben, Umlaute und der Unterstrich, während Leerzeichen und Sonderzeichen zurückgewiesen werden @src:pdemanual. Die Sprache der Bezeichner gibt es faktisch ebenfalls vor, denn seine Oberfläche, seine Gruppen und die von ihm bereits mitgelieferten Eigenschaften sind durchgehend englisch benannt @src:pdemanual. Wo eine passende Eigenschaft vorbelegt war, ist ihr Name deshalb unverändert übernommen, und die selbst angelegten Eigenschaften folgen derselben Sprache, damit die Typbeschreibung nicht zwei Benennungen nebeneinander führt. Übernommen sind darüber hinaus die in @tab:apx_ecpd_register vorgeschlagenen Bezeichner unverändert, also durchgehend kleingeschriebene englische Wortfolgen mit dem Unterstrich als Trennzeichen. Ein Präfix für den Gerätetyp ist bewusst nicht vergeben, da der Gerätebezug nach @sec:konzept an der Instanz hängt und nicht am Typ. Ein Bezeichner `ecpd_current` trüge dieselbe Information ein zweites Mal. Ein funktionales Präfix ist dagegen erforderlich, weil mehrere Alarme denselben Sachverhalt betreffen wie ein Zähler und sich sonst nicht unterscheiden ließen. Der Auslösezähler heißt `trip_counter`, der zugehörige Alarm `alarm_trip_counter`.
 
 Diese Festlegung wiegt schwerer, als sie zunächst erscheint. @src:balaji2018 führt die Schwierigkeit, Anwendungen von einem Gebäude auf ein anderes zu übertragen, wesentlich auf die uneinheitliche und herstellerspezifische Benennung der Datenpunkte zurück. Weil derselbe Messwert je nach Anlage anders und teils nur über undurchsichtige Kürzel bezeichnet ist, muss jede Anlage von Hand und mit Kenntnis des Einzelfalls erschlossen werden. Brick begegnet dem mit einem Schema oberhalb der Namen, was eine Typbeschreibung nicht leisten kann; sie kann die Ursache jedoch für die betrachtete Gerätefamilie von vornherein vermeiden, indem sie die Benennung einheitlich und sprechend festschreibt. Hinzu kommt eine Bindung durch das Werkzeug selbst: Sind zu einem Gerätetyp bereits Instanzen angelegt, so ist von einer nachträglichen Änderung des Namens oder des Typs einer Eigenschaft ausdrücklich abzuraten, da sämtliche darauf aufsetzenden Funktionen der Zielapplikation dadurch unterbrochen werden @src:pdemanual. Die Benennung ist damit keine Frage des Geschmacks, sondern nach dem ersten produktiven Einsatz praktisch unveränderlich, was unmittelbar auf die von NFA-03 geforderte Fortschreibbarkeit wirkt.
-
-/* Anmerkung des Autors, erledigt am 08.09.2026: "hier ist vielleicht noch
-   dazuzusagen, dass PDE auch englische Begriffe verwendet, weswegen man
-   bestehende Begriffe die schon voreingestellt sind übernommen hat und dann
-   die restlichen eigenen auch in englisch macht um es consistent zu halten"
-
-   Claude: Aufgenommen, allerdings einen Absatz weiter oben, wo die Benennung
-   festgelegt wird, und nicht hier, wo ihre Tragweite begruendet ist. Der
-   Absatz zur Benennung nennt jetzt drei Stufen: Zeichensatz, Sprache und
-   Praefix. Die Begruendung ueber die vorbelegten englischen Eigenschaften
-   steht dort im Wortlaut. Das Semikolon in beiden Saetzen ist zugleich
-   entfallen. */
 
 
 ==== Adressierung
@@ -95,16 +83,6 @@ Von den drei Vorbehalten, die @sec:datenpunkte offengelassen hat, klären sich z
 
 Das Register der Softwareversion dagegen bleibt wegen seiner gemischten Kodierung nicht dekodierbar und wird nach K-06 aus der Auswahl gestrichen, und zwar an beiden Gerätetypen, da es dort dieselbe Kodierung trägt. Der Verlust ist gering. Ein Firmware-Stand ändert sich allein durch ein Update, das Servicepersonal über SENTRON Powerconfig einspielt und das sich aus Desigo CC heraus weder auslösen noch veranlassen lässt. Der Datenpunkt beantwortete damit eine Frage, die im laufenden Betrieb nicht gestellt wird.
 
-/* Anmerkung des Autors, erledigt am 01.09.2026: Die Streichung ist nach der
-   Bestaetigung des Autors, dass sie beide Geraetetypen betrifft, ueberall
-   nachgezogen. Geaendert sind @tab:datenpunkte_ecpd (Stammdaten 8 -> 7, Summe
-   38 -> 37 Register und 65 -> 64 Datenpunkte), @tab:ausschluss_ecpd (16 -> 17
-   in der Gruppe K-06, Summe 115 -> 116), @tab:bilanz_datenpunkte (ECPD
-   152/37/64, Powercenter 211/16/18, Strang 363/53/82) sowie die Saetze dazu in
-   @sec:datenpunkte, @sec:zusammenfassung, in der Kurzfassung und im Abstract.
-   Die Reduktion betraegt weiterhin rund 85 Prozent. Im Anhang bleiben die
-   beiden Zeilen zu Register 22 nachrichtlich stehen und sind dort als
-   gestrichen gekennzeichnet. */
 
 Der dritte Vorbehalt betrifft den Zeit- und Synchronisationsstatus des Powercenters. Er ist in der Auswahl dokumentiert, in der Typbeschreibung des Powercenters jedoch ausgespart geblieben, da diese bewusst schmal gehalten ist. Seine Aufnahme bleibt damit eine kleine Ergänzung, die @sec:weiterentwicklung aufgreift.
 
@@ -117,35 +95,30 @@ Nach @tab:modbustreiber kennt ein Datenpunkt entweder die Lese- oder die Schreib
 
 Für die Kommandogruppe unterscheidet das Werkzeug einen fest hinterlegten von einem erst in der Zielapplikation vergebenen Kommandowert @src:pdemanual. Diese Unterscheidung bildet die beiden Arten von Kommandos des #acro("ECPD") genau ab. Vier der sechs Kommandos werden durch das Schreiben eines festen Musters ausgelöst, das die Registerkarte je Kommando vorgibt @src:sentronregistermap. Der geschriebene Wert trägt dabei keine Information über die gewünschte Handlung, sondern löst sie allein aus. Diese vier sind deshalb mit fest hinterlegtem Wert ausgeführt, sodass der Bediener eine Handlung anstößt und keinen Wert eingibt.
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "Beleg? Woher weiß ich dass
-   das gegen unbeabsichtigtes Schreiben schützen soll?"
-
-   Claude: Zutreffend, die Aussage war nicht belegbar. Die Registerkarte gibt
-   den je Kommando zu schreibenden Wert vor, sie nennt aber keinen Grund
-   dafuer. Der Schutz vor unbeabsichtigtem Schreiben war eine Deutung und ist
-   entfallen. Der Text sagt jetzt nur noch, was beobachtbar und belegt ist,
-   naemlich dass der Wert vorgegeben ist und keine Information traegt.
-   Die Folgerung fuer die Modellierung bleibt davon unberuehrt. Das Semikolon
-   ist mit der Umstellung ebenfalls entfallen. */ Das betrifft die Quittierung der Auslösemeldung, das Rücksetzen der #acro("RCM")-Alarme, den Anstoß des Gerätetests und das mechanische Trennen. Beim elektronischen Schalten und beim Blinkmodus trägt der geschriebene Wert dagegen die Richtung der Handlung; beide sind deshalb mit dynamischem Kommandowert ausgeführt.
+ Das betrifft die Quittierung der Auslösemeldung, das Rücksetzen der #acro("RCM")-Alarme, den Anstoß des Gerätetests und das mechanische Trennen. Beim elektronischen Schalten und beim Blinkmodus trägt der geschriebene Wert dagegen die Richtung der Handlung; beide sind deshalb mit dynamischem Kommandowert ausgeführt.
 
 Nicht schreibend geführt wird dagegen ein Teil dessen, was die Registerkarte als beschreibbar ausweist. Anlagenkennzeichen und Einbauort sind Zeichenketten, für die das Modell keine Eingabe vorsieht; sie werden gelesen und in SENTRON Powerconfig gesetzt. Für die Phaseninformation, den eingestellten Nennstrom und den Freigabestatus des elektronischen Schaltens gilt dasselbe, hier jedoch aus den Kriterien K-02 und K-03 heraus, da es sich um Inbetriebnahmewerte handelt. Von den Stammdaten ist damit kein Register schreibend abgebildet.
 
 Für UC-09 bedeutet das eine Einschränkung, die zu benennen ist: Die Beschriftung eines Abgangs ist in der Leitwarte sichtbar, aber nicht änderbar. Zugleich stützt der Befund die in @sec:konzept getroffene Arbeitsteilung, denn die Stammdaten bleiben dort, wo sie bei der Inbetriebnahme ohnehin vergeben werden.
 
-#kommentar[In #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]) ist die Spalte zur Zugriffsart entsprechend zu lesen. Sie gibt bislang die Zugriffsart des Registers wieder und nicht die im Modell umgesetzte Richtung. Ein Hinweis in der Vorbemerkung der Aufstellung genügt.]
+/* Offen beim Autor, Stand 09.09.2026: Die Spalte zur Zugriffsart in
+   @tab:apx_ecpd_register gibt die Zugriffsart des Registers wieder und nicht
+   die im Modell umgesetzte Richtung. Der Autor sieht sich die Spalte selbst
+   noch einmal an; im Fliesstext ist dazu auf seinen Wunsch nichts weiter
+   ergaenzt. */
 
 
 ==== Die Alarme aus dem Sammelregister
 
 Die 27 Alarmdatenpunkte aus Register 2560 sind das Ergebnis, an dem @sec:datenpunkte die Wirkung von K-07 am deutlichsten zeigt: Sie heben die Zahl der Datenpunkte je Gerät um 27 an, ohne ein einziges zusätzliches Register zu lesen. Voraussetzung dafür ist, dass sich die einzelnen Bits des Registers als eigene Datenpunkte herauslösen lassen. Der #acro("PDE") sieht dafür zwei Wege vor. Ein Wahrheitswert lässt sich über einen Subindex an eine Bitstelle binden, und ein #acro("BLOB") erlaubt es, aus einem zusammenhängenden Registerbereich einzelne Messpunkte über Position und Länge herauszuschneiden, wobei der Subindex innerhalb der #acro("BLOB")-Parameter ebenfalls zur Verfügung steht @src:pdemanual.
 
-Beide Wege sind am Testaufbau erprobt worden, und beide führen zu demselben Ergebnis. Der #acro("PDE") beschreibt die Zerlegung in beiden Fällen anstandslos und erzeugt eine gültige Typbeschreibung; erst deren Übernahme scheitert. Ein Eingriff von Hand in die erzeugte #acro("JSON")-Datei führt nicht weiter, da die Importregeln den veränderten Typ zurückweisen. Desigo CC kennt zwar einen Bitfeldtyp, der für genau diesen Zweck vorgesehen ist, doch lässt er sich über ein aus dem #acro("PDE") erzeugtes Objektmodell nicht erreichen, da die zugehörige Umsetzung dort nicht beschrieben werden kann.
+Beide Wege sind am Testaufbau erprobt worden, und beide führen zu demselben Ergebnis. Der #acro("PDE") beschreibt die Zerlegung in beiden Fällen anstandslos und erzeugt eine gültige Typbeschreibung. Der Import dieser Typbeschreibung in Desigo CC gelingt ebenfalls, der Objekttyp erscheint mit der zerlegten Eigenschaft in der Applikationssicht; erst der zugehörige Datenpunkt bleibt ohne gültigen Wert. Ein Eingriff von Hand in die erzeugte #acro("JSON")-Datei führt nicht weiter, da die Importregeln den veränderten Typ zurückweisen. Desigo CC kennt zwar einen Bitfeldtyp, der für genau diesen Zweck vorgesehen ist, doch lässt er sich über ein aus dem #acro("PDE") erzeugtes Objektmodell nicht erreichen, da die zugehörige Umsetzung dort nicht beschrieben werden kann.
 
 Dass beide Wege gleich enden, ist dabei der aussagekräftigere Teil der Beobachtung. Sie unterscheiden sich im Werkzeug erheblich, denn der eine bindet einen Wahrheitswert über einen Subindex an eine Bitstelle, der andere schneidet Messpunkte aus einem Registerbereich heraus. Auf der Leitung sind sie kaum zu unterscheiden, weil in beiden Fällen derselbe Registerbereich mit demselben Funktionscode gelesen wird. Ein gleiches Ergebnis bei verschiedener Beschreibung und gleichem Telegramm spricht dafür, dass die Ursache auf der auswertenden Seite liegt und nicht am Gerät.
 
 Der Produktsupport @src:siemenssupport2026 führt das Verhalten demgegenüber darauf zurück, dass der #acro("BLOB")-Typ mit dem Powercenter nicht zusammenarbeite. Diese Auskunft ist aus zwei Gründen nicht ohne weiteres auf den hier gegangenen Weg übertragbar. Modbus kennt den #acro("BLOB") nicht als eigene Betriebsart; er ist nach @sec:pde_datentypen eine Beschreibung auf der Seite des Lesenden, während das Gerät in beiden Fällen denselben zusammenhängenden Registerbereich ausliefert. Hinzu kommt, dass die Bezeichnung Powercenter zwei verschiedene Erzeugnisse benennt. Am Testaufbau steht nach @sec:testaufbau ein Powercenter 1100 als Datentransceiver, während der #acro("PDE") nach @sec:pde_ziel das Powercenter 3000 als Zielapplikation führt, also eine Software und kein Gerät der Verteilerebene. Für dieses wäre die Auskunft ohne weiteres schlüssig, da #acro("BLOB") und Zeitstempel neu hinzugekommene Datentypen sind und das Werkzeug ausdrücklich nur zu bestimmten Versionsständen der Zielapplikationen kompatibel ist @src:pdemanual. Auf den Weg über Desigo CC wirkte sie dann nicht.
 
-#kommentar[Die Zuschreibung der Ursache ist noch offen und in dieser Fassung bewusst als offen dargestellt. Entscheidbar ist sie an der Frage, an welcher Stelle der Vorgang abbricht. Verweigert Desigo CC bereits den Import der Typbeschreibung, so hat das Powercenter zu keinem Zeitpunkt eine Anfrage erhalten und scheidet als Ursache aus. Kommt der Import dagegen zustande und bleibt erst der Datenpunkt ohne gültigen Wert, so ist der Modbus-Verkehr zu betrachten, und ein Ausnahmecode des Geräts wäre der Beleg für die Auskunft des Supports. Der Online-Modus des #acro("PDE") hilft dabei nicht, da er nach @sec:pde_online weder #acro("BLOB") noch Wahrheitswerte abrufen kann. Sobald das geklärt ist, sind die drei Absätze oben zu einer Aussage zusammenzuziehen und @src:siemenssupport2026 mit Datum und Form der Auskunft zu belegen.]
+#kommentar[Die Zuschreibung der Ursache bleibt offen und ist in dieser Fassung bewusst als offen dargestellt. Die Stelle des Scheiterns ist seit dem 09.09.2026 geklärt: Der Import kommt zustande, erst der Datenpunkt bleibt ohne gültigen Wert. Damit entfällt die einfachere der beiden Möglichkeiten, denn das Powercenter ist nicht schon deshalb als Ursache ausgeschlossen, weil es nie eine Anfrage erhalten hätte. Zu unterscheiden bleiben die beiden Erklärungen an einem einzigen Merkmal, nämlich ob das Gerät die Leseanfrage auf diesen Registerbereich mit einem Ausnahmecode beantwortet. Trifft das zu, so stützt es die Auskunft des Supports; antwortet es normal und wertet erst Desigo CC den gelieferten Bereich nicht aus, so liegt die Ursache auf der auswertenden Seite. Die Aufzeichnung in @sec:testdurchfuehrung leistet das nicht, da sie am fertigen Modell mit dem Sammelregister als einer Zahl entstanden ist und nicht an der zerlegten Fassung. Erst wenn das geklärt ist, sind die drei Absätze oben zu einer Aussage zusammenzuziehen. Der Online-Modus des #acro("PDE") hilft dabei nicht, da er nach @sec:pde_online weder #acro("BLOB") noch Wahrheitswerte abrufen kann.]
 
 Für die Gestalt des Modells ist diese Frage allerdings nicht entscheidend. Gangbar ist der Weg in dieser Werkzeugkette nach beiden Erklärungen nicht, und die daraus folgende Festlegung fiele in beiden Fällen gleich aus. Bedeutsam ist die Unterscheidung erst für die Bewertung der Werkzeugkette, denn im einen Fall handelt es sich um eine Grenze des Geräts, im anderen um eine Bruchstelle zwischen zwei Werkzeugen, die nicht füreinander gebaut sind. Letzteres wäre die unmittelbare Folge dessen, was @sec:pde_ziel festhält: Desigo CC ist keine dokumentierte Zielapplikation des #acro("PDE"), und die Entsprechung der beiden #acro("JSON")-Formate, auf der die Lösung nach @sec:desigoccmechanik aufsetzt, reichte dann nur so weit wie die Menge der beiderseits unterstützten Datentypen. Für die einfachen Typen trüge sie, für die zusammengesetzten nicht.
 
@@ -157,8 +130,6 @@ Damit ist der Ausweg nicht bloß umständlich, sondern für den vorliegenden Zwe
 
 Umgesetzt ist stattdessen die Übertragung des Sammelregisters als ein Datenpunkt `alarm_state` vom Typ einer vorzeichenlosen Ganzzahl mit vier Byte. Die Zuordnung der Bits zu den einzelnen Meldungen ist in @tab:apx_ecpd_alarme vollständig dokumentiert, sodass sich die Zerlegung nachholen lässt, sobald ein tragfähiger Weg dafür besteht.
 
-#kommentar[Hier ist einzutragen, was tatsächlich in der Typbeschreibung steht. Denkbar sind neben der Übertragung als eine Zahl auch eine Aufnahme der Alarme als einzelne Wahrheitswerte, sofern der Weg über den Subindex doch gangbar war, oder ein Verzicht auf das Register. Der weitere Text hängt an dieser Angabe.]
-
 Die Folgen reichen über diesen Abschnitt hinaus und sind an vier Stellen nachzuziehen. Die Zahlen in @tab:datenpunkte_ecpd und @tab:bilanz_datenpunkte weisen 27 Alarmdatenpunkte je Gerät aus, die in dieser Form nicht entstehen. Die Begründung zu K-07 in @sec:auswahlkriterien stützt sich auf dasselbe Beispiel. FA-04 und FA-05 sind nach @sec:fa ohnehin nur im Zusammenwirken von Modell und Projektierung erfüllbar; diese Feststellung verschärft sich hier, da das Modell die Voraussetzung für die Auswertung nicht in der vorgesehenen Form schafft, und der Anforderungsabgleich in @sec:anforderungsabgleich hat das auszuweisen. Unberührt bleibt allein NFA-06, denn ob ein Alarm ab Werk eingeschaltet ist, entscheidet sich am Gerät und nicht im Modell.
 
 
@@ -166,30 +137,10 @@ Die Folgen reichen über diesen Abschnitt hinaus und sind an vier Stellen nachzu
 
 Zwei weitere Beobachtungen betreffen nicht einzelne Datenpunkte, sondern die Arbeit am Modell als solche.
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "ich habe es per Hand gemacht,
-   ich würde den Absatz also einfach weglassen"
-
-   Claude: Der Absatz ist entfernt, "Drei weitere Beobachtungen" ist zu "Zwei"
-   geworden. Er lautete:
-
-   "Die Eigenschaften sind nicht einzeln von Hand angelegt, sondern über das
-   Tabellenblatt eingelesen, das das Werkzeug zu diesem Zweck bereitstellt
-   @src:pdemanual. Da die Auswahl ohnehin als Arbeitsmappe vorliegt, entfällt
-   damit eine fehleranfällige Doppelerfassung. Von dieser Möglichkeit
-   ausgenommen sind gerade die aufwendigen Typen, also BLOB, BCD, Modulo-10 und
-   Zeitstempel @src:pdemanual. Für dieses Modell wirkt sich das kaum aus, weil
-   es ausschließlich Standardtypen verwendet."
-
-   Er beschrieb eine Moeglichkeit des Werkzeugs als tatsaechlich gegangenen
-   Weg, was nicht zutraf. Soll der Tabellenimport als Moeglichkeit erwaehnt
-   bleiben, gehoerte er nach @sec:weiterentwicklung und nicht hierher. */
-
 
 Der vierte Arbeitsschritt des Werkzeugs, in dem Vorbelegungen, Favoriten und Trenddarstellungen festgelegt werden, richtet sich nach @tab:pde_schritte an den SENTRON Powermanager. Für Desigo CC bleibt er ohne Wirkung, da die Darstellung dort im Projekt angelegt wird. Er ist deshalb nur so weit ausgefüllt, wie das Werkzeug es zum Speichern verlangt.
 
-Zuletzt ein Verhalten, für das sich keine Erklärung finden ließ. Nach dem Entfernen des #acro("BLOB")-Datentyps aus der Typbeschreibung stieg die Größe der #acro("JSON")-Datei von 22 auf 150 Megabyte, obwohl der Vorgang Inhalt entfernt und die Datei somit hätte verkleinern müssen. Das Werkzeug ließ die Datei danach nicht mehr öffnen, und ihr Import in Desigo CC nahm entsprechend viel Zeit in Anspruch. Für die Bewertung ist das kein Randbefund, denn NFA-03 verlangt, dass sich das Modell fortschreiben lässt, und eine Typbeschreibung, die sich nicht mehr öffnen lässt, ist nicht fortschreibbar. Für die Arbeitsweise folgt daraus, Zwischenstände zu sichern und eine Änderung an einem Datentyp nicht durch Löschen und Neuanlegen vorzunehmen.
-
-#kommentar[Zwei Punkte sind hier noch zu klären. Erstens ist bereits die Ausgangsgröße von 22 Megabyte für eine Typbeschreibung mit rund 40 Eigenschaften auffällig groß; falls sich dazu etwas sagen lässt, gehört es hierher. Zweitens ist zu entscheiden, ob dieser Absatz hier oder in @sec:befunde steht. Für diese Stelle spricht, dass er die Arbeit am Modell betrifft und keine Eigenschaft der Geräte ist; für @sec:befunde spricht, dass er wie die dortigen Beobachtungen erst bei der Erprobung zutage getreten ist.]
+Zuletzt zwei Beobachtungen zur Größe der erzeugten Datei, für die sich keine Erklärung finden ließ und die beide dem Werkzeug zuzurechnen sind. Schon die Ausgangsgröße ist auffällig: Eine Typbeschreibung mit rund 40 Eigenschaften belegt 22 Megabyte, also ein Vielfaches dessen, was der beschriebene Inhalt erwarten ließe. Nach dem Entfernen des #acro("BLOB")-Datentyps stieg diese Größe auf 150 Megabyte, obwohl der Vorgang Inhalt entfernt und die Datei somit hätte verkleinern müssen. Der Import in Desigo CC gelang mit dieser Datei zwar noch, benötigte dafür aber rund fünf Minuten und ist damit für die Einrichtung einer Anlage nicht mehr zumutbar. Ausschlaggebend ist gleichwohl das andere Werkzeug: Der #acro("PDE") ließ die Datei danach nicht mehr öffnen. Damit ist die Typbeschreibung unbrauchbar, unabhängig davon, wie lange die Zielplattform für ihren Import benötigt, denn eine Beschreibung, die sich nicht mehr bearbeiten lässt, kann nicht mehr gepflegt werden. Für die Bewertung ist das kein Randbefund, denn NFA-03 verlangt, dass sich das Modell fortschreiben lässt. Für die Arbeitsweise folgt daraus, Zwischenstände zu sichern und eine Änderung an einem Datentyp nicht durch Löschen und Neuanlegen vorzunehmen.
 
 
 ==== Ergebnis
@@ -202,67 +153,24 @@ Damit ist die unterste Ebene des absteigenden Astes des in @sec:vorgehensmodell 
 
 Ob sich die beiden Dateien in Desigo CC einlesen lassen und was dabei aus den einzelnen Eigenschaften wird, ist Gegenstand von @sec:uebernahme.
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "hier in dem Abschnitt
-   vielleicht nochmal sinnvoll einen Bezug zum V-Modell aufzubauen?"
 
-   Claude: Aufgenommen als vorletzter Absatz. Er leistet zwei Dinge, die
-   @sec:vorgehensmodell ankuendigt: Er ordnet die beiden Typbeschreibungen als
-   Artefakt der untersten Ebene des absteigenden Astes ein, und er loest die
-   dort angekuendigte Zusage ein, dass @sec:umsetzung den Rueckfluss aus der
-   Erprobung an den betroffenen Datenpunkten und Zahlen ausweist. Der Bezug
-   steht bewusst hier und nicht am Anfang des Abschnitts, weil er die zuvor
-   beschriebenen Befunde als Rueckkopplung deutet. */
+/* Claude: Belegt ist der Abschnitt aus @src:pdemanual (ueber
+   doc/resources/pde_referenz.md, dort mit Topic-IDs), @src:desigoccenghelp
+   ueber @tab:modbustreiber und @sec:desigocc_alarme sowie @src:balaji2018 und
+   @src:sentronregistermap. Nicht belegbare Aussagen stehen ausnahmslos in
+   #kommentar-Bloecken.
 
-/* Claude: Rohentwurf nach der mit dem Autor abgestimmten Gliederung. Die
-   Stichpunkte der bisherigen Fassung sind vollstaendig aufgegangen:
-   - Namensvorschlaege aus der Tabelle -> Gruppenzuordnung und Benennung
-   - BLOB nicht unterstuetzt, keine Maskierung, kein Bitfeldtyp erreichbar,
-     Untauglichkeit des Zahlenvergleichs -> Abschnitt zu den Alarmen
-   - kein Text als Eingabe -> Kommandos und schreibende Datenpunkte
-   - float64 funktioniert, Softwareversion nicht -> Datentypen
-   - Dateigroesse und Absturz -> Grenzen des Werkzeugs
-   Der Managementstationsalarm ist ebenfalls im Alarmabschnitt aufgenommen,
-   allerdings als verworfene Alternative.
+   Offen ist an diesem Abschnitt nur noch die Zuschreibung der Ursache beim
+   Alarmregister, siehe den #kommentar dort. Sie bleibt auf Entscheidung des
+   Autors vom 09.09.2026 offen, weil die dafuer noetige Aufzeichnung der
+   zerlegten Fassung nicht mehr vorliegt.
 
-   Zur Korrektur des Autors: Die Grenze von zwanzig Alarmzustaenden je
-   Bedingungsliste ist nicht das Hindernis, da je Bit ein Alarm mit zwei
-   Zustaenden vorgesehen ist. Der Text sagt das jetzt ausdruecklich und fuehrt das
-   Hindernis stattdessen auf die fehlende Maskierung und die Zahl moeglicher
-   Bitkombinationen zurueck. Die Zwanzig steht nur noch als nachgeordnete
-   Bemerkung an der Stelle, an der sie tatsaechlich griffe.
+   Zu pruefen bleibt eine Rueckwirkung: @tab:datenpunkte_ecpd,
+   @tab:bilanz_datenpunkte und die Begruendung zu K-07 fuehren die 27
+   Alarmdatenpunkte weiterhin als eigene Datenpunkte, obwohl sie in dieser Form
+   nicht entstehen. Der Absatz zu den Folgen benennt das ausdruecklich, sodass
+   Text und Zahlen einander nicht widersprechen; ob die Zahlen dennoch
+   angepasst werden, ist eine Entscheidung des Autors.
 
-   Belegt ist der Abschnitt aus @src:pdemanual (ueber doc/resources/pde_referenz.md,
-   dort mit Topic-IDs), @src:desigoccenghelp ueber @tab:modbustreiber und
-   @sec:desigocc_alarme sowie @src:balaji2018 und @src:sentronregistermap. Nicht
-   belegbare Aussagen stehen ausnahmslos in #kommentar-Bloecken.
-
-   Nachtrag des Autors, eingearbeitet: Der Weg ueber den Wahrheitswert mit
-   Subindex ist ebenfalls erprobt und liefert in Desigo CC dasselbe Ergebnis wie
-   der Weg ueber den BLOB. Damit ist die Ursache lokalisiert. Sie liegt nicht am
-   PDE, der beide Varianten anstandslos beschreibt, sondern an den Importregeln
-   der Zielplattform. Der Alarmabschnitt sagt das jetzt ausdruecklich und ordnet
-   den Befund als Bruchstelle der Werkzeugkette ein, mit Rueckbezug auf
-   @sec:pde_ziel und @sec:desigoccmechanik. Dieser Absatz ist zugleich der
-   Anschluss an @sec:uebernahme, wo die Grenze des Importwegs nochmals auftritt.
-
-   Offen und vom Autor einzutragen sind fuenf Punkte, jeweils als #kommentar
-   markiert: die Ablage von Differenzstrom und Pruefstatus, der Nachweis der
-   Byte-Reihenfolge, die Belegstelle zum Bitfeld nebst der Rolle des Powercenters,
-   die tatsaechlich umgesetzte Form des Alarmregisters sowie die Ausgangsgroesse
-   der JSON-Datei und die Verortung des Absatzes dazu.
-
-   Zwei Rueckwirkungen auf bereits geschriebene Abschnitte waren im Text als
-   #kommentar vermerkt; die erste ist inzwischen ausgefuehrt, die zweite nicht:
-   1. Streichung der Softwareversion: am 01.09.2026 erledigt, siehe die
-      Anmerkung oberhalb des dritten Vorbehalts. Sie betrifft nach Auskunft des
-      Autors beide Geraetetypen.
-   2. Die 27 Alarmdatenpunkte in @tab:datenpunkte_ecpd, @tab:bilanz_datenpunkte
-      und in der Begruendung zu K-07 setzen die Zerlegung des Bitfelds voraus.
-      Solange nicht feststeht, in welcher Form die Alarme im Modell erscheinen,
-      bleiben die Zahlen unveraendert.
-   Ausserdem behauptet @sec:datenpunkte derzeit, das Werkzeug biete fuer FP64
-   keinen entsprechenden Datentyp an. Das ist nach der Beobachtung des Autors
-   nicht zutreffend und dort zu streichen; hier steht die Aufloesung bereits.
-
-   Der Befund zum abgewiesenen Schreibzugriff beim Fernschalten ist bewusst nicht
-   aufgenommen, da er nach der Notiz in @sec:befunde dorthin gehoert. */
+   Der Befund zum abgewiesenen Schreibzugriff beim Fernschalten ist bewusst
+   nicht aufgenommen, da er nach der Notiz in @sec:befunde dorthin gehoert. */

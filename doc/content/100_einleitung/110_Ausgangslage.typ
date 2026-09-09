@@ -4,17 +4,6 @@
 
 == Ausgangslage und Motivation<sec:ausgangslage>
 
-/* Anmerkung des Autors, erledigt am 08.09.2026: "den ganzen Abschnitt muss man
-   deutlich vereinfachen, das versteht so niemand direkt. Für den Einstieg in
-   die gesamte Arbeit echt zu kompliziert, vor allem die ganzen Begriffe müssen
-   viel besser verständlich sein"
-
-   Claude: Der Abschnitt ist neu gefasst und von drei auf vier Absaetze
-   gegangen. Jeder Fachbegriff wird jetzt bei seiner ersten Nennung mit einem
-   Halbsatz erklaert, naemlich Gebaeudeleitebene, Endstromkreis, Abgang, ECPD,
-   Powercenter und Desigo CC. Die Kette lautet Beobachtungsluecke,
-   Geraetetechnik schliesst sie, Plattform verwertet die Daten, Verbindung
-   fehlt. Der Umfang der Aussagen ist unveraendert, ebenso beide Belege. */
 
 In einem größeren Gebäude werden Heizung, Lüftung, Beleuchtung und Sicherheitstechnik nicht einzeln vor Ort bedient. Sie laufen auf einer gemeinsamen Bedienoberfläche zusammen, die als Gebäudeleitebene bezeichnet wird. Wer dort arbeitet, sieht den Zustand der Anlagen am Bildschirm, statt ihn im Gebäude nachsehen zu müssen.
 
