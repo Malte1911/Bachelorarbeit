@@ -20,7 +20,7 @@ Der zweite Faktor betrifft das Abfrageintervall, das nach den Befunden außerhal
 
 === Fehlende Zählfunktion für die elektrische Arbeit
 
-Der dritte Faktor ist keine Grenze, die unmittelbar die Arbeit und ihre Ergebnisse betrifft. Dem #acro("ECPD") fehlt eine Zählfunktion für die elektrische Arbeit, weshalb sie auch in Desigo CC fehlt, denn ein Datenmodell kann nur abbilden, was das Gerät führt. Die Feststellung gehört gleichwohl hierher. Ein Schutzgerät, das Strom, Spannung und Wirkleistung je Abgang misst, weckt die Erwartung einer Verbrauchsauswertung, und an dieser Erwartung wird die Anbindung gemessen und nicht an der Frage, welche Komponente die Lücke zu verantworten hat. Adressat dieser Feststellung ist die Produktentwicklung.
+Der dritte Faktor ist keine Grenze, die unmittelbar die Arbeit und ihre Ergebnisse betrifft. Dem #acro("ECPD") fehlt eine Zählfunktion für die elektrische Arbeit, weshalb sie auch in Desigo CC fehlt, denn ein Datenmodell kann nur abbilden, was das Gerät führt. Die Feststellung gehört gleichwohl in diesen Abschnitt. Ein Schutzgerät, das Strom, Spannung und Wirkleistung je Abgang misst, weckt die Erwartung einer Verbrauchsauswertung, und an dieser Erwartung wird die Anbindung gemessen und nicht an der Frage, welche Komponente die Lücke zu verantworten hat. Adressat dieser Feststellung ist die Produktentwicklung.
 
 === Sonstige Einschränkungen
 
