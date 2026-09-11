@@ -23,7 +23,7 @@ Der Katalog unterscheidet drei Kategorien, wie es im Requirements Engineering ü
 
 Die Verbindlichkeit ergibt sich aus der Wortwahl: Eine mit "muss" formulierte Anforderung ist zwingend zu erfüllen und ihr Nachweis ist Teil der Validierung, während eine mit "soll" formulierte Anforderung angestrebt wird und eine Abweichung zu begründen ist.
 
-Für die spätere Prüfung ist eine weitere Unterscheidung wesentlich, die der Katalog selbst nicht trifft: Die Anforderungen richten sich nicht sämtlich an dasselbe Artefakt. Ein Teil betrifft unmittelbar das Datenmodell, also die Typbeschreibung und die Adressbelegung -- etwa die Vollständigkeit und Beschriftung der Datenpunkte. Ein zweiter Teil wird erst durch die Projektierung in Desigo CC erfüllt, beispielsweise die Zuordnung zu Alarmkategorien oder der Aufbau von Dashboards. Ein dritter Teil betrifft die Geräteseite und ist nur über SENTRON Powerconfig zu erfüllen, etwa die Aktivierung einzelner Alarme. Ein Datenmodell allein kann folglich nicht alle Anforderungen erfüllen; es kann sie nur ermöglichen. Wo diese Grenze verläuft, wird bei den betroffenen Anforderungen jeweils benannt, denn sie bestimmt, wo der Nachweis zu führen ist und was die Lösung an Begleitmaterial umfassen muss.
+Für die spätere Prüfung ist eine weitere Unterscheidung wesentlich, die der Katalog selbst nicht trifft: Die Anforderungen richten sich nicht sämtlich an dasselbe Artefakt. Ein Teil betrifft unmittelbar das Datenmodell mit Typbeschreibung und Adressbelegung -- etwa die Vollständigkeit und Beschriftung der Datenpunkte. Ein zweiter Teil wird erst durch die Projektierung in Desigo CC erfüllt, beispielsweise die Zuordnung zu Alarmkategorien oder der Aufbau von Dashboards. Ein dritter Teil betrifft die Geräteseite und ist nur über SENTRON Powerconfig zu erfüllen, etwa die Aktivierung einzelner Alarme. Ein Datenmodell allein kann folglich nicht alle Anforderungen erfüllen; es kann sie nur ermöglichen. Wo diese Grenze verläuft, wird bei den betroffenen Anforderungen jeweils benannt, denn sie bestimmt, wo der Nachweis zu führen ist und was die Lösung an Begleitmaterial umfassen muss.
 
 
 === Funktionale Anforderungen<sec:fa>
@@ -45,7 +45,7 @@ Für die spätere Prüfung ist eine weitere Unterscheidung wesentlich, die der K
     [UC-02],
 
     [FA-03],
-    [Die Messgrößen des #acro("ECPD"), also Strom, Spannung, Netzfrequenz, Wirkleistung, Leistungsfaktor, Temperatur und Differenzstrom, müssen in Desigo CC mit Bezeichnung, Einheit, Skalierung und Vorzeichen nach der Registerkarte sichtbar sein.],
+    [Die Messgrößen des #acro("ECPD") mit Strom, Spannung, Netzfrequenz, Wirkleistung, Leistungsfaktor, Temperatur und Differenzstrom müssen in Desigo CC mit Bezeichnung, Einheit, Skalierung und Vorzeichen nach der Registerkarte sichtbar sein.],
     [UC-02, UC-07, UC-09],
 
     [FA-04],
@@ -104,7 +104,7 @@ Genau an dieser Stelle liegt die deutlichste Grenze des Datenmodells, die sich e
    tatsaechlich traegt, und die Aussage hier sowie im Entwicklungs- und Validierungsteil
    entsprechend schaerfen. */
 
-FA-10 schließlich grenzt zwei Fälle voneinander ab, die in der Leitwarte leicht verwechselt werden, nämlich ein tatsächliches Anlagenereignis und einen Ausfall der Datenverbindung, und verlangt zusätzlich, dass ungültige Werte nicht als gültige erscheinen.
+FA-10 schließlich grenzt ein tatsächliches Anlagenereignis und einen Ausfall der Datenverbindung voneinander ab, zwei Fälle, die in der Leitwarte leicht verwechselt werden, und verlangt zusätzlich, dass ungültige Werte nicht als gültige erscheinen.
 
 ==== Eingriff und Arbeitsteilung
 
@@ -290,7 +290,7 @@ Der erste betrifft die Belastbarkeit des Fernschaltens. UC-05 und FA-06 setzen v
 
 Der zweite betrifft die geforderte Systemversion nach NFA-04. Die Engineering-Dokumentation beschreibt die für diese Arbeit maßgeblichen Mechanismen, ein fehlerfreier Import der konkreten Typbeschreibung unter dem geforderten Stand lässt sich daraus jedoch nicht ableiten. Auch dieser Nachweis ist am Testaufbau zu führen.
 
-Nicht Gegenstand des Katalogs sind schließlich die Punkte, die @sec:ziel als Abgrenzung der Arbeit führt, also die Ablösung von SENTRON Powerconfig, Eingriffe in die Schutzfunktion der Geräte, die Architektur von Desigo CC und die Ausgestaltung der Netzsicherheit. Eine Rückwärtskompatibilität ist ebenfalls nicht gefordert, da nach @sec:systemanalyse keine bestehende Anbindung existiert.
+Nicht Gegenstand des Katalogs sind schließlich die Punkte, die @sec:ziel als Abgrenzung der Arbeit führt. Dazu zählen die Ablösung von SENTRON Powerconfig, Eingriffe in die Schutzfunktion der Geräte, die Architektur von Desigo CC und die Ausgestaltung der Netzsicherheit. Eine Rückwärtskompatibilität ist ebenfalls nicht gefordert, da nach @sec:systemanalyse keine bestehende Anbindung existiert.
 
 /* Claude: Nachtrag zum Kommentar oben, der FA-08 noch als unveraendert fuehrt.
    Die dort offene Frage ist am 31.08.2026 entschieden. FA-08 verlangte eine

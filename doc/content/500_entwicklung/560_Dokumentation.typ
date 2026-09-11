@@ -11,7 +11,7 @@ Diese Einordnung deckt sich mit dem Stand der Technik. Da die Zuordnung von Date
 
 ==== Adressatenkreise und die Wahl einer einzigen Unterlage
 
-NFA-02 benennt zwei Adressatenkreise ausdrücklich, nämlich das technische Personal, das die Anlage errichtet, und das administrative Personal, das die Projektierung in Desigo CC vornimmt. Aus UC-10 und NFA-03 tritt ein dritter hinzu, der die Vorlage selbst verändert. Drei Leser also, die zu verschiedenen Zeitpunkten und mit verschiedenen Werkzeugen arbeiten.
+NFA-02 benennt zwei Adressatenkreise ausdrücklich. Das technische Personal errichtet die Anlage, das administrative Personal nimmt die Projektierung in Desigo CC vor. Aus UC-10 und NFA-03 tritt ein dritter hinzu, der die Vorlage selbst verändert. Damit stehen drei Leser nebeneinander, die zu verschiedenen Zeitpunkten und mit verschiedenen Werkzeugen arbeiten.
 
 Getrennte Unterlagen je Adressatenkreis liegen damit nahe, sind hier jedoch nicht gewählt worden. Der Grund liegt in den Grenzen der Vorlage. Dass die Alarme des Sammelregisters nicht als einzelne Meldungen ankommen, dass Zeichenketten nicht beschreibbar sind und dass das Abfrageintervall für alle Geräte eines Treibers gemeinsam gilt, betrifft jeden der drei Leser. In getrennten Unterlagen stünden diese Aussagen entweder mehrfach oder an einer Stelle, an der ein Teil der Leser sie nicht findet. Die Unterlage ist deshalb ein einziges Dokument, das seine Adressatenkreise über die Gliederung trennt und die gemeinsamen Aussagen voranstellt. @tab:doku_aufbau zeigt diese Gliederung mit dem Adressaten und der getragenen Anforderung je Teil.
 
@@ -32,14 +32,14 @@ Getrennte Unterlagen je Adressatenkreis liegen damit nahe, sind hier jedoch nich
   caption: [Aufbau der begleitenden Unterlage mit den Adressatenkreisen und den Anforderungen, die der jeweilige Teil trägt]
 )<tab:doku_aufbau>
 
-Der Teil zur Inbetriebnahme fällt dabei bewusst knapp aus. Die Errichtung eines Verteilers und die Kopplung der Endgeräte folgen dem gewohnten Ablauf der Gerätefamilie und sind dem Fachpersonal geläufig. Beschrieben ist deshalb nur, was die spätere Anbindung festlegt oder ohne Hinweis übersehen würde. Umgekehrt ist der Teil zur Weiterentwicklung knapp, weil die Werkzeugkette diese Aufgabe bereits trägt. Eine bestehende Typbeschreibung lässt sich im #acro("PDE") erneut öffnen und bearbeiten, sodass sich Datenpunkte ohne Neuerstellung ergänzen oder entfernen lassen. Zu dokumentieren bleiben allein die Fallstricke, also die Bindung an bestehende Instanzen und das in @sec:umsetzung beschriebene Verhalten der Datei beim Entfernen eines Datentyps.
+Der Teil zur Inbetriebnahme fällt dabei bewusst knapp aus. Die Errichtung eines Verteilers und die Kopplung der Endgeräte folgen dem gewohnten Ablauf der Gerätefamilie und sind dem Fachpersonal geläufig. Beschrieben ist deshalb nur, was die spätere Anbindung festlegt oder ohne Hinweis übersehen würde. Umgekehrt ist der Teil zur Weiterentwicklung knapp, weil die Werkzeugkette diese Aufgabe bereits trägt. Eine bestehende Typbeschreibung lässt sich im #acro("PDE") erneut öffnen und bearbeiten, sodass sich Datenpunkte ohne Neuerstellung ergänzen oder entfernen lassen. Zu dokumentieren bleiben allein zwei Fallstricke, die Bindung an bestehende Instanzen und das in @sec:umsetzung beschriebene Verhalten der Datei beim Entfernen eines Datentyps.
 
 
 ==== Dokumentation im Artefakt selbst
 
 Vor der Unterlage steht eine Ebene, die häufig übersehen wird. Der #acro("PDE") führt zu jeder Eigenschaft ein Beschreibungsfeld in deutscher und englischer Sprache @src:pdemanual. Was dort abgelegt ist, wandert mit der #acro("JSON")-Datei, übersteht den Import und geht nicht verloren, während eine danebenliegende Unterlage nach wenigen Projekten nicht mehr auffindbar ist. Zusammen mit den in @sec:umsetzung festgelegten sprechenden Bezeichnern und der Gruppenzuordnung trägt diese Ebene die Dokumentation dort, wo sie am haltbarsten ist.
 
-Der Anspruch dahinter ist derselbe, den @src:balaji2018 an eine über Anlagengrenzen hinweg gültige Beschreibung stellt. Dort ist es gerade die uneinheitliche Benennung der Datenpunkte, die eine Übertragung von einer Anlage auf die nächste verhindert. Eine einheitliche und aus sich heraus verständliche Benennung gehört deshalb in das Artefakt und nicht in eine Unterlage daneben. Die äußere Unterlage trägt folglich nur noch das, was sich im Artefakt nicht unterbringen lässt, also Voraussetzungen, Grenzen, Arbeitsschritte und Begründungen.
+Der Anspruch dahinter ist derselbe, den @src:balaji2018 an eine über Anlagengrenzen hinweg gültige Beschreibung stellt. Dort ist es gerade die uneinheitliche Benennung der Datenpunkte, die eine Übertragung von einer Anlage auf die nächste verhindert. Eine einheitliche und aus sich heraus verständliche Benennung gehört deshalb in das Artefakt und nicht in eine Unterlage daneben. Die äußere Unterlage trägt folglich nur noch Voraussetzungen, Grenzen, Arbeitsschritte und Begründungen, die sich im Artefakt nicht unterbringen lassen.
 
 
 ==== Vorausgesetzte Geräteparametrierung

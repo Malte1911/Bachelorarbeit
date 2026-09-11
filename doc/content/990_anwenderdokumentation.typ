@@ -158,7 +158,7 @@ Eine Kommunikationsschnittstelle ist durch IP-Adresse und Unit Identifier bestim
 
 Je Strang entstehen so bis zu 25 Schnittstellen. Für das Powercenter liegt eine zweite, bewusst schmal gehaltene Typbeschreibung bei, die allein die Datenpunkte des Datentransceivers führt und auf Import und Instanzbildung geprüft ist. Die Parametrierung des Powercenters bleibt in Powerconfig.
 
-Ein Datenpunkt der Vorlage hängt an der Stelle des Geräts am Powercenter. `device_status` liegt auf Register $16483 + n$, wobei $n$ der Geräteadresse entspricht. Das Powercenter führt diesen Wert als Feld über alle 24 Endgeräteplätze, dessen erster Platz auf Register 16484 liegt. Ein Gerät mit der Adresse 1 trägt also Register 16484, ein Gerät mit der Adresse 2 Register 16485 und so fort. Diese Adresse ist je Instanz nachzuführen, alle übrigen Register sind bei allen Geräten identisch.
+Ein Datenpunkt der Vorlage hängt an der Stelle des Geräts am Powercenter. `device_status` liegt auf Register $16483 + n$, wobei $n$ der Geräteadresse entspricht. Das Powercenter führt diesen Wert als Feld über alle 24 Endgeräteplätze, dessen erster Platz auf Register 16484 liegt. Ein Gerät mit der Adresse 1 trägt damit Register 16484, ein Gerät mit der Adresse 2 Register 16485 und so fort. Diese Adresse ist je Instanz nachzuführen, alle übrigen Register sind bei allen Geräten identisch.
 
 
 ==== Alarme auswerten<apxdoc:alarme>
@@ -193,7 +193,7 @@ Nach dem Anlegen der Instanzen empfiehlt sich die folgende Reihenfolge.
 
 + `device_status` prüfen. Steht die Funkverbindung, ist die Strecke vom Leitsystem bis zum Endgerät durchgängig.
 + Einen Messwert bekannter Größenordnung gegenprüfen, etwa `line_frequency`. Ein unplausibler Wert weist darauf hin, dass das Register nicht richtig ausgewertet wird.
-+ `rated_current_setting` prüfen. Der Wert muss dem Nennstrom des Geräts entsprechen, bei einem 16-A-Gerät also 16 nach Anwendung des Faktors.
++ `rated_current_setting` prüfen. Der Wert muss dem Nennstrom des Geräts entsprechen, bei einem 16-A-Gerät somit 16 nach Anwendung des Faktors.
 + Ungültige Messwerte erkennen. Das Powercenter kennzeichnet sie als _Not a Number_. Zusammen mit `device_status` lässt sich so ein ausgefallenes Gerät von einem Gerät mit dem Messwert null unterscheiden.
 + Nur wenn das Fernschalten genutzt werden soll, `remote_control_electronic_switching_enabled` prüfen und anschließend einen Schaltbefehl mit Rückmeldung über `switching_state_feedback` verfolgen.
 

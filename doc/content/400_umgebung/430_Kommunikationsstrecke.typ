@@ -4,7 +4,7 @@
 
 == Kommunikationsstrecke und Netzwerkanbindung<sec:kommunikationsstrecke>
 
-Zwischen dem parametrierten Gerät und dem Objektmodell in Desigo CC liegt die Kommunikationsstrecke. Sie ist Voraussetzung dafür, dass überhaupt Werte fließen, und wird deshalb vor der Entwicklung des Datenmodells eingerichtet. Der Import der Typbeschreibung gehört nicht hierher, sondern ist Gegenstand von @sec:uebernahme und wird von T-01 geprüft.
+Zwischen dem parametrierten Gerät und dem Objektmodell in Desigo CC liegt die Kommunikationsstrecke. Sie ist Voraussetzung dafür, dass überhaupt Werte übertragen werden, und wird deshalb vor der Entwicklung des Datenmodells eingerichtet. Der Import der Typbeschreibung gehört nicht hierher, sondern ist Gegenstand von @sec:uebernahme und wird von T-01 geprüft.
 
 
 Die Strecke beginnt am Datentransceiver, der die Endgeräte hinter einer einzigen #acro("IP")-Adresse bündelt und den Modbus-Registerraum über den in @sec:modbus beschriebenen Port 502 bereitstellt. Die Randbedingungen RB-05 bis RB-07 aus @tab:rb richten sich dabei an den Betrieb der Lösung beim Kunden und sind am Laboraufbau nicht eigens nachzuweisen, da sie nach @sec:testabdeckung keine geforderte Eigenschaft der Lösung beschreiben, sondern die Voraussetzungen ihres Betriebs. Der Testaufbau ist demgegenüber eine geschlossene Umgebung, in der die Modbus-Schnittstelle des Powercenters für die Anbindung eingeschaltet ist.

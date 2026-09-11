@@ -58,7 +58,7 @@ Der Kopf führt vier Felder, die @img:modbustcp im Zusammenhang zeigt. Der Trans
 Aus der seriellen Herkunft des Protokolls folgt eine Längenbegrenzung von 253 Byte für die #acro("PDU") und 260 Byte für die #acro("ADU") @src:modbusspec. Eine einzelne Anfrage kann damit höchstens 125 Register lesen und 123 Register schreiben @src:modbusspec, sodass ein umfangreicher Registerraum blockweise abzufragen ist.
 
 
-Besondere Bedeutung für diese Arbeit hat der Unit Identifier. Sitzt hinter der #acro("IP")-Adresse ein Gateway, benennt das Feld das Endgerät, an das die Anfrage weitergereicht wird. Wird ein Server unmittelbar angesprochen, ist das Feld entbehrlich, und der Implementation Guide empfiehlt dem Client dafür den nicht signifikanten Wert 0xFF, lässt den Wert 0 aber ebenso zu @src:modbustcp. Die Empfehlung gilt dem Aufbau der Anfrage und nicht der Auslegung des Werts im Gerät. Der in @sec:powercenter_modbus beschriebene Datentransceiver ist ein solches Gateway und belegt den Wert 255 mit einer eigenen Bedeutung, nämlich sich selbst.
+Besondere Bedeutung für diese Arbeit hat der Unit Identifier. Sitzt hinter der #acro("IP")-Adresse ein Gateway, benennt das Feld das Endgerät, an das die Anfrage weitergereicht wird. Wird ein Server unmittelbar angesprochen, ist das Feld entbehrlich, und der Implementation Guide empfiehlt dem Client dafür den nicht signifikanten Wert 0xFF, lässt den Wert 0 aber ebenso zu @src:modbustcp. Die Empfehlung gilt dem Aufbau der Anfrage und nicht der Auslegung des Werts im Gerät. Der in @sec:powercenter_modbus beschriebene Datentransceiver ist ein solches Gateway und belegt den Wert 255 mit einer eigenen Bedeutung und adressiert damit sich selbst.
 
 
 /* Claude: Am 02.09.2026 im allgemeinen Teil gekuerzt. Der Absatz zu den drei

@@ -34,11 +34,13 @@ Das Gerät ist in drei Varianten verfügbar, die sich in ihren Schnittstellen un
 === Schnittstellen<sec:powercenter_schnittstellen>
 
 
-Zur Feldebene hin besteht ausschließlich die in @sec:ecpd beschriebene Funkstrecke. Jedes Endgerät muss dem Funknetz des Datentransceivers beitreten und erhält dabei eine Geräteadresse, die standardmäßig fortlaufend von 1 bis 24 vergeben wird und sich bei der Inbetriebnahme auch manuell festlegen lässt @src:sentronsystemhandbuch @src:sentronregistermap.
+Der Datentransceiver steht zwischen zwei Seiten, die sich in Aufgabe und Protokoll unterscheiden. Gebräuchlich sind dafür die Begriffe _Southbound_ und _Northbound_, die eine vermittelnde Komponente nach der Richtung ihrer Schnittstellen gliedern @src:ai2026. Southbound bezeichnet die Seite zur Feldebene, an der die Endgeräte über ihre jeweiligen Protokolle angebunden werden, Northbound die Seite zum übergeordneten System, an das die gesammelten Daten weitergereicht werden @src:ai2026. Beide Begriffe sind auf das betrachtete Gerät bezogen, sodass dieselbe Verbindung je nach Blickrichtung der einen oder der anderen Seite zufällt.
+
+Auf der Southbound-Seite besteht ausschließlich die in @sec:ecpd beschriebene Funkstrecke. Jedes Endgerät muss dem Funknetz des Datentransceivers beitreten und erhält dabei eine Geräteadresse, die standardmäßig fortlaufend von 1 bis 24 vergeben wird und sich bei der Inbetriebnahme auch manuell festlegen lässt @src:sentronsystemhandbuch @src:sentronregistermap.
 
 Für den lokalen Zugriff vor Ort steht eine Bluetooth-Schnittstelle nach dem Standard #acro("BLE") zur Verfügung @src:sentronsystemhandbuch. Sie unterstützt genau eine aktive Verbindung, wird über eine sechsstellige PIN abgesichert und schaltet sich nach $180space.thin"s"$ ohne Nutzung wieder ab @src:sentronsystemhandbuch. Da sich Funkstrecke und Bluetooth-Verbindung dasselbe Funkmodul teilen, ist der erreichbare Durchsatz begrenzt @src:sentronsystemhandbuch. Das Systemhandbuch weist diese Schnittstelle deshalb ausdrücklich der Inbetriebnahme zu und empfiehlt für die Datenübertragung den Weg über Ethernet @src:sentronsystemhandbuch.
 
-Die Anbindung an übergeordnete Systeme erfolgt über die Ethernet-Schnittstelle, auf der je nach Variante bis zu drei Protokolle nebeneinander bereitstehen @src:sentronsystemhandbuch. Modbus #acro("TCP") überträgt unverschlüsselt und ohne Authentifizierung, weshalb das Systemhandbuch Zugangsbeschränkungen ausdrücklich dem übergeordneten System und dem Netz zuweist @src:sentronsystemhandbuch. Am Powercenter 1100 und 2000 lässt sich diese Verbindung separat ein- und abschalten @src:sentronsystemhandbuch. Das gesicherte Protokoll #acro("HTTPS") über eine #acro("REST")-#acro("API") ist mit #acro("TLS") verschlüsselt, dient diesen beiden Varianten als Standardweg für die Inbetriebnahmesoftware und ist das einzige Protokoll, auf das die rollenbasierte Zugriffskontrolle wirkt @src:sentronsystemhandbuch. Für die Kommunikation über Modbus #acro("TCP") stehen keine Benutzer zur Verfügung @src:sentronsystemhandbuch. Die #acro("MQTT")-Schnittstelle des Powercenter 2000 schließlich richtet sich an Cloud-Dienste und wird über dieselbe Ethernet-Schnittstelle bereitgestellt @src:sentronsystemhandbuch. Ein Zugriff über das lokale Netz hinaus ist nach dem Systemhandbuch über eine #acro("VPN")-Verbindung oder ein weiteres Gateway vorgesehen @src:sentronsystemhandbuch.
+Auf der Northbound-Seite erfolgt die Anbindung an übergeordnete Systeme über die Ethernet-Schnittstelle, auf der je nach Variante bis zu drei Protokolle nebeneinander bereitstehen @src:sentronsystemhandbuch. Modbus #acro("TCP") überträgt unverschlüsselt und ohne Authentifizierung, weshalb das Systemhandbuch Zugangsbeschränkungen ausdrücklich dem übergeordneten System und dem Netz zuweist @src:sentronsystemhandbuch. Am Powercenter 1100 und 2000 lässt sich diese Verbindung separat ein- und abschalten @src:sentronsystemhandbuch. Das gesicherte Protokoll #acro("HTTPS") über eine #acro("REST")-#acro("API") ist mit #acro("TLS") verschlüsselt, dient diesen beiden Varianten als Standardweg für die Inbetriebnahmesoftware und ist das einzige Protokoll, auf das die rollenbasierte Zugriffskontrolle wirkt @src:sentronsystemhandbuch. Für die Kommunikation über Modbus #acro("TCP") stehen keine Benutzer zur Verfügung @src:sentronsystemhandbuch. Die #acro("MQTT")-Schnittstelle des Powercenter 2000 schließlich richtet sich an Cloud-Dienste und wird über dieselbe Ethernet-Schnittstelle bereitgestellt @src:sentronsystemhandbuch. Ein Zugriff über das lokale Netz hinaus ist nach dem Systemhandbuch über eine #acro("VPN")-Verbindung oder ein weiteres Gateway vorgesehen @src:sentronsystemhandbuch.
 
 Die rollenbasierte Zugriffskontrolle erlaubt bis zu fünf lokale Benutzer in drei Rollen @src:sentronsystemhandbuch. Ein Beobachter darf ausschließlich lesen, ein Installateur zusätzlich Parameter schreiben und Befehle absetzen, und ein Administrator verfügt über den vollen Zugriff einschließlich der Kommunikationsparameter und der Benutzerverwaltung @src:sentronsystemhandbuch. Bei der Erstinbetriebnahme ist zwingend ein Administrator anzulegen, ein Standardpasswort existiert nicht @src:sentronsystemhandbuch.
 
@@ -57,6 +59,15 @@ Für die Abfrage nennt das Systemhandbuch drei Empfehlungen @src:sentronsystemha
 
 /* Claude: Abschnitt nach der Vorgabe aus der Durchsicht ausformuliert
    (generische Beschreibung, Bezug auf das vorangehende Kapitel, Schnittstellen
-   nach unten und nach oben). Der Bezug auf die Aufgabenstellung und die
+   southbound und northbound). Der Bezug auf die Aufgabenstellung und die
    Aussage, dass das Datenmodell hier ansetzt, sind entfallen; sie stehen in
-   der Analyse. Die Registerkarte selbst wird bewusst nicht ausgewertet. */
+   der Analyse. Die Registerkarte selbst wird bewusst nicht ausgewertet.
+
+   Nachtrag vom 11.09.2026: Die Begriffe Southbound und Northbound sind hier
+   eingefuehrt und in @sec:integrationswege uebernommen, wo zuvor "nach oben"
+   stand. Beleg ist @src:ai2026, ein modulares IoT-Gateway mit derselben
+   Rollenverteilung (Southbound-Komponente zu den Feldgeraeten ueber Modbus,
+   OPC UA und MQTT, Northbound-Komponente zum uebergeordneten System). Die
+   Begriffe stammen urspruenglich aus der Netzarchitektur, wo RFC 7426 sie
+   zwar durchgehend verwendet, aber nicht eigens definiert; deshalb ist die
+   Gateway-Quelle gewaehlt. */

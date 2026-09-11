@@ -6,7 +6,7 @@
 
 /* #kommentar("Zu ausführlich?") */
 
-Der #acro("PDE") ist eine eigenständige Anwendung der Siemens AG zur Spezifikation, Konfiguration und Integration beliebiger Modbus-fähiger Geräte in SENTRON-Applikationen. Ergebnis jeder Bearbeitung ist eine #acro("JSON")-Datei, die die Kommunikation eines Gerätetyps gegenüber der konsumierenden Applikation vollständig beschreibt @src:pdemanual. Das Werkzeug erzeugt also keine Geräteinstanz, sondern eine Typbeschreibung, aus der die Zielapplikation anschließend beliebig viele gleichartige Geräte ableiten kann. Die folgenden Angaben beziehen sich auf die Online-Hilfe zur Version V9.1.0 @src:pdemanual.
+Der #acro("PDE") ist eine eigenständige Anwendung der Siemens AG zur Spezifikation, Konfiguration und Integration beliebiger Modbus-fähiger Geräte in SENTRON-Applikationen. Ergebnis jeder Bearbeitung ist eine #acro("JSON")-Datei, die die Kommunikation eines Gerätetyps gegenüber der konsumierenden Applikation vollständig beschreibt @src:pdemanual. Das Werkzeug erzeugt folglich keine Geräteinstanz, sondern eine Typbeschreibung, aus der die Zielapplikation anschließend beliebig viele gleichartige Geräte ableiten kann. Die folgenden Angaben beziehen sich auf die Online-Hilfe zur Version V9.1.0 @src:pdemanual.
 
 Die vom Werkzeug vorgesehene Kette ist durchgängig festgelegt. Ausgangspunkt sind das Gerätemanual und die Modbus-Registerdetails des einzubindenden Geräts, die beide vorliegen müssen, bevor mit der Bearbeitung begonnen werden kann. Daraus entsteht im #acro("PDE") die Typbeschreibung, die als #acro("JSON")-Datei gespeichert und in die Zielapplikation eingelesen wird. Dort wird je physischem Gerät eine Instanz angelegt, und erst danach beginnt die eigentliche Überwachung @src:pdemanual.
 

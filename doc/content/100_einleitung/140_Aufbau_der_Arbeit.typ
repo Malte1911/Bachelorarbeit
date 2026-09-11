@@ -7,7 +7,7 @@
 
 Die Arbeit ist entlang des in @sec:vorgehensmodell beschriebenen Vorgehens gegliedert. Sie führt vom Verständnis des Systems über die Anforderungen zur Umsetzung und von dort zurück zur Prüfung.
 
-Die Grundlagen ordnen die Arbeit zunächst in den Stand der Technik ein und legen offen, auf welche Art von Quellen sich ihre Aussagen stützen (@sec:stand). Anschließend werden die Bestandteile des betrachteten Systems eingeführt, also die Schaltkreisschutzgeräte (@sec:ecpd), das Powercenter als Datenquelle (@sec:powercenter), das Protokoll der Übertragung (@sec:modbus), die Zielplattform (@sec:desigocc) und das Werkzeug, mit dem die Typbeschreibung entsteht (@sec:pde).
+Die Grundlagen ordnen die Arbeit zunächst in den Stand der Technik ein und legen offen, auf welche Art von Quellen sich ihre Aussagen stützen (@sec:stand). Anschließend werden die Bestandteile des betrachteten Systems eingeführt, die Schaltkreisschutzgeräte (@sec:ecpd), das Powercenter als Datenquelle (@sec:powercenter), das Protokoll der Übertragung (@sec:modbus), die Zielplattform (@sec:desigocc) und das Werkzeug, mit dem die Typbeschreibung entsteht (@sec:pde).
 
 Das Kapitel zu Analyse und Anforderungen klärt, was zu leisten ist. Es bestimmt Systemgrenze und Interessengruppen, wählt aus den technisch bestehenden Integrationswegen einen aus und charakterisiert den Datenbestand, den dieser Weg eröffnet (@sec:analyse). Daraus entstehen der Anforderungskatalog (@sec:anforderungen) und die Testfälle, an denen die Lösung später zu messen ist (@sec:testfaelle).
 
