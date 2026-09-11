@@ -19,7 +19,7 @@ Damit sind beide Vorbehalte aufgelöst. FA-06 ist erfüllt, was in @sec:anforder
 
 ==== Eigenschaften der Geräte und der Plattform
 
-Ein Teil der Alarme ist ab Werk abgeschaltet und liefert dauerhaft den Wert null, ohne dass dies von einem nicht anstehenden Alarm zu unterscheiden wäre. T-14 bestätigt dies, soweit es sich am Aufbau zeigen ließ. Der Befund trägt NFA-06 und ist der Grund, weshalb die Lösung nicht aus der Typbeschreibung allein besteht.
+Ein Teil der Alarme ist ab Werk abgeschaltet und liefert dauerhaft den Wert null, ohne dass dies von einem nicht anstehenden Alarm zu unterscheiden wäre. T-14 bestätigt dies, soweit es sich am Aufbau zeigen ließ. Der Befund begründet NFA-06 und ist der Grund, weshalb die Lösung nicht aus der Typbeschreibung allein besteht.
 
 Dem #acro("ECPD") fehlt eine Zählfunktion für die elektrische Arbeit. Abgebildet ist die momentane Wirkleistung, sodass eine Verbrauchsauswertung entweder eine Integration über die Zeit in Desigo CC oder ein zusätzliches Messgerät voraussetzt. Für die Anbindung eines Endstromkreises an ein Energiemanagement ist das die spürbarste Lücke des Geräts und in @sec:weiterentwicklung aufgegriffen.
 

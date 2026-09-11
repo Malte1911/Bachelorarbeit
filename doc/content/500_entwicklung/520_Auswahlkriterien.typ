@@ -22,7 +22,7 @@ Dass es eines offengelegten Kriterienkatalogs überhaupt bedarf, folgt aus dem i
       [*ID*], [*Kriterium*], [*Herkunft*],
     ),
     [K-01],
-    [Aufgenommen wird ein Datenpunkt nur, wenn er mindestens eine Tätigkeit aus den Anwendungsfällen trägt. Die bloße Verfügbarkeit eines Registers ist kein Aufnahmegrund.],
+    [Aufgenommen wird ein Datenpunkt nur, wenn er mindestens eine Tätigkeit aus den Anwendungsfällen unterstützt. Die bloße Verfügbarkeit eines Registers ist kein Aufnahmegrund.],
     [@sec:usecases, FA-03],
 
     [K-02],
@@ -46,13 +46,13 @@ Dass es eines offengelegten Kriterienkatalogs überhaupt bedarf, folgt aus dem i
     [@sec:quellenlage, @sec:registerraum],
 
     [K-07],
-[Gelesen wird nur, was gebraucht wird. Was ein Datenpunkt kostet, hängt an den Registern hinter ihm und nicht an seiner Erscheinung in der Leitwarte.],
+    [Gelesen wird nur, was gebraucht wird. Die Kosten eines Datenpunkts bemessen sich in gelesenen Registerworten und in Telegrammen je Gerät und Abfragezyklus, nicht in seiner Erscheinung in der Leitwarte.],
     [FA-02, @tab:modbustreiber],
   ),
   caption: [Kriterien der Datenauswahl und die Ergebnisse, aus denen sie hervorgehen]
 )<tab:auswahlkriterien>
 
-K-01 ist das einzige Einschlusskriterium, die übrigen sechs schließen aus. Der Registerraum wird folglich danach durchsucht, was eine der in @tab:usecases beschriebenen Tätigkeiten trägt. Diese Richtung der Prüfung ist der eigentliche Unterschied zu einer vollständigen Abbildung, denn sie verlangt zu jedem aufgenommenen Datenpunkt eine Angabe darüber, wer ihn wofür benötigt. Ihre Grenze findet sie an FA-03, das die Sichtbarkeit sämtlicher Messwerte des #acro("ECPD") ausdrücklich fordert. Für diese Gruppe ist der Nutzennachweis damit vorweggenommen, und K-01 kann sie nicht weiter beschneiden.
+K-01 ist das einzige Einschlusskriterium, die übrigen sechs schließen aus. Der Registerraum wird folglich danach durchsucht, was eine der in @tab:usecases beschriebenen Tätigkeiten unterstützt. Diese Richtung der Prüfung ist der eigentliche Unterschied zu einer vollständigen Abbildung, denn sie verlangt zu jedem aufgenommenen Datenpunkt eine Angabe darüber, wer ihn wofür benötigt. Ihre Grenze findet sie an FA-03, das die Sichtbarkeit sämtlicher Messwerte des #acro("ECPD") ausdrücklich fordert. Für diese Gruppe ist der Nutzennachweis damit vorweggenommen, und K-01 kann sie nicht weiter beschneiden.
 
 
 K-02 und K-03 folgen beide aus der Arbeitsteilung, betreffen jedoch verschiedene Register. K-02 zieht die Grenze zwischen Parametrierung und Betrieb. Der größte Teil des Registerraums besteht nach @sec:registerraum aus Alarm- und Grenzwertkonfiguration, die einmalig bei der Inbetriebnahme gesetzt wird und nach FA-09 bei SENTRON Powerconfig verbleibt. Für den Betrieb ist die Schwelle selbst nicht bedeutsam, sondern deren Überschreitung, und diese meldet das Gerät über das Alarmregister. K-03 zieht die Grenze dagegen entlang der Verantwortung. Geschützte Schutzeinstellungen wie die Empfindlichkeit der Fehlerstromauslösung oder das Verhalten nach einer Auslösung sind ausgeschlossen, weil ihre Änderung eine Elektrofachkraft voraussetzt, während Desigo CC vom Personal der Gebäudeverwaltung bedient wird. Dass ein Register über Modbus grundsätzlich beschreibbar wäre, ist für beide Kriterien ohne Bedeutung.
@@ -64,7 +64,9 @@ K-04 und K-05 lösen zwei Formen der Doppelung auf. K-04 betrifft Werte, welche 
 K-06 überträgt den in @sec:quellenlage festgelegten Umgang mit der Herstellerdokumentation auf die Auswahl. Die Registerkarte weist Register aus, die geräteweit konstant sind, auf dem #acro("ECPD") mit einer Ausnahmemeldung antworten oder wegen gemischter Kodierung nicht dekodierbar sind. Ein solcher Datenpunkt erzeugt in Desigo CC einen Eintrag ohne Aussage und kostet Registerzugriffe. Maßgeblich ist somit die Beobachtung des Geräts in Desigo CC.
 
 
-K-07 besagt, dass jedes Register Zeit zum Abfragen auf der Strecke kostet, weswegen ein Wert ohne Nutzen nicht abgelesen wird. Wie viel ein Datenpunkt dabei kostet, entscheidet nicht seine Erscheinung in der Leitwarte, sondern das, was das Gerät dafür liefern muss. Der Alarmzustand ist ein einziger Eintrag der Registerkarte und trägt als Bitfeld 27 Meldungen, während das Anlagenkennzeichen ein einziger Wert ist, für den 16 aufeinanderfolgende Register zu lesen sind. Da das Abfrageintervall nach @sec:konzept einheitlich gilt, wird zudem jedes Register gleich häufig gelesen, auch das selten benötigte, und das bei bis zu 24 Endgeräten je Strang. Gespart wird folglich an der Zahl der Register je Gerät und nicht an der Zahl der Datenpunkte.
+K-07 besagt, dass jedes Register Zeit zum Abfragen auf der Strecke kostet, weswegen ein Wert ohne Nutzen nicht abgelesen wird. Die Kosten sind in zwei Größen zu fassen, in der Zahl der je Abfragezyklus gelesenen Registerworte und in der Zahl der Telegramme, die der Treiber dafür absetzt. Beide entscheidet nicht die Erscheinung eines Datenpunkts in der Leitwarte, sondern das, was das Gerät dafür liefern muss. Der Alarmzustand ist ein einziger Eintrag der Registerkarte und enthält als Bitfeld 27 Meldungen, während das Anlagenkennzeichen ein einziger Wert ist, für den 16 aufeinanderfolgende Register zu lesen sind.
+
+Zwischen beiden Größen steht die Blockbildung des Treibers nach @tab:modbustreiber, weshalb der Aufwand nicht streng mit der Zahl der Register wächst, sondern mit deren Verteilung im Adressraum. Für die hier getroffene Auswahl beziffert die Aufzeichnung des Telegrammverkehrs in @sec:testdurchfuehrung beide Größen auf 69 Registerworte je Endgerät und Abfragezyklus, abgeholt in neun von zwölf Telegrammen eines Zyklus. Da das Abfrageintervall nach @sec:konzept einheitlich gilt, wird jedes Register gleich häufig gelesen, auch das selten benötigte, und das bei bis zu 24 Endgeräten je Strang. Gespart wird folglich an der Zahl der Register je Gerät und nicht an der Zahl der Datenpunkte.
 
 
 Die Kriterien stehen in einer Rangfolge, die nur an wenigen Stellen wirksam wird. K-03 und K-06 sind unbedingt, da ein Datenpunkt, der Verantwortungsgrenzen verletzt oder keinen verwertbaren Wert liefert, auch bei hohem Nutzen nicht aufzunehmen ist. K-01 geht K-07 vor, solange die Registerzahl je Gerät im Rahmen bleibt, weshalb ein Register mit belegtem Nutzen nicht allein wegen der Last entfällt. Zwischen K-01 und K-05 entscheidet die Frage, ob die Zielplattform den Wert verlustfrei bilden kann. An ihr hängt die einzige Berührung mit FA-03, die in @sec:datenpunkte bei den Messwerten aufgegriffen wird.
@@ -73,7 +75,7 @@ Die Kriterien stehen in einer Rangfolge, die nur an wenigen Stellen wirksam wird
 Zwei Festlegungen trifft dieser Katalog ausdrücklich nicht. Er entscheidet weder über das Abfrageintervall noch über die Archivierung eines Datenpunkts, obwohl die Arbeitsmappe zu jeder Zeile einen Vorschlag dazu führt. Beides ist Projektierungsleistung in Desigo CC und nach @sec:anforderungsvorbehalte nicht Gegenstand des Datenmodells. Ebenso wenig entscheidet er über die Zuordnung der Alarme zu Kategorien nach FA-05, die aus denselben Gründen in der Anlage vorgenommen wird.
 
 
-Die Kriterien werden von Hand angewandt. Eine selbsttätige Zuordnung setzt uneinheitlich benannte Datenpunkte voraus und ist hier gegenstandslos, da die Registerkarte die Benennung bereits vorgibt (siehe @sec:weiterentwicklung). Die zu leistende Arbeit liegt eine Stufe später und besteht in der Entscheidung, welche Register die Anwendungsfälle tragen und wie sie im Objektmodell zu führen sind. Sie fällt nur einmal an, da sie an den Gerätetyp gebunden ist und in Folgeprojekten erhalten bleibt.
+Die Kriterien werden von Hand angewandt. Eine selbsttätige Zuordnung setzt uneinheitlich benannte Datenpunkte voraus und ist hier gegenstandslos, da die Registerkarte die Benennung bereits vorgibt (siehe @sec:weiterentwicklung). Die zu leistende Arbeit liegt eine Stufe später und besteht in der Entscheidung, welche Register die Anwendungsfälle benötigen und wie sie im Objektmodell zu führen sind. Sie fällt nur einmal an, da sie an den Gerätetyp gebunden ist und in Folgeprojekten erhalten bleibt.
 
 /* Claude: Am 02.09.2026 gekuerzt. Der Absatz stand fast wortgleich als
    Schlussabsatz in @sec:weiterentwicklung, einschliesslich beider Zitate. Er
@@ -88,3 +90,17 @@ Die Kriterien werden von Hand angewandt. Eine selbsttätige Zuordnung setzt unei
    @sec:stakeholder wiederholten, und die Herleitung des einheitlichen
    Abfrageintervalls in der Erlaeuterung zu K-07, die jetzt auf @sec:konzept
    verweist. */
+
+/* Claude: K-07 nennt seit dem 11.09.2026 die Metrik, in der die "Kosten" eines
+   Datenpunkts gemessen werden. Zuvor sprach die Tabellenzelle nur von "den
+   Registern hinter ihm", was offenliess, woran der Aufwand tatsaechlich
+   abzulesen ist. Genannt sind jetzt die beiden Groessen, die auch die
+   Validierung erhebt: gelesene Registerworte und abgesetzte Telegramme, jeweils
+   je Geraet und Abfragezyklus.
+
+   Die Erlaeuterung ist in zwei Absaetze geteilt. Der zweite verankert die
+   Metrik an der Messung aus @sec:testdurchfuehrung (69 Registerworte in neun
+   von zwoelf Telegrammen je Zyklus) und benennt die Blockbildung als Grund
+   dafuer, dass der Aufwand nicht streng mit der Registerzahl waechst. Die
+   Rechnung 24 x 12 = 288 Telegramme je Zyklus ist bewusst nicht wiederholt,
+   sie steht als rechnerische Angabe in @sec:datenpunkte. */

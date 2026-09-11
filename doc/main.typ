@@ -91,7 +91,7 @@
   
   // Insert main content
   set page(
-    margin: (top: 3.5cm, bottom: 3cm, left: 2.5cm, right: 2.5cm),
+    margin: (top: 3.5cm, bottom: 2.5cm, left: 2.5cm, right: 2.5cm),
     // Ohne diese Vorgabe waere der Abstand zwischen Kopfzeile und Textkoerper
     // 30 Prozent des oberen Randes. Fest gesetzt bleibt der Abstand von der
     // Linie zum Text gleich, waehrend der groessere Rand Logos und Text
@@ -110,7 +110,7 @@
   doc
   
     set page(
-    margin: (top: 3.5cm, bottom: 3cm, left: 2.5cm, right: 2.5cm),
+    margin: (top: 3.5cm, bottom: 2.5cm, left: 2.5cm, right: 2.5cm),
     // Ohne diese Vorgabe waere der Abstand zwischen Kopfzeile und Textkoerper
     // 30 Prozent des oberen Randes. Fest gesetzt bleibt der Abstand von der
     // Linie zum Text gleich, waehrend der groessere Rand Logos und Text

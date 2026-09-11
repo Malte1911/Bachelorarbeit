@@ -27,9 +27,9 @@
     columns: (9em, 1fr),
     inset: 6pt,
     align: (left + horizon, left),
-    [*Gegenstand*], [Typbeschreibung (JSON) für das elektronische Schutzschaltgerät SENTRON 5TY1 COM, erzeugt mit dem SENTRON Power Device Engineer],
+    [*Gegenstand*], [Zwei Typbeschreibungen (JSON), erzeugt mit dem SENTRON Power Device Engineer. Die eine beschreibt das elektronische Schutzschaltgerät SENTRON 5TY1 COM und ist Gegenstand dieser Unterlage, die andere den Datentransceiver SENTRON Powercenter],
     [*Zielplattform*], [Desigo CC, Anbindung über Modbus TCP am SENTRON Powercenter],
-    [*Stand*], [26.08.2026, Entwurf zur Durchsicht],
+    [*Stand*], [11.09.2026, Entwurf zur Durchsicht],
     [*Adressaten*], [Personal der Inbetriebnahme im Verteiler und Personal der Projektierung im Leitsystem],
     [*Erstellt mit*], [Power Device Engineer V9.1.0, geprüft an Powercenter 1100 (Firmware 7.3.0) und ECPD 5TY1-3MF16 COM (Firmware 5.5.0)],
   ),
@@ -41,7 +41,7 @@
 
 ==== Was die Vorlage leistet
 
-Abgebildet sind 37 Register des ECPD, ausgewählt danach, ob sie eine Tätigkeit im laufenden Betrieb tragen. Die vollständige Aufstellung steht in @apxdoc:referenz.
+Abgebildet sind 37 Register des ECPD, ausgewählt danach, ob sie eine Tätigkeit im laufenden Betrieb unterstützen. Daraus entstehen in Desigo CC 37 Datenpunkte, von denen einer das Sammelregister der 27 Alarme als eine Zahl führt (siehe @apxdoc:alarme). Die vollständige Aufstellung steht in @apxdoc:referenz.
 
 Nicht abgebildet ist die Parametrierung des Geräts. Grenzwerte, Hysteresen, Schutzeinstellungen und Zeitkonfiguration bleiben in SENTRON Powerconfig.
 
@@ -52,7 +52,7 @@ Ohne die folgenden drei Schritte liefert das Modell unvollständige oder gar kei
 
 *Alarme einschalten.* 13 der 27 Alarme des Geräts sind ab Werk deaktiviert und liefern ohne vorherige Einstellung dauerhaft den Wert null. Betroffen sind unter anderem beide RCM-Alarme, die zu den aussagekräftigsten Meldungen des Geräts zählen. Welche Alarme betroffen sind, weist die Spalte Werkszustand in @apxdoc:bitbelegung aus.
 
-*Fernschalten über Modbus freischalten.* Das elektronische Schalten über Modbus ist ab Werk gesperrt. Der zugehörige Schalter trägt in der Registerkarte keine Registeradresse und lässt sich deshalb ausschließlich über Powerconfig setzen. Bleibt er aus, weist das Gerät jeden Schaltbefehl ab, obwohl andere schreibende Zugriffe angenommen werden. Der Datenpunkt `remote_control_electronic_switching_enabled` bildet diesen Zustand lesend ab und ist bei einem wirkungslosen Schaltbefehl die erste Stelle, an der nachzusehen ist. Zum Schutz der freigeschalteten Schnittstelle siehe den Sicherheitshinweis in @apxdoc:inbetriebnahme.
+*Fernschalten über Modbus freischalten.* Das elektronische Schalten über Modbus ist ab Werk gesperrt. Der zugehörige Schalter besitzt in der Registerkarte keine Registeradresse und lässt sich deshalb ausschließlich über Powerconfig setzen. Bleibt er aus, weist das Gerät jeden Schaltbefehl ab, obwohl andere schreibende Zugriffe angenommen werden. Der Datenpunkt `remote_control_electronic_switching_enabled` bildet diesen Zustand lesend ab und ist bei einem wirkungslosen Schaltbefehl die erste Stelle, an der nachzusehen ist. Zum Schutz der freigeschalteten Schnittstelle siehe den Sicherheitshinweis in @apxdoc:inbetriebnahme.
 
 *Stammdaten setzen.* Anlagenkennzeichen und Einbauort sind im Modell nur lesend geführt, da sich Zeichenketten über die Vorlage nicht beschreiben lassen. Beide werden in Powerconfig vergeben. Das gilt ebenso für die Phasenzuordnung und den eingestellten Nennstrom.
 
@@ -97,6 +97,10 @@ Für geschützte Parameter ist zu beachten, dass ihre Änderung eine Freigabe vo
     [Ein Datenpunkt kennt nur eine Richtung],
     [Schaltbefehl und Rückmeldung sind zwei getrennte Eigenschaften],
     [Bereits im Modell berücksichtigt],
+
+    [Drei Anfragen je Abfragezyklus lesen Coils],
+    [Das Powercenter beantwortet sie mit einem Ausnahmecode; in einer Telegrammaufzeichnung erscheinen deshalb Fehlerantworten, ohne dass ein Wert fehlt],
+    [Kein Eingriff nötig. Betroffen sind die Adressen der Register 97, 2560 und 3693],
   )],
   caption: [Bekannte Grenzen der Vorlage mit ihrer Auswirkung und dem vorgesehenen Umgang]
 )<tab:apxdoc_grenzen>
@@ -125,19 +129,25 @@ Der Ablauf entspricht der gewohnten Inbetriebnahme der Gerätefamilie und wird h
 
 ==== Modbus-Treiber anlegen<apxdoc:treiber>
 
-Der Treiber wird im Projekt eigens erzeugt, einem Netzwerk zugeordnet und gestartet. Für diese Vorlage ist dabei eine Einstellung maßgeblich.
+Der Treiber wird im Projekt eigens erzeugt, einem Netzwerk zugeordnet und gestartet. Für diese Vorlage sind dabei drei Einstellungen maßgeblich.
 
-*Abfrageintervall.* Das Intervall wird am Treiber eingestellt und gilt für sämtliche Datenpunkte aller an diesem Treiber angebundenen Geräte; eine abgestufte Abfrage steht nicht zur Verfügung. Als Orientierung gilt die Empfehlung des Systemhandbuchs, jedes Gerät höchstens einmal je Sekunde abzufragen. Schneller abzufragen bringt keinen Gewinn, da die Messwerte frühestens alle zwei Sekunden aktualisiert werden. Ein voll bestückter Strang belegt mit dieser Vorlage 905 Register, was den Treiber nicht an seine Grenze bringt, die Abfragedauer je Durchlauf aber mit jedem Gerät verlängert.
+*Wortreihenfolge.* Die Geräte legen mehrwortige Werte in Big-Endian-Anordnung ab, und die Typbeschreibung ist entsprechend erzeugt. Der Konfigurationseintrag des Treibers für die Wortreihenfolge ist deshalb auf 0 zu setzen. Stimmen beide Seiten nicht überein, liefert ein richtig adressiertes Register einen unbrauchbaren Wert, ohne dass ein Fehler gemeldet würde. Betroffen sind sämtliche Gleitkommazahlen und Zeichenketten der Vorlage, also alle Messwerte, alle Zählerstände und alle Stammdaten. Der Prüfschritt dafür steht in @apxdoc:abnahme.
+
+*Abfrageintervall.* Das Intervall wird am Treiber eingestellt und gilt für sämtliche Datenpunkte aller an diesem Treiber angebundenen Geräte; eine abgestufte Abfrage steht nicht zur Verfügung. Als Orientierung gilt die Empfehlung des Systemhandbuchs, jedes Gerät höchstens einmal je Sekunde abzufragen. Schneller abzufragen bringt keinen Gewinn, da die Messwerte frühestens alle zwei Sekunden aktualisiert werden. Erprobt ist die Vorlage mit einer Sekunde.
+
+*Blockbildung.* Der Treiber fasst Register, deren Adressabstand einen Grenzwert unterschreitet, selbsttätig zu einem Leseblock zusammen. Der Vorgabewert von 16 ist für diese Vorlage geeignet und braucht nicht verändert zu werden.
+
+Ein voll bestückter Strang aus einem Powercenter und 24 Endgeräten belegt mit dieser Vorlage 904 gelesene Register. Daraus werden ebenso viele Datenpunkte, solange die Alarme nach @apxdoc:alarme als eine Zahl ankommen, und 1554, sobald sie einzeln geführt werden. Die Grenze des Treibers von 35000 Datenpunkten ist in beiden Fällen erst jenseits von 20 Strängen erreicht, während die Abfragedauer je Durchlauf schon vorher mit jedem Gerät wächst. Je Server lassen sich zehn Treiber gleichzeitig betreiben.
 
 
 ==== Typbeschreibung importieren
 
-Die JSON-Datei wird als Objektmodell importiert. Sie trägt zu jeder Eigenschaft bereits Registeradresse, Funktionscode, Datentyp, Einheit und Skalierungsfaktor, sodass keine getrennte Adressbelegung anzulegen ist.
+Die JSON-Datei wird als Objektmodell importiert. Sie enthält zu jeder Eigenschaft bereits Registeradresse, Funktionscode, Datentyp, Einheit und Skalierungsfaktor, sodass keine getrennte Adressbelegung anzulegen ist.
 
 
 ==== Geräteinstanzen anlegen
 
-Eine Kommunikationsschnittstelle ist durch IP-Adresse und Unit Identifier bestimmt und trägt genau ein Gerät. Ein vollständiger Strang erscheint deshalb nicht als ein Gerät mit Untergeräten, sondern als eine Reihe getrennter Schnittstellen mit derselben IP-Adresse und unterschiedlichem Unit Identifier.
+Eine Kommunikationsschnittstelle ist durch IP-Adresse und Unit Identifier bestimmt und genau einem Gerät zugeordnet. Ein vollständiger Strang erscheint deshalb nicht als ein Gerät mit Untergeräten, sondern als eine Reihe getrennter Schnittstellen mit derselben IP-Adresse und unterschiedlichem Unit Identifier.
 
 *Gateway-Kommunikation.* Bei jedem Endgerät ist der Haken für die Gateway-Kommunikation zu setzen, der daraufhin das Eingabefeld für den Unit Identifier freigibt. Ohne ihn bleibt der Unit Identifier unwirksam, und jede Abfrage erreicht das Powercenter selbst statt des adressierten Endgeräts. Die Einstellung hängt am einzelnen Gerät und ist deshalb bei jeder neuen Instanz erneut vorzunehmen.
 
@@ -156,9 +166,9 @@ Eine Kommunikationsschnittstelle ist durch IP-Adresse und Unit Identifier bestim
   caption: [Adressierung der Geräte eines Strangs in Desigo CC]
 )<tab:apxdoc_adressierung>
 
-Je Strang entstehen so bis zu 25 Schnittstellen. Für das Powercenter liegt eine zweite, bewusst schmal gehaltene Typbeschreibung bei, die allein die Datenpunkte des Datentransceivers führt und auf Import und Instanzbildung geprüft ist. Die Parametrierung des Powercenters bleibt in Powerconfig.
+Nach @tab:apxdoc_adressierung entstehen je Strang bis zu 25 Schnittstellen. Für das Powercenter liegt eine zweite, bewusst schmal gehaltene Typbeschreibung bei, die allein die Datenpunkte des Datentransceivers führt und auf Import und Instanzbildung geprüft ist. Die Parametrierung des Powercenters bleibt in Powerconfig.
 
-Ein Datenpunkt der Vorlage hängt an der Stelle des Geräts am Powercenter. `device_status` liegt auf Register $16483 + n$, wobei $n$ der Geräteadresse entspricht. Das Powercenter führt diesen Wert als Feld über alle 24 Endgeräteplätze, dessen erster Platz auf Register 16484 liegt. Ein Gerät mit der Adresse 1 trägt damit Register 16484, ein Gerät mit der Adresse 2 Register 16485 und so fort. Diese Adresse ist je Instanz nachzuführen, alle übrigen Register sind bei allen Geräten identisch.
+Ein Datenpunkt der Vorlage hängt an der Stelle des Geräts am Powercenter. `device_status` liegt auf Register $16483 + n$, wobei $n$ der Geräteadresse entspricht. Das Powercenter führt diesen Wert als Feld über alle 24 Endgeräteplätze, dessen erster Platz auf Register 16484 liegt. Ein Gerät mit der Adresse 1 belegt damit Register 16484, ein Gerät mit der Adresse 2 Register 16485 und so fort. Diese Adresse ist je Instanz nachzuführen, alle übrigen Register sind bei allen Geräten identisch.
 
 
 ==== Alarme auswerten<apxdoc:alarme>
@@ -167,7 +177,7 @@ Das Gerät meldet seine 27 Alarme als Bitfeld in einem einzigen Register. Eine Z
 
 @apxdoc:bitbelegung führt zu jedem Bit die Meldung, seine Wertigkeit im Register und den Werkszustand. Eine Bedingung ohne Maskierung prüft stets den gesamten Registerinhalt, weshalb ein Vergleich gegen die Wertigkeit eines einzelnen Bits nur zutrifft, solange kein weiteres Bit gesetzt ist. Für sicherheitsrelevante Meldungen ist er damit ungeeignet, da eine Auslösung typischerweise mehrere Bits zugleich setzt.
 
-Für die nach Dringlichkeit gestaffelte Zuordnung der Meldungen zu Alarmklassen bietet sich die folgende Einteilung an, die im Projekt zu prüfen und an die Anlage anzupassen ist.
+Für die nach Dringlichkeit gestaffelte Zuordnung der Meldungen zu Alarmklassen bietet sich die Einteilung in @tab:apxdoc_alarmklassen an, die im Projekt zu prüfen und an die Anlage anzupassen ist. Die vier Stufen decken alle 27 belegten Bits ab.
 
 #figure(
   outlined: false,
@@ -178,21 +188,21 @@ Für die nach Dringlichkeit gestaffelte Zuordnung der Meldungen zu Alarmklassen 
     table.header(
       [*Stufe*], [*Bits*],
     ),
-    [Höchste Dringlichkeit], [20 Fehlerstrom, 27 Kurzschluss, 29 Übertemperaturabschaltung, 18 Selbsttest fehlgeschlagen],
+    [Höchste Dringlichkeit], [18 Selbsttest fehlgeschlagen, 20 Auslösung Fehlerstrom, 27 Unverzögerte Auslösung, 29 Übertemperaturabschaltung],
     [Störung], [13, 15, 19, 25, 26, 28, 31],
     [Wartungsmeldung], [0, 1, 2, 3, 16, 30],
-    [Vorwarnung], [5 bis 12 und 24],
+    [Vorwarnung], [4 bis 12 und 24],
   ),
   caption: [Vorschlag für die Zuordnung der Alarmbits zu Dringlichkeitsstufen]
 )<tab:apxdoc_alarmklassen>
 
 
-==== Abnahmeprüfung
+==== Abnahmeprüfung<apxdoc:abnahme>
 
 Nach dem Anlegen der Instanzen empfiehlt sich die folgende Reihenfolge.
 
 + `device_status` prüfen. Steht die Funkverbindung, ist die Strecke vom Leitsystem bis zum Endgerät durchgängig.
-+ Einen Messwert bekannter Größenordnung gegenprüfen, etwa `line_frequency`. Ein unplausibler Wert weist darauf hin, dass das Register nicht richtig ausgewertet wird.
++ Wortreihenfolge an `line_frequency` prüfen. Der Wert ist eine Gleitkommazahl über zwei Register und liegt im Netzbetrieb bei rund $50space.thin"Hz"$. Weicht er um Größenordnungen ab, ist die Wortreihenfolge am Treiber nicht auf Big Endian eingestellt. Die Prüfung kommt ohne Referenzmessgerät aus, weil die Größenordnung von vornherein feststeht.
 + `rated_current_setting` prüfen. Der Wert muss dem Nennstrom des Geräts entsprechen, bei einem 16-A-Gerät somit 16 nach Anwendung des Faktors.
 + Ungültige Messwerte erkennen. Das Powercenter kennzeichnet sie als _Not a Number_. Zusammen mit `device_status` lässt sich so ein ausgefallenes Gerät von einem Gerät mit dem Messwert null unterscheiden.
 + Nur wenn das Fernschalten genutzt werden soll, `remote_control_electronic_switching_enabled` prüfen und anschließend einen Schaltbefehl mit Rückmeldung über `switching_state_feedback` verfolgen.
@@ -213,7 +223,7 @@ Nach jeder Änderung ist die Typbeschreibung erneut zu importieren und die Nachf
 
 ==== Abgebildete Datenpunkte des ECPD
 
-37 Register. Die Registernummern entsprechen der Registerkarte der Gerätefamilie. Die Richtung _R_ bedeutet lesend, _W fest_ ein Kommando mit im Modell hinterlegtem Wert und _W dynamisch_ ein Kommando, dessen Wert in Desigo CC vergeben wird.
+Die Vorlage bildet 37 Register ab, aufgelistet in @tab:apxdoc_referenz. Die Registernummern entsprechen der Registerkarte der Gerätefamilie. Die Spalte _Länge_ gibt an, über wie viele Register sich ein Wert erstreckt; ein mehrwortiger Wert ist stets in dieser Länge zu lesen, andernfalls liefert das Gerät keine verwertbaren Daten. Die Richtung _R_ bedeutet lesend, _W fest_ ein Kommando mit im Modell hinterlegtem Wert und _W dynamisch_ ein Kommando, dessen Wert in Desigo CC vergeben wird.
 
 #doku_breitseite[
 #figure(
@@ -270,7 +280,7 @@ Nach jeder Änderung ist die Typbeschreibung erneut zu importieren und die Nachf
 )<tab:apxdoc_referenz>
 ]
 
-Der Funktionscode ist nicht Teil der Registerkarte. Gelesen wird mit FC3, geschrieben mit FC6.
+Der Funktionscode ist nicht Teil der Registerkarte. Die Vorlage liest mit FC3 und schreibt mit FC6. Das Powercenter nimmt daneben FC4 lesend und FC16 schreibend an, sodass eine abweichende Belegung einzelner Datenpunkte möglich bliebe.
 
 
 ==== Bitbelegung des Alarmregisters 2560<apxdoc:bitbelegung>
@@ -341,6 +351,64 @@ Die Spalte Wertigkeit gibt den Zahlenwert an, den das Bit im Register beiträgt.
    7. Ein Deckblatt mit Dokumentnummer, Freigabe und Revisionsstand fehlt und
       waere bei einer eigenstaendigen Auslieferung zu ergaenzen. Innerhalb des
       Anhangs traegt @tab:apxdoc_kopf diese Angaben ersatzweise. */
+
+/* Claude: Durchsicht der Unterlage am 11.09.2026. Geaendert wurde Folgendes.
+
+   INHALTLICHE FEHLER
+   1. "905 Register" je voll bestuecktem Strang war eine ueberholte Zahl. Nach
+      @tab:bilanz_datenpunkte sind es 904 gelesene Register (24 x 37 + 16).
+      Der Satz nennt jetzt zusaetzlich die Datenpunktzahl, und zwar in beiden
+      Faellen: 904, solange die Alarme als eine Zahl ankommen, 1554 mit
+      zerlegten Alarmen. Beides gegen die Treibergrenze von 35000 gestellt.
+   2. Die Staffelung der Alarmklassen liess Bit 4 (Alarm Temperatur-
+      ueberschreitung) aus. Von den 27 belegten Bits waren nur 26 zugeordnet.
+      Bit 4 steht jetzt bei der Vorwarnung, neben den uebrigen Grenzwertalarmen.
+   3. Dieselbe Tabelle nannte Bit 27 "Kurzschluss". Nach @tab:apxdoc_bits heisst
+      die Meldung "Unverzoegerte Ausloesung"; Kurzschluss ist Bit 16 und dort der
+      Zaehleralarm. Die vier Meldungen der hoechsten Stufe tragen jetzt den
+      Wortlaut der Bitbelegung und stehen aufsteigend.
+   4. Der Stand in @tab:apxdoc_kopf lag auf dem 26.08.2026, also vor der
+      Korrektur der Geraeteadresse (16483+n) und vor der Messung des
+      Telegrammverkehrs. Jetzt 11.09.2026.
+
+   FEHLENDE ANGABEN
+   5. Der Treiberabschnitt nannte nur das Abfrageintervall. Ergaenzt sind die
+      Wortreihenfolge (Big Endian, Konfigurationseintrag auf 0) und die
+      Blockbildung (Vorgabewert 16). Die Wortreihenfolge ist die folgenreichste
+      Einstellung der ganzen Anbindung: Stimmt sie nicht, liefern saemtliche
+      Gleitkommazahlen und Zeichenketten stillschweigend Unsinn. Quelle ist
+      @sec:umsetzung und @tab:modbustreiber.
+   6. Die Abnahmepruefung hat dafuer einen benannten Pruefschritt bekommen
+      (Netzfrequenz gegen die bekannte Groessenordnung), wie es @sec:umsetzung
+      fuer diese Unterlage ankuendigt. Der Abschnitt traegt jetzt das Label
+      @apxdoc:abnahme.
+   7. Die Kopfdaten nannten als Gegenstand nur die Typbeschreibung des ECPD,
+      ausgeliefert werden aber zwei Dateien. Die des Powercenters ist jetzt
+      genannt.
+   8. Die Spalte "Laenge" der Referenz war nicht erklaert. Der Hinweis, dass ein
+      mehrwortiger Wert genau in dieser Laenge zu lesen ist, steht jetzt davor.
+   9. Neue Zeile in @tab:apxdoc_grenzen zu den drei Coil-Anfragen je Zyklus, die
+      das Powercenter nach @sec:testdurchfuehrung mit einem Ausnahmecode
+      beantwortet. Wer den Verkehr aufzeichnet, sieht sonst Fehlerantworten ohne
+      Erklaerung.
+  10. Der Funktionscode-Satz nennt jetzt auch FC4 und FC16, die das Powercenter
+      nach @sec:powercenter_modbus annimmt.
+
+   OFFEN GEBLIEBEN
+   - Punkt 4 der Liste darueber (FC3/FC6 gegen das Modell pruefen) ist nicht
+     abschliessend geklaert, weil die JSON-Dateien nicht im Projektverzeichnis
+     liegen. @sec:umsetzung spricht von "Funktionscodes 3 und 4" lesend, was
+     sich auf das Angebot des Powercenters beziehen duerfte, nicht auf die
+     Belegung der Vorlage. Am Modell nachzusehen.
+   - Die Unterlage fuehrt keine Referenz der 16 Powercenter-Datenpunkte,
+     obwohl die zweite Typbeschreibung mit ausgeliefert wird. Die Angaben
+     stuenden in #ref(<apx:datenpunkte_powercenter>, supplement: [Anhang])
+     bereit, wuerden hier aber eine eigene Tabelle verlangen. Mit dem Autor
+     abzustimmen.
+   - Die Laengen- und Registerangaben der Referenz sind nicht Zeile fuer Zeile
+     gegen die Registerkarte geprueft worden, da die Arbeitsmappe hier nicht
+     vorliegt. Stichproben (Anlagenkennzeichen 16 Register, Alarmregister
+     2 Register, Betriebsstunden 4 Register) stimmen mit der Arbeit ueberein. */
 
 /* Claude: Am 07.09.2026 tragen die sechs Tabellen dieser Unterlage
    `outlined: false` und erscheinen damit nicht mehr im Tabellenverzeichnis der

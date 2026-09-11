@@ -17,7 +17,7 @@ Den Kern bildet die Entwicklung des Datenmodells. Sie begründet zuerst die Krit
 
 Die Validierung führt die Testfälle am Testaufbau durch (@sec:testdurchfuehrung), hält die Befunde fest, die außerhalb des Datenmodells liegen und dennoch über seine Verwendbarkeit entscheiden (@sec:befunde), und stellt jeder Anforderung ihr Ergebnis gegenüber (@sec:anforderungsabgleich). Das Fazit gewichtet diese Ergebnisse für das Projektgeschäft (@sec:praxistauglichkeit), benennt die Grenzen der Lösung (@sec:wuerdigung) und zeigt Ansatzpunkte für eine Weiterentwicklung auf (@sec:weiterentwicklung).
 
-Der Anhang trägt die Aufstellungen, die den Umfang eines Fließtextes überschreiten, darunter die aufgenommenen Datenpunkte beider Gerätetypen mit Register, Format und Begründung (#ref(<apx:datenpunkte_ecpd>, supplement: [Anhang])).
+Der Anhang enthält die Aufstellungen, die den Umfang eines Fließtextes überschreiten, darunter die aufgenommenen Datenpunkte beider Gerätetypen mit Register, Format und Begründung (#ref(<apx:datenpunkte_ecpd>, supplement: [Anhang])).
 
 /* Claude: Abschnitt neu angelegt, sieben kurze Absaetze. Kapitelnummern sind
    nirgends hart eingetragen, die Kapitel sind ueber die Labels ihrer

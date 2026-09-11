@@ -13,7 +13,7 @@ Den Kern bildet die Auswahl der Datenpunkte. Ein voll bestückter Strang aus ein
 
 Die Validierung weist zehn der 15 Anforderungen als erfüllt aus, drei als teilweise und zwei als nicht. Messwerte, Zählerstände, Stammdaten und Schalterzustand erscheinen vollständig und richtig beschriftet, Schaltbefehle werden ausgeführt und quittiert. Offen bleibt die Alarmierung, da sämtliche Meldungen in einem Sammelregister liegen, das die Werkzeugkette nicht in einzelne Zustände zerlegt.
 
-Die Bewertung fällt geteilt aus. Als Vorlage nimmt das Modell die wiederkehrende Zuordnungsarbeit ab und trägt die Auswertung eines Verteilers aus der Leitwarte. Als vollständige Leitwartenanbindung trägt es nicht, solange die Meldungen nicht als einzelne Zustände vorliegen.
+Die Bewertung fällt geteilt aus. Als Vorlage nimmt das Modell die wiederkehrende Zuordnungsarbeit ab und ermöglicht die Auswertung eines Verteilers aus der Leitwarte. Als vollständige Leitwartenanbindung genügt es nicht, solange die Meldungen nicht als einzelne Zustände vorliegen.
 
 /* Claude: Kurzfassung aus @sec:zusammenfassung, @sec:anforderungsabgleich,
    @sec:praxistauglichkeit und @sec:standdertechnik verdichtet, fuenf Absaetze

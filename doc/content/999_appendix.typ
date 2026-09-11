@@ -125,11 +125,11 @@
 
     [3671], [Letzte Trip Log OID], [`last_trip_log_oid`], [RO], [U16], [UC-03, UC-07], [T-05], [Ändert sich nur bei einer Auslösung und dient damit als Auslöser für das Nachlesen des Auslöseprotokolls.],
   )],
-  caption: [Aufgenommene Register des #acro("ECPD") mit Bezeichnung, vorgeschlagenem Variablennamen, Zugriffsart, Datenformat, tragendem Anwendungsfall, Nachweis und Begründung der Aufnahme]
+  caption: [Aufgenommene Register des #acro("ECPD") mit Bezeichnung, vorgeschlagenem Variablennamen, Zugriffsart, Datenformat, zugehörigem Anwendungsfall, Nachweis und Begründung der Aufnahme]
 )<tab:apx_ecpd_register>
 ]
 
-Die Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers 2560 und tragen durchgehend UC-03, FA-04 und FA-05 mit dem Nachweis T-05 und T-06, weshalb eigene Spalten dafür entfallen. Die mit _aus_ gekennzeichneten Alarme liefern bis zu ihrer Einstellung in SENTRON Powerconfig dauerhaft null, während ereignisbasierte Alarme keinen Schalter besitzen.
+Die Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers 2560 und decken durchgehend UC-03, FA-04 und FA-05 mit dem Nachweis T-05 und T-06 ab, weshalb eigene Spalten dafür entfallen. Die mit _aus_ gekennzeichneten Alarme liefern bis zu ihrer Einstellung in SENTRON Powerconfig dauerhaft null, während ereignisbasierte Alarme keinen Schalter besitzen.
 
 #figure(
   text(size: 8pt, lang: "de", hyphenate: true)[#table(
@@ -165,7 +165,8 @@ Die Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers 2560 und 
     [26], [Verzögerte Auslösung], [`alarm_delayed_trip`], [ereignisbasiert], [Thermisch verzögerte Auslösung und damit Überlast statt Kurzschluss.],
     [27], [Unverzögerte Auslösung], [`alarm_instantaneous_trip`], [ereignisbasiert], [Unverzögerte Auslösung und damit ein echter Fehler in der Installation.],
     [28], [ARD fehlgeschlagen], [`alarm_ard_failed`], [ereignisbasiert], [Die automatische Wiedereinschaltung ist erschöpft, ein Einsatz vor Ort ist nötig.],
-    [29], [Übertemperaturabschaltung], [`alarm_overtemperature_shutdown`], [ereignisbasiert], [Das Gerät hat wegen Übertemperatur abgeschaltet, Eskalationsstufe nach Bit 4.],
+    [29], [Übertemperaturabschaltung], [`alarm_overtemperature
+    _shutdown`], [ereignisbasiert], [Das Gerät hat wegen Übertemperatur abgeschaltet, Eskalationsstufe nach Bit 4.],
     [30], [Alarm für verzögerte Auslösungen], [`alarm_delayed_trip_counter`], [ein], [Dauerhafte Überlast am Abgang, im Unterschied zu Bit 26 als Zählerstand.],
     [31], [Alarm EIN blockiert], [`alarm_switch_on_blocked`], [ereignisbasiert], [Das Gerät lässt sich nicht einschalten und erklärt fehlgeschlagene Schaltbefehle.],
   )],
@@ -174,7 +175,7 @@ Die Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers 2560 und 
 
 == Aufgenommene Datenpunkte des Powercenters<apx:datenpunkte_powercenter>
 
-@tab:apx_pc_register führt die Register, die ausschließlich das Powercenter selbst betreffen; die Felder über alle 24 Endgeräte stehen nach K-04 im Objektmodell des jeweiligen Endgeräts. Den Nachweis tragen für sämtliche Zeilen T-01 und T-02, weshalb eine eigene Spalte dafür entfällt.
+@tab:apx_pc_register führt die Register, die ausschließlich das Powercenter selbst betreffen; die Felder über alle 24 Endgeräte stehen nach K-04 im Objektmodell des jeweiligen Endgeräts. Den Nachweis führen für sämtliche Zeilen T-01 und T-02, weshalb eine eigene Spalte dafür entfällt.
 
 #breitseite[
 #figure(
@@ -224,7 +225,7 @@ Die Alarmdatenpunkte entstehen sämtlich aus dem Bitfeld des Registers 2560 und 
 
     [22], [Software Version], [`software_version`], [RO], [UCHAR\[4\]], [UC-09], [Firmwarestand des Datentransceivers; die Kodierung entspricht der des #acro("ECPD") und ist nach @sec:umsetzung ebenfalls nicht dekodierbar.],
   )],
-  caption: [Aufgenommene Register des Powercenters mit Bezeichnung, vorgeschlagenem Variablennamen, Zugriffsart, Datenformat, tragendem Anwendungsfall und Begründung der Aufnahme]
+  caption: [Aufgenommene Register des Powercenters mit Bezeichnung, vorgeschlagenem Variablennamen, Zugriffsart, Datenformat, zugehörigem Anwendungsfall und Begründung der Aufnahme]
 )<tab:apx_pc_register>
 ]
 
@@ -244,7 +245,7 @@ Am Powercenter sind im Sammelregister 2560 nur zwei Bits belegt, da das Gerät w
   caption: [Aus dem Sammelregister 2560 gebildete Alarmdatenpunkte des Powercenters]
 )<tab:apx_pc_alarme>
 
-Die nicht aufgenommenen Register sind nicht Zeile für Zeile geführt. @tab:ausschluss_ecpd weist die Ausschlussgruppen mit Umfang und tragendem Kriterium aus, die Begründung der einzelnen Zeile steht in der Arbeitsmappe des Anforderungskatalogs.
+Die nicht aufgenommenen Register sind nicht Zeile für Zeile geführt. @tab:ausschluss_ecpd weist die Ausschlussgruppen mit Umfang und maßgeblichem Kriterium aus, die Begründung der einzelnen Zeile steht in der Arbeitsmappe des Anforderungskatalogs.
 
 == Rückverfolgbarkeit von Anwendungsfall bis Ergebnis<apx:rueckverfolgung>
 
@@ -290,13 +291,13 @@ Die nicht aufgenommenen Register sind nicht Zeile für Zeile geführt. @tab:auss
 
     [--], [NFA-06], [Angabe der vorausgesetzten Parametrierung, Werkszustand nach @tab:apx_ecpd_alarme], [T-14], [@sec:geraetekonfiguration], [erfüllt],
   )],
-  caption: [Rückverfolgbarkeit vom Anwendungsfall über die Anforderung und das tragende Element des Datenmodells zum Testfall und zum Ergebnis]
+  caption: [Rückverfolgbarkeit vom Anwendungsfall über die Anforderung und das umsetzende Element des Datenmodells zum Testfall und zum Ergebnis]
 )<tab:apx_rueckverfolgung>
 
 Zwei Stellen bleiben offen. NFA-06 entspringt als einzige Anforderung keinem Anwendungsfall, sondern einer Eigenschaft der Geräte (@sec:nfa), und die Zähler-, Wartungs- und Stammdaten des #acro("ECPD") erscheinen nicht in der Matrix, da sie über UC-07 und UC-09 in der Auswahl stehen, ohne dass eine Anforderung sie verlangt. Beides ist in @sec:wuerdigung ausgeführt.
 
 == Anwenderdokumentation zur Integrationsvorlage<apx:anwenderdoku>
 
-Die folgende Unterlage ist das dritte Ergebnis dieser Arbeit und Gegenstand von NFA-01, NFA-02 und T-13, weshalb sie hier vollständig wiedergegeben ist. Wiedergegeben ist der Stand vom 26.08.2026, in Gliederung und Wortlaut unverändert und allein im Satz an diese Arbeit angepasst. Sie richtet sich an den Anwender der Vorlage, weshalb sie @sec:datenpunkte und @sec:umsetzung an mehreren Stellen wiederholt; ihre Referenz führt dieselben Datenpunkte wie #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]), dort jedoch aus der Sicht der Projektierung.
+Die folgende Unterlage ist das dritte Ergebnis dieser Arbeit und Gegenstand von NFA-01, NFA-02 und T-13, weshalb sie hier vollständig wiedergegeben ist. Sie richtet sich an den Anwender der Vorlage, weshalb sie @sec:datenpunkte und @sec:umsetzung an mehreren Stellen wiederholt; ihre Referenz führt dieselben Datenpunkte wie #ref(<apx:datenpunkte_ecpd>, supplement: [Anhang]), dort jedoch aus der Sicht der Projektierung.
 
 #include "../content/990_anwenderdokumentation.typ"

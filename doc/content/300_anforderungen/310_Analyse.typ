@@ -98,7 +98,7 @@ Eine Gruppe ist dabei gesondert einzuordnen. Der IT- und Netzwerkbetrieb ist zwa
 
 Eine Erwartung des Instandhaltungspersonals verdient dabei eine Einordnung, weil sie leicht überdehnt wird. Das #acro("ECPD") führt einen zyklischen Selbsttest durch und kann dessen Ergebnis melden (siehe @sec:ecpd_geraet). Damit lassen sich Gerätefehler früh sichtbar machen, die andernfalls erst bei einer wiederkehrenden Prüfung nach #acro("DGUV") Vorschrift 3 auffielen und dann Austausch und erneute Prüfung nach sich ziehen würden. Die wiederkehrende Prüfung selbst lässt sich dadurch jedoch nicht ersetzen, da sie die Beurteilung durch eine befähigte Person voraussetzt. Die Erwartung richtet sich folglich auf die Unterstützung und die Dokumentation der Prüfung aus.
 
-Betreiber, Instandhaltung, Systemintegrator und Produktmanagement tragen den höchsten Einfluss und knüpfen ihre Erwartungen dabei an vergleichsweise wenige Eigenschaften, an die Verlässlichkeit der Zustandsanzeige, die Aussagekraft der Alarme, die Wiederverwendbarkeit des Modells und die Nachvollziehbarkeit seiner Struktur. Diese vier Eigenschaften bilden den Maßstab, an dem die Lösung in der Validierung zu messen ist.
+Betreiber, Instandhaltung, Systemintegrator und Produktmanagement haben den höchsten Einfluss und knüpfen ihre Erwartungen dabei an vergleichsweise wenige Eigenschaften, an die Verlässlichkeit der Zustandsanzeige, die Aussagekraft der Alarme, die Wiederverwendbarkeit des Modells und die Nachvollziehbarkeit seiner Struktur. Diese vier Eigenschaften bilden den Maßstab, an dem die Lösung in der Validierung zu messen ist.
 
 /* Claude: Der offene Punkt aus der Durchsicht (Selbsttest des ECPD, Verhaeltnis
    zur DGUV-Pruefung) ist eingearbeitet: als Erwartung in der Tabellenzeile zur
@@ -122,7 +122,7 @@ Die #acro("REST")-Schnittstelle über #acro("HTTPS") (W4) ist der Modbus-Variant
 
 Bleibt der Umweg über ein vorgelagertes Fremdsystem (W6). Die vom #acro("PDE") unterstützten Zielapplikationen sind der SENTRON Powermanager und das SENTRON Powercenter 3000 @src:pdemanual. Von beiden lässt sich allein der Powermanager an Desigo CC koppeln, da er auf seiner Northbound-Seite OPC DA bereitstellt @src:sentronsoftwareguide und Desigo CC dieses Protokoll auf seiner Southbound-Seite unterstützt @src:desigoccdatasheet, während das Powercenter 3000 dafür ausschließlich #acro("MQTT") anbietet. Gangbar ist der Weg somit, er führt jedoch ein zweites Leitsystem mit eigener Datenhaltung, eigener Alarmierung und eigenem Wartungsbedarf ein und verschiebt die Abbildung der Gerätedaten lediglich in ein anderes System. Ein solches Zwischensystem entspricht dem in der Gebäudeautomation verbreiteten Muster der vermittelnden Schicht @src:perumal2010, deren Gewinn im Zusammenführen mehrerer ungleichartiger Quellen liegt. Genau diese Bedingung fehlt hier, da eine einzige Quelle anzubinden ist, die mit Modbus #acro("TCP") bereits ein von der Zielplattform unterstütztes Protokoll spricht. Auf den Fall mehrerer Stränge kommt @sec:weiterentwicklung zurück.
 
-Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zwei Ebenen wirken. Die beiden Ausschlusskriterien, das Vorhandensein der Schnittstelle und die Eignung für den Dauerbetrieb, haben bereits W1, W2 und W5 ausgeschieden und werden von W3, W4 und W6 erfüllt. Die Entscheidung fällt deshalb über die drei Abwägungskriterien, die keine Gewichtung tragen, sondern den Preis des jeweiligen Wegs benennen. @tab:integrationswege stellt die drei Wege entlang dieser Kriterien gegenüber. Die Informationssicherheit wird dabei nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie sich im Gegensatz zu den übrigen durch Maßnahmen außerhalb des Protokolls beeinflussen lässt.
+Die drei verbleibenden Wege sind sämtlich gangbar, weshalb die Kriterien auf zwei Ebenen wirken. Die beiden Ausschlusskriterien, das Vorhandensein der Schnittstelle und die Eignung für den Dauerbetrieb, haben bereits W1, W2 und W5 ausgeschieden und werden von W3, W4 und W6 erfüllt. Die Entscheidung fällt deshalb über die drei Abwägungskriterien, die keine Gewichtung erhalten, sondern den Preis des jeweiligen Wegs benennen. @tab:integrationswege stellt die drei Wege entlang dieser Kriterien gegenüber. Die Informationssicherheit wird dabei nicht als gleichrangiges Kriterium geführt, sondern im Anschluss gesondert betrachtet, da sie sich im Gegensatz zu den übrigen durch Maßnahmen außerhalb des Protokolls beeinflussen lässt.
 
 #figure(
   {
@@ -217,10 +217,10 @@ Für den Zuschnitt der Lösung ist dabei entscheidend, dass die Typbeschreibung 
 
 Nicht Gegenstand der Entwicklung sind zwei weitere Bestandteile einer vollständigen Integration. Das sind zum einen Grafiken, Symbole und Textgruppen für die Darstellung in der Bedienoberfläche, zum anderen die Liste der tatsächlich anzulegenden Geräteinstanzen @src:desigoccenghelp. Beides ist projektspezifisch, es ist somit von der Anlage und nicht vom Gerätetyp abhängig.
 
-Die Kommunikation selbst trägt ein Treiber, der im Projekt eigens angelegt, einem Netzwerk zugeordnet und gestartet wird @src:desigoccenghelp. Er ist eine Voraussetzung dafür, dass überhaupt Werte fließen. Als Bestandteil des Datenmodells ist er nicht zu entwickeln, seine Eigenschaften begrenzen jedoch, was ein Objektmodell überhaupt beschreiben kann, weshalb sie im folgenden Abschnitt einzeln aufgeführt sind.
+Die Kommunikation selbst übernimmt ein Treiber, der im Projekt eigens angelegt, einem Netzwerk zugeordnet und gestartet wird @src:desigoccenghelp. Er ist eine Voraussetzung dafür, dass überhaupt Werte fließen. Als Bestandteil des Datenmodells ist er nicht zu entwickeln, seine Eigenschaften begrenzen jedoch, was ein Objektmodell überhaupt beschreiben kann, weshalb sie im folgenden Abschnitt einzeln aufgeführt sind.
 
 
-Bedeutsam ist dagegen die Trennung von Typ und Instanz auf der Zielseite. Das importierte Objektmodell beschreibt einen Gerätetyp und ist damit zunächst nur eine Vorlage. Für jedes physisch vorhandene Gerät ist in Desigo CC eine eigene Instanz anzulegen, die mit der #acro("IP")-Adresse und dem Unit Identifier des Geräts ihre Kommunikationsparameter mitbringt @src:desigoccenghelp. Eine Kommunikationsschnittstelle besteht dabei aus der Kombination von Adresse und Slave-Kennung und trägt genau ein Gerät.
+Bedeutsam ist dagegen die Trennung von Typ und Instanz auf der Zielseite. Das importierte Objektmodell beschreibt einen Gerätetyp und ist damit zunächst nur eine Vorlage. Für jedes physisch vorhandene Gerät ist in Desigo CC eine eigene Instanz anzulegen, die mit der #acro("IP")-Adresse und dem Unit Identifier des Geräts ihre Kommunikationsparameter mitbringt @src:desigoccenghelp. Eine Kommunikationsschnittstelle besteht dabei aus der Kombination von Adresse und Slave-Kennung und ist genau einem Gerät zugeordnet.
 
 Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modbus-Treibers entnehmen, die für die Modellierung unmittelbar bedeutsam sind.
 
@@ -252,12 +252,17 @@ Aus der Dokumentation lassen sich darüber hinaus mehrere Eigenschaften des Modb
 
     [Schreibrichtung],
     [Ein Datenpunkt kennt entweder die Lese- oder die Schreibrichtung, nicht beide. Für Werte, die geschrieben und zurückgelesen werden sollen, sieht die Plattform Objektmodelle mit getrennten Eigenschaften für Soll- und Istwert vor.],
+
+    [Mengengerüst],
+    [Je Server laufen höchstens zehn Treiber gleichzeitig, und einem Treiber sind höchstens 35000 Datenpunkte zugeordnet. Die Zahl der je Gerät abgebildeten Datenpunkte begrenzt damit unmittelbar die Zahl der Geräte, die eine Treiberinstanz bedienen kann.],
   ),
   caption: [Eigenschaften des Modbus-Treibers von Desigo CC und ihre Bedeutung für die Modellierung, nach @src:desigoccenghelp]
 )<tab:modbustreiber>
 
 
-Die letzte Zeile der Tabelle verdient besondere Beachtung. Sie bedeutet, dass ein Schaltbefehl und die zugehörige Rückmeldung im Modell zwingend zwei Eigenschaften belegen, selbst wenn beide auf dasselbe Register verweisen. Die Einschränkung trifft damit unmittelbar auf die Kommandoregister des #acro("ECPD"). Ebenso bemerkenswert ist das Mengengerüst. Bei rund 3900 Einträgen für einen vollständig abgebildeten Strang, dessen Herleitung in @sec:registerraum folgt, ließen sich überschlägig nur etwa acht Stränge über eine einzige Treiberinstanz betreiben. Auch von dieser Seite her ist eine Reduktion des Datenumfangs vonnöten.
+Zwei Zeilen der Tabelle verdienen besondere Beachtung. Die getrennte Schreibrichtung bedeutet, dass ein Schaltbefehl und die zugehörige Rückmeldung im Modell zwingend zwei Eigenschaften belegen, selbst wenn beide auf dasselbe Register verweisen. Die Einschränkung trifft damit unmittelbar auf die Kommandoregister des #acro("ECPD").
+
+Ebenso bemerkenswert ist das Mengengerüst. Die Obergrenze von 35000 Datenpunkten je Treiber ist keine Eigenschaft des Protokolls, sondern eine Festlegung der Plattform, die die Engineering-Dokumentation für den Modbus-Treiber ausdrücklich nennt @src:desigoccenghelp. Sie wirkt auf die Summe aller Datenpunkte sämtlicher Geräte, die einer Treiberinstanz zugeordnet sind, und nicht auf das einzelne Gerät. Bei 3859 Einträgen für einen vollständig abgebildeten Strang, deren Herleitung in @sec:registerraum folgt, ließen sich überschlägig neun Stränge über eine einzige Treiberinstanz betreiben, obwohl ein Server bis zu zehn solcher Instanzen zulässt. Die Abschätzung fällt dabei eher günstig aus, da ein Eintrag der Registerkarte im Modell auch mehrere Datenpunkte belegen kann. Auch von dieser Seite her ist eine Reduktion des Datenumfangs vonnöten.
 
 /* Claude: Der Auftrag "hier bitte noch ausformulieren und mit Quellen belegen"
    ist abgearbeitet; die drei Stichpunkte sind zu drei Absaetzen geworden
@@ -280,7 +285,7 @@ Aus der Festlegung auf Modbus #acro("TCP"), den Eigenschaften des Powercenters u
 
 Den Kern des Entwurfs bildet die Trennung von Gerätetyp und Geräteinstanz. Die Registeradressen sind bei allen Geräten desselben Typs identisch; unterschieden werden die Geräte allein über den Unit Identifier @src:sentronsystemhandbuch. Eine einzige Typbeschreibung genügt daher, um beliebig viele physische Geräte abzubilden, und genau darin liegt die Wiederverwendbarkeit des Modells über Projektgrenzen hinweg.
 
-Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein erheblicher Teil der Register stimmt zwar überein, es handelt sich jedoch um verschiedene Geräte mit unterschiedlichen Aufgaben und unterschiedlicher Adressierung. Auf der Zielseite entspricht ein Strang damit bis zu 25 Kommunikationsschnittstellen mit gemeinsamer #acro("IP")-Adresse und unterschiedlicher Slave-Adresse, unter denen jeweils genau ein Geräteobjekt liegt @src:desigoccenghelp. Der Schwerpunkt liegt dabei auf dem Objektmodell des #acro("ECPD"), da dieses Gerät die Messwerte, die Zählerstände und die Schaltfunktion trägt. Für das Powercenter entsteht eine eigene Typbeschreibung geringeren Umfangs, da es weder misst noch schaltet und im Wesentlichen Zustands- und Diagnoseangaben des Strangs führt.
+Powercenter und #acro("ECPD") werden als getrennte Objekttypen modelliert. Ein erheblicher Teil der Register stimmt zwar überein, es handelt sich jedoch um verschiedene Geräte mit unterschiedlichen Aufgaben und unterschiedlicher Adressierung. Auf der Zielseite entspricht ein Strang damit bis zu 25 Kommunikationsschnittstellen mit gemeinsamer #acro("IP")-Adresse und unterschiedlicher Slave-Adresse, unter denen jeweils genau ein Geräteobjekt liegt @src:desigoccenghelp. Der Schwerpunkt liegt dabei auf dem Objektmodell des #acro("ECPD"), da dieses Gerät die Messwerte, die Zählerstände und die Schaltfunktion bereitstellt. Für das Powercenter entsteht eine eigene Typbeschreibung geringeren Umfangs, da es weder misst noch schaltet und im Wesentlichen Zustands- und Diagnoseangaben des Strangs führt.
 
 #figure(
   abb_konzept,
@@ -330,7 +335,9 @@ Schließlich sieht der Entwurf eine feste Arbeitsteilung zwischen den beiden Wer
 
 Der gewählte Integrationsweg bestimmt, welche Daten überhaupt zur Verfügung stehen. Der folgende Überblick charakterisiert diesen Datenbestand; die begründete Auswahl der tatsächlich abzubildenden Datenpunkte erfolgt im Entwicklungsteil der Arbeit.
 
-Grundlage ist die Übersicht der Datenpunkte und Modbus-Register der Gerätefamilie @src:sentronregistermap. Sie weist für das Powercenter 211 und für das #acro("ECPD") 152 Einträge aus. Da einem Powercenter bis zu 24 Endgeräte zugeordnet sein können, ergäbe eine vollständige Abbildung eines voll bestückten Strangs rund 3900 Einträge. Bereits diese Größenordnung zeigt, dass eine unbesehene Übernahme des Registerraums weder gegenüber der Kommunikationslast noch gegenüber der Bedienbarkeit in der Leitwarte zu vertreten wäre.
+Grundlage ist die Übersicht der Datenpunkte und Modbus-Register der Gerätefamilie @src:sentronregistermap, im Folgenden kurz Registerkarte. Sie führt je benanntem Wert eine Zeile mit Registeradresse, Datenformat und Länge, daneben je Gerät der Familie eine Spalte, in der vermerkt ist, ob dieser Wert am betreffenden Gerät vorhanden ist. Als _Eintrag_ wird im Folgenden eine solche Zeile bezeichnet, gezählt in der Spalte eines bestimmten Geräts. Nach diesem Maßstab weist die Registerkarte für das Powercenter 1100 insgesamt 211 Einträge aus und für das #acro("ECPD") 152. Da einem Powercenter bis zu 24 Endgeräte zugeordnet sein können, ergäbe eine vollständige Abbildung eines voll bestückten Strangs $211 + 24 dot 152 = 3859$ Einträge.
+
+Der Eintrag ist damit die Zähleinheit der Herstellerdokumentation und fällt weder mit der Zahl der übertragenen Registerworte noch mit der Zahl der Datenpunkte in Desigo CC zusammen. Ein einzelner Wert belegt je nach Datenformat mehrere aufeinanderfolgende Register, während umgekehrt ein einziges Register als Bitfeld mehrere Meldungen enthält, worauf die folgende Charakterisierung zurückkommt. Für eine Größenordnung genügt er gleichwohl, und bereits diese zeigt, dass eine ungeprüfte Übernahme des Registerraums weder gegenüber der Kommunikationslast noch gegenüber der Bedienbarkeit in der Leitwarte zu vertreten wäre. Belastbare Zahlen für gelesene Register und für Datenpunkte entstehen erst mit der Auswahl in @sec:datenpunkte, die alle drei Größen in @tab:bilanz_datenpunkte gegenüberstellt.
 
 Inhaltlich lassen sich die Register des #acro("ECPD") in sieben Gruppen einteilen. Diese Einteilung folgt nicht der Gliederung der Registerkarte, sondern dem Nutzungszweck aus Sicht des Betriebs und wurde im Rahmen dieser Arbeit vorgenommen.
 
@@ -370,7 +377,7 @@ Für die Gestaltung des Datenmodells sind über diese Gliederung hinaus sechs Ei
 
 Erstens dominieren Konfigurationsdaten den Registerraum. Der größte Teil der Register des #acro("ECPD") entfällt auf die Alarm- und Grenzwertkonfiguration sowie auf geschützte Schutzeinstellungen. Diese Werte werden einmalig bei der Inbetriebnahme gesetzt und verbleiben nach dem Konzept aus @sec:konzept bei SENTRON Powerconfig. Für den Betrieb ist nicht die Schwelle relevant, sondern deren Überschreitung, und diese wird über das Alarmregister gemeldet.
 
-Zweitens ist die Informationsdichte sehr ungleich verteilt. Ein einziges Register trägt als Bitfeld sämtliche Alarme des Geräts, während umgekehrt einzelne Werte wie mehrwortige Zeichenketten oder Gleitkommazahlen doppelter Genauigkeit mehrere Register belegen. Die Spalte "Länge" der Registerkarte gibt dabei die Anzahl der zu lesenden Register an; wird ein Mehrwortregister mit abweichender Länge gelesen, liefert das Gerät keine verwertbaren Daten.
+Zweitens ist die Informationsdichte sehr ungleich verteilt. Ein einziges Register enthält als Bitfeld sämtliche Alarme des Geräts, während umgekehrt einzelne Werte wie mehrwortige Zeichenketten oder Gleitkommazahlen doppelter Genauigkeit mehrere Register belegen. Die Spalte "Länge" der Registerkarte gibt dabei die Anzahl der zu lesenden Register an; wird ein Mehrwortregister mit abweichender Länge gelesen, liefert das Gerät keine verwertbaren Daten.
 
 Drittens liegen Werte teilweise doppelt vor. Der Schalterzustand jedes Endgeräts ist sowohl am Endgerät selbst als auch in einem Feld über alle 24 Endgeräte am Powercenter verfügbar; Gleiches gilt für Verbindungs- und Pairing-Zustände sowie für die Zähler von Parameteränderungen. Eine Abbildung beider Quellen wäre redundant und würde die Datenpunktzahl am Gateway vervielfachen.
 
@@ -383,10 +390,26 @@ Sechstens fehlt ein Energiezähler. Der Registersatz des #acro("ECPD") enthält 
 
 Aus dieser Charakterisierung folgt die zentrale Erkenntnis des Abschnitts: Der Registerraum ist nicht vollständig, sondern begründet reduziert abzubilden. Die Auswahl hat sich am tatsächlichen Nutzen für den Betrieb zu orientieren, Konfigurationsdaten auszuklammern, Redundanzen aufzulösen und die Abfragelast durch abgestufte Zyklen zu begrenzen. Die Durchführung dieser Auswahl ist Gegenstand des Entwicklungsteils.
 
+/* Claude: Der Begriff "Eintrag" ist am 11.09.2026 auf Nachfrage des Autors
+   definiert worden. Er war zuvor nur durch den Zusammenhang bestimmt, obwohl
+   @sec:datenpunkte fuer seine Bedeutung ausdruecklich hierher verweist ("Ein
+   Eintrag umfasst nach @sec:registerraum je nach Format ein oder mehrere
+   Register"). Definiert ist er jetzt als Zeile der Registerkarte, gezaehlt in
+   der Spalte eines bestimmten Geraets, womit auch die Zaehlweise offenliegt,
+   die den beiden Zahlen 211 und 152 zugrunde liegt. Die Abgrenzung gegen
+   Registerworte und gegen Datenpunkte in Desigo CC steht im Absatz darunter
+   und verweist auf @tab:bilanz_datenpunkte, wo alle drei Groessen
+   nebeneinanderstehen.
+
+   Der Strangwert ist bei der Gelegenheit von "rund 3900" auf die Rechnung
+   211 + 24 x 152 = 3859 umgestellt. Die uebrigen Stellen der Arbeit (Abstract,
+   Kurzfassung, @sec:datenpunkte, @sec:zusammenfassung) fuehrten ohnehin 3859,
+   nur dieser Abschnitt rundete. */
+
 
 === Anwendungsfälle<sec:usecases>
 
-Die vorangegangenen Abschnitte beschreiben, was technisch möglich ist. Welche dieser Möglichkeiten tatsächlich benötigt werden, ergibt sich aus den Tätigkeiten der in @sec:stakeholder eingeordneten Gruppen. Die folgenden Anwendungsfälle beschreiben diese Tätigkeiten und bilden die Brücke zu den Anforderungen. Sie sind bewusst frei von technischen Festlegungen formuliert: Was daraus für die Lösung folgt, wird erst im Anforderungskatalog bestimmt, der jeder Anforderung die tragenden Anwendungsfälle zuordnet.
+Die vorangegangenen Abschnitte beschreiben, was technisch möglich ist. Welche dieser Möglichkeiten tatsächlich benötigt werden, ergibt sich aus den Tätigkeiten der in @sec:stakeholder eingeordneten Gruppen. Die folgenden Anwendungsfälle beschreiben diese Tätigkeiten und bilden die Brücke zu den Anforderungen. Sie sind bewusst frei von technischen Festlegungen formuliert: Was daraus für die Lösung folgt, wird erst im Anforderungskatalog bestimmt, der jeder Anforderung die zugehörigen Anwendungsfälle zuordnet.
 
 #figure(
   table(
@@ -487,6 +510,28 @@ Der Abgleich dieser Anwendungsfälle mit dem zu Beginn der Arbeit aufgestellten 
    sechs auf acht mitgezogen. Die zugrunde liegende Obergrenze von Desigo CC
    steht nirgends in der Arbeit. Entweder Quelle ergaenzen oder die Aussage
    qualitativ fassen. */
+
+/* Claude: Der VORBEHALT darueber ist am 11.09.2026 erledigt. Die Obergrenze
+   steht in der Engineering Help im Thema "Modbus Driver" (Themenkennung
+   23432899339): "You can have 10 drivers running simultaneously per server. A
+   maximum of 35000 points can be associated with each driver." Nachgesehen am
+   oeffentlich erreichbaren Stand V7, der Wortlaut ist ueber die Staende
+   unveraendert (siehe @sec:quellenlage).
+
+   Damit ist die Angabe jetzt belegt statt proportional fortgeschrieben.
+   Nachtrag vom selben Tag: Massgeblich ist der exakte Strangwert 3859 aus
+   @sec:datenpunkte, nicht die gerundeten 3900. 35000 / 3859 = 9,07, also neun
+   vollstaendige Straenge je Treiberinstanz. Mit 3900 waeren es 8,97 und damit
+   acht gewesen, die Rundung hat das Ergebnis also gekippt. Der Satz nennt
+   deshalb 3859 und neun Straenge. "Ueberschlaegig" steht weiterhin im Satz,
+   weil ein Eintrag der Registerkarte nicht genau einem Datenpunkt in Desigo CC
+   entspricht; dass die Abschaetzung dabei eher zu guenstig ausfaellt, ist im
+   Text benannt.
+
+   Die Grenze ist als eigene Zeile "Mengengeruest" in @tab:modbustreiber
+   aufgenommen, weshalb der Absatz nicht mehr von "der letzten Zeile", sondern
+   von zwei benannten Zeilen spricht. Der Absatz ist geteilt, damit
+   Schreibrichtung und Mengengeruest nicht in einem Block stehen. */
 
 /* Claude: UC-05 (Last- und Energieverlauf je Abgang auswerten) am 31.08.2026
    gestrichen, weil dem ECPD die Zaehlfunktion fuer die elektrische Arbeit fehlt

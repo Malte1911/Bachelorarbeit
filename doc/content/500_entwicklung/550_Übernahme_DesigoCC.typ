@@ -22,7 +22,7 @@ In der Bedienoberfläche ist dafür ein Haken für die Gateway-Kommunikation zu 
 
 ==== Import und Instanzen
 
-Der Import der Typbeschreibung wird angenommen, und der Objekttyp erscheint mit seinen Eigenschaften in der Applikationssicht. Damit ist der in @sec:desigoccmechanik beschriebene Weg über den #acro("PDE") am Testaufbau bestätigt, was nicht selbstverständlich ist, da Desigo CC nach @sec:pde_ziel keine dokumentierte Zielapplikation des Werkzeugs ist. Die Entsprechung der beiden #acro("JSON")-Formate trägt somit für die Datentypen, die beide Seiten unterstützen. Wo sie das nicht tut, endet der Weg, was der Abschnitt zu den Alarmen zeigt.
+Der Import der Typbeschreibung wird angenommen, und der Objekttyp erscheint mit seinen Eigenschaften in der Applikationssicht. Damit ist der in @sec:desigoccmechanik beschriebene Weg über den #acro("PDE") am Testaufbau bestätigt, was nicht selbstverständlich ist, da Desigo CC nach @sec:pde_ziel keine dokumentierte Zielapplikation des Werkzeugs ist. Die Entsprechung der beiden #acro("JSON")-Formate gilt somit für die Datentypen, die beide Seiten unterstützen. Wo sie das nicht tut, endet der Weg, was der Abschnitt zu den Alarmen zeigt.
 
 Die Instanzen entstehen aus derselben Typbeschreibung, indem jeder Instanz ihre Kommunikationsparameter mitgegeben werden. Die Typbeschreibung selbst bleibt dabei unverändert, worin sich die in @sec:konzept getroffene Trennung von Gerätetyp und Geräteinstanz praktisch bestätigt.
 
@@ -49,7 +49,7 @@ Die Umstellung wirkt allerdings nur auf die Schreibseite. Die Aufzeichnung des T
 
 ==== Was die Übernahme offenlässt
 
-An dieser Stelle hat sich auch gezeigt, dass die Zerlegung des Alarmregisters nicht trägt. Der Befund ist in @sec:umsetzung ausgeführt, weil er dort eine Festlegung des Modells erzwingt. Für die Übernahme bleibt festzuhalten, dass die Grenze nicht beim Erzeugen der Typbeschreibung sichtbar wird, sondern erst bei ihrem Einlesen.
+An dieser Stelle hat sich auch gezeigt, dass die Zerlegung des Alarmregisters nicht gelingt. Der Befund ist in @sec:umsetzung ausgeführt, weil er dort eine Festlegung des Modells erzwingt. Für die Übernahme bleibt festzuhalten, dass die Grenze nicht beim Erzeugen der Typbeschreibung sichtbar wird, sondern erst bei ihrem Einlesen.
 
 Die Alarmierung ist damit vollständig Sache der Projektierung. Was an dieser Stelle ergänzt würde, um die Meldungen zum Laufen zu bringen, müsste ein Techniker bei jeder Einrichtung erneut leisten, da es nicht in der Typbeschreibung abgelegt werden kann. Das ist nicht allein ein Mangel. Welche Meldung in einer Anlage als dringend gilt, welche in der Leitwarte erscheint und welche stumm bleibt, hängt am Betreiber und an der Anlage, und diese Entscheidung lässt sich in der Entwicklung eines Gerätetyps nicht sinnvoll vorwegnehmen. Die in @sec:umsetzung gezogene Folgerung für FA-04 und FA-05 bestätigt sich hier von der praktischen Seite.
 
